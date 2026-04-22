@@ -43,11 +43,12 @@
           <h2>Auf dieser Seite</h2>
           <ul>
             <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#tech-summary">Technischer Kurzüberblick</a></li>
             <li><a href="#einordnung">Einordnung</a></li>
             <li><a href="#einsatz">Typische Einsatzfälle</a></li>
-            <li><a href="#abgrenzung">Abgrenzung zur XML-Schnittstelle</a></li>
-            <li><a href="#referenz">Technische Referenz</a></li>
-            <li><a href="#hinweise">Hinweise</a></li>
+            <li><a href="#abgrenzung">Abgrenzung: XML vs. REST</a></li>
+            <li><a href="#referenz">Verantwortungsbereiche</a></li>
+            <li><a href="#hinweise">Governance</a></li>
             <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
           </ul>
         </div>
@@ -56,6 +57,7 @@
           <h2>Inhalt</h2>
           <ul>
             <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_transport_betrieb.html">Transport & Betriebsmodell</a></li>
             <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
             <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
             <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
@@ -83,27 +85,58 @@
     <main>
       <div class="page">
         <header id="ueberblick" class="anchor">
-          <span class="eyebrow">Schnittstellenüberblick</span>
+          <span class="eyebrow">Integrations-Übersicht</span>
           <h1>REST-API</h1>
           <p>
-            Diese Seite ordnet die REST-API der technikboerse fachlich ein und grenzt sie von der XML-Schnittstelle ab.
-            Sie dient als Übersichtsseite für Integratoren und Projektverantwortliche. Die detaillierte technische
-            API-Referenz sollte separat gepflegt und von hier aus verlinkt werden.
+            Diese Seite bietet einen funktionalen und architektonischen Überblick über die REST-API der technikboerse.
+            Sie dient als zentraler Einstiegspunkt für die Integration und bietet Orientierungshilfen zur Abgrenzung 
+            gegenüber der XML-Schnittstelle. Die verbindliche technische Dokumentation der Endpunkte wird separat in 
+            der REST-API-Referenz gepflegt.
           </p>
         </header>
+
+        <section id="tech-summary" class="anchor">
+          <h2>Technischer Kurzüberblick</h2>
+          <div class="meta-grid">
+            <div class="meta-card">
+              <strong>Technische Referenz</strong>
+              <a href="https://api.technikboerse.com/doc/html" target="_blank">api.technikboerse.com/doc/html</a>
+            </div>
+            <div class="meta-card">
+              <strong>Basis-URL</strong>
+              <code>https://api.technikboerse.com</code>
+            </div>
+            <div class="meta-card">
+              <strong>Authentisierung</strong>
+              Bearer-Token (<code>Authorization</code>-Header)
+            </div>
+            <div class="meta-card">
+              <strong>Format & Modell</strong>
+              JSON / JSend-Antwortmodell
+            </div>
+            <div class="meta-card">
+              <strong>URI-Schema</strong>
+              <code>/{lang}/{version}/{endpoint}</code>
+            </div>
+            <div class="meta-card">
+              <strong>Berechtigungen</strong>
+              Scope-basierter Zugriff
+            </div>
+          </div>
+        </section>
 
         <div class="meta-grid" aria-label="Seiteneinordnung">
           <div class="meta-card">
             <strong>Seitenziel</strong>
-            Zweck, Einsatzbereich und Abgrenzung der REST-API verständlich darstellen.
+            Architektonische Einordnung, Einsatzführung und Brücke zur technischen Referenz.
           </div>
           <div class="meta-card">
             <strong>Besonders relevant für</strong>
-            Integratoren, Projektverantwortliche, Produktmanagement und Support.
+            Entwickler, Integratoren und Systemarchitekten.
           </div>
           <div class="meta-card">
             <strong>Kernpunkt</strong>
-            Die REST-API ist ein eigenständiger Zugriffspfad und sollte nicht mit der XML-Dateischnittstelle vermischt werden.
+            Die REST-API ist der bevorzugte Weg für punktuelle Abfragen und interaktive Operationen.
           </div>
         </div>
 
@@ -113,22 +146,22 @@
             <article class="summary-card">
               <h3>Rolle der REST-API</h3>
               <p>
-                Die REST-API ergänzt die dateibasierte XML-Schnittstelle um einen API-basierten Zugriff. Sie eignet sich
-                insbesondere für strukturierte Abfragen, Integrationshilfen und technische Ergänzungsfunktionen.
+                Während die XML-Schnittstelle auf Massendaten und Batch-Verarbeitung optimiert ist, bietet die REST-API 
+                einen granularen, Request-basierten Zugriff. Sie ist das primäre Werkzeug für Echtzeit-Interaktionen.
               </p>
             </article>
             <article class="summary-card">
-              <h3>Dokumentationsprinzip</h3>
+              <h3>Dokumentations-Split</h3>
               <p>
-                Diese Seite beschreibt nicht jeden einzelnen Endpunkt. Sie dient als Einstieg und verweist auf die
-                eigentliche technische API-Referenz.
+                Diese Übersicht fokussiert sich auf Integrationskonzepte. Alle technischen Endpunkt-Details (Parameter, 
+                Beispiele, Schemata) sind exklusiv in der REST-API-Referenz dokumentiert.
               </p>
             </article>
             <article class="summary-card">
-              <h3>Status im bisherigen Dokumentationsstand</h3>
+              <h3>Verbindlichkeit</h3>
               <p>
-                Im historischen Schnittstellendokument wird die REST-API nur knapp referenziert. In der HTML-Dokumentation
-                sollte sie deshalb als eigener Dokumentationsast sichtbar und verständlich gemacht werden.
+                Die externe REST-API-Referenz ist die autoritative Quelle für technische Spezifikationen. Diese Seite 
+                dient der konzeptionellen Orientierung im Gesamtsystem.
               </p>
             </article>
           </div>
@@ -138,38 +171,38 @@
           <h2>Typische Einsatzfälle</h2>
           <div class="rules-grid">
             <article class="rule-card">
-              <h3>Kategorie- und Attributinformationen abrufen</h3>
+              <h3>Selektive Abfragen</h3>
               <p>
-                Die API eignet sich, um strukturierende Referenzdaten wie Kategorien, Hersteller, Attribute oder ähnliche
-                Hilfsinformationen dynamisch zu beziehen.
+                Gezieltes Abrufen einzelner Inserate, Händlerdaten oder Referenzinformationen (Kategorien, Attribute), 
+                ohne einen vollständigen XML-Export verarbeiten zu müssen.
               </p>
             </article>
             <article class="rule-card">
-              <h3>Integrationsunterstützende Lookup-Funktionen</h3>
+              <h3>Interaktive Integration</h3>
               <p>
-                Wenn externe Systeme keine vollständigen Referenzdaten lokal halten sollen, kann die API als Quelle für
-                gezielte Nachschlageoperationen dienen.
+                Anbindung von Web-Frontends oder mobilen Apps, die direkt auf technikboerse-Ressourcen zugreifen oder 
+                Statusinformationen in Echtzeit abfragen.
               </p>
             </article>
             <article class="rule-card">
-              <h3>Ergänzende Systemintegration</h3>
+              <h3>Punktuelle Bestandsänderungen</h3>
               <p>
-                Die REST-API ist sinnvoll, wenn punktuelle technische Informationen benötigt werden, ohne dafür den gesamten
-                XML-Datenaustausch zu verwenden.
+                Gezielte Aktualisierung oder Wartung spezifischer Ressourcen über dedizierte Endpunkte, sofern diese 
+                für den API-Zugriff freigegeben sind.
               </p>
             </article>
             <article class="rule-card">
-              <h3>Validierungs- und Mapping-Unterstützung</h3>
+              <h3>Validierung & Mapping</h3>
               <p>
-                API-Endpunkte können helfen, Kategorien, Verantwortlichkeiten oder andere normierte Werte vor oder während
-                eines Imports korrekt zuzuordnen.
+                Abgleich von lokalen Datenbeständen mit den aktuellen technikboerse-Referenzdaten während des 
+                Datenerfassungsprozesses im Quellsystem.
               </p>
             </article>
           </div>
         </section>
 
         <section id="abgrenzung" class="anchor">
-          <h2>Abgrenzung zur XML-Schnittstelle</h2>
+          <h2>Abgrenzung: XML vs. REST</h2>
           <div class="table-container">
           <table aria-label="REST-API vs XML-Schnittstelle">
             <thead>
@@ -181,29 +214,24 @@
             </thead>
             <tbody>
               <tr>
-                <td>Grundprinzip</td>
-                <td>API-basierter Zugriff auf strukturierte Informationen</td>
-                <td>Dateibasierter Austausch kompletter oder delta-basierter Bestände</td>
+                <td>Hauptfokus</td>
+                <td>Gezielte Operationen & Real-Time Lookups</td>
+                <td>Bulk-Transfer & Batch-Verarbeitung</td>
               </tr>
               <tr>
-                <td>Typischer Einsatz</td>
-                <td>Lookup, Referenzdaten, ergänzende Integrationsfunktionen</td>
-                <td>Regelmäßiger Bestandsimport oder -export</td>
+                <td>Datenstrategie</td>
+                <td>Selective retrieval / Point updates</td>
+                <td>Full / Delta Export (Bestandsabgleich)</td>
               </tr>
               <tr>
-                <td>Datenumfang</td>
-                <td>Punktuell oder endpoint-spezifisch</td>
-                <td>Vollbestand oder definierte Änderungsmenge</td>
+                <td>Integrationsart</td>
+                <td>Request/Response (Synchron/Asynchron)</td>
+                <td>File-based exchange (FTP/Download)</td>
               </tr>
               <tr>
-                <td>Verarbeitungsmodell</td>
-                <td>Request/Response</td>
-                <td>Dateiübertragung und nachgelagerte Verarbeitung</td>
-              </tr>
-              <tr>
-                <td>Löschlogik</td>
-                <td>Endpoint-spezifisch zu klären</td>
-                <td>Explizit oder implizit über Full/Update geregelt</td>
+                <td>Verantwortung</td>
+                <td>Einzelne Ressourcen & Referenzen</td>
+                <td>Gesamter Datenbestand (Autorität)</td>
               </tr>
             </tbody>
           </table>
@@ -221,60 +249,57 @@
         </section>
 
         <section id="referenz" class="anchor">
-          <h2>Technische Referenz</h2>
+          <h2>Verantwortungsbereiche</h2>
           <div class="summary-grid">
             <article class="summary-card">
-              <h3>Verweis auf API-Dokumentation</h3>
-              <p>
-                Die eigentliche technische Referenz mit Endpunkten, Parametern, Antwortformaten, Authentisierung und
-                Beispielen sollte in einer eigenständigen API-Dokumentation gepflegt werden.
-              </p>
+              <h3>Inhalte dieser Übersicht</h3>
+              <ul>
+                <li>Integrations-Szenarien</li>
+                <li>Architektonische Einordnung</li>
+                <li>Abgrenzung XML-Schnittstelle</li>
+                <li>Nutzungs-Guidelines</li>
+              </ul>
             </article>
             <article class="summary-card">
-              <h3>Empfohlene Inhalte der API-Referenz</h3>
-              <p>
-                Endpunktgruppen, Request-Parameter, Response-Schemata, Fehlercodes, Paging, Authentisierung und
-                Nutzungshinweise sollten dort strukturiert dokumentiert werden.
-              </p>
-            </article>
-            <article class="summary-card">
-              <h3>Verlinkung</h3>
-              <p>
-                Diese HTML-Seite sollte zentral auf die technische API-Dokumentation verweisen, statt technische Details
-                redundant oder veraltet zu duplizieren.
-              </p>
+              <h3>Inhalte der API-Referenz</h3>
+              <ul>
+                <li>Endpunkte & Parameter</li>
+                <li>Authentisierungs-Details</li>
+                <li>Request/Response-Strukturen</li>
+                <li>Paginierung & Beispiele</li>
+              </ul>
             </article>
           </div>
 
           <div class="code-card" style="margin-top: 1rem;">
-            <h3>Referenzhinweis</h3>
-            <pre>Technische API-Dokumentation:
-https://api.technikboerse.com/doc/html</pre>
+            <h3>Autoritative Technische Referenz</h3>
+            <p>Die detaillierte Spezifikation aller Endpunkte finden Sie hier:</p>
+            <pre><a href="https://api.technikboerse.com/doc/html" style="color: inherit; text-decoration: none;">https://api.technikboerse.com/doc/html</a></pre>
           </div>
         </section>
 
         <section id="hinweise" class="anchor">
-          <h2>Hinweise und Stolperfallen</h2>
+          <h2>Hinweise zur Governance</h2>
           <div class="notes-grid">
             <article class="note">
-              <h3>Typischer Fehler: REST-API und XML vermischen</h3>
+              <h3>Keine Duplikation technischer Details</h3>
               <p>
-                Integrationsprojekte verlieren an Klarheit, wenn XML-Bestandslogik und API-Lookups ohne klare Trennung
-                dokumentiert oder implementiert werden.
+                Um Inkonsistenzen zu vermeiden, werden technische Details (z.B. Feldlängen, Datentypen) ausschließlich 
+                in der externen API-Referenz gepflegt.
               </p>
             </article>
             <article class="note">
-              <h3>Typischer Fehler: API-Übersicht mit technischer Referenz verwechseln</h3>
+              <h3>Versionierung</h3>
               <p>
-                Diese Seite ist bewusst eine Übersichtsseite. Technische Details wie Parameter, Rückgabeobjekte oder
-                Fehlercodes gehören in die API-Referenz.
+                Die API-Versionierung wird über den URI-Pfad gesteuert (z.B. <code>/v1/</code>). Die jeweils aktuell 
+                unterstützten Versionen sind der technischen Dokumentation zu entnehmen.
               </p>
             </article>
             <article class="note">
-              <h3>Offener Punkt</h3>
+              <h3>Zuständigkeit</h3>
               <p>
-                Der konkrete fachliche Einsatz einzelner API-Endpunkte sollte gegen den aktuellen Produkt- und
-                Betriebsstand geprüft und in der technischen API-Dokumentation gepflegt werden.
+                Diese lokale Dokumentation fokussiert sich auf die übergreifende Integrationsstrategie und die 
+                Harmonisierung zwischen den verschiedenen Schnittstellen-Typen.
               </p>
             </article>
           </div>
@@ -292,20 +317,20 @@ https://api.technikboerse.com/doc/html</pre>
             </thead>
             <tbody>
               <tr>
+                <td>Status</td>
+                <td>Gepflegte Übersichts- und Orientierungsseite.</td>
+              </tr>
+              <tr>
                 <td>Quellenbasis</td>
-                <td>Bestehendes Schnittstellendokument mit Verweis auf die REST-API sowie die Zielstruktur der neuen HTML-Dokumentation.</td>
+                <td>Lokale Integrations-Docs & externe REST-API-Spezifikation.</td>
               </tr>
               <tr>
-                <td>Didaktischer Status</td>
-                <td>Übersichtsseite; keine vollständige Endpunktreferenz.</td>
+                <td>Zweck</td>
+                <td>Strategische Einordnung; keine technische Endpunkt-Referenz.</td>
               </tr>
               <tr>
-                <td>Offene Prüfpunkte</td>
-                <td>Aktuelle Endpunktgruppen, Authentisierungsmodell, Betriebs- und Freigabestatus einzelner API-Funktionen.</td>
-              </tr>
-              <tr>
-                <td>Empfohlene Folge-Seite</td>
-                <td><code>/schnittstellen/changelog</code></td>
+                <td>Folge-Seite</td>
+                <td><code>/schnittstellen_changelog.html</code></td>
               </tr>
             </tbody>
           </table>
@@ -331,4 +356,3 @@ https://api.technikboerse.com/doc/html</pre>
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
-

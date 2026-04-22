@@ -56,6 +56,7 @@
           <h2>Content</h2>
           <ul>
             <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_transport_operating.html">Transport & Operating Model</a></li>
             <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
             <li><a class="active" href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
             <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
@@ -128,13 +129,27 @@
             </article>
           </div>
 
-          <div class="warning" style="margin-top: 1rem;">
+          <div class="warning card-with-icon" style="margin-top: 1rem;">
+            <svg class="card-icon" fill="none" stroke="var(--warning)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <div>
             <h3>Important</h3>
             <p>
               Empty deletion containers do not automatically mean that no inventory cleanup is required in every case. 
               In <code>full</code> mode, cleanup results from the completeness of the delivered inventory, 
               not from an explicit deletion list.
             </p>
+            </div>
+          </div>
+
+          <div class="summary-card card-with-icon" style="margin-top: 1rem;">
+            <svg class="card-icon" fill="none" stroke="var(--info)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div>
+              <h3>Operational Context</h3>
+              <p>
+                The choice between Full and Update modes is closely linked to your transfer method and processing frequency. 
+                Details on the impacts on performance and currency can be found in the <a href="schnittstellen_transport_operating.html">Transport and Operating Model</a> section.
+              </p>
+            </div>
           </div>
         </section>
 

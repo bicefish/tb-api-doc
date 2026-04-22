@@ -190,6 +190,20 @@ section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
 .mode-grid, .cases-grid, .intro-grid {
   display: grid;
   gap: 1rem;
+  margin-top: 1.5rem; /* Ensure space above grids */
+}
+
+/* Add space above standalone cards and warnings when they follow other content */
+.card, .field-card, .rule-card, .note,
+.warning, .danger, .code-card, .summary-card,
+.link-card, .section-card, .mode-card, .case-card {
+  margin-top: 1.5rem;
+}
+
+/* Remove margin-top if it's the first child of its container */
+.meta-grid:first-child, .summary-grid:first-child, .mode-grid:first-child,
+.card:first-child, .warning:first-child, .danger:first-child {
+  margin-top: 0;
 }
 
 /* Multi-column auto-fit grids */
@@ -197,13 +211,16 @@ section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
 .summary-grid,
 .examples-grid,
 .link-grid,
-.mode-grid {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.rules-grid,
+.mode-grid,
+.cases-grid,
+.notes-grid {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 /* Field cards are slightly wider to hold the dl key–value layout */
 .field-grid {
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 /* Section intro cards (Preise/Medien page) */
@@ -219,11 +236,27 @@ section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
   border: 1px solid var(--border);
   border-radius: 1rem;
   box-shadow: var(--shadow);
-  padding: 1.2rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
   transition: transform 0.2s ease, border-color 0.2s ease;
+  color: var(--text); /* Explicitly set text color for contrast */
+}
+
+.card ul, .card ol,
+.mode-card ul, .mode-card ol,
+.rule-card ul, .rule-card ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.card li, .mode-card li, .rule-card li {
+  margin-bottom: 0.35rem;
+}
+
+.card li:last-child, .mode-card li:last-child, .rule-card li:last-child {
+  margin-bottom: 0;
 }
 
 /* .meta-card is display: block to allow text/code children to flow naturally */
@@ -283,7 +316,9 @@ section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
 
 /* transferMode visualisation (Löschlogik page) */
 .mode-card.full   { border-color: #93c5fd; background: #eff6ff; }
+.mode-card.full h3 { color: #1d4ed8; }
 .mode-card.update { border-color: #a7f3d0; background: #ecfdf5; }
+.mode-card.update h3 { color: #059669; }
 
 /* ── Status Badges (Known Issues page) ──────────────────────── */
 .status {

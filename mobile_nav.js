@@ -6,9 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('mobile-toggle');
   
-  // Basic guard: if no toggle button, this page doesn't have mobile nav yet
   if (!toggleBtn) {
-    console.log('Mobile toggle button not found.');
     return;
   }
 
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const isOpen = document.body.classList.toggle('sidebar-open');
     document.body.style.overflow = isOpen ? 'hidden' : '';
-    console.log('Sidebar toggled. Open:', isOpen);
   };
 
   toggleBtn.addEventListener('click', toggleSidebar);

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – Transport und Betriebsmodell</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menü">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>Betriebsmodell</h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_transport_operating.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#overview">Übersicht</a></li>
+            <li><a href="#transfer-methods">Übertragungswege</a></li>
+            <li><a href="#auth">Authentifizierung</a></li>
+            <li><a href="#processing">Verarbeitung</a></li>
+            <li><a href="#matching">Matching</a></li>
+            <li><a href="#modes">Full vs. Update</a></li>
+            <li><a href="#onboarding">Onboarding</a></li>
+            <li><a href="#operational-notes">Betriebliche Hinweise</a></li>
+            <li><a href="#errors">Fehlerfälle</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a class="active" href="schnittstellen_transport_betrieb.html">Transport & Betriebsmodell</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Anzeige (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Voll-Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update-Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Bekannte Fehler</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="overview" class="anchor">
+          <span class="eyebrow">Betrieb</span>
+          <h1>Transport und Betriebsmodell</h1>
+          <p>
+            Diese Dokumentation beschreibt die operativen Aspekte der Integration mit technikboerse, einschließlich der Übertragungswege, 
+            Authentifizierungsverfahren und des Onboarding-Prozesses für Partner und Händler.
+          </p>
+        </header>
+
+        <section id="transfer-methods" class="anchor">
+          <h2>Unterstützte Übertragungswege</h2>
+          <p>Es gibt zwei grundsätzliche Wege, Inserate an das System der technikboerse zu übertragen:</p>
+          
+          <div class="section-grid">
+            <article class="card">
+              <h3>A. XML-Datei</h3>
+              <p>XML ist ein dateibasierter Integrationsweg. Die Verarbeitung erfolgt im Batch-Betrieb (nicht instantan).</p>
+              <ul>
+                <li><strong>Upload:</strong> Der Partner lädt die XML-Datei via FTPS auf den Server der technikboerse hoch.</li>
+                <li><strong>Pull:</strong> Der Partner stellt die Datei unter einer URL bereit, die von technikboerse abgerufen wird.</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>B. REST-API</h3>
+              <p>Die REST-API erlaubt die direkte Kommunikation und Echtzeit-Synchronisation zwischen Systemen.</p>
+              <ul>
+                <li>Änderungen werden sofort übernommen.</li>
+                <li>Ideal für Partner mit hohem Aktualitätsanspruch.</li>
+                <li><a href="schnittstellen_rest_api.html">Zur REST-API Übersicht</a></li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="auth" class="anchor">
+          <h2>Authentifizierung und Zugänge</h2>
+          <p>Für eine produktive Anbindung sind entsprechende Zugangsdaten erforderlich:</p>
+          <div class="summary-grid">
+            <div class="summary-card">
+              <h3>XML via Upload</h3>
+              <p>Es ist ein <strong>FTPs-Zugang</strong> erforderlich. Dieser muss bei der Entwicklungs- oder Produktmanagement-Abteilung angefragt werden.</p>
+            </div>
+            <div class="summary-card">
+              <h3>REST-API</h3>
+              <p>Es ist ein <strong>API-Schlüssel mit Schreibrechten</strong> erforderlich. Die Beantragung erfolgt ebenfalls über Entwicklung oder Produktmanagement.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="processing" class="anchor">
+          <h2>Verarbeitungsmodell und Frequenz</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Übertragungsweg</th>
+                  <th>Verarbeitung</th>
+                  <th>Latenz</th>
+                  <th>Einsatzzweck</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>XML</strong></td>
+                  <td>Dateibasiert / Batch</td>
+                  <td>1x täglich</td>
+                  <td>Periodische Voll- oder Differenzdaten</td>
+                </tr>
+                <tr>
+                  <td><strong>REST</strong></td>
+                  <td>Request-basiert</td>
+                  <td>Sofort</td>
+                  <td>Echtzeit-Synchronisation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="matching" class="anchor">
+          <h2>Matching und Identifikation</h2>
+          <p>Die Zuordnung von Datensätzen erfolgt nach festen Regeln:</p>
+          <div class="rules-grid">
+            <div class="rule-card">
+              <h3>Standard: GUID</h3>
+              <p>Inserate verfügen über eine eindeutige <strong>GUID</strong>. Diese wird beim Import gesucht. Existiert sie nicht, wird ein neuer Datensatz angelegt.</p>
+            </div>
+            <div class="rule-card">
+              <h3>Änderungserkennung: md5</h3>
+              <p>Über den gesamten Datensatz wird eine md5-Summe gebildet. Weicht diese vom gespeicherten Wert ab, wird das Inserat aktualisiert.</p>
+            </div>
+            <div class="rule-card">
+              <h3>Spezialfälle</h3>
+              <p>Je nach Integrationsart kann die Zuordnung auch über die <strong>Dealer-ID</strong> oder eine <strong>externe Kunden-/System-ID</strong> erfolgen.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="modes" class="anchor">
+          <h2>Update- und Full-Modus</h2>
+          <p>Die Wahl des Modus hat signifikante Auswirkungen auf den Datenbestand:</p>
+          <div class="mode-grid">
+            <div class="mode-card update">
+              <h3>Update Mode</h3>
+              <p>Überträgt nur Änderungen und explizite Löschungen.</p>
+              <ul>
+                <li>Löschungen via <code>&lt;deletedAds&gt;</code> oder <code>&lt;deletedDealers&gt;</code>.</li>
+                <li>Inaktive Händler löschen automatisch deren Inserate.</li>
+              </ul>
+            </div>
+            <div class="mode-card full">
+              <h3>Full Mode</h3>
+              <p>Die Lieferung gilt als vollständiger Bestand für diese Schnittstelle.</p>
+              <ul>
+                <li>Nicht enthaltene Inserate der Schnittstelle werden gelöscht.</li>
+                <li>Der Händler selbst wird nicht automatisch entfernt.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="warning">
+            <h3>Achtung: Wahl des Modus</h3>
+            <p>Ein Wechsel zwischen Full und Update ohne Abstimmung kann zu ungewollten Massenlöschungen führen. Details siehe <a href="schnittstellen_loeschlogik.html">Löschlogik</a>.</p>
+          </div>
+        </section>
+
+        <section id="onboarding" class="anchor">
+          <h2>Onboarding einer neuen Anbindung</h2>
+          <p>Der technische Inbetriebnahme-Prozess folgt diesen Schritten:</p>
+          <div class="card">
+            <ol>
+              <li><strong>Staging-Zugang:</strong> Herstellung des Zugangs zum Sandbox-System.</li>
+              <li><strong>Test-Account:</strong> Anlage von Test-Händlern und Zugangsdaten.</li>
+              <li><strong>Parameter-Bereitstellung:</strong> Übermittlung von API-Keys, FTPs-Daten, Dealer-IDs und Preview-URLs.</li>
+              <li><strong>Validierung:</strong> Test der Integration im Staging-System.</li>
+              <li><strong>Abnahme:</strong> Freigabe für den Live-Betrieb.</li>
+              <li><strong>Live-Schaltung:</strong> Bereitstellung der produktiven Zugänge.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="operational-notes" class="anchor">
+          <h2>Betriebliche Hinweise und Grenzen</h2>
+          <p>Bitte beachten Sie folgende Rahmenbedingungen für den Betrieb:</p>
+          <div class="note">
+            <p>Für allgemeine Integrationen sind derzeit keine verbindlichen Standards (SLA/SLO) dokumentiert für:</p>
+            <ul>
+              <li>Garantierte Reaktions- oder Verarbeitungszeiten</li>
+              <li>Retry-Strategien und Timeouts</li>
+              <li>Rate Limits oder maximale Dateigrößen</li>
+            </ul>
+            <p>Sofern diese Parameter für Ihre spezifische Integration kritisch sind, müssen sie <strong>projektbezogen abgestimmt</strong> werden.</p>
+          </div>
+        </section>
+
+        <section id="errors" class="anchor">
+          <h2>Fehler- und Ausnahmefälle</h2>
+          <p>Häufige betriebsrelevante Zustände beim Import:</p>
+          <div class="cases-grid">
+            <div class="case-card">
+              <h3>conflict / foreign / derivation</h3>
+              <p>Händler ist bereits einer anderen Herleitung zugeordnet. Der Import kann verworfen werden und erfordert eine manuelle Prüfung der Zuständigkeit.</p>
+            </div>
+            <div class="case-card">
+              <h3>locked / deleted</h3>
+              <p>Der Händler ist im Zielsystem deaktiviert oder gesperrt. Inserate werden in diesem Fall nicht importiert.</p>
+            </div>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. Alle Rechte vorbehalten.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Interfaces – Transport and Operating Model</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Interfaces</small>
+        <h1>Operating Model</h1>
+        
+        <div class="lang-switch">
+          <a href="../de/schnittstellen_transport_betrieb.html">DE</a>
+          <span class="separator">|</span>
+          <a href="#" class="active">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>On this page</h2>
+          <ul>
+            <li><a class="active" href="#overview">Overview</a></li>
+            <li><a href="#transfer-methods">Transfer Methods</a></li>
+            <li><a href="#auth">Authentication</a></li>
+            <li><a href="#processing">Processing</a></li>
+            <li><a href="#matching">Matching</a></li>
+            <li><a href="#modes">Full vs. Update</a></li>
+            <li><a href="#onboarding">Onboarding</a></li>
+            <li><a href="#operational-notes">Operational Notes</a></li>
+            <li><a href="#errors">Errors & Exceptions</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Content</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a class="active" href="schnittstellen_transport_operating.html">Transport & Operating Model</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
+            <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Overview</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="overview" class="anchor">
+          <span class="eyebrow">Operations</span>
+          <h1>Transport and Operating Model</h1>
+          <p>
+            This documentation describes the operational aspects of the integration with technikboerse, including transfer methods, 
+            authentication procedures, and the onboarding process for partners and dealers.
+          </p>
+        </header>
+
+        <section id="transfer-methods" class="anchor">
+          <h2>Supported Transfer Methods</h2>
+          <p>There are two primary ways to transfer listings to the technikboerse system:</p>
+          
+          <div class="section-grid">
+            <article class="card">
+              <h3>A. XML File</h3>
+              <p>XML is a file-based integration method. Processing occurs in batch mode (not instantaneous).</p>
+              <ul>
+                <li><strong>Upload:</strong> The partner uploads the XML file via FTPS to the technikboerse server.</li>
+                <li><strong>Pull:</strong> The partner hosts the file at a URL, which technikboerse retrieves regularly.</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>B. REST API</h3>
+              <p>The REST API allows direct communication and real-time synchronization between systems.</p>
+              <ul>
+                <li>Changes are applied immediately.</li>
+                <li>Ideal for partners requiring high data currency.</li>
+                <li><a href="schnittstellen_rest_api.html">View REST API Overview</a></li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="auth" class="anchor">
+          <h2>Authentication and Access</h2>
+          <p>Valid credentials are required for production integration:</p>
+          <div class="summary-grid">
+            <div class="summary-card">
+              <h3>XML via Upload</h3>
+              <p><strong>FTPS access</strong> is required. This must be requested from the Development or Product Management department.</p>
+            </div>
+            <div class="summary-card">
+              <h3>REST-API</h3>
+              <p>An <strong>API key with write permissions</strong> is required. Application is also handled via Development or Product Management.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="processing" class="anchor">
+          <h2>Processing Model and Frequency</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Transfer Method</th>
+                  <th>Processing</th>
+                  <th>Latency</th>
+                  <th>Typical Use Case</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>XML</strong></td>
+                  <td>File-based / Batch</td>
+                  <td>1x daily</td>
+                  <td>Periodic full or differential data</td>
+                </tr>
+                <tr>
+                  <td><strong>REST</strong></td>
+                  <td>Request-based</td>
+                  <td>Immediate</td>
+                  <td>Real-time synchronization</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="matching" class="anchor">
+          <h2>Matching and Identification</h2>
+          <p>Record assignment follows fixed rules:</p>
+          <div class="rules-grid">
+            <div class="rule-card">
+              <h3>Standard: GUID</h3>
+              <p>Ads feature a unique <strong>GUID</strong>. This is searched for during import. If it doesn't exist, a new record is created.</p>
+            </div>
+            <div class="rule-card">
+              <h3>Change Detection: md5</h3>
+              <p>An md5 checksum is generated for the entire record. If it differs from the stored value, the ad is updated.</p>
+            </div>
+            <div class="rule-card">
+              <h3>Special Cases</h3>
+              <p>Depending on the integration type, matching can also occur via <strong>Dealer ID</strong> or an <strong>external customer/system ID</strong>.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="modes" class="anchor">
+          <h2>Update and Full Mode</h2>
+          <p>The choice of mode has significant impacts on the data set:</p>
+          <div class="mode-grid">
+            <div class="mode-card update">
+              <h3>Update Mode</h3>
+              <p>Transfers only changes and explicit deletions.</p>
+              <ul>
+                <li>Deletions via <code>&lt;deletedAds&gt;</code> or <code>&lt;deletedDealers&gt;</code>.</li>
+                <li>Deleting a dealer automatically removes their ads.</li>
+              </ul>
+            </div>
+            <div class="mode-card full">
+              <h3>Full Mode</h3>
+              <p>The delivery is considered the complete inventory for this interface.</p>
+              <ul>
+                <li>Ads not included in the XML for this interface are deleted.</li>
+                <li>The dealer itself is not automatically removed.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="warning">
+            <h3>Warning: Mode Selection</h3>
+            <p>Switching between Full and Update without coordination can lead to unintended mass deletions. See <a href="schnittstellen_loeschlogik.html">Deletion Logic</a> for details.</p>
+          </div>
+        </section>
+
+        <section id="onboarding" class="anchor">
+          <h2>Onboarding a New Connection</h2>
+          <p>The technical commissioning process follows these steps:</p>
+          <div class="card">
+            <ol>
+              <li><strong>Staging Access:</strong> Establish access to the sandbox system.</li>
+              <li><strong>Test Account:</strong> Create test dealers and access credentials.</li>
+              <li><strong>Parameter Provisioning:</strong> Transfer of API keys, FTPS data, Dealer IDs, and preview URLs.</li>
+              <li><strong>Validation:</strong> Test the integration in the staging system.</li>
+              <li><strong>Approval:</strong> Release for live operations.</li>
+              <li><strong>Go-Live:</strong> Provision of production access.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="operational-notes" class="anchor">
+          <h2>Operational Notes and Limits</h2>
+          <p>Please note the following operational constraints:</p>
+          <div class="note">
+            <p>For general integrations, no binding standards (SLA/SLO) are currently documented for:</p>
+            <ul>
+              <li>Guaranteed response or processing times</li>
+              <li>Retry strategies and timeouts</li>
+              <li>Rate limits or maximum file sizes</li>
+            </ul>
+            <p>If these parameters are critical for your specific integration, they must be <strong>coordinated on a project basis</strong>.</p>
+          </div>
+        </section>
+
+        <section id="errors" class="anchor">
+          <h2>Errors and Exceptions</h2>
+          <p>Common operational states during import:</p>
+          <div class="cases-grid">
+            <div class="case-card">
+              <h3>conflict / foreign / derivation</h3>
+              <p>The dealer is already assigned to a different derivation. The import may be rejected and requires manual verification of ownership.</p>
+            </div>
+            <div class="case-card">
+              <h3>locked / deleted</h3>
+              <p>The dealer is deactivated or blocked in the target system. In this case, ads will not be imported.</p>
+            </div>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Privacy Policy</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
