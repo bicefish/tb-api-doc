@@ -8,9 +8,6 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
-  <style>
-    .page { max-width: 980px; }
-  </style>
 </head>
 <body>
   <div class="layout">
@@ -87,7 +84,10 @@
         </header>
 
         <section id="transfer-methods" class="anchor">
-          <h2>Unterstützte Übertragungswege</h2>
+          <div class="section-header">
+            <span class="eyebrow">Optionen</span>
+            <h2>Unterstützte Übertragungswege</h2>
+          </div>
           <p>Es gibt zwei grundsätzliche Wege, Inserate an das System der technikboerse zu übertragen:</p>
           
           <div class="section-grid">
@@ -121,7 +121,10 @@
         </section>
 
         <section id="auth" class="anchor">
-          <h2>Authentifizierung und Zugänge</h2>
+          <div class="section-header">
+            <span class="eyebrow">Sicherheit</span>
+            <h2>Authentifizierung und Zugänge</h2>
+          </div>
           <p>Für eine produktive Anbindung sind entsprechende Zugangsdaten erforderlich:</p>
           <div class="summary-grid">
             <div class="summary-card">
@@ -136,7 +139,10 @@
         </section>
 
         <section id="processing" class="anchor">
-          <h2>Verarbeitungsmodell und Frequenz</h2>
+          <div class="section-header">
+            <span class="eyebrow">Performance</span>
+            <h2>Verarbeitungsmodell und Frequenz</h2>
+          </div>
           <div class="table-container">
             <table>
               <thead>
@@ -166,7 +172,10 @@
         </section>
 
         <section id="matching" class="anchor">
-          <h2>Matching und Identifikation</h2>
+          <div class="section-header">
+            <span class="eyebrow">Identifikation</span>
+            <h2>Matching und Identifikation</h2>
+          </div>
           <p>Die Zuordnung von Datensätzen erfolgt nach festen Regeln:</p>
           <div class="rules-grid">
             <div class="rule-card">
@@ -185,7 +194,10 @@
         </section>
 
         <section id="modes" class="anchor">
-          <h2>Update- und Full-Modus</h2>
+          <div class="section-header">
+            <span class="eyebrow">Synchronisation</span>
+            <h2>Update- und Full-Modus</h2>
+          </div>
           <p>Die Wahl des Modus hat signifikante Auswirkungen auf den Datenbestand:</p>
           <div class="mode-grid">
             <div class="mode-card update">
@@ -213,7 +225,10 @@
         </section>
 
         <section id="operational-rules" class="anchor">
-          <h2>Betriebs- und Verarbeitungsregeln</h2>
+          <div class="section-header">
+            <span class="eyebrow">Governance</span>
+            <h2>Betriebs- und Verarbeitungsregeln</h2>
+          </div>
           <p>Für einen stabilen und synchronen Datenaustausch gelten folgende operationelle Vorgaben:</p>
           
           <div class="cases-grid">
@@ -240,22 +255,50 @@
         </section>
 
         <section id="onboarding" class="anchor">
-          <h2>Onboarding einer neuen Anbindung</h2>
+          <div class="section-header">
+            <span class="eyebrow">Setup</span>
+            <h2>Onboarding einer neuen Anbindung</h2>
+          </div>
           <p>Der technische Inbetriebnahme-Prozess folgt diesen Schritten:</p>
-          <div class="card">
-            <ol>
-              <li><strong>Staging-Zugang:</strong> Herstellung des Zugangs zum Sandbox-System.</li>
-              <li><strong>Test-Account:</strong> Anlage von Test-Händlern und Zugangsdaten.</li>
-              <li><strong>Parameter-Bereitstellung:</strong> Übermittlung von API-Keys, FTPs-Daten, Dealer-IDs und Preview-URLs.</li>
-              <li><strong>Validierung:</strong> Test der Integration im Staging-System.</li>
-              <li><strong>Abnahme:</strong> Freigabe für den Live-Betrieb.</li>
-              <li><strong>Live-Schaltung:</strong> Bereitstellung der produktiven Zugänge.</li>
-            </ol>
+          <div class="summary-grid">
+            <div class="step-card">
+              <span class="step-number">1</span>
+              <h3>Staging-Zugang</h3>
+              <p>Herstellung des Zugangs zum Sandbox-System.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-number">2</span>
+              <h3>Test-Account</h3>
+              <p>Anlage von Test-Händlern und Zugangsdaten.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-number">3</span>
+              <h3>Parameter-Bereitstellung</h3>
+              <p>Übermittlung von API-Keys, FTPs-Daten, Dealer-IDs und Preview-URLs.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-number">4</span>
+              <h3>Validierung</h3>
+              <p>Test der Integration im Staging-System.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-number">5</span>
+              <h3>Abnahme</h3>
+              <p>Freigabe für den Live-Betrieb.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-number">6</span>
+              <h3>Live-Schaltung</h3>
+              <p>Bereitstellung der produktiven Zugänge.</p>
+            </div>
           </div>
         </section>
 
         <section id="operational-notes" class="anchor">
-          <h2>Betriebliche Hinweise und Grenzen</h2>
+          <div class="section-header">
+            <span class="eyebrow">Service</span>
+            <h2>Betriebliche Hinweise und Grenzen</h2>
+          </div>
           <p>Bitte beachten Sie folgende Rahmenbedingungen für den Betrieb:</p>
           <div class="note">
             <p>Für allgemeine Integrationen sind derzeit keine verbindlichen Standards (SLA/SLO) dokumentiert für:</p>
@@ -269,7 +312,10 @@
         </section>
 
         <section id="errors" class="anchor">
-          <h2>Fehler- und Ausnahmefälle</h2>
+          <div class="section-header">
+            <span class="eyebrow">Troubleshooting</span>
+            <h2>Fehler- und Ausnahmefälle</h2>
+          </div>
           <p>Häufige betriebsrelevante Zustände beim Import:</p>
           <div class="cases-grid">
             <div class="case-card">

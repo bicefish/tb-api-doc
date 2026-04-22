@@ -9,50 +9,6 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
-  <style>
-    .page {
-      max-width: 980px;
-    }
-
-    .step-number {
-      background: var(--accent);
-      color: #fff;
-      width: 32px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      font-weight: bold;
-      margin-right: 12px;
-      font-size: 0.9rem;
-    }
-
-    .step-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 1.25rem;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-    }
-
-    .step-card:hover {
-      border-color: var(--accent);
-    }
-
-    .step-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .step-header h2 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-  </style>
 </head>
 
 <body>
@@ -86,6 +42,7 @@
           <h2>On this page</h2>
           <ul>
             <li><a class="active" href="#overview">Overview</a></li>
+            <li><a href="#scenarios">Scenarios</a></li>
             <li><a href="#onboarding">Onboarding Process</a></li>
             <li><a href="#preparation">Preparation</a></li>
             <li><a href="#xml-quickstart">XML Quick-Start</a></li>
@@ -134,7 +91,80 @@
           </p>
         </header>
 
-        <div class="note" style="margin-bottom: 2rem;">
+        <section id="scenarios" class="anchor">
+          <div class="section-header">
+            <span class="eyebrow">Orientation</span>
+            <h2>Choose your integration scenario</h2>
+            <p>
+              The XML interface can be used in different operational directions. To get started quickly, choose the scenario that matches your integration goal. This overview is an entry point; detailed behavior is documented on the linked reference pages.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <div class="step-card">
+              <div class="step-header">
+                <h3>I want to send data to technikboerse</h3>
+              </div>
+              <p><strong>Partner &rarr; technikboerse</strong></p>
+              <p>Choose this path if your system provides listings or related data to technikboerse.</p>
+              
+              <ul class="check-list">
+                <li>Decide whether XML or REST is the appropriate integration method</li>
+                <li>Review onboarding and setup requirements</li>
+                <li>Obtain the required credentials and artifacts (schema/examples)</li>
+                <li>Validate the data flow in the test phase</li>
+                <li>Coordinate the production rollout and activate live sync</li>
+              </ul>
+
+              <div class="nav-section-alt">
+                <h4>Relevant Pages:</h4>
+                <ul>
+                  <li><a href="#onboarding">Onboarding Process</a></li>
+                  <li><a href="schnittstellen_transport_operating.html">Transport &amp; Operating</a></li>
+                  <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
+                  <li><a href="#support">Support &amp; Contact</a></li>
+                  <li><a href="schnittstellen_beispiel_full_export.html">Samples</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <h3>I want to receive data from technikboerse</h3>
+              </div>
+              <p><strong>technikboerse &rarr; Partner</strong></p>
+              <p>Choose this path if technikboerse provides XML data that your system retrieves or receives for further processing.</p>
+
+              <ul class="check-list">
+                <li>Understand the agreed delivery model and timing (scheduling)</li>
+                <li>Understand the XML structure and core elements</li>
+                <li>Implement processing for full syncs and incremental updates</li>
+                <li>Account for deletions, timestamps, and media handling</li>
+                <li>Validate the processing flow before productive use</li>
+              </ul>
+
+              <div class="nav-section-alt">
+                <h4>Relevant Pages:</h4>
+                <ul>
+                  <li><a href="schnittstellen_transport_operating.html">Transport &amp; Operating</a></li>
+                  <li><a href="schnittstellen_root_exchange.html">Root Element (exchange)</a></li>
+                  <li><a href="schnittstellen_dealer.html">Dealer</a></li>
+                  <li><a href="schnittstellen_ad.html">Ad</a></li>
+                  <li><a href="schnittstellen_contact.html">Contact</a></li>
+                  <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
+                  <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Media Handling</a></li>
+                  <li><a href="schnittstellen_beispiel_full_export.html">Samples</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-banner">
+            The following sections provide the detailed reference and process information for the XML interface. Use the scenario links above for the fastest entry point into your relevant path.
+          </div>
+        </section>
+
+        <div class="note">
           <h3>Perspective and Terminology ("Import" / "Export")</h3>
           <p>
             The terms "Import" and "Export" depend on your perspective. 
@@ -274,7 +304,7 @@
             <p>This guide walks you through creating and processing a valid XML exchange file.</p>
           </div>
 
-          <div class="grid-2" style="margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <div class="grid-2">
             <div class="mode-card">
               <h4>A. Send data to technikboerse (Partner → technikboerse)</h4>
               <p>The partner creates the XML file with ads and provides (or uploads) it. technikboerse processes the file regularly according to the agreed schedule.</p>
@@ -368,9 +398,7 @@
           <div class="step-card">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
               <h3 style="margin: 0;">Complete Minimal Example</h3>
-              <a href="../examples/example_full_export.xml" download class="btn"
-                style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Download
-                XML</a>
+              <a href="../examples/example_full_export.xml" download class="btn">Download XML</a>
             </div>
             <div class="code-card">
               <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -409,7 +437,7 @@
         </section>
 
         <section id="support" class="anchor">
-          <div class="danger-card">
+          <div class="danger">
             <div class="step-header">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 style="margin-right: 12px; color: var(--danger);">
@@ -417,7 +445,7 @@
               </svg>
               <h2 style="margin: 0; color: var(--danger);">Onboarding &amp; Support</h2>
             </div>
-            <div class="grid-2" style="margin-bottom: 1.5rem;">
+            <div class="grid-2">
               <div class="mode-card">
                 <h4 style="margin-top: 0;">Onboarding &amp; Setup</h4>
                 <p>For new integration requests, onboarding, and general setup coordination, please contact:</p>

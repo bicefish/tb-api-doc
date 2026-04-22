@@ -8,9 +8,7 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
-  <style>
-    .page { max-width: 980px; }
-  </style>
+
 </head>
 <body>
   <div class="layout">
@@ -93,7 +91,8 @@
           </p>
         </header>
 
-        <div class="meta-card">
+        <div class="meta-grid">
+          <div class="meta-card">
             <strong>Besonders relevant für</strong>
             Integratoren, Testende und Support bei der Prüfung von Delta-Importen und Löschfällen.
           </div>
@@ -104,7 +103,10 @@
         </div>
 
         <section id="einordnung" class="anchor">
-          <h2>Einordnung</h2>
+          <div class="section-header">
+            <span class="eyebrow">Kontext</span>
+            <h2>Einordnung</h2>
+          </div>
           <div class="summary-grid">
             <article class="summary-card">
               <h3>Was ein Update Transfer bedeutet</h3>
@@ -131,9 +133,10 @@
         </section>
 
         <section id="beispiel" class="anchor">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-            <h2 style="margin: 0;">Kommentiertes Beispiel</h2>
-            <a href="../examples/example_update_export.xml" download class="btn" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Roh-XML herunterladen</a>
+          <div class="section-header">
+            <span class="eyebrow">Implementation</span>
+            <h2>Kommentiertes Beispiel</h2>
+            <a href="../examples/example_update_export.xml" download class="btn" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600; margin-top: 1rem; display: inline-block;">Roh-XML herunterladen</a>
           </div>
           <div class="code-card">
             <h3>Didaktisch reduziertes Einzel-Update-Beispiel</h3>
@@ -230,7 +233,10 @@
         </section>
 
         <section id="verarbeitung" class="anchor">
-          <h2>Verarbeitung im Zielsystem</h2>
+          <div class="section-header">
+            <span class="eyebrow">Logik</span>
+            <h2>Verarbeitung im Zielsystem</h2>
+          </div>
           <div class="rules-grid">
             <article class="rule-card">
               <h3>Regel 1: Datei als Änderungsmenge interpretieren</h3>
@@ -263,7 +269,10 @@
         </section>
 
         <section id="loeschung" class="anchor">
-          <h2>Explizite Löschfälle</h2>
+          <div class="section-header">
+            <span class="eyebrow">Delta</span>
+            <h2>Explizite Löschfälle</h2>
+          </div>
           <div class="examples-grid">
             <div class="code-card">
               <h3>Gelöschtes Inserat</h3>
@@ -290,7 +299,10 @@
         </section>
 
         <section id="abgrenzung" class="anchor">
-          <h2>Abgrenzung zu Full</h2>
+          <div class="section-header">
+            <span class="eyebrow">Vergleich</span>
+            <h2>Abgrenzung zu Full</h2>
+          </div>
           <div class="table-container">
           <table aria-label="Update vs. Full">
             <thead>
@@ -327,7 +339,10 @@
         </section>
 
         <section id="hinweise" class="anchor">
-          <h2>Hinweise und Stolperfallen</h2>
+          <div class="section-header">
+            <span class="eyebrow">Praxis</span>
+            <h2>Hinweise und Stolperfallen</h2>
+          </div>
           <div class="notes-grid">
             <article class="note">
               <h3>Typischer Fehler: Update wie Full behandeln</h3>

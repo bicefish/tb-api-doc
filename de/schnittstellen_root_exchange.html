@@ -9,20 +9,6 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
-  <style>
-    .page {
-      max-width: 980px;
-    }
-
-    /* root-exchange uses wider field cards and a margined meta grid */
-    .meta-grid {
-      margin: 1.75rem 0 2rem;
-    }
-
-    .field-grid {
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    }
-  </style>
 </head>
 
 <body>
@@ -121,7 +107,8 @@
           </p>
         </div>
 
-        <div class="meta-card">
+        <div class="meta-grid">
+          <div class="meta-card">
             <strong>Zielgruppe</strong>
             Integratoren, Entwickler von Importschnittstellen, Support.
           </div>
@@ -133,7 +120,10 @@
         </div>
 
         <section id="struktur" class="anchor">
-          <h2>Strukturübersicht</h2>
+          <div class="section-header">
+            <span class="eyebrow">Struktur</span>
+            <h2>Strukturübersicht</h2>
+          </div>
           <div class="code-card">
             <h3>Beispielhafte Struktur</h3>
             <pre>&lt;exchange&gt;
@@ -158,7 +148,10 @@
         </section>
 
         <section id="feldreferenz" class="anchor">
-          <h2>Feldreferenz</h2>
+          <div class="section-header">
+            <span class="eyebrow">Details</span>
+            <h2>Feldreferenz</h2>
+          </div>
           <div class="field-grid">
             <article class="field-card">
               <h3><code>exchange</code></h3>
@@ -323,7 +316,10 @@
         </section>
 
         <section id="verarbeitungslogik" class="anchor">
-          <h2>Verarbeitungslogik auf Root-Ebene</h2>
+          <div class="section-header">
+            <span class="eyebrow">Regeln</span>
+            <h2>Verarbeitungslogik auf Root-Ebene</h2>
+          </div>
           <div class="rules-grid">
             <article class="rule-card">
               <h3>Regel 1: Root zuerst auswerten</h3>
@@ -358,7 +354,10 @@
         </section>
 
         <section id="beispiele" class="anchor">
-          <h2>Beispiele</h2>
+          <div class="section-header">
+            <span class="eyebrow">XML</span>
+            <h2>Beispiele</h2>
+          </div>
           <div class="examples-grid">
             <div class="code-card">
               <h3>Minimalbeispiel Full</h3>
@@ -392,7 +391,10 @@
         </section>
 
         <section id="hinweise" class="anchor">
-          <h2>Hinweise und Stolperfallen</h2>
+          <div class="section-header">
+            <span class="eyebrow">Troubleshooting</span>
+            <h2>Hinweise und Stolperfallen</h2>
+          </div>
           <div class="notes-grid">
             <article class="note">
               <h3>Known Issue / Prüfhinweis</h3>

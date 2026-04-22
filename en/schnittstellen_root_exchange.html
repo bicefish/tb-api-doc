@@ -9,20 +9,7 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
-  <style>
-    .page {
-      max-width: 980px;
-    }
 
-    /* root-exchange uses wider field cards and a margined meta grid */
-    .meta-grid {
-      margin: 1.75rem 0 2rem;
-    }
-
-    .field-grid {
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    }
-  </style>
 </head>
 
 <body>
@@ -105,7 +92,7 @@
           </p>
         </header>
 
-        <div class="note" style="margin-bottom: 2rem;">
+        <div class="info-banner">
           <h3>Import and Export Perspective</h3>
           <p>
             The XML interface supports two major directions: <strong>Import</strong> (into technikboerse) and
@@ -120,7 +107,8 @@
           </p>
         </div>
 
-        <div class="meta-card">
+        <div class="meta-grid">
+          <div class="meta-card">
             <strong>Target Audience</strong>
             Integrators, developers of import interfaces, support.
           </div>
@@ -132,7 +120,10 @@
         </div>
 
         <section id="structure" class="anchor">
-          <h2>Structure Overview</h2>
+          <div class="section-header">
+            <span class="eyebrow">Visuals</span>
+            <h2>Structure Overview</h2>
+          </div>
           <div class="code-card">
             <h3>Example Structure</h3>
             <pre>&lt;exchange&gt;
@@ -157,7 +148,10 @@
         </section>
 
         <section id="field-reference" class="anchor">
-          <h2>Field Reference</h2>
+          <div class="section-header">
+            <span class="eyebrow">Dictionary</span>
+            <h2>Field Reference</h2>
+          </div>
           <div class="field-grid">
             <article class="field-card">
               <h3><code>exchange</code></h3>
@@ -322,7 +316,10 @@
         </section>
 
         <section id="processing-logic" class="anchor">
-          <h2>Processing Logic at the Root Level</h2>
+          <div class="section-header">
+            <span class="eyebrow">Rules</span>
+            <h2>Processing Logic at the Root Level</h2>
+          </div>
           <div class="rules-grid">
             <article class="rule-card">
               <h3>Rule 1: Evaluate Root First</h3>
@@ -356,7 +353,10 @@
         </section>
 
         <section id="examples" class="anchor">
-          <h2>Examples</h2>
+          <div class="section-header">
+            <span class="eyebrow">Samples</span>
+            <h2>Examples</h2>
+          </div>
           <div class="examples-grid">
             <div class="code-card">
               <h3>Full Minimal Example</h3>
@@ -390,7 +390,10 @@
         </section>
 
         <section id="notes" class="anchor">
-          <h2>Notes and Pitfalls</h2>
+          <div class="section-header">
+            <span class="eyebrow">Best Practice</span>
+            <h2>Notes and Pitfalls</h2>
+          </div>
           <div class="notes-grid">
             <article class="note">
               <h3>Known Issue / Testing Note</h3>

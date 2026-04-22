@@ -80,7 +80,7 @@ aside {
 
 main { padding: 2.5rem clamp(1rem, 2vw, 2rem) 4rem; }
 
-/* Default max-width; override per page with an inline <style> if needed */
+/* Default max-width; set to 1060px for a premium, readable line length */
 .page { max-width: 1060px; margin: 0 auto; }
 
 /* ── Sidebar Brand ──────────────────────────────────────────── */
@@ -164,6 +164,14 @@ main { padding: 2.5rem clamp(1rem, 2vw, 2rem) 4rem; }
   color: var(--accent);
   font-size: 0.84rem;
   font-weight: 600;
+}
+
+.eyebrow.warning {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+header .eyebrow {
   margin-bottom: 1rem;
 }
 
@@ -179,29 +187,40 @@ header p {
 }
 
 /* ── Section Typography ─────────────────────────────────────── */
-section { margin-top: 2.25rem; }
+section { margin-top: 3.5rem; } /* Increased breathing room between major sections */
+
+.section-header {
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  margin: 0.25rem 0 0;
+  font-size: 1.8rem;
+  line-height: 1.25;
+}
+
 section h2 { margin: 0 0 1rem; font-size: 1.6rem; line-height: 1.25; }
 section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
 
 /* ── Grid Layouts ───────────────────────────────────────────── */
 .meta-grid, .summary-grid, .field-grid, .rules-grid,
 .notes-grid, .examples-grid, .link-grid, .section-grid,
-.mode-grid, .cases-grid, .intro-grid {
+.mode-grid, .cases-grid, .intro-grid, .grid-2 {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 1.5rem; /* Ensure space above grids */
 }
 
 /* Add space above standalone cards and warnings when they follow other content */
 .card, .field-card, .rule-card, .note,
 .warning, .danger, .code-card, .summary-card,
-.link-card, .section-card, .mode-card, .case-card {
+.link-card, .section-card, .mode-card, .case-card, .step-card {
   margin-top: 1.5rem;
 }
 
 /* Remove margin-top if it's the first child of its container */
-.meta-grid:first-child, .summary-grid:first-child, .mode-grid:first-child,
-.card:first-child, .warning:first-child, .danger:first-child {
+.meta-grid:first-child, .summary-grid:first-child, .mode-grid:first-child, .grid-2:first-child,
+.card:first-child, .warning:first-child, .danger:first-child, .step-card:first-child {
   margin-top: 0;
 }
 
@@ -213,7 +232,8 @@ section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
 .rules-grid,
 .mode-grid,
 .cases-grid,
-.notes-grid {
+.notes-grid,
+.grid-2 {
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
@@ -230,7 +250,8 @@ section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
 /* ── Cards – Base Surface ───────────────────────────────────── */
 .card, .field-card, .rule-card, .note,
 .warning, .danger, .code-card, .summary-card,
-.link-card, .section-card, .mode-card, .case-card {
+.link-card, .section-card, .mode-card, .case-card,
+.step-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
@@ -239,8 +260,32 @@ section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: border-color 0.2s ease;
   color: var(--text); /* Explicitly set text color for contrast */
+}
+
+/* ── Step Cards (Process Lists) ────────────────────────────── */
+.step-card {
+  position: relative;
+  border-left: 4px solid var(--accent);
+}
+
+.step-card:hover {
+  border-color: var(--accent);
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
 }
 
 /* Remove paragraph margins inside cards so flex gap handles spacing cleanly */
@@ -272,7 +317,7 @@ section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
   border-radius: 1rem;
   box-shadow: var(--shadow);
   padding: 1.2rem;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .card-with-icon {
@@ -314,11 +359,21 @@ section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
 
 /* Warning cards – amber tint */
 .warning { background: var(--warning-soft); border-color: #f59e0b; }
-.warning h3 { color: var(--warning); }
+.warning h2, .warning h3 { color: var(--warning); }
 
 /* Danger cards – red tint */
 .danger { background: var(--danger-soft); border-color: #fca5a5; }
-.danger h3 { color: var(--danger); }
+.danger h2, .danger h3 { color: var(--danger); }
+
+/* Info Banner utility */
+.info-banner {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  background: var(--accent-soft);
+  border-radius: 0.75rem;
+  border-left: 4px solid var(--accent);
+  color: var(--text);
+}
 
 /* transferMode visualisation (Löschlogik page) */
 .mode-card.full   { border-color: #93c5fd; background: #eff6ff; }
@@ -434,6 +489,65 @@ tbody tr:last-child td { border-bottom: none; }
 /* ── Utility Classes ────────────────────────────────────────── */
 .anchor      { scroll-margin-top: 1rem; }
 .footer-note { margin-top: 2.5rem; color: var(--muted); font-size: 0.95rem; }
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  text-decoration: none !important;
+}
+.btn:hover {
+  background: #0d665e;
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
+}
+
+/* ── Check Lists ────────────────────────────────────────────── */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+.check-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* ── Nested Nav in Cards ────────────────────────────────────── */
+.nav-section-alt {
+  margin-top: 1.5rem;
+}
+.nav-section-alt h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+.nav-section-alt ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.nav-section-alt a {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
 
 /* ── Footer ─────────────────────────────────────────────────── */
 .site-footer {

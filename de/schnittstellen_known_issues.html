@@ -8,10 +8,6 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
-  <style>
-    /* Known Issues uses a warning-coloured eyebrow instead of the teal default */
-    .eyebrow { background: var(--warning-soft); color: var(--warning); }
-  </style>
 </head>
 <body>
   <div class="layout">
@@ -82,7 +78,7 @@
     <main>
       <div class="page">
         <header id="ueberblick" class="anchor">
-          <span class="eyebrow">Operative Abweichungen und Besonderheiten</span>
+          <span class="eyebrow warning">Operative Abweichungen und Besonderheiten</span>
           <h1>Known Issues</h1>
           <p>
             Diese Seite sammelt bekannte Abweichungen zwischen XSD, Beispiel-XMLs und bestehender Dokumentation.
@@ -91,7 +87,8 @@
           </p>
         </header>
 
-        <div class="meta-card">
+        <div class="meta-grid">
+          <div class="meta-card">
             <strong>Besonders relevant für</strong>
             Integratoren, Support, Tests, Validierung und redaktionelle Pflege der Doku.
           </div>
@@ -102,7 +99,10 @@
         </div>
 
         <section id="zweck" class="anchor">
-          <h2>Zweck und Nutzung</h2>
+          <div class="section-header">
+            <span class="eyebrow">Kontext</span>
+            <h2>Zweck und Nutzung</h2>
+          </div>
           <div class="summary-grid">
             <article class="summary-card">
               <h3>Normativ vs. operativ</h3>
@@ -139,7 +139,10 @@
         </section>
 
         <section id="liste" class="anchor">
-          <h2>Issue-Liste</h2>
+          <div class="section-header">
+            <span class="eyebrow">Abweichungen</span>
+            <h2>Issue-Liste</h2>
+          </div>
           <div class="table-container">
           <table aria-label="Bekannte Abweichungen und Sonderfälle">
             <thead>
@@ -262,7 +265,10 @@
         </section>
 
         <section id="beispiele" class="anchor">
-          <h2>Beispiele</h2>
+          <div class="section-header">
+            <span class="eyebrow">Visualisierung</span>
+            <h2>Beispiele</h2>
+          </div>
           <div class="examples-grid">
             <div class="code-card">
               <h3>Normative Zielschreibweise laut XSD</h3>
@@ -280,7 +286,10 @@
         </section>
 
         <section id="empfehlungen" class="anchor">
-          <h2>Empfehlungen für Implementierung und Pflege</h2>
+          <div class="section-header">
+            <span class="eyebrow">Governance</span>
+            <h2>Empfehlungen für Implementierung und Pflege</h2>
+          </div>
           <div class="notes-grid">
             <article class="note">
               <h3>Empfehlung 1: XSD als technische Referenz priorisieren</h3>

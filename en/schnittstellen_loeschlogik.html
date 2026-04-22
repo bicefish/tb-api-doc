@@ -8,9 +8,7 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
-  <style>
-    .page { max-width: 980px; }
-  </style>
+
 </head>
 <body>
   <div class="layout">
@@ -92,7 +90,8 @@
           </p>
         </header>
 
-        <div class="meta-card">
+        <div class="meta-grid">
+          <div class="meta-card">
             <strong>Particularly Relevant for</strong>
             Integrators of target systems that must keep inventories synchronized and correctly apply deletions.
           </div>
@@ -103,7 +102,10 @@
         </div>
 
         <section id="basic-rules" class="anchor">
-          <h2>Basic Rules</h2>
+          <div class="section-header">
+            <span class="eyebrow">Basics</span>
+            <h2>Basic Rules</h2>
+          </div>
           <div class="mode-grid">
             <article class="mode-card full">
               <h3>Behavior for <code>transferMode=full</code></h3>
@@ -148,7 +150,10 @@
         </section>
 
         <section id="elements" class="anchor">
-          <h2>Relevant Elements</h2>
+          <div class="section-header">
+            <span class="eyebrow">Schema</span>
+            <h2>Relevant Elements</h2>
+          </div>
           <div class="table-container">
           <table aria-label="Deletion Logic Elements">
             <thead>
@@ -190,7 +195,10 @@
         </section>
 
         <section id="processing" class="anchor">
-          <h2>Processing in the Target System</h2>
+          <div class="section-header">
+            <span class="eyebrow">Implementation</span>
+            <h2>Processing in the Target System</h2>
+          </div>
           <div class="rules-grid">
             <article class="rule-card">
               <h3>Rule 1: Determine Mode First</h3>
@@ -277,7 +285,10 @@
         </section>
 
         <section id="examples" class="anchor">
-          <h2>Examples</h2>
+          <div class="section-header">
+            <span class="eyebrow">XML</span>
+            <h2>Examples</h2>
+          </div>
           <div class="examples-grid">
             <div class="code-card">
               <h3>Mini-Example: Update with Deleted Ad</h3>
@@ -343,7 +354,10 @@
         </section>
 
         <section id="errors" class="anchor">
-          <h2>Typical Errors and Misinterpretations</h2>
+          <div class="section-header">
+            <span class="eyebrow">Best Practices</span>
+            <h2>Typical Errors and Misinterpretations</h2>
+          </div>
           <div class="notes-grid">
             <article class="note">
               <h3>Error 1: Treating Update Like Full</h3>

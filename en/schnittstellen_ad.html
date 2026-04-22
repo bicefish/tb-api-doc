@@ -94,7 +94,8 @@
           </p>
         </header>
 
-        <div class="meta-card">
+        <div class="meta-grid">
+          <div class="meta-card">
             <strong>Particularly Relevant for</strong>
             Systems that import, update, delete, or enrich ads with prices, images, and contact persons.
           </div>
@@ -105,7 +106,10 @@
         </div>
 
         <section id="structure" class="anchor">
-          <h2>Structure and Classification</h2>
+          <div class="section-header">
+            <span class="eyebrow">Architecture</span>
+            <h2>Structure and Classification</h2>
+          </div>
           <div class="code-card">
             <h3>Structure Sketch</h3>
             <pre>&lt;ads&gt;
@@ -151,7 +155,10 @@
         </section>
 
         <section id="attributes" class="anchor">
-          <h2>Attributes of <code>ad</code></h2>
+          <div class="section-header">
+            <span class="eyebrow">Schema</span>
+            <h2>Attributes of <code>ad</code></h2>
+          </div>
           <div class="table-container">
           <table aria-label="Attributes of the ad element">
             <thead>
@@ -205,7 +212,10 @@
         </section>
 
         <section id="sub-elements" class="anchor">
-          <h2>Sub-elements</h2>
+          <div class="section-header">
+            <span class="eyebrow">Data Model</span>
+            <h2>Sub-elements</h2>
+          </div>
           <div class="field-grid">
             <article class="field-card">
               <h3><code>info</code></h3>
@@ -331,7 +341,10 @@
         </section>
 
         <section id="rules" class="anchor">
-          <h2>Processing Rules</h2>
+          <div class="section-header">
+            <span class="eyebrow">Logic</span>
+            <h2>Processing Rules</h2>
+          </div>
           <div class="rules-grid">
             <article class="rule-card">
               <h3>Rule 1: Locate Ads Primarily via GUID</h3>
@@ -380,7 +393,10 @@
         </section>
 
         <section id="forwarding" class="anchor">
-          <h2>Forward Interfaces &amp; Downstream Publication</h2>
+          <div class="section-header">
+            <span class="eyebrow">Syndication</span>
+            <h2>Forward Interfaces &amp; Downstream Publication</h2>
+          </div>
           <p>
             An optional forwarding block can be used to control the publication of the ad on connected, downstream platforms.
           </p>
@@ -410,7 +426,10 @@
         </section>
 
         <section id="mapping" class="anchor">
-          <h2>Mapping, Fallbacks &amp; Standardization</h2>
+          <div class="section-header">
+            <span class="eyebrow">Data Quality</span>
+            <h2>Mapping, Fallbacks &amp; Standardization</h2>
+          </div>
           <p>
             To ensure data quality when importing ads, various data points go through a normalization and mapping process.
           </p>
@@ -458,7 +477,10 @@
         </section>
 
         <section id="references" class="anchor">
-          <h2>Related Object Areas</h2>
+          <div class="section-header">
+            <span class="eyebrow">Ecosystem</span>
+            <h2>Related Object Areas</h2>
+          </div>
           <div class="link-grid">
             <article class="link-card">
               <h3>Prices</h3>
@@ -488,7 +510,10 @@
         </section>
 
         <section id="example" class="anchor">
-          <h2>Example</h2>
+          <div class="section-header">
+            <span class="eyebrow">XML</span>
+            <h2>Example</h2>
+          </div>
           <div class="examples-grid">
             <div class="code-card">
               <h3>Minimal Example</h3>
@@ -523,7 +548,10 @@
         </section>
 
         <section id="notes" class="anchor">
-          <h2>Notes and Pitfalls</h2>
+          <div class="section-header">
+            <span class="eyebrow">Best Practices</span>
+            <h2>Notes and Pitfalls</h2>
+          </div>
           <div class="notes-grid">
             <article class="note">
               <h3>Typical Error: Mapping Category via Name</h3>

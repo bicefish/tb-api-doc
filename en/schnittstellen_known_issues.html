@@ -8,10 +8,7 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
-  <style>
-    /* Known Issues uses a warning-coloured eyebrow instead of the teal default */
-    .eyebrow { background: var(--warning-soft); color: var(--warning); }
-  </style>
+
 </head>
 <body>
   <div class="layout">
@@ -92,7 +89,8 @@
           </p>
         </header>
 
-        <div class="meta-card">
+        <div class="meta-grid">
+          <div class="meta-card">
             <strong>Particularly Relevant for</strong>
             Integrators, support, testing, validation, and editorial maintenance of the documentation.
           </div>
@@ -103,7 +101,10 @@
         </div>
 
         <section id="purpose" class="anchor">
-          <h2>Purpose and Usage</h2>
+          <div class="section-header">
+            <span class="eyebrow">Strategy</span>
+            <h2>Purpose and Usage</h2>
+          </div>
           <div class="summary-grid">
             <article class="summary-card">
               <h3>Normative vs. Operational</h3>
@@ -140,7 +141,10 @@
         </section>
 
         <section id="list" class="anchor">
-          <h2>Issue List</h2>
+          <div class="section-header">
+            <span class="eyebrow" style="background: var(--warning-soft); color: var(--warning);">Active Log</span>
+            <h2>Issue List</h2>
+          </div>
           <div class="table-container">
           <table aria-label="Known discrepancies and special cases">
             <thead>
@@ -263,7 +267,10 @@
         </section>
 
         <section id="examples" class="anchor">
-          <h2>Examples</h2>
+          <div class="section-header">
+            <span class="eyebrow">Visuals</span>
+            <h2>Examples</h2>
+          </div>
           <div class="examples-grid">
             <div class="code-card">
               <h3>Normative Target Spelling according to XSD</h3>
@@ -281,7 +288,10 @@
         </section>
 
         <section id="recommendations" class="anchor">
-          <h2>Recommendations for Implementation and Maintenance</h2>
+          <div class="section-header">
+            <span class="eyebrow">Next Steps</span>
+            <h2>Recommendations for Implementation and Maintenance</h2>
+          </div>
           <div class="notes-grid">
             <article class="note">
               <h3>Recommendation 1: Prioritize XSD as Technical Reference</h3>

@@ -8,9 +8,7 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
-  <style>
-    .page { max-width: 980px; }
-  </style>
+
 </head>
 <body>
   <div class="layout">
@@ -92,7 +90,8 @@
           </p>
         </header>
 
-        <div class="meta-card">
+        <div class="meta-grid">
+          <div class="meta-card">
             <strong>Besonders relevant für</strong>
             Integratoren von Zielsystemen, die Bestände synchron halten und Löschungen korrekt anwenden müssen.
           </div>
@@ -103,7 +102,10 @@
         </div>
 
         <section id="grundregeln" class="anchor">
-          <h2>Grundregeln</h2>
+          <div class="section-header">
+            <span class="eyebrow">Strategie</span>
+            <h2>Grundregeln</h2>
+          </div>
           <div class="mode-grid">
             <article class="mode-card full">
               <h3>Verhalten bei <code>transferMode=full</code></h3>
@@ -148,7 +150,10 @@
         </section>
 
         <section id="elemente" class="anchor">
-          <h2>Relevante Elemente</h2>
+          <div class="section-header">
+            <span class="eyebrow">XML</span>
+            <h2>Relevante Elemente</h2>
+          </div>
           <div class="table-container">
           <table aria-label="Elemente der Löschlogik">
             <thead>
@@ -190,7 +195,10 @@
         </section>
 
         <section id="verarbeitung" class="anchor">
-          <h2>Verarbeitung im Zielsystem</h2>
+          <div class="section-header">
+            <span class="eyebrow">Logik</span>
+            <h2>Verarbeitung im Zielsystem</h2>
+          </div>
           <div class="rules-grid">
             <article class="rule-card">
               <h3>Regel 1: Modus zuerst bestimmen</h3>
@@ -254,7 +262,10 @@
         </section>
 
         <section>
-          <h2>Auswirkungstypen</h2>
+          <div class="section-header">
+            <span class="eyebrow">Klassifizierung</span>
+            <h2>Auswirkungstypen</h2>
+          </div>
           <div class="cases-grid">
             <article class="case-card">
               <h3>Gelöschtes Inserat</h3>
@@ -281,7 +292,10 @@
         </section>
 
         <section id="beispiele" class="anchor">
-          <h2>Beispiele</h2>
+          <div class="section-header">
+            <span class="eyebrow">Referenz</span>
+            <h2>Beispiele</h2>
+          </div>
           <div class="examples-grid">
             <div class="code-card">
               <h3>Mini-Beispiel: Update mit gelöschtem Inserat</h3>
@@ -347,7 +361,10 @@
         </section>
 
         <section id="fehler" class="anchor">
-          <h2>Typische Fehler und Fehlinterpretationen</h2>
+          <div class="section-header">
+            <span class="eyebrow">Praxis</span>
+            <h2>Typische Fehler und Fehlinterpretationen</h2>
+          </div>
           <div class="notes-grid">
             <article class="note">
               <h3>Fehler 1: Update wie Full behandeln</h3>
