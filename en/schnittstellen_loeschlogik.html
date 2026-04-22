@@ -48,8 +48,7 @@
             <li><a href="#processing">Processing in Target System</a></li>
             <li><a href="#examples">Examples</a></li>
             <li><a href="#errors">Typical Errors</a></li>
-            <li><a href="#editorial">Editorial Metadata</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -60,11 +59,11 @@
             <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
             <li><a class="active" href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
             <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Sync</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Mode</a></li>
             <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -74,8 +73,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Sync</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Mode</a></li>
           </ul>
         </div>
       </nav>
@@ -85,20 +84,15 @@
       <div class="page">
         <header id="overview" class="anchor">
           <span class="eyebrow">Processing Rule</span>
-          <h1>Deletion Logic for XML Exports</h1>
+          <h1>Deletion Logic for XML Exchanges</h1>
           <p>
-            This page describes how deleted dealers and advertisements are signaled in the 
-            technikboerse XML export and what impact this has on the target system. The distinction 
+            This page describes how deleted dealers and ads are signaled in the 
+            technikboerse XML Exchange and what impact this has on the target system. The distinction 
             between <code>full</code> and <code>update</code> is functionally decisive.
           </p>
         </header>
 
-        <div class="meta-grid" aria-label="Page Classification">
-          <div class="meta-card">
-            <strong>Page Goal</strong>
-            Clearly describe deletion processing for dealers and advertisements.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Particularly Relevant for</strong>
             Integrators of target systems that must keep inventories synchronized and correctly apply deletions.
           </div>
@@ -114,8 +108,8 @@
             <article class="mode-card full">
               <h3>Behavior for <code>transferMode=full</code></h3>
               <p>
-                The export is to be understood as a complete target inventory. All active advertisements 
-                of the agreed transfer selection are included. Advertisements not included are considered 
+                The export is to be understood as a complete target inventory. All active ads 
+                of the agreed transfer selection are included. Ads not included are considered 
                 inactive or deleted and must be removed or deactivated in the target system.
               </p>
             </article>
@@ -174,7 +168,7 @@
               </tr>
               <tr>
                 <td><code>adsDeleted</code></td>
-                <td>Container for advertisements deleted in the relevant period.</td>
+                <td>Container for ads deleted in the relevant period.</td>
                 <td>Primarily relevant for <code>update</code>.</td>
                 <td>Can be empty. In update mode, contained entries must be explicitly processed.</td>
               </tr>
@@ -221,10 +215,10 @@
               </p>
             </article>
             <article class="rule-card">
-              <h3>Rule 4: Treat Dealer and Advertisement Deletions Separately</h3>
+              <h3>Rule 4: Treat Dealer and Ad Deletions Separately</h3>
               <p>
-                Deletions of dealers and advertisements should not be mixed in the target system. 
-                A deleted dealer can have different functional effects than a single deleted advertisement.
+                Deletions of dealers and ads should not be mixed in the target system. 
+                A deleted dealer can have different functional effects than a single deleted ad.
               </p>
             </article>
             <article class="rule-card">
@@ -259,9 +253,9 @@
           <h2>Effect Types</h2>
           <div class="cases-grid">
             <article class="case-card">
-              <h3>Deleted Advertisement</h3>
+              <h3>Deleted Ad</h3>
               <p>
-                An entry in <code>adsDeleted</code> signals that an existing advertisement must be removed, 
+                An entry in <code>adsDeleted</code> signals that an existing ad must be removed, 
                 deactivated, or otherwise marked as no longer active in the target system.
               </p>
             </article>
@@ -269,13 +263,13 @@
               <h3>Deleted Dealer</h3>
               <p>
                 An entry in <code>dealersDeleted</code> signals that a dealer object is no longer active. 
-                Depending on target system logic, this may also affect assigned advertisements.
+                Depending on target system logic, this may also affect assigned ads.
               </p>
             </article>
             <article class="case-card">
               <h3>No Longer Included in Full</h3>
               <p>
-                If a previously known object is no longer included in a full export, this is considered a 
+                If a previously known object is no longer included in a Full Sync, this is considered a 
                 functional deletion or inactivation case, even if no explicit entry exists in a deletion container.
               </p>
             </article>
@@ -286,7 +280,7 @@
           <h2>Examples</h2>
           <div class="examples-grid">
             <div class="code-card">
-              <h3>Mini-Example: Update with Deleted Advertisement</h3>
+              <h3>Mini-Example: Update with Deleted Ad</h3>
               <pre>&lt;exchange&gt;
   &lt;senderName&gt;provider-a&lt;/senderName&gt;
   &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
@@ -301,7 +295,7 @@
   &lt;/dealers&gt;
 &lt;/exchange&gt;</pre>
               <p>
-                The target system must treat the advertisement with the referenced identity as deleted or inactive.
+                The target system must treat the ad with the referenced identity as deleted or inactive.
               </p>
             </div>
 
@@ -322,13 +316,13 @@
 &lt;/exchange&gt;</pre>
               <p>
                 The target system must treat the referenced dealer as deleted or inactive and consider its 
-                own follow-up logic for associated advertisements.
+                own follow-up logic for associated ads.
               </p>
             </div>
           </div>
 
           <div class="code-card" style="margin-top: 1rem;">
-            <h3>Mini-Example: Full Export with Implicit Cleanup</h3>
+            <h3>Mini-Example: Full Sync with Implicit Cleanup</h3>
             <pre>&lt;exchange&gt;
   &lt;senderName&gt;provider-a&lt;/senderName&gt;
   &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
@@ -342,7 +336,7 @@
   &lt;/dealers&gt;
 &lt;/exchange&gt;</pre>
             <p>
-              A previously known advertisement that is no longer included in this full export must be treated 
+              A previously known ad that is no longer included in this Full Sync must be treated 
               as removed or inactive in the target system, even if <code>adsDeleted</code> is empty.
             </p>
           </div>
@@ -366,9 +360,9 @@
               </p>
             </article>
             <article class="note">
-              <h3>Error 3: Not Distinguishing Dealer and Advertisement Deletions</h3>
+              <h3>Error 3: Not Distinguishing Dealer and Ad Deletions</h3>
               <p>
-                A deleted dealer is treated like a single deleted advertisement or vice versa. This creates 
+                A deleted dealer is treated like a single deleted ad or vice versa. This creates 
                 incorrect functional follow-up effects.
               </p>
             </article>
@@ -380,38 +374,6 @@
               </p>
             </article>
           </div>
-        </section>
-
-        <section id="editorial" class="anchor">
-          <h2>Editorial Metadata</h2>
-          <div class="table-container">
-          <table aria-label="Editorial Metadata">
-            <thead>
-              <tr>
-                <th>Aspect</th>
-                <th>Content</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Source Basis</td>
-                <td>XSD for structural existence of <code>dealersDeleted</code>, <code>adsDeleted</code>, and <code>deleteInfo</code>; existing interface document for functional description of Full and Update behavior.</td>
-              </tr>
-              <tr>
-                <td>Didactic Supplement</td>
-                <td>The mini-examples shown on this page serve for clarity. The existing example XMLs do not show the deletion logic in all functionally relevant variants.</td>
-              </tr>
-              <tr>
-                <td>Recommended Next Page</td>
-                <td><code>/interfaces/xml/dealer</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
-            CMS, documentation platform, or static documentation structure.
-          </p>
         </section>
 
         <footer class="site-footer">
@@ -429,5 +391,4 @@
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
-
 

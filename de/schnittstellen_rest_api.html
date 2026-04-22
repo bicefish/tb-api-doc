@@ -50,7 +50,6 @@
             <li><a href="#referenz">Verantwortungsbereiche</a></li>
             <li><a href="#hinweise">Governance</a></li>
             <li><a href="#onboarding">Onboarding &amp; Support</a></li>
-            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
           </ul>
         </div>
 
@@ -65,8 +64,8 @@
             <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
             <li><a class="active" href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -76,8 +75,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Vollabgleich</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Einzel-Update</a></li>
           </ul>
         </div>
       </nav>
@@ -126,21 +125,6 @@
           </div>
         </section>
 
-        <div class="meta-grid" aria-label="Seiteneinordnung">
-          <div class="meta-card">
-            <strong>Seitenziel</strong>
-            Architektonische Einordnung, Einsatzführung und Brücke zur technischen Referenz.
-          </div>
-          <div class="meta-card">
-            <strong>Besonders relevant für</strong>
-            Entwickler, Integratoren und Systemarchitekten.
-          </div>
-          <div class="meta-card">
-            <strong>Kernpunkt</strong>
-            Die REST-API ist der bevorzugte Weg für punktuelle Abfragen und interaktive Operationen.
-          </div>
-        </div>
-
         <section id="einordnung" class="anchor">
           <h2>Einordnung</h2>
           <div class="summary-grid">
@@ -183,7 +167,7 @@
               <h3>Selektive Abfragen</h3>
               <p>
                 Gezieltes Abrufen einzelner Inserate, Händlerdaten oder Referenzinformationen (Kategorien, Attribute), 
-                ohne einen vollständigen XML-Export verarbeiten zu müssen.
+                ohne einen vollständigen XML-Transfer verarbeiten zu müssen.
               </p>
             </article>
             <article class="rule-card">
@@ -318,58 +302,25 @@
           <h2>Onboarding &amp; Support</h2>
           <div class="rules-grid">
             <article class="rule-card">
-              <h3>Zugang &amp; Authentifizierung</h3>
+              <h3>Onboarding &amp; Setup</h3>
               <p>
-                Für die Nutzung der REST-API sind spezifische Zugangsdaten erforderlich. Bitte kontaktieren Sie unser 
-                Integrationsteam unter <a href="mailto:support@technikboerse.com">support@technikboerse.com</a>, um 
-                Ihre Client-ID und das initiale Token zu beantragen.
+                Für die Nutzung der REST-API sind spezifische Zugangsdaten erforderlich. Kontaktieren Sie uns für Onboarding und generelle Setup-Fragen unter:
+              </p>
+              <p style="font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem;">
+                <a href="mailto:support@technikboerse.com" style="color: var(--accent); text-decoration: none;">support@technikboerse.com</a>
               </p>
             </article>
             <article class="rule-card">
-              <h3>Technischer Support</h3>
+              <h3>API-Implementierung &amp; Technik</h3>
               <p>
                 Bei Fragen zu spezifischen Endpunkten oder Fehlermeldungen der REST-API konsultieren Sie bitte zuerst die 
-                <a href="https://api.technikboerse.com/doc/html" target="_blank">autoritative API-Referenz</a>. Für weiterführende 
-                Hilfe steht unser Support-Team zur Verfügung.
+                <a href="https://api.technikboerse.com/doc/html" target="_blank">autoritative API-Referenz</a>. Für technische Implementierungsfragen kontaktieren Sie:
+              </p>
+              <p style="font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem;">
+                <a href="mailto:produktmanagement@technikboerse.com" style="color: var(--accent); text-decoration: none;">produktmanagement@technikboerse.com</a>
               </p>
             </article>
           </div>
-        </section>
-
-        <section id="redaktion" class="anchor">
-          <h2>Redaktionelle Metadaten</h2>
-          <div class="table-container">
-          <table aria-label="Redaktionelle Metadaten">
-            <thead>
-              <tr>
-                <th>Aspekt</th>
-                <th>Inhalt</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Status</td>
-                <td>Gepflegte Übersichts- und Orientierungsseite.</td>
-              </tr>
-              <tr>
-                <td>Quellenbasis</td>
-                <td>Lokale Integrations-Docs & externe REST-API-Spezifikation.</td>
-              </tr>
-              <tr>
-                <td>Zweck</td>
-                <td>Strategische Einordnung; keine technische Endpunkt-Referenz.</td>
-              </tr>
-              <tr>
-                <td>Folge-Seite</td>
-                <td><code>/schnittstellen_changelog.html</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
-            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
-          </p>
         </section>
 
         <footer class="site-footer">

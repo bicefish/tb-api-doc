@@ -48,8 +48,7 @@
             <li><a href="#verarbeitung">Verarbeitung im Zielsystem</a></li>
             <li><a href="#beispiele">Beispiele</a></li>
             <li><a href="#fehler">Typische Fehler</a></li>
-            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -63,8 +62,8 @@
             <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
             <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -74,8 +73,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Vollabgleich</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Einzel-Update</a></li>
           </ul>
         </div>
       </nav>
@@ -85,20 +84,15 @@
       <div class="page">
         <header id="ueberblick" class="anchor">
           <span class="eyebrow">Verarbeitungsregel</span>
-          <h1>Löschlogik bei XML-Exporten</h1>
+          <h1>Löschlogik bei XML-Transferen</h1>
           <p>
-            Diese Seite beschreibt, wie gelöschte Händler und Inserate im XML-Export der technikboerse
+            Diese Seite beschreibt, wie gelöschte Händler und Inserate im XML-Transfer der technikboerse
             signalisiert werden und welche Auswirkungen dies auf das Zielsystem hat. Die Unterscheidung
             zwischen <code>full</code> und <code>update</code> ist dabei fachlich entscheidend.
           </p>
         </header>
 
-        <div class="meta-grid" aria-label="Seiteneinordnung">
-          <div class="meta-card">
-            <strong>Seitenziel</strong>
-            Die Löschverarbeitung für Händler und Inserate eindeutig beschreiben.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Besonders relevant für</strong>
             Integratoren von Zielsystemen, die Bestände synchron halten und Löschungen korrekt anwenden müssen.
           </div>
@@ -114,7 +108,7 @@
             <article class="mode-card full">
               <h3>Verhalten bei <code>transferMode=full</code></h3>
               <p>
-                Der Export ist als vollständiger Soll-Bestand zu verstehen. Alle aktiven Inserate der vereinbarten
+                Der Austausch ist als vollständiger Soll-Bestand zu verstehen. Alle aktiven Inserate der vereinbarten
                 Übertragungsauswahl sind enthalten. Nicht enthaltene Inserate gelten als inaktiv oder gelöscht und
                 müssen im Zielsystem entfernt oder deaktiviert werden.
               </p>
@@ -122,7 +116,7 @@
             <article class="mode-card update">
               <h3>Verhalten bei <code>transferMode=update</code></h3>
               <p>
-                Der Export ist als Änderungsmenge zu verstehen. Es werden nur neue, geänderte oder im Rückblickzeitraum
+                Der Austausch ist als Änderungsmenge zu verstehen. Es werden nur neue, geänderte oder im Rückblickzeitraum
                 gelöschte Objekte übertragen. Löschungen werden explizit über <code>dealersDeleted</code> und
                 <code>adsDeleted</code> signalisiert.
               </p>
@@ -279,7 +273,7 @@
             <article class="case-card">
               <h3>Nicht mehr enthalten bei Full</h3>
               <p>
-                Wenn ein bisher bekanntes Objekt in einem Full-Export nicht mehr enthalten ist, gilt dies als fachlicher
+                Wenn ein bisher bekanntes Objekt in einem Vollabgleich nicht mehr enthalten ist, gilt dies als fachlicher
                 Lösch- oder Inaktivierungsfall, auch wenn kein expliziter Eintrag in einem Löschcontainer vorhanden ist.
               </p>
             </article>
@@ -332,7 +326,7 @@
           </div>
 
           <div class="code-card" style="margin-top: 1rem;">
-            <h3>Mini-Beispiel: Full-Export mit impliziter Bereinigung</h3>
+            <h3>Mini-Beispiel: Vollabgleich mit impliziter Bereinigung</h3>
             <pre>&lt;exchange&gt;
   &lt;senderName&gt;anbieter-a&lt;/senderName&gt;
   &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
@@ -346,7 +340,7 @@
   &lt;/dealers&gt;
 &lt;/exchange&gt;</pre>
             <p>
-              Ein zuvor bekanntes Inserat, das nicht mehr in diesem Full-Export enthalten ist, muss im Zielsystem als
+              Ein zuvor bekanntes Inserat, das nicht mehr in diesem Vollabgleich enthalten ist, muss im Zielsystem als
               entfernt oder inaktiv behandelt werden, auch wenn <code>adsDeleted</code> leer ist.
             </p>
           </div>
@@ -384,38 +378,6 @@
               </p>
             </article>
           </div>
-        </section>
-
-        <section id="redaktion" class="anchor">
-          <h2>Redaktionelle Metadaten</h2>
-          <div class="table-container">
-          <table aria-label="Redaktionelle Metadaten">
-            <thead>
-              <tr>
-                <th>Aspekt</th>
-                <th>Inhalt</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Quellenbasis</td>
-                <td>XSD für die strukturelle Existenz von <code>dealersDeleted</code>, <code>adsDeleted</code> und <code>deleteInfo</code>; bestehendes Schnittstellendokument für die fachliche Beschreibung von Full- und Update-Verhalten.</td>
-              </tr>
-              <tr>
-                <td>Didaktische Ergänzung</td>
-                <td>Die auf dieser Seite gezeigten Mini-Beispiele dienen der Verständlichkeit. Die vorhandenen Beispiel-XMLs zeigen die Löschlogik nicht in allen fachlich relevanten Varianten.</td>
-              </tr>
-              <tr>
-                <td>Empfohlene Folge-Seite</td>
-                <td><code>/schnittstellen/xml/dealer</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
-            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
-          </p>
         </section>
 
         <footer class="site-footer">

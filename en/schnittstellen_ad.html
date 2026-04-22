@@ -49,8 +49,7 @@
             <li><a href="#references">Related Object Areas</a></li>
             <li><a href="#example">Example</a></li>
             <li><a href="#notes">Notes</a></li>
-            <li><a href="#editorial">Editorial Metadata</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -61,11 +60,11 @@
             <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
             <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
             <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
-            <li><a class="active" href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a class="active" href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Sync</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Mode</a></li>
             <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -75,8 +74,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Sync</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Mode</a></li>
           </ul>
         </div>
       </nav>
@@ -88,21 +87,16 @@
           <span class="eyebrow">Normative XML Reference</span>
           <h1>Element <code>ad</code></h1>
           <p>
-            The element <code>ad</code> represents a single advertisement within the XML export. It contains 
-            the technical identity of the advertisement, its categorization, as well as information 
+            The element <code>ad</code> represents a single ad within the XML Exchange. It contains 
+            the technical identity of the ad, its categorization, as well as information 
             relevant for presentation, search, pricing, media, and contacting. For integrators, 
             <code>ad</code> is the central functional data record of the interface.
           </p>
         </header>
 
-        <div class="meta-grid" aria-label="Page Classification">
-          <div class="meta-card">
-            <strong>Page Goal</strong>
-            Functionally and technically define advertisements uniquely.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Particularly Relevant for</strong>
-            Systems that import, update, delete, or enrich advertisements with prices, images, and contact persons.
+            Systems that import, update, delete, or enrich ads with prices, images, and contact persons.
           </div>
           <div class="meta-card">
             <strong>Core Content</strong>
@@ -143,13 +137,13 @@
               <h3>Technical Role</h3>
               <p>
                 The target system uses <code>guid</code>, <code>id</code>, and <code>category_id</code> to uniquely 
-                locate, update, and correctly classify the advertisement.
+                locate, update, and correctly classify the ad.
               </p>
             </article>
             <article class="summary-card">
               <h3>Context</h3>
               <p>
-                An advertisement is functionally always in the context of a <code>dealer</code> object and 
+                An ad is functionally always in the context of a <code>dealer</code> object and 
                 can refer to contacts, prices, media, and additional objects.
               </p>
             </article>
@@ -171,19 +165,19 @@
             <tbody>
               <tr>
                 <td><code>guid</code></td>
-                <td>Unique technical identification of the advertisement.</td>
+                <td>Unique technical identification of the ad.</td>
                 <td>Yes</td>
                 <td>Decisive for stable assignment in the target system.</td>
               </tr>
               <tr>
                 <td><code>id</code></td>
-                <td>Internal ID of the advertisement in the sending system.</td>
+                <td>Internal ID of the ad in the sending system.</td>
                 <td>Yes</td>
                 <td>Serves as an additional reference alongside the GUID.</td>
               </tr>
               <tr>
                 <td><code>category_id</code></td>
-                <td>Unique assignment of the advertisement to a category.</td>
+                <td>Unique assignment of the ad to a category.</td>
                 <td>Yes</td>
                 <td>Normatively relevant for classification in the target system.</td>
               </tr>
@@ -201,7 +195,7 @@
               </tr>
               <tr>
                 <td><code>ad_type</code></td>
-                <td>Type of advertisement, e.g., machine or spare part context.</td>
+                <td>Type of ad, e.g., machine or spare part context.</td>
                 <td>Optional or context-dependent</td>
                 <td>Should be documented and evaluated if different functional flows depend on it.</td>
               </tr>
@@ -215,18 +209,18 @@
           <div class="field-grid">
             <article class="field-card">
               <h3><code>info</code></h3>
-              <p>Container for the functional detail data of the advertisement.</p>
+              <p>Container for the functional detail data of the ad.</p>
               <dl>
                 <dt>Type</dt><dd>Container element</dd>
                 <dt>Required</dt><dd>Yes</dd>
-                <dt>Meaning</dt><dd>Contains the content information of the advertisement, for example technical features, condition information, and other attributes.</dd>
+                <dt>Meaning</dt><dd>Contains the content information of the ad, for example technical features, condition information, and other attributes.</dd>
                 <dt>Note</dt><dd>The exact sub-structure should be documented separately or modularized if it is very extensive.</dd>
               </dl>
             </article>
 
             <article class="field-card">
               <h3><code>contact_ids</code></h3>
-              <p>Link to the contact persons assigned to the advertisement.</p>
+              <p>Link to the contact persons assigned to the ad.</p>
               <dl>
                 <dt>Type</dt><dd>Container element</dd>
                 <dt>Required</dt><dd>Optional to functionally recommended</dd>
@@ -237,29 +231,29 @@
 
             <article class="field-card">
               <h3><code>price</code></h3>
-              <p>Pricing information of the advertisement including attributes for currency and tax logic.</p>
+              <p>Pricing information of the ad including attributes for currency and tax logic.</p>
               <dl>
                 <dt>Type</dt><dd>Element with attributes</dd>
                 <dt>Required</dt><dd>Depends on schema and functional context</dd>
-                <dt>Meaning</dt><dd>Describes the offer price of the advertisement.</dd>
+                <dt>Meaning</dt><dd>Describes the offer price of the ad.</dd>
                 <dt>Link</dt><dd><code>/interfaces/xml/prices-media-additional-objects</code></dd>
               </dl>
             </article>
 
             <article class="field-card">
               <h3><code>canonical_url</code> / <code>canonical_urls</code></h3>
-              <p>References to canonical target URLs of the advertisement.</p>
+              <p>References to canonical target URLs of the ad.</p>
               <dl>
                 <dt>Type</dt><dd>String or container element</dd>
                 <dt>Required</dt><dd>Optional</dd>
-                <dt>Meaning</dt><dd>Enables assignment of the advertisement to external or language-specific target pages.</dd>
+                <dt>Meaning</dt><dd>Enables assignment of the ad to external or language-specific target pages.</dd>
                 <dt>Note</dt><dd>Multilingual variants should be clearly distinguished from a simple single URL.</dd>
               </dl>
             </article>
 
             <article class="field-card">
               <h3><code>created</code></h3>
-              <p>Time of creation of the advertisement.</p>
+              <p>Time of creation of the ad.</p>
               <dl>
                 <dt>Type</dt><dd>Date/Time</dd>
                 <dt>Required</dt><dd>Yes</dd>
@@ -270,33 +264,33 @@
 
             <article class="field-card">
               <h3><code>modified</code></h3>
-              <p>Time of the last modification of the advertisement.</p>
+              <p>Time of the last modification of the ad.</p>
               <dl>
                 <dt>Type</dt><dd>Date/Time</dd>
                 <dt>Required</dt><dd>Yes</dd>
-                <dt>Meaning</dt><dd>Controls whether an advertisement must be re-adopted during update processing.</dd>
+                <dt>Meaning</dt><dd>Controls whether an ad must be re-adopted during update processing.</dd>
                 <dt>Processing Rule</dt><dd>Changes should only be adopted if the new dataset is functionally more current.</dd>
               </dl>
             </article>
 
             <article class="field-card">
               <h3><code>images</code></h3>
-              <p>Container for the image references assigned to the advertisement.</p>
+              <p>Container for the image references assigned to the ad.</p>
               <dl>
                 <dt>Type</dt><dd>Container element</dd>
                 <dt>Required</dt><dd>Yes or schema-relevant</dd>
-                <dt>Meaning</dt><dd>Contains 0 to n images of the advertisement and, if necessary, supplementary metadata.</dd>
+                <dt>Meaning</dt><dd>Contains 0 to n images of the ad and, if necessary, supplementary metadata.</dd>
                 <dt>Link</dt><dd><code>/interfaces/xml/prices-media-additional-objects</code></dd>
               </dl>
             </article>
 
             <article class="field-card">
               <h3><code>video</code></h3>
-              <p>Optional reference to an advertisement video.</p>
+              <p>Optional reference to an ad video.</p>
               <dl>
                 <dt>Type</dt><dd>Empty element with attributes or structured media node</dd>
                 <dt>Required</dt><dd>Optional</dd>
-                <dt>Meaning</dt><dd>Allows linking a video to the advertisement.</dd>
+                <dt>Meaning</dt><dd>Allows linking a video to the ad.</dd>
                 <dt>Link</dt><dd><code>/interfaces/xml/prices-media-additional-objects</code></dd>
               </dl>
             </article>
@@ -329,7 +323,7 @@
           <div class="warning">
             <h3>Important: <code>category_id</code> is Normative</h3>
             <p>
-              For the technical assignment of an advertisement, the <code>category_id</code> is decisive. 
+              For the technical assignment of an ad, the <code>category_id</code> is decisive. 
               Readable fields such as <code>category_name</code> or <code>parent_category_name</code> 
               are helpful for control and diagnosis, but do not replace the unique category ID.
             </p>
@@ -340,23 +334,23 @@
           <h2>Processing Rules</h2>
           <div class="rules-grid">
             <article class="rule-card">
-              <h3>Rule 1: Locate Advertisements Primarily via GUID</h3>
+              <h3>Rule 1: Locate Ads Primarily via GUID</h3>
               <p>
-                The target system should identify an advertisement primarily via <code>guid</code>. The <code>id</code> 
+                The target system should identify an ad primarily via <code>guid</code>. The <code>id</code> 
                 serves as an additional reference to the sending system.
               </p>
             </article>
             <article class="rule-card">
               <h3>Rule 2: Control Category Assignment Technically via <code>category_id</code></h3>
               <p>
-                The classification of the advertisement must not rely solely on readable names. 
+                The classification of the ad must not rely solely on readable names. 
                 The technical category ID is authoritative.
               </p>
             </article>
             <article class="rule-card">
               <h3>Rule 3: Evaluate Changes via <code>modified</code></h3>
               <p>
-                In update processing, <code>modified</code> is the central field for deciding whether an advertisement 
+                In update processing, <code>modified</code> is the central field for deciding whether an ad 
                 can be adopted or skipped.
               </p>
             </article>
@@ -377,9 +371,9 @@
             <article class="rule-card">
               <h3>Rule 6: Observe Deletion Logic Separately</h3>
               <p>
-                The absence of an advertisement in an update export is not automatically a deletion. 
+                The absence of an ad in an Update Mode is not automatically a deletion. 
                 Deletion cases are signaled separately at the root level or result from the completeness 
-                of the inventory in full exports.
+                of the inventory in Full Syncs.
               </p>
             </article>
           </div>
@@ -388,7 +382,7 @@
         <section id="forwarding" class="anchor">
           <h2>Forward Interfaces &amp; Downstream Publication</h2>
           <p>
-            An optional forwarding block can be used to control the publication of the advertisement on connected, downstream platforms.
+            An optional forwarding block can be used to control the publication of the ad on connected, downstream platforms.
           </p>
           <div class="rules-grid">
             <article class="rule-card">
@@ -418,7 +412,7 @@
         <section id="mapping" class="anchor">
           <h2>Mapping, Fallbacks &amp; Standardization</h2>
           <p>
-            To ensure data quality when importing advertisements, various data points go through a normalization and mapping process.
+            To ensure data quality when importing ads, various data points go through a normalization and mapping process.
           </p>
           
           <div class="summary-grid">
@@ -427,7 +421,7 @@
               <p>
                 Categories are primarily assigned based on the <code>category_id</code>. If the assignment fails or the 
                 category is invalid, defined fallback rules apply (e.g. assignment to a parent category or "Other") 
-                to ensure the advertisement is not rejected.
+                to ensure the ad is not rejected.
               </p>
             </article>
             <article class="summary-card">
@@ -478,7 +472,7 @@
               <h3>Media</h3>
               <p>
                 Images, videos, and canonical URLs are independent documentation components 
-                and should not appear only as a side note in the advertisement object.
+                and should not appear only as a side note in the ad object.
               </p>
               <p><code>/interfaces/xml/prices-media-additional-objects</code></p>
             </article>
@@ -519,9 +513,9 @@
             <div class="summary-card">
               <h3>Interpretation</h3>
               <p>
-                The example shows an advertisement with technical identity, categorization, price, 
+                The example shows an ad with technical identity, categorization, price, 
                 contact reference, and media link. In the target system, the unique assignment of 
-                the advertisement should occur first, followed by the adoption of functional 
+                the ad should occur first, followed by the adoption of functional 
                 content and linked sub-objects.
               </p>
             </div>
@@ -548,7 +542,7 @@
             <article class="note">
               <h3>Typical Error: Ignoring <code>modified</code></h3>
               <p>
-                If advertisements are blindly overwritten with every import, it creates unnecessary 
+                If ads are blindly overwritten with every import, it creates unnecessary 
                 updates and possible side effects in downstream systems.
               </p>
             </article>
@@ -560,38 +554,6 @@
               </p>
             </article>
           </div>
-        </section>
-
-        <section id="editorial" class="anchor">
-          <h2>Editorial Metadata</h2>
-          <div class="table-container">
-          <table aria-label="Editorial Metadata">
-            <thead>
-              <tr>
-                <th>Aspect</th>
-                <th>Content</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Source Basis</td>
-                <td>XSD for structure, attributes, and required logic of the advertisement object; existing interface document for the functional meaning of <code>category_id</code>, <code>contact_ids</code>, price and media fields as well as <code>created</code> and <code>modified</code>.</td>
-              </tr>
-              <tr>
-                <td>Open Test Points</td>
-                <td>Fine-grained sub-structure of <code>info</code>, final functional classification of <code>ad_type</code>, operational use of <code>auction</code> and <code>purchase</code>.</td>
-              </tr>
-              <tr>
-                <td>Recommended Next Page</td>
-                <td><code>/interfaces/xml/contact</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
-            CMS, documentation platform, or static documentation structure.
-          </p>
         </section>
 
         <footer class="site-footer">
@@ -609,5 +571,4 @@
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
-
 

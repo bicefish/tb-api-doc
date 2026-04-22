@@ -47,8 +47,7 @@
             <li><a href="#regeln">Verarbeitungsregeln</a></li>
             <li><a href="#beispiele">Beispiel</a></li>
             <li><a href="#hinweise">Hinweise</a></li>
-            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -62,8 +61,8 @@
             <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
             <li><a class="active" href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
             <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -73,8 +72,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Vollabgleich</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Einzel-Update</a></li>
           </ul>
         </div>
       </nav>
@@ -93,12 +92,7 @@
           </p>
         </header>
 
-        <div class="meta-grid" aria-label="Seiteneinordnung">
-          <div class="meta-card">
-            <strong>Seitenziel</strong>
-            Ansprechpartner fachlich und technisch eindeutig beschreiben.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Besonders relevant für</strong>
             Integratoren, die Ansprechpartner, Zuständigkeiten, Sprachen und Kontaktbezüge zu Inseraten verarbeiten.
           </div>
@@ -197,7 +191,7 @@
               <dl>
                 <dt>Typ</dt><dd>String</dd>
                 <dt>Pflicht</dt><dd>Optional bis fachlich empfohlen</dd>
-                <dt>Bedeutung</dt><dd>Teil des persönlichen Anzeigenamens.</dd>
+                <dt>Bedeutung</dt><dd>Teil des persönlichen Inserateamens.</dd>
                 <dt>Hinweis</dt><dd>Sollte getrennt von <code>last_name</code> verarbeitet werden, um flexible Ausgaberegeln zu ermöglichen.</dd>
               </dl>
             </article>
@@ -208,7 +202,7 @@
               <dl>
                 <dt>Typ</dt><dd>String</dd>
                 <dt>Pflicht</dt><dd>Optional bis fachlich empfohlen</dd>
-                <dt>Bedeutung</dt><dd>Teil des persönlichen Anzeigenamens.</dd>
+                <dt>Bedeutung</dt><dd>Teil des persönlichen Inserateamens.</dd>
                 <dt>Hinweis</dt><dd>Für Kontaktanzeigen meist zentraler als der Vorname, aber technisch gleichrangig zu behandeln.</dd>
               </dl>
             </article>
@@ -263,7 +257,7 @@
               <dl>
                 <dt>Typ</dt><dd>String bzw. Medienreferenz</dd>
                 <dt>Pflicht</dt><dd>Optional</dd>
-                <dt>Bedeutung</dt><dd>Ermöglicht die Anzeige eines Kontaktbildes.</dd>
+                <dt>Bedeutung</dt><dd>Ermöglicht die Inserat eines Kontaktbildes.</dd>
                 <dt>Hinweis</dt><dd>Die Detailregeln zur Medienverarbeitung können auf der Medien-Seite ergänzt werden.</dd>
               </dl>
             </article>
@@ -439,38 +433,6 @@
               </p>
             </article>
           </div>
-        </section>
-
-        <section id="redaktion" class="anchor">
-          <h2>Redaktionelle Metadaten</h2>
-          <div class="table-container">
-          <table aria-label="Redaktionelle Metadaten">
-            <thead>
-              <tr>
-                <th>Aspekt</th>
-                <th>Inhalt</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Quellenbasis</td>
-                <td>XSD für Struktur, Feldnamen und Attributlogik der Kontakte; Beispiel-XMLs für die beobachtbare Schreibweise; bestehendes Schnittstellendokument für die fachliche Bedeutung von Zuständigkeiten, Sprachen und Kontaktzuordnungen.</td>
-              </tr>
-              <tr>
-                <td>Offene Prüfpunkte</td>
-                <td>Endgültige Struktur von <code>responsibilities</code>, genaue Datentypdefinition von <code>languages_iso_639_1</code>, operative Behandlung von Kontaktbildern.</td>
-              </tr>
-              <tr>
-                <td>Empfohlene Folge-Seite</td>
-                <td><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
-            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
-          </p>
         </section>
 
         <footer class="site-footer">

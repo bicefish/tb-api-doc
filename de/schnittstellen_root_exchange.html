@@ -61,8 +61,7 @@
             <li><a href="#verarbeitungslogik">Verarbeitungslogik</a></li>
             <li><a href="#beispiele">Beispiele</a></li>
             <li><a href="#hinweise">Hinweise und Stolperfallen</a></li>
-            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -76,8 +75,8 @@
             <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
             <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -87,8 +86,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Vollabgleich</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Einzel-Update</a></li>
           </ul>
         </div>
       </nav>
@@ -100,8 +99,8 @@
           <span class="eyebrow">Normative XML-Referenz</span>
           <h1>Root-Element <code>exchange</code></h1>
           <p>
-            Diese Seite beschreibt das Wurzelelement der XML-Exportdatei und alle globalen Metadaten,
-            die für die Verarbeitung des Exports relevant sind. Das empfangende System muss die Angaben
+            Diese Seite beschreibt das Wurzelelement der XML-Austauschdatei und alle globalen Metadaten,
+            die für den Datenaustausch relevant sind. Dieses Element bildet die gemeinsame Klammer für beide Integrationsrichtungen. Das empfangende System muss die Angaben
             auf Root-Ebene auswerten, bevor einzelne <code>dealer</code>- oder <code>ad</code>-Objekte verarbeitet
             werden.
           </p>
@@ -122,12 +121,7 @@
           </p>
         </div>
 
-        <div class="meta-grid" aria-label="Seiteneinordnung">
-          <div class="meta-card">
-            <strong>Seitenziel</strong>
-            Globale Struktur und Verarbeitungslogik der Exportdatei beschreiben.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Zielgruppe</strong>
             Integratoren, Entwickler von Importschnittstellen, Support.
           </div>
@@ -168,7 +162,7 @@
           <div class="field-grid">
             <article class="field-card">
               <h3><code>exchange</code></h3>
-              <p>Wurzelelement der XML-Exportdatei.</p>
+              <p>Wurzelelement der XML-Austauschdatei.</p>
               <dl>
                 <dt>Typ</dt>
                 <dd>Container-Element</dd>
@@ -193,7 +187,7 @@
                 <dt>Pflicht</dt>
                 <dd>Ja</dd>
                 <dt>Bedeutung</dt>
-                <dd>Identifiziert das sendende System bzw. die sendende Schnittstelle.</dd>
+                <dd>Identifiziert das sendende System. Abhängig von der Richtung identifiziert dieses Feld entweder den Partner (Partner → technikboerse) oder technikboerse (technikboerse → Partner).</dd>
                 <dt>Verarbeitungsregel</dt>
                 <dd>Der Wert sollte dauerhaft stabil bleiben. Änderungen können dazu führen, dass bekannte Datensätze im
                   Zielsystem nicht mehr korrekt zugeordnet oder aktualisiert werden.</dd>
@@ -202,14 +196,14 @@
 
             <article class="field-card">
               <h3><code>exportDate</code></h3>
-              <p>Zeitpunkt der Generierung der Exportdatei.</p>
+              <p>Zeitpunkt der Generierung der Austauschdatei.</p>
               <dl>
                 <dt>Typ</dt>
                 <dd>Datum/Zeit</dd>
                 <dt>Pflicht</dt>
                 <dd>Ja</dd>
                 <dt>Bedeutung</dt>
-                <dd>Kennzeichnet den Erstellungszeitpunkt des Exports.</dd>
+                <dd>Kennzeichnet den Erstellungszeitpunkt der Datei.</dd>
                 <dt>Verarbeitungsregel</dt>
                 <dd><code>exportDate</code> beschreibt die Datei, nicht den Änderungszeitpunkt einzelner Objekte. Für
                   Objektupdates sind die jeweiligen <code>modified</code>-Werte maßgeblich.</dd>
@@ -236,16 +230,16 @@
 
             <article class="field-card">
               <h3><code>backLogDays</code></h3>
-              <p>Definiert den Rückblickzeitraum für einen Update-Export.</p>
+              <p>Definiert den Rückblickzeitraum für einen Einzel-Update.</p>
               <dl>
                 <dt>Typ</dt>
                 <dd>Integer</dd>
                 <dt>Pflicht</dt>
                 <dd>Nein, nur relevant bei <code>transferMode=update</code></dd>
                 <dt>Bedeutung</dt>
-                <dd>Gibt an, über welchen Zeitraum Änderungen und Löschungen im Update berücksichtigt werden.</dd>
+                <dd>Gibt an, über welchen Zeitraum Änderungen und Löschungen berücksichtigt werden.</dd>
                 <dt>Verarbeitungsregel</dt>
-                <dd>Das Feld ist nur im Update-Kontext fachlich relevant. Bei Full-Exporten ist es nicht erforderlich.
+                <dd>Das Feld ist nur im Update-Kontext fachlich relevant. Bei Vollabgleichs ist es nicht erforderlich.
                 </dd>
               </dl>
             </article>
@@ -259,7 +253,7 @@
                 <dt>Pflicht</dt>
                 <dd>Ja, kann aber leer sein</dd>
                 <dt>Bedeutung</dt>
-                <dd>Bei Update-Exporten enthält das Element Händler, die im Rückblickzeitraum gelöscht wurden.</dd>
+                <dd>Bei Einzel-Updates enthält das Element Händler, die im Rückblickzeitraum gelöscht wurden.</dd>
                 <dt>Verarbeitungsregel</dt>
                 <dd>Im Update-Modus müssen diese Händler im Zielsystem entfernt oder deaktiviert werden. Im Full-Modus
                   ist das Element im Regelfall leer.</dd>
@@ -275,7 +269,7 @@
                 <dt>Pflicht</dt>
                 <dd>Ja, kann aber leer sein</dd>
                 <dt>Bedeutung</dt>
-                <dd>Bei Update-Exporten enthält das Element gelöschte Inserate.</dd>
+                <dd>Bei Einzel-Updates enthält das Element gelöschte Inserate.</dd>
                 <dt>Verarbeitungsregel</dt>
                 <dd>Im Update-Modus sind diese Inserate im Zielsystem gezielt zu löschen oder zu deaktivieren.</dd>
               </dl>
@@ -290,7 +284,7 @@
                 <dt>Pflicht</dt>
                 <dd>Ja</dd>
                 <dt>Bedeutung</dt>
-                <dd>Enthält die eigentlichen Nutzdaten des Exports in Form von <code>dealer</code>-Objekten mit ihren
+                <dd>Enthält die eigentlichen Nutzdaten des Austauschs in Form von <code>dealer</code>-Objekten mit ihren
                   Inseraten und Ansprechpartnern.</dd>
                 <dt>Verweis</dt>
                 <dd><code>/schnittstellen/xml/dealer</code>, <code>/schnittstellen/xml/ad</code>,
@@ -425,40 +419,6 @@
               </p>
             </article>
           </div>
-        </section>
-
-        <section id="redaktion" class="anchor">
-          <h2>Redaktionelle Metadaten</h2>
-          <div class="table-container">
-            <table aria-label="Redaktionelle Metadaten">
-              <thead>
-                <tr>
-                  <th>Aspekt</th>
-                  <th>Inhalt</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Quellenbasis</td>
-                  <td>XSD als technische Strukturreferenz, Full- und Update-Beispiel für die reale Ausprägung,
-                    bestehendes Schnittstellendokument für fachliche Erläuterungen.</td>
-                </tr>
-                <tr>
-                  <td>Offene Prüfpunkte</td>
-                  <td>Konkrete Datentypdarstellung von <code>exportDate</code>, genaue operative Rolle von
-                    <code>validation</code>, finale Kardinalitäten in der HTML-Feldtabelle.</td>
-                </tr>
-                <tr>
-                  <td>Empfohlene Folge-Seite</td>
-                  <td><code>/schnittstellen/xml/loeschlogik</code></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="footer-note">
-            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
-            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
-          </p>
         </section>
 
         <footer class="site-footer">

@@ -50,7 +50,6 @@
             <li><a href="#responsibility">Areas of Responsibility</a></li>
             <li><a href="#governance">Governance</a></li>
             <li><a href="#onboarding">Onboarding &amp; Support</a></li>
-            <li><a href="#editorial">Editorial Metadata</a></li>
           </ul>
         </div>
 
@@ -62,11 +61,11 @@
             <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
             <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
             <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Sync</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Mode</a></li>
             <li><a class="active" href="schnittstellen_rest_api.html">REST API Overview</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -76,8 +75,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Sync</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Mode</a></li>
           </ul>
         </div>
       </nav>
@@ -126,21 +125,6 @@
           </div>
         </section>
 
-        <div class="meta-grid" aria-label="Page Classification">
-          <div class="meta-card">
-            <strong>Page Goal</strong>
-            Architectural classification, usage guidance, and bridge to the technical reference.
-          </div>
-          <div class="meta-card">
-            <strong>Particularly Relevant for</strong>
-            Developers, integrators, and system architects.
-          </div>
-          <div class="meta-card">
-            <strong>Core Point</strong>
-            The REST API is the preferred path for selective queries and interactive operations.
-          </div>
-        </div>
-
         <section id="classification" class="anchor">
           <h2>Classification</h2>
           <div class="summary-grid">
@@ -182,8 +166,8 @@
             <article class="rule-card">
               <h3>Selective Queries</h3>
               <p>
-                Targeted retrieval of individual advertisements, dealer data, or reference information (categories, 
-                attributes) without having to process a full XML export.
+                Targeted retrieval of individual ads, dealer data, or reference information (categories, 
+                attributes) without having to process a full XML Exchange.
               </p>
             </article>
             <article class="rule-card">
@@ -318,58 +302,25 @@
           <h2>Onboarding &amp; Support</h2>
           <div class="rules-grid">
             <article class="rule-card">
-              <h3>Access &amp; Authentication</h3>
+              <h3>Onboarding &amp; Setup</h3>
               <p>
-                Specific credentials are required to use the REST API. Please contact our integration team at 
-                <a href="mailto:support@technikboerse.com">support@technikboerse.com</a> to request your Client ID 
-                and initial token.
+                Specific credentials are required to use the REST API. For onboarding and general setup questions, please contact:
+              </p>
+              <p style="font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem;">
+                <a href="mailto:support@technikboerse.com" style="color: var(--accent); text-decoration: none;">support@technikboerse.com</a>
               </p>
             </article>
             <article class="rule-card">
-              <h3>Technical Support</h3>
+              <h3>API Implementation &amp; Technical Questions</h3>
               <p>
                 For questions regarding specific endpoints or REST API error messages, please first consult the 
-                <a href="https://api.technikboerse.com/doc/html" target="_blank">authoritative API Reference</a>. For 
-                further assistance, our support team is available.
+                <a href="https://api.technikboerse.com/doc/html" target="_blank">authoritative API Reference</a>. For technical implementation questions regarding the REST API, contact:
+              </p>
+              <p style="font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem;">
+                <a href="mailto:produktmanagement@technikboerse.com" style="color: var(--accent); text-decoration: none;">produktmanagement@technikboerse.com</a>
               </p>
             </article>
           </div>
-        </section>
-
-        <section id="editorial" class="anchor">
-          <h2>Editorial Metadata</h2>
-          <div class="table-container">
-          <table aria-label="Editorial Metadata">
-            <thead>
-              <tr>
-                <th>Aspect</th>
-                <th>Content</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Status</td>
-                <td>Maintained overview and orientation page.</td>
-              </tr>
-              <tr>
-                <td>Source Basis</td>
-                <td>Local integration docs & external REST API specification.</td>
-              </tr>
-              <tr>
-                <td>Purpose</td>
-                <td>Strategic classification; no technical endpoint reference.</td>
-              </tr>
-              <tr>
-                <td>Next Page</td>
-                <td><code>/schnittstellen_changelog.html</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
-            CMS, documentation platform, or static documentation structure.
-          </p>
         </section>
 
         <footer class="site-footer">

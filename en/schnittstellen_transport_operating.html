@@ -65,8 +65,8 @@
             <li><a href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Sync</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Mode</a></li>
             <li><a href="schnittstellen_rest_api.html">REST-API Overview</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -94,9 +94,17 @@
             <article class="card">
               <h3>A. XML File</h3>
               <p>XML is a file-based integration method. Processing occurs in batch mode (not instantaneous).</p>
+              
+              <h4>Partner → technikboerse (Sending data)</h4>
               <ul>
                 <li><strong>Upload:</strong> The partner uploads the XML file via FTPS to the technikboerse server.</li>
                 <li><strong>Pull:</strong> The partner hosts the file at a URL, which technikboerse retrieves regularly.</li>
+              </ul>
+
+              <h4>technikboerse → Partner (Receiving data)</h4>
+              <ul>
+                <li><strong>Upload by technikboerse:</strong> technikboerse uploads the file to a partner's FTPS server at agreed times.</li>
+                <li><strong>Retrieval by Partner:</strong> The partner retrieves the file from an FTPS server provided by technikboerse.</li>
               </ul>
             </article>
 
@@ -117,8 +125,8 @@
           <p>Valid credentials are required for production integration:</p>
           <div class="summary-grid">
             <div class="summary-card">
-              <h3>XML via Upload</h3>
-              <p><strong>FTPS access</strong> is required. This must be requested from the Development or Product Management department.</p>
+              <h3>XML via Upload / Pull</h3>
+              <p>Depending on the direction and variant (see above), <strong>FTPS access</strong> is required. This must be requested or coordinated with the Development or Product Management department.</p>
             </div>
             <div class="summary-card">
               <h3>REST-API</h3>
@@ -144,7 +152,7 @@
                   <td><strong>XML</strong></td>
                   <td>File-based / Batch</td>
                   <td>1x daily</td>
-                  <td>Periodic full or differential data</td>
+                  <td>Periodic XML data exchanges (Full or Update)</td>
                 </tr>
                 <tr>
                   <td><strong>REST</strong></td>
@@ -221,7 +229,7 @@
             
             <div class="case-card">
               <h3>Processing Order &amp; File Handling</h3>
-              <p>Files are processed strictly <strong>chronologically</strong>. File names must include a timestamp (e.g., <code>export_20260422_1530.xml</code>) to ensure correct ordering. After successful processing, files on the target system are archived or removed.</p>
+              <p>Files are processed strictly <strong>chronologically</strong>. File names must include a timestamp (e.g., <code>export_20260422_1530.xml</code> or <code>exchange_20260422_1530.xml</code>) to ensure correct ordering. After successful processing, files on the target system are archived or removed.</p>
             </div>
             
             <div class="case-card">

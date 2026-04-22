@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>technikboerse Schnittstellen – XML Beispiel Full Export</title>
+  <title>technikboerse Schnittstellen – XML Beispiel Full Transfer</title>
   <link rel="icon" href="../favicon.ico" sizes="32x32">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -29,7 +29,7 @@
       <div class="brand">
         <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
         <small>technikboerse Schnittstellen</small>
-        <h1>XML-Beispiel: Full Export</h1>
+        <h1>XML-Beispiel: Vollabgleich</h1>
         
         <div class="lang-switch">
           <a href="#" class="active">DE</a>
@@ -48,8 +48,7 @@
             <li><a href="#verarbeitung">Verarbeitung im Zielsystem</a></li>
             <li><a href="#abgrenzung">Abgrenzung zu Update</a></li>
             <li><a href="#hinweise">Hinweise</a></li>
-            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -63,8 +62,8 @@
             <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a class="active" href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a class="active" href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
             <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -74,8 +73,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Vollabgleich</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Einzel-Update</a></li>
           </ul>
         </div>
       </nav>
@@ -85,26 +84,21 @@
       <div class="page">
         <header id="ueberblick" class="anchor">
           <span class="eyebrow">XML-Beispielseite</span>
-          <h1>Full Export</h1>
+          <h1>Full Transfer</h1>
           <p>
-            Diese Seite erläutert den Full Export anhand eines didaktisch reduzierten XML-Beispiels. Ziel ist nicht,
+            Diese Seite erläutert den Full Transfer anhand eines didaktisch reduzierten XML-Beispiels. Ziel ist nicht,
             die vollständige XSD-Referenz zu wiederholen, sondern das fachliche Verarbeitungsmodell eines Vollbestands
             verständlich und implementierbar darzustellen.
           </p>
         </header>
 
-        <div class="meta-grid" aria-label="Seiteneinordnung">
-          <div class="meta-card">
-            <strong>Seitenziel</strong>
-            Veranschaulichen, wie ein Full Export aufgebaut ist und wie er fachlich zu interpretieren ist.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Besonders relevant für</strong>
             Integratoren, Testende und Support bei der Prüfung einer Vollsynchronisation.
           </div>
           <div class="meta-card">
             <strong>Kernpunkt</strong>
-            Ein Full Export repräsentiert den vollständigen Soll-Bestand der vereinbarten Übertragungsauswahl.
+            Ein Full Transfer repräsentiert den vollständigen Soll-Bestand der vereinbarten Übertragungsauswahl.
           </div>
         </div>
 
@@ -112,16 +106,16 @@
           <h2>Einordnung</h2>
           <div class="summary-grid">
             <article class="summary-card">
-              <h3>Was ein Full Export bedeutet</h3>
+              <h3>Was ein Full Transfer bedeutet</h3>
               <p>
                 Der Export enthält alle aktiven Inserate der vereinbarten Übertragungsauswahl. Objekte, die früher bekannt
                 waren, aber in der aktuellen Datei nicht mehr vorkommen, gelten fachlich als entfernt oder inaktiv.
               </p>
             </article>
             <article class="summary-card">
-              <h3>Was ein Full Export nicht ist</h3>
+              <h3>Was ein Full Transfer nicht ist</h3>
               <p>
-                Ein Full Export ist keine reine Änderungsmenge. Das Zielsystem darf fehlende Objekte nicht ignorieren,
+                Ein Full Transfer ist keine reine Änderungsmenge. Das Zielsystem darf fehlende Objekte nicht ignorieren,
                 sondern muss den gelieferten Bestand als vollständigen Referenzzustand behandeln.
               </p>
             </article>
@@ -141,7 +135,7 @@
             <a href="../examples/example_full_export.xml" download class="btn" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Roh-XML herunterladen</a>
           </div>
           <div class="code-card">
-            <h3>Didaktisch reduziertes Full-Export-Beispiel</h3>
+            <h3>Didaktisch reduziertes Vollabgleich-Beispiel</h3>
             <pre>&lt;exchange&gt;
   &lt;senderName&gt;anbieter-a&lt;/senderName&gt;
   &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
@@ -248,7 +242,7 @@
             <article class="rule-card">
               <h3>Regel 3: Fehlende Objekte bereinigen</h3>
               <p>
-                Objekte, die in früheren Full-Exporten oder lokalen Beständen vorhanden waren, aber in der aktuellen Datei
+                Objekte, die in früheren Vollabgleichen oder lokalen Beständen vorhanden waren, aber in der aktuellen Datei
                 fehlen, müssen als entfernt oder inaktiv behandelt werden.
               </p>
             </article>
@@ -269,8 +263,8 @@
             <thead>
               <tr>
                 <th>Aspekt</th>
-                <th>Full Export</th>
-                <th>Update Export</th>
+                <th>Full Transfer</th>
+                <th>Update Transfer</th>
               </tr>
             </thead>
             <tbody>
@@ -305,7 +299,7 @@
             <article class="note">
               <h3>Typischer Fehler: Full wie Update behandeln</h3>
               <p>
-                Wenn ein Full Export nur als Sammlung enthaltener Änderungen interpretiert wird, bleiben veraltete oder
+                Wenn ein Full Transfer nur als Sammlung enthaltener Änderungen interpretiert wird, bleiben veraltete oder
                 eigentlich entfernte Objekte fälschlich im Zielsystem bestehen.
               </p>
             </article>
@@ -326,38 +320,6 @@
           </div>
         </section>
 
-        <section id="redaktion" class="anchor">
-          <h2>Redaktionelle Metadaten</h2>
-          <div class="table-container">
-          <table aria-label="Redaktionelle Metadaten">
-            <thead>
-              <tr>
-                <th>Aspekt</th>
-                <th>Inhalt</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Quellenbasis</td>
-                <td>Full-Beispiel-XML, XSD sowie die Referenzseiten zu <code>exchange</code>, <code>dealer</code>, <code>ad</code> und <code>contact</code>.</td>
-              </tr>
-              <tr>
-                <td>Didaktischer Status</td>
-                <td>Reduziertes Beispiel zur Erläuterung der Full-Logik; nicht als vollständige Feldreferenz zu verstehen.</td>
-              </tr>
-              <tr>
-                <td>Empfohlene Folge-Seite</td>
-                <td><code>/schnittstellen/xml/beispiele/update-export</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
-            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
-          </p>
-        </section>
-
         <footer class="site-footer">
           <div class="copyright">
             &copy; 2026 technikboerse. All rights reserved.
@@ -373,5 +335,4 @@
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
-
 

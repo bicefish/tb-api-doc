@@ -43,12 +43,11 @@
             <li><a href="#structure">Structure and Classification</a></li>
             <li><a href="#attributes">Attributes</a></li>
             <li><a href="#fields">Fields</a></li>
-            <li><a href="#assignment">Assignment to Advertisements</a></li>
+            <li><a href="#assignment">Assignment to Ads</a></li>
             <li><a href="#rules">Processing Rules</a></li>
             <li><a href="#example">Example</a></li>
             <li><a href="#notes">Notes</a></li>
-            <li><a href="#editorial">Editorial Metadata</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -59,11 +58,11 @@
             <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
             <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
             <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
             <li><a class="active" href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Sync</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Mode</a></li>
             <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -73,8 +72,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Sync</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Mode</a></li>
           </ul>
         </div>
       </nav>
@@ -88,19 +87,14 @@
           <p>
             The element <code>contact</code> represents a contact person at the dealer level. Contacts are 
             defined within a <code>dealer</code> object and can be assigned to individual 
-            advertisements via <code>contact_ids</code>. Thus, <code>contact</code> forms the bridge between organizational 
+            ads via <code>contact_ids</code>. Thus, <code>contact</code> forms the bridge between organizational 
             responsibility and concrete contactability within the interface.
           </p>
         </header>
 
-        <div class="meta-grid" aria-label="Page Classification">
-          <div class="meta-card">
-            <strong>Page Goal</strong>
-            Functionally and technically define contact persons uniquely.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Particularly Relevant for</strong>
-            Integrators who process contact persons, responsibilities, languages, and contact references to advertisements.
+            Integrators who process contact persons, responsibilities, languages, and contact references to ads.
           </div>
           <div class="meta-card">
             <strong>Core Content</strong>
@@ -132,7 +126,7 @@
             <article class="summary-card">
               <h3>Functional Role</h3>
               <p>
-                <code>contact</code> describes a specific contact person for dealers or advertisements, for example for 
+                <code>contact</code> describes a specific contact person for dealers or ads, for example for 
                 used machines, new machines, or spare parts.
               </p>
             </article>
@@ -140,7 +134,7 @@
               <h3>Technical Role</h3>
               <p>
                 Contacts are defined within a dealer and referenced via their <code>id</code> from within the 
-                advertisement.
+                ad.
               </p>
             </article>
             <article class="summary-card">
@@ -274,7 +268,7 @@
               <dl>
                 <dt>Type</dt><dd>Container or list</dd>
                 <dt>Required</dt><dd>Optional, but functionally very relevant</dd>
-                <dt>Meaning</dt><dd>Defines which areas or advertisement types the contact person is responsible for.</dd>
+                <dt>Meaning</dt><dd>Defines which areas or ad types the contact person is responsible for.</dd>
                 <dt>Note</dt><dd>The permitted values should be documented or linked via the appropriate web service or API.</dd>
               </dl>
             </article>
@@ -304,7 +298,7 @@
         </section>
 
         <section id="assignment" class="anchor">
-          <h2>Assignment to Advertisements</h2>
+          <h2>Assignment to Ads</h2>
           <div class="summary-grid">
             <article class="summary-card">
               <h3>Definition</h3>
@@ -316,8 +310,8 @@
             <article class="summary-card">
               <h3>Referencing</h3>
               <p>
-                Advertisements refer to these IDs via <code>contact_ids</code>. This allows one contact person to be 
-                assigned to multiple advertisements.
+                Ads refer to these IDs via <code>contact_ids</code>. This allows one contact person to be 
+                assigned to multiple ads.
               </p>
             </article>
             <article class="summary-card">
@@ -343,14 +337,14 @@
             <article class="rule-card">
               <h3>Rule 2: Ensure Reference Consistency (No Dangling References)</h3>
               <p>
-                Advertisements may only reference IDs in <code>contact_ids</code> that are actually defined in the 
+                Ads may only reference IDs in <code>contact_ids</code> that are actually defined in the 
                 <code>dealer</code> object under <code>contacts</code>. The target system must safely handle missing references.
               </p>
             </article>
             <article class="rule-card">
               <h3>Rule 3: Inheritance Logic & Fallbacks</h3>
               <p>
-                An explicit assignment of contacts at the advertisement level (<code>contact_ids</code>) overrides any 
+                An explicit assignment of contacts at the ad level (<code>contact_ids</code>) overrides any 
                 default contacts at the dealer level. If an ad assignment is missing, the defined default dealer contact applies (fallback).
               </p>
             </article>
@@ -401,7 +395,7 @@
               <p>
                 The example shows a contact person with personal contact information, language assignment, and 
                 area of responsibility. In the target system, this record should be stored within the dealer context and 
-                made referencable from the advertisements via <code>contact_ids</code>.
+                made referencable from the ads via <code>contact_ids</code>.
               </p>
             </div>
           </div>
@@ -414,13 +408,13 @@
               <h3>Typical Error: Interpreting Contact ID Globally</h3>
               <p>
                 If the <code>id</code> of a contact is interpreted system-wide instead of dealer-specifically, contacts 
-                can be inadvertently assigned to the wrong advertisements or dealers.
+                can be inadvertently assigned to the wrong ads or dealers.
               </p>
             </article>
             <article class="note">
-              <h3>Typical Error: Expecting Contact Person Data Directly in the Advertisement</h3>
+              <h3>Typical Error: Expecting Contact Person Data Directly in the Ad</h3>
               <p>
-                The advertisement contains only references in <code>contact_ids</code>. Without resolution against <code>contacts</code>, 
+                The ad contains only references in <code>contact_ids</code>. Without resolution against <code>contacts</code>, 
                 contact person information remains incomplete.
               </p>
             </article>
@@ -440,38 +434,6 @@
           </div>
         </section>
 
-        <section id="editorial" class="anchor">
-          <h2>Editorial Metadata</h2>
-          <div class="table-container">
-          <table aria-label="Editorial Metadata">
-            <thead>
-              <tr>
-                <th>Aspect</th>
-                <th>Content</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Source Basis</td>
-                <td>XSD for structure, field names, and attribute logic of the contacts; example XMLs for the observable spelling; existing interface document for the functional meaning of responsibilities, languages, and contact assignments.</td>
-              </tr>
-              <tr>
-                <td>Open Test Points</td>
-                <td>Final structure of <code>responsibilities</code>, exact data type definition of <code>languages_iso_639_1</code>, operational handling of contact images.</td>
-              </tr>
-              <tr>
-                <td>Recommended Next Page</td>
-                <td><code>/interfaces/xml/prices-media-additional-objects</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
-            CMS, documentation platform, or static documentation structure.
-          </p>
-        </section>
-
         <footer class="site-footer">
           <div class="copyright">
             &copy; 2026 technikboerse. All rights reserved.
@@ -487,5 +449,4 @@
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
-
 

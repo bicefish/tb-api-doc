@@ -49,8 +49,7 @@
             <li><a href="#verweise">Verwandte Objektbereiche</a></li>
             <li><a href="#beispiele">Beispiel</a></li>
             <li><a href="#hinweise">Hinweise</a></li>
-            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -64,8 +63,8 @@
             <li><a class="active" href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
             <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -75,8 +74,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Vollabgleich</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Einzel-Update</a></li>
           </ul>
         </div>
       </nav>
@@ -88,19 +87,14 @@
           <span class="eyebrow">Normative XML-Referenz</span>
           <h1>Element <code>ad</code></h1>
           <p>
-            Das Element <code>ad</code> repräsentiert ein einzelnes Inserat innerhalb des XML-Exports. Es enthält die
+            Das Element <code>ad</code> repräsentiert ein einzelnes Inserat innerhalb des XML-Transfers. Es enthält die
             technische Identität des Inserats, dessen Kategorisierung sowie die für Darstellung, Suche, Preisbildung,
             Medien und Kontaktierung relevanten Informationen. Für Integratoren ist <code>ad</code> der zentrale
             fachliche Datensatz der Schnittstelle.
           </p>
         </header>
 
-        <div class="meta-grid" aria-label="Seiteneinordnung">
-          <div class="meta-card">
-            <strong>Seitenziel</strong>
-            Inserate fachlich und technisch eindeutig beschreiben.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Besonders relevant für</strong>
             Systeme, die Inserate importieren, aktualisieren, löschen oder mit Preisen, Bildern und Ansprechpartnern anreichern.
           </div>
@@ -377,8 +371,8 @@
             <article class="rule-card">
               <h3>Regel 6: Löschlogik separat beachten</h3>
               <p>
-                Das Fehlen eines Inserats in einem Update-Export ist nicht automatisch eine Löschung. Löschfälle werden
-                auf Root-Ebene gesondert signalisiert oder ergeben sich bei Full-Exporten aus der Vollständigkeit des Bestands.
+                Das Fehlen eines Inserats in einem Einzel-Update ist nicht automatisch eine Löschung. Löschfälle werden
+                auf Root-Ebene gesondert signalisiert oder ergeben sich bei Vollabgleichen aus der Vollständigkeit des Bestands.
               </p>
             </article>
           </div>
@@ -560,38 +554,6 @@
               </p>
             </article>
           </div>
-        </section>
-
-        <section id="redaktion" class="anchor">
-          <h2>Redaktionelle Metadaten</h2>
-          <div class="table-container">
-          <table aria-label="Redaktionelle Metadaten">
-            <thead>
-              <tr>
-                <th>Aspekt</th>
-                <th>Inhalt</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Quellenbasis</td>
-                <td>XSD für Struktur, Attribute und Pflichtlogik des Inseratsobjekts; bestehendes Schnittstellendokument für die fachliche Bedeutung von <code>category_id</code>, <code>contact_ids</code>, Preis- und Medienfeldern sowie <code>created</code> und <code>modified</code>.</td>
-              </tr>
-              <tr>
-                <td>Offene Prüfpunkte</td>
-                <td>Feingranulare Unterstruktur von <code>info</code>, endgültige fachliche Einordnung von <code>ad_type</code>, operative Nutzung von <code>auction</code> und <code>purchase</code>.</td>
-              </tr>
-              <tr>
-                <td>Empfohlene Folge-Seite</td>
-                <td><code>/schnittstellen/xml/contact</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
-            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
-          </p>
         </section>
 
         <footer class="site-footer">

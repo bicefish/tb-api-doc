@@ -62,13 +62,13 @@
             <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
             <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
             <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Anzeige (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Voll-Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update-Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
             <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
-            <li><a href="schnittstellen_known_issues.html">Bekannte Fehler</a></li>
+            <li><a href="schnittstellen_known_issues.html">Bekannte Einschränkungen</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
           </ul>
         </div>
@@ -94,9 +94,17 @@
             <article class="card">
               <h3>A. XML-Datei</h3>
               <p>XML ist ein dateibasierter Integrationsweg. Die Verarbeitung erfolgt im Batch-Betrieb (nicht instantan).</p>
+              
+              <h4>Partner → technikboerse (Daten senden)</h4>
               <ul>
                 <li><strong>Upload:</strong> Der Partner lädt die XML-Datei via FTPS auf den Server der technikboerse hoch.</li>
                 <li><strong>Pull:</strong> Der Partner stellt die Datei unter einer URL bereit, die von technikboerse abgerufen wird.</li>
+              </ul>
+
+              <h4>technikboerse → Partner (Daten empfangen)</h4>
+              <ul>
+                <li><strong>Upload durch technikboerse:</strong> technikboerse lädt die Datei zu vereinbarten Zeiten auf einen FTPS-Server des Partners hoch.</li>
+                <li><strong>Abruf durch Partner:</strong> Der Partner ruft die Datei von einem durch technikboerse bereitgestellten FTPS-Server ab.</li>
               </ul>
             </article>
 
@@ -117,8 +125,8 @@
           <p>Für eine produktive Anbindung sind entsprechende Zugangsdaten erforderlich:</p>
           <div class="summary-grid">
             <div class="summary-card">
-              <h3>XML via Upload</h3>
-              <p>Es ist ein <strong>FTPs-Zugang</strong> erforderlich. Dieser muss bei der Entwicklungs- oder Produktmanagement-Abteilung angefragt werden.</p>
+              <h3>XML via Upload / Pull</h3>
+              <p>Je nach Richtung und Variante (siehe oben) ist ein <strong>FTPs-Zugang</strong> erforderlich. Dieser muss bei der Entwicklungs- oder Produktmanagement-Abteilung angefragt oder abgestimmt werden.</p>
             </div>
             <div class="summary-card">
               <h3>REST-API</h3>
@@ -144,7 +152,7 @@
                   <td><strong>XML</strong></td>
                   <td>Dateibasiert / Batch</td>
                   <td>1x täglich</td>
-                  <td>Periodische Voll- oder Differenzdaten</td>
+                  <td>Periodische XML-Datenaustausche (Full oder Update)</td>
                 </tr>
                 <tr>
                   <td><strong>REST</strong></td>
@@ -216,12 +224,12 @@
             
             <div class="case-card">
               <h3>Resynchronisation</h3>
-              <p>Um "Drift" (schleichende Inkonsistenzen) im Update-Modus zu beheben, wird dringend empfohlen, <strong>periodisch einen Full-Transfer</strong> durchzuführen (z. B. 1x wöchentlich). Dies synchronisiert den gesamten Bestand und räumt Karteileichen auf.</p>
+              <p>Um "Drift" (schleichende Inkonsistenzen) im Update-Modus zu beheben, wird dringend empfohlen, <strong>periodisch einen Vollabgleich</strong> durchzuführen (z. B. 1x wöchentlich). Dies synchronisiert den gesamten Bestand und räumt Karteileichen auf.</p>
             </div>
             
             <div class="case-card">
               <h3>Verarbeitungsreihenfolge &amp; Dateihandling</h3>
-              <p>Dateien werden streng <strong>chronologisch</strong> verarbeitet. Dateinamen müssen zwingend einen Zeitstempel (z. B. <code>export_20260422_1530.xml</code>) enthalten. Nach erfolgreicher Verarbeitung werden die Dateien auf dem Zielsystem archiviert oder gelöscht.</p>
+              <p>Dateien werden streng <strong>chronologisch</strong> verarbeitet. Dateinamen müssen zwingend einen Zeitstempel (z. B. <code>export_20260422_1530.xml</code> oder <code>exchange_20260422_1530.xml</code>) enthalten. Nach erfolgreicher Verarbeitung werden die Dateien auf dem Zielsystem archiviert oder gelöscht.</p>
             </div>
             
             <div class="case-card">

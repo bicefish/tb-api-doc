@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>technikboerse Interfaces – XML Example Update Export</title>
+  <title>technikboerse Interfaces – XML Example Update Mode</title>
   <link rel="icon" href="../favicon.ico" sizes="32x32">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -29,7 +29,7 @@
       <div class="brand">
         <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
         <small>technikboerse Interfaces</small>
-        <h1>XML Example: Update Export</h1>
+        <h1>XML Example: Update Mode</h1>
         
         <div class="lang-switch">
           <a href="../de/schnittstellen_beispiel_update_export.html">DE</a>
@@ -49,8 +49,7 @@
             <li><a href="#deletion">Explicit Deletions</a></li>
             <li><a href="#distinction">Distinction from Full</a></li>
             <li><a href="#notes">Notes</a></li>
-            <li><a href="#editorial">Editorial Metadata</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -61,11 +60,11 @@
             <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
             <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
             <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
-            <li><a class="active" href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Sync</a></li>
+            <li><a class="active" href="schnittstellen_beispiel_update_export.html">Example: Update Mode</a></li>
             <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -75,8 +74,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Sync</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Mode</a></li>
           </ul>
         </div>
       </nav>
@@ -86,26 +85,21 @@
       <div class="page">
         <header id="overview" class="anchor">
           <span class="eyebrow">XML Example Page</span>
-          <h1>Update Export</h1>
+          <h1>Update Mode</h1>
           <p>
-            This page explains the Update Export based on a didactically reduced XML example. The focus is 
+            This page explains the Update Mode based on a didactically reduced XML example. The focus is 
             on delta processing, the importance of <code>backLogDays</code>, and the explicit treatment 
-            of deleted dealers and advertisements.
+            of deleted dealers and ads.
           </p>
         </header>
 
-        <div class="meta-grid" aria-label="Page Classification">
-          <div class="meta-card">
-            <strong>Page Goal</strong>
-            Illustrate how an Update Export is structured and how it is to be interpreted functionally.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Particularly Relevant for</strong>
             Integrators, testers, and support when checking delta imports and deletion cases.
           </div>
           <div class="meta-card">
             <strong>Core Point</strong>
-            An Update Export contains only new, changed, or explicitly deleted objects within a retrospective period.
+            An Update Mode contains only new, changed, or explicitly deleted objects within a retrospective period.
           </div>
         </div>
 
@@ -113,7 +107,7 @@
           <h2>Classification</h2>
           <div class="summary-grid">
             <article class="summary-card">
-              <h3>What an Update Export Means</h3>
+              <h3>What an Update Mode Means</h3>
               <p>
                 The export is to be understood as a change set. Objects not contained remain unchanged in the target system 
                 unless they are explicitly marked as removed via deletion containers.
@@ -142,7 +136,7 @@
             <a href="../examples/example_update_export.xml" download class="btn" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Download raw XML</a>
           </div>
           <div class="code-card">
-            <h3>Didactically Reduced Update Export Example</h3>
+            <h3>Didactically Reduced Update Mode Example</h3>
             <pre>&lt;exchange&gt;
   &lt;senderName&gt;provider-a&lt;/senderName&gt;
   &lt;exportDate&gt;2024-05-15T06:00:00&lt;/exportDate&gt;
@@ -222,12 +216,12 @@
               </tr>
               <tr>
                 <td><code>adsDeleted</code></td>
-                <td>An advertisement was deleted in the retrospective period.</td>
-                <td>The referenced advertisement is to be specifically removed or deactivated.</td>
+                <td>An ad was deleted in the retrospective period.</td>
+                <td>The referenced ad is to be specifically removed or deactivated.</td>
               </tr>
               <tr>
                 <td><code>modified</code></td>
-                <td>Shows that the delivered dealer or advertisement object was changed.</td>
+                <td>Shows that the delivered dealer or ad object was changed.</td>
                 <td>Can be used to decide whether an existing data record needs to be overwritten.</td>
               </tr>
             </tbody>
@@ -248,7 +242,7 @@
             <article class="rule-card">
               <h3>Rule 2: Apply Deletion Containers Explicitly</h3>
               <p>
-                Dealers and advertisements appearing in <code>dealersDeleted</code> or <code>adsDeleted</code> must 
+                Dealers and ads appearing in <code>dealersDeleted</code> or <code>adsDeleted</code> must 
                 be specifically removed or deactivated.
               </p>
             </article>
@@ -261,7 +255,7 @@
             <article class="rule-card">
               <h3>Rule 4: Use <code>modified</code> for Update Decisions</h3>
               <p>
-                For existing dealer or advertisement objects, the target system should check whether the delivered 
+                For existing dealer or ad objects, the target system should check whether the delivered 
                 data records are actually more current.
               </p>
             </article>
@@ -272,13 +266,13 @@
           <h2>Explicit Deletions</h2>
           <div class="examples-grid">
             <div class="code-card">
-              <h3>Deleted Advertisement</h3>
+              <h3>Deleted Ad</h3>
               <pre>&lt;adsDeleted&gt;
   &lt;deleteInfo guid="ad-4711" id="4711" /&gt;
 &lt;/adsDeleted&gt;</pre>
               <p>
                 This entry signals an explicit deletion. The target system must not wait for the 
-                advertisement to be missing in a later Full file, but must apply the deletion notice directly.
+                ad to be missing in a later Full file, but must apply the deletion notice directly.
               </p>
             </div>
 
@@ -289,7 +283,7 @@
 &lt;/dealersDeleted&gt;</pre>
               <p>
                 This entry signals that the dealer was removed in the retrospective period. Depending on the target system, 
-                this can also have consequential effects for the associated advertisements.
+                this can also have consequential effects for the associated ads.
               </p>
             </div>
           </div>
@@ -302,8 +296,8 @@
             <thead>
               <tr>
                 <th>Aspect</th>
-                <th>Update Export</th>
-                <th>Full Export</th>
+                <th>Update Mode</th>
+                <th>Full Sync</th>
               </tr>
             </thead>
             <tbody>
@@ -359,38 +353,6 @@
           </div>
         </section>
 
-        <section id="editorial" class="anchor">
-          <h2>Editorial Metadata</h2>
-          <div class="table-container">
-          <table aria-label="Editorial Metadata">
-            <thead>
-              <tr>
-                <th>Aspect</th>
-                <th>Content</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Source Basis</td>
-                <td>Update example XML, XSD, and the reference pages for <code>exchange</code>, <code>deletion logic</code>, <code>dealer</code>, <code>ad</code>, and <code>contact</code>.</td>
-              </tr>
-              <tr>
-                <td>Didactic Status</td>
-                <td>Reduced example to explain the update logic; supplements the original examples with explicit deletion cases.</td>
-              </tr>
-              <tr>
-                <td>Recommended Next Page</td>
-                <td><code>/interfaces/changelog</code> or the REST API Overview</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
-            CMS, documentation platform, or static documentation structure.
-          </p>
-        </section>
-
         <footer class="site-footer">
           <div class="copyright">
             &copy; 2026 technikboerse. All rights reserved.
@@ -406,5 +368,4 @@
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
-
 

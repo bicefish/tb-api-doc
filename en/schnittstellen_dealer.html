@@ -46,8 +46,7 @@
             <li><a href="#rules">Processing Rules</a></li>
             <li><a href="#example">Example</a></li>
             <li><a href="#notes">Notes</a></li>
-            <li><a href="#editorial">Editorial Metadata</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="nav-section">
@@ -58,11 +57,11 @@
             <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
             <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
             <li><a class="active" href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Sync</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Mode</a></li>
             <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -72,8 +71,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Sync</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Mode</a></li>
           </ul>
         </div>
       </nav>
@@ -87,19 +86,14 @@
           <p>
             The element <code>dealer</code> represents a dealer or provider within the XML interface. 
             It bundles the technical identity of the dealer, its master data, as well as the associated 
-            advertisements and contacts. For the target system, <code>dealer</code> is the central link 
+            ads and contacts. For the target system, <code>dealer</code> is the central link 
             between the provider, inventory, and contact persons.
           </p>
         </header>
 
-        <div class="meta-grid" aria-label="Page Classification">
-          <div class="meta-card">
-            <strong>Page Goal</strong>
-            Technically and functionally define dealer objects uniquely.
-          </div>
-          <div class="meta-card">
+        <div class="meta-card">
             <strong>Particularly Relevant for</strong>
-            Integrators who process dealer records, advertisements, and contact persons together.
+            Integrators who process dealer records, ads, and contact persons together.
           </div>
           <div class="meta-card">
             <strong>Core Content</strong>
@@ -130,7 +124,7 @@
               <h3>Functional Role</h3>
               <p>
                 <code>dealer</code> represents a provider with an independent technical identity. 
-                0 to n advertisements and 0 to n contact persons are assigned to it.
+                0 to n ads and 0 to n contact persons are assigned to it.
               </p>
             </article>
             <article class="summary-card">
@@ -143,7 +137,7 @@
             <article class="summary-card">
               <h3>Relationship to Other Objects</h3>
               <p>
-                Below the dealer object, advertisements are listed in <code>ads</code> and 
+                Below the dealer object, ads are listed in <code>ads</code> and 
                 contact persons in <code>contacts</code>.
               </p>
             </article>
@@ -257,7 +251,7 @@
 
             <article class="field-card">
               <h3><code>ads</code></h3>
-              <p>Container for the advertisements assigned to the dealer.</p>
+              <p>Container for the ads assigned to the dealer.</p>
               <dl>
                 <dt>Type</dt><dd>Container element</dd>
                 <dt>Required</dt><dd>Yes</dd>
@@ -272,7 +266,7 @@
               <dl>
                 <dt>Type</dt><dd>Container element</dd>
                 <dt>Required</dt><dd>Yes</dd>
-                <dt>Meaning</dt><dd>Contains 0 to n <code>contact</code> objects used for communication regarding advertisements or the dealer.</dd>
+                <dt>Meaning</dt><dd>Contains 0 to n <code>contact</code> objects used for communication regarding ads or the dealer.</dd>
                 <dt>Link</dt><dd><code>/interfaces/xml/contact</code></dd>
               </dl>
             </article>
@@ -310,7 +304,7 @@
             <article class="rule-card">
               <h3>Rule 3: Process Sub-objects in Dealer Context</h3>
               <p>
-                Advertisements and contacts are functionally in the context of the dealer. Isolated 
+                Ads and contacts are functionally in the context of the dealer. Isolated 
                 processing without reference to the parent <code>dealer</code> can lead to inconsistencies.
               </p>
             </article>
@@ -351,7 +345,7 @@
               <p>
                 The example shows a dealer with technical identity, communication data, and sub-objects. 
                 In the target system, the dealer itself should first be assigned or created before 
-                processing the associated advertisements and contacts.
+                processing the associated ads and contacts.
               </p>
             </div>
           </div>
@@ -384,38 +378,6 @@
           </div>
         </section>
 
-        <section id="editorial" class="anchor">
-          <h2>Editorial Metadata</h2>
-          <div class="table-container">
-          <table aria-label="Editorial Metadata">
-            <thead>
-              <tr>
-                <th>Aspect</th>
-                <th>Content</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Source Basis</td>
-                <td>XSD for structure, attributes, and required logic of the dealer object; existing interface document for functional classification of GUID, ID, <code>created</code>, and <code>modified</code>.</td>
-              </tr>
-              <tr>
-                <td>Open Test Points</td>
-                <td>Fine-grained sub-structure of <code>info</code>, operational use of <code>pguid</code>, final cardinalities of individual dealer sub-elements.</td>
-              </tr>
-              <tr>
-                <td>Recommended Next Page</td>
-                <td><code>/interfaces/xml/ad</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-          <p class="footer-note">
-            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
-            CMS, documentation platform, or static documentation structure.
-          </p>
-        </section>
-
         <footer class="site-footer">
           <div class="copyright">
             &copy; 2026 technikboerse. All rights reserved.
@@ -431,5 +393,4 @@
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
-
 

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>technikboerse Schnittstellen – Quick-Start Guide</title>
+  <title>technikboerse Schnittstellen – Quick-Start Guide (XML Datenaustausch)</title>
   <link rel="icon" href="../favicon.ico" sizes="32x32">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -101,13 +101,13 @@
             <li><a href="schnittstellen_root_exchange.html">Wurzelelement <code>exchange</code></a></li>
             <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
             <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Anzeige (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
             <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Voll-Export</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update-Export</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
             <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
-            <li><a href="schnittstellen_known_issues.html">Bekannte Fehler</a></li>
+            <li><a href="schnittstellen_known_issues.html">Bekannte Einschränkungen</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
           </ul>
         </div>
@@ -115,8 +115,8 @@
           <h2>Downloads</h2>
           <ul>
             <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Vollabgleich</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Einzel-Update</a></li>
           </ul>
         </div>
       </nav>
@@ -126,13 +126,27 @@
       <div class="page">
         <header id="overview" class="anchor">
           <span class="eyebrow">Erste Schritte</span>
-          <h1>Ihre erste Maschine exportieren</h1>
+          <h1>Erster XML-Datenaustausch</h1>
           <p>
-            Dieser Guide führt Sie durch die Erstellung einer validen XML-Datei, um Ihre erste Maschinenanzeige an
-            technikboerse zu senden.
-            Der technikboerse XML-Standard ist ein robustes, hierarchisches Format für den zuverlässigen Datenaustausch.
+            Dieser Guide führt Sie in die Arbeit mit dem XML-Format ein. Die XML-Definition ist ein 
+            <strong>gemeinsames Austauschformat</strong> für beide Integrationsrichtungen: Sie wird genutzt, 
+            um Daten an technikboerse zu senden oder um Daten von technikboerse zu empfangen.
           </p>
         </header>
+
+        <div class="note" style="margin-bottom: 2rem;">
+          <h3>Perspektive und Terminologie ("Import" / "Export")</h3>
+          <p>
+            Die Begriffe "Import" und "Export" sind perspektivenabhängig. 
+          </p>
+          <ul>
+            <li><strong>Partner → technikboerse</strong>: Senden von Daten an technikboerse (aus Partnersicht ein "Export", aus unserer Sicht ein "Import").</li>
+            <li><strong>technikboerse → Partner</strong>: Empfangen von Daten von technikboerse (aus Partnersicht ein "Import", aus unserer Sicht ein "Export").</li>
+          </ul>
+          <p>
+            Um Missverständnisse zu vermeiden, nutzt diese Dokumentation in der Regel explizite Richtungsangaben. Die <strong>Struktur der XML-Austauschdatei</strong> bleibt dabei identisch, lediglich Transport und Scheduling unterscheiden sich.
+          </p>
+        </div>
 
         <section id="onboarding" class="anchor">
           <div class="section-header">
@@ -257,7 +271,18 @@
           <div class="section-header">
             <span class="eyebrow">Tutorial</span>
             <h2>Technischer Schnellstart (XML)</h2>
-            <p>Dieser Guide führt Sie durch die Erstellung einer validen XML-Datei für den Import/Export.</p>
+            <p>Dieser Guide führt Sie in die Erstellung und Verarbeitung einer validen XML-Austauschdatei ein.</p>
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="mode-card">
+              <h4>A. Daten an technikboerse senden (Partner → technikboerse)</h4>
+              <p>Der Partner erstellt die XML-Datei mit Inseraten und stellt sie bereit (oder lädt sie hoch). technikboerse verarbeitet die Datei regelmäßig nach dem vereinbarten Zeitplan.</p>
+            </div>
+            <div class="mode-card">
+              <h4>B. Daten von technikboerse empfangen (technikboerse → Partner)</h4>
+              <p>technikboerse generiert die XML-Datei mit den Bestandsdaten. Der Partner lädt die Datei herunter (oder empfängt sie) und verarbeitet sie in seinem System.</p>
+            </div>
           </div>
 
           <div class="step-card">
@@ -265,8 +290,7 @@
               <span class="step-number">1</span>
               <h3>Die XML-Wurzel (<code>exchange</code>)</h3>
             </div>
-            <p>Jede Datei beginnt mit dem <code>&lt;exchange&gt;</code>-Element. Es enthält globale Metadaten über den
-              Export.</p>
+            <p>Jede Austauschdatei beginnt mit dem <code>&lt;exchange&gt;</code>-Element. Es enthält globale Metadaten über den Datenaustausch.</p>
             <div class="code-card">
               <pre>&lt;exchange&gt;
   &lt;senderName&gt;ihre-provider-id&lt;/senderName&gt;
@@ -340,7 +364,7 @@
 &lt;/ad&gt;</pre>
             </div>
             <p class="note">Detaillierte Feldlisten finden Sie in der <a
-                href="schnittstellen_ad.html">Anzeigen-Referenz</a> sowie unter <a
+                href="schnittstellen_ad.html">Inserat-Referenz</a> sowie unter <a
                 href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></p>
           </div>
 
@@ -394,14 +418,27 @@
                 style="margin-right: 12px; color: var(--danger);">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
               </svg>
-              <h2 style="margin: 0; color: var(--danger);">Technischer Support</h2>
+              <h2 style="margin: 0; color: var(--danger);">Onboarding &amp; Support</h2>
             </div>
-            <p>Bei Fragen zur Integration erreichen Sie unser technisches Produktmanagement unter:</p>
-            <p style="font-size: 1.25rem; font-weight: bold; margin: 1rem 0;">
-              <a href="mailto:produktmanagement@technikboerse.com"
-                style="color: var(--accent); text-decoration: none;">produktmanagement@technikboerse.com</a>
-            </p>
-            <p><strong>Bitte geben Sie bei Anfragen folgende Informationen an:</strong></p>
+            <div class="grid-2" style="margin-bottom: 1.5rem;">
+              <div class="mode-card">
+                <h4 style="margin-top: 0;">Onboarding &amp; Setup</h4>
+                <p>Für neue Integrationsanfragen, Onboarding und generelle Setup-Koordination kontaktieren Sie:</p>
+                <p style="font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem;">
+                  <a href="mailto:support@technikboerse.com"
+                    style="color: var(--accent); text-decoration: none;">support@technikboerse.com</a>
+                </p>
+              </div>
+              <div class="mode-card">
+                <h4 style="margin-top: 0;">Technische XML-Fragen</h4>
+                <p>Für technische Implementierungsfragen während der Anbindung kontaktieren Sie:</p>
+                <p style="font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem;">
+                  <a href="mailto:produktmanagement@technikboerse.com"
+                    style="color: var(--accent); text-decoration: none;">produktmanagement@technikboerse.com</a>
+                </p>
+              </div>
+            </div>
+            <p><strong>Bitte geben Sie bei initialen Onboarding-Anfragen folgende Informationen an:</strong></p>
             <div class="grid-2">
               <ul class="check-list">
                 <li>Firmenname / System</li>
