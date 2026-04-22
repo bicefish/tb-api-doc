@@ -1,0 +1,540 @@
+/* =============================================================
+   technikboerse Schnittstellen – Shared Design System
+   Serves all pages in the schnittstellen_*.html collection.
+
+   Page-specific overrides (e.g. max-width, eyebrow colour) are
+   handled via a small inline <style> block in each HTML file.
+   ============================================================= */
+
+/* ── Custom Properties ──────────────────────────────────────── */
+:root {
+  --bg:           #f7f8fa;
+  --surface:      #ffffff;
+  --text:         #1f2937;
+  --muted:        #4b5563; /* Improved contrast for accessibility */
+  --border:       #d1d5db;
+  --accent:       #0f766e;
+  --accent-soft:  #ecfeff;
+  --info:         #1d4ed8;
+  --info-soft:    #eff6ff;
+  --warning:      #92400e;
+  --warning-soft: #fffbeb;
+  --danger:       #991b1b;
+  --danger-soft:  #fef2f2;
+  --code-bg:      #111827;
+  --code-text:    #f9fafb;
+  --link:         #0f766e;
+  --shadow:       0 10px 30px -10px rgba(15, 23, 42, 0.15); /* More premium shadow */
+}
+
+/* ── Custom Scrollbars ───────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+  border: 3px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+
+/* ── Base Reset ─────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+               BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Two-Column Layout ──────────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+aside {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 2rem 1.25rem;
+  border-right: 1px solid var(--border);
+  background: rgba(252, 252, 253, 0.8);
+  backdrop-filter: blur(12px); /* Glassmorphism sidebar */
+}
+
+
+main { padding: 2.5rem clamp(1rem, 2vw, 2rem) 4rem; }
+
+/* Default max-width; override per page with an inline <style> if needed */
+.page { max-width: 1060px; margin: 0 auto; }
+
+/* ── Sidebar Brand ──────────────────────────────────────────── */
+.brand { margin-bottom: 1.5rem; }
+.brand-logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+.brand small {
+  display: block;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  margin-bottom: 0.35rem;
+}
+.brand h1 { margin: 0; font-size: 1.2rem; line-height: 1.35; }
+ 
+/* ── Language Switcher ───────────────────────────────────────── */
+.lang-switch {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.lang-switch a {
+  color: var(--muted);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.4rem;
+  transition: all 0.2s;
+}
+.lang-switch a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
+}
+.lang-switch a.active {
+  background: var(--accent);
+  color: #fff;
+}
+.lang-switch .separator {
+  opacity: 0.3;
+}
+
+/* ── Sidebar Navigation ─────────────────────────────────────── */
+.nav-section { margin-top: 1.5rem; }
+.nav-section h2 {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.nav-section ul { list-style: none; margin: 0; padding: 0; }
+.nav-section li + li { margin-top: 0.45rem; }
+.nav-section a {
+  display: block;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.65rem;
+  color: var(--text);
+}
+.nav-section a:hover,
+.nav-section a.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ── Page Header ────────────────────────────────────────────── */
+/* Default eyebrow is teal; Known Issues overrides to amber */
+.eyebrow {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 1.15;
+}
+header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 76ch;
+}
+
+/* ── Section Typography ─────────────────────────────────────── */
+section { margin-top: 2.25rem; }
+section h2 { margin: 0 0 1rem; font-size: 1.6rem; line-height: 1.25; }
+section h3 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
+
+/* ── Grid Layouts ───────────────────────────────────────────── */
+.meta-grid, .summary-grid, .field-grid, .rules-grid,
+.notes-grid, .examples-grid, .link-grid, .section-grid,
+.mode-grid, .cases-grid, .intro-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Multi-column auto-fit grids */
+.meta-grid,
+.summary-grid,
+.examples-grid,
+.link-grid,
+.mode-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Field cards are slightly wider to hold the dl key–value layout */
+.field-grid {
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+}
+
+/* Section intro cards (Preise/Medien page) */
+.section-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* ── Cards – Base Surface ───────────────────────────────────── */
+.card, .field-card, .rule-card, .note,
+.warning, .danger, .code-card, .summary-card,
+.link-card, .section-card, .mode-card, .case-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* .meta-card is display: block to allow text/code children to flow naturally */
+.meta-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card-with-icon {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.card-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+
+/* Generic .card (used in root-exchange page) needs slightly more breathing room */
+.card { padding: 1.35rem; }
+
+/* Uppercased meta label */
+.meta-card strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Card Colour Variants ───────────────────────────────────── */
+
+/* Summary / info cards – blue tint */
+.summary-card { background: var(--info-soft); border-color: #bfdbfe; }
+.summary-card h3, .link-card h3 { color: var(--info); }
+
+/* Link cards – off-white */
+.link-card { background: #f8fafc; }
+
+/* Warning cards – amber tint */
+.warning { background: var(--warning-soft); border-color: #f59e0b; }
+.warning h3 { color: var(--warning); }
+
+/* Danger cards – red tint */
+.danger { background: var(--danger-soft); border-color: #fca5a5; }
+.danger h3 { color: var(--danger); }
+
+/* transferMode visualisation (Löschlogik page) */
+.mode-card.full   { border-color: #93c5fd; background: #eff6ff; }
+.mode-card.update { border-color: #a7f3d0; background: #ecfdf5; }
+
+/* ── Status Badges (Known Issues page) ──────────────────────── */
+.status {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.status.known { background: var(--warning-soft); color: var(--warning); border: 1px solid #f59e0b; }
+.status.open  { background: var(--danger-soft);  color: var(--danger);  border: 1px solid #fca5a5; }
+.status.doc   { background: var(--info-soft);    color: var(--info);    border: 1px solid #93c5fd; }
+
+/* ── Code & Monospace ───────────────────────────────────────── */
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+               Consolas, "Liberation Mono", monospace;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Inline code tokens */
+p code, li code, td code,
+h1 code, h2 code, h3 code,
+dt code, dd code {
+  font-size: 0.94em;
+  background: #f3f4f6;
+  padding: 0.12rem 0.35rem;
+  border-radius: 0.35rem;
+}
+
+/* Fenced code blocks */
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--code-text);
+  background: var(--code-bg);
+  padding: 1rem;
+  border-radius: 0.85rem;
+  overflow-x: auto;
+  /* Visual cue for scrolling */
+  background-image: linear-gradient(to right, var(--code-bg), var(--code-bg)),
+                    linear-gradient(to right, var(--code-bg), var(--code-bg)),
+                    linear-gradient(to right, rgba(0,0,0,0.2), rgba(0,0,0,0)),
+                    linear-gradient(to left, rgba(0,0,0,0.2), rgba(0,0,0,0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-color: var(--code-bg);
+  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+
+/* ── Field Card Key–Value List ──────────────────────────────── */
+.field-card dl {
+  margin: 0.8rem 0 0;
+  display: grid;
+  grid-template-columns: minmax(120px, 150px) 1fr;
+  gap: 0.45rem 0.75rem;
+}
+.field-card dt { color: var(--muted); font-weight: 600; }
+.field-card dd { margin: 0; }
+
+/* ── Tables ─────────────────────────────────────────────────── */
+.table-container {
+  overflow-x: auto;
+  margin: 0 0 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: var(--surface);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 100%;
+}
+
+/* Metadata tables can be smaller */
+table[aria-label*="Metadaten"],
+table[aria-label*="Metadata"] {
+  min-width: 100%;
+}
+
+th, td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+thead th {
+  background: #f9fafb;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+tbody tr:last-child td { border-bottom: none; }
+
+/* ── Utility Classes ────────────────────────────────────────── */
+.anchor      { scroll-margin-top: 1rem; }
+.footer-note { margin-top: 2.5rem; color: var(--muted); font-size: 0.95rem; }
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.site-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.site-footer .footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-footer a {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-footer .copyright {
+  opacity: 0.7;
+}
+
+/* ── Responsive – Mobile Navigation ────────────────────────── */
+@media (max-width: 960px) {
+  .layout { 
+    grid-template-columns: 1fr !important; 
+  }
+  
+  /* Mobile Header */
+  .layout .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: 64px;
+  }
+  
+  .mobile-logo { height: 24px; width: auto; max-width: 140px; object-fit: contain; }
+
+  
+  #mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.4rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  #mobile-toggle:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Sidebar Drawer */
+  .layout aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 200;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
+    box-shadow: 10px 0 30px rgba(15, 23, 42, 0.15);
+    border-right: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+
+
+  body.sidebar-open .layout aside {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  /* Backdrop */
+  .mobile-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  body.sidebar-open .mobile-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .brand-logo { max-width: 180px; margin-bottom: 0.75rem; }
+  .brand h1 { font-size: 1.1rem; }
+  
+  main { padding: 1rem 1rem 3rem; }
+  
+  header h1 { font-size: clamp(1.75rem, 5vw, 2.2rem); }
+  
+  /* Grids should stack earlier on mobile */
+  .meta-grid, .summary-grid, .field-grid, .rules-grid,
+  .notes-grid, .examples-grid, .link-grid, .section-grid,
+  .mode-grid, .cases-grid, .intro-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 961px) {
+  .mobile-header { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .brand-logo { max-width: 140px; }
+  .eyebrow { font-size: 0.75rem; padding: 0.25rem 0.5rem; }
+}

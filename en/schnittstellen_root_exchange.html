@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Interfaces – XML Root Element exchange</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+    /* root-exchange uses wider field cards and a margined meta grid */
+    .meta-grid  { margin: 1.75rem 0 2rem; }
+    .field-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Interfaces</small>
+        <h1>XML Reference: Root Element <code>exchange</code></h1>
+        
+        <div class="lang-switch">
+          <a href="../de/schnittstellen_root_exchange.html">DE</a>
+          <span class="separator">|</span>
+          <a href="#" class="active">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>On this page</h2>
+          <ul>
+            <li><a class="active" href="#overview">Overview</a></li>
+            <li><a href="#structure">Structure Overview</a></li>
+            <li><a href="#field-reference">Field Reference</a></li>
+            <li><a href="#processing-logic">Processing Logic</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#notes">Notes and Pitfalls</a></li>
+            <li><a href="#editorial">Editorial Metadata</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Content</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a class="active" href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
+            <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="overview" class="anchor">
+          <span class="eyebrow">Normative XML Reference</span>
+          <h1>Root Element <code>exchange</code></h1>
+          <p>
+            This page describes the root element of the XML export file and all global metadata 
+            relevant for processing the export. The receiving system must evaluate the specifications 
+             at the root level before processing individual <code>dealer</code> or <code>ad</code> objects.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Page Classification">
+          <div class="meta-card">
+            <strong>Page Goal</strong>
+            Describe the global structure and processing logic of the export file.
+          </div>
+          <div class="meta-card">
+            <strong>Target Audience</strong>
+            Integrators, developers of import interfaces, support.
+          </div>
+          <div class="meta-card">
+            <strong>Relevant Fields</strong>
+            <code>senderName</code>, <code>exportDate</code>, <code>transferMode</code>, <code>backLogDays</code>, <code>dealersDeleted</code>, <code>adsDeleted</code>, <code>dealers</code>, <code>validation</code>
+          </div>
+        </div>
+
+        <section id="structure" class="anchor">
+          <h2>Structure Overview</h2>
+          <div class="code-card">
+            <h3>Example Structure</h3>
+            <pre>&lt;exchange&gt;
+  &lt;senderName&gt;...&lt;/senderName&gt;
+  &lt;exportDate&gt;...&lt;/exportDate&gt;
+  &lt;transferMode&gt;...&lt;/transferMode&gt;
+  &lt;backLogDays&gt;...&lt;/backLogDays&gt;
+  &lt;dealersDeleted&gt;...&lt;/dealersDeleted&gt;
+  &lt;adsDeleted&gt;...&lt;/adsDeleted&gt;
+  &lt;dealers&gt;...&lt;/dealers&gt;
+  &lt;validation&gt;...&lt;/validation&gt;
+&lt;/exchange&gt;</pre>
+          </div>
+          <div class="note" style="margin-top: 1rem;">
+            <h3>Editorial Note</h3>
+            <p>
+              On the HTML page, this overview should be right at the beginning, supplemented by anchor links 
+              to the individual fields. Detailed processing of the contained payload occurs on the 
+              pages for <code>dealer</code>, <code>ad</code>, and <code>contact</code>.
+            </p>
+          </div>
+        </section>
+
+        <section id="field-reference" class="anchor">
+          <h2>Field Reference</h2>
+          <div class="field-grid">
+            <article class="field-card">
+              <h3><code>exchange</code></h3>
+              <p>Root element of the XML export file.</p>
+              <dl>
+                <dt>Type</dt><dd>Container element</dd>
+                <dt>Required</dt><dd>Yes</dd>
+                <dt>Contains</dt><dd><code>senderName</code>, <code>exportDate</code>, <code>transferMode</code>, optional <code>backLogDays</code>, <code>dealersDeleted</code>, <code>adsDeleted</code>, <code>dealers</code>, optional <code>validation</code></dd>
+                <dt>Processing Rule</dt><dd>The file is to be treated as a complete functional unit. Processing individual nodes without considering the root metadata is not sufficient.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>senderName</code></h3>
+              <p>Unique name of the file sender.</p>
+              <dl>
+                <dt>Type</dt><dd>String</dd>
+                <dt>Required</dt><dd>Yes</dd>
+                <dt>Meaning</dt><dd>Identifies the sending system or interface.</dd>
+                <dt>Processing Rule</dt><dd>The value should remain stable over the long term. Changes may result in known datasets no longer being correctly assigned or updated in the target system.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>exportDate</code></h3>
+              <p>Time of generation of the export file.</p>
+              <dl>
+                <dt>Type</dt><dd>Date/Time</dd>
+                <dt>Required</dt><dd>Yes</dd>
+                <dt>Meaning</dt><dd>Marks the creation time of the export.</dd>
+                <dt>Processing Rule</dt><dd><code>exportDate</code> describes the file, not the modification time of individual objects. For object updates, the respective <code>modified</code> values are authoritative.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>transferMode</code></h3>
+              <p>Indicates the type of transfer.</p>
+              <dl>
+                <dt>Type</dt><dd>String</dd>
+                <dt>Required</dt><dd>Yes</dd>
+                <dt>Valid Values</dt><dd><code>full</code>, <code>update</code></dd>
+                <dt>Meaning</dt><dd><code>full</code> stands for a complete synchronization, <code>update</code> for a change set.</dd>
+                <dt>Processing Rule</dt><dd>The receiving system must control the entire import logic based on this field.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>backLogDays</code></h3>
+              <p>Defines the lookback period for an update export.</p>
+              <dl>
+                <dt>Type</dt><dd>Integer</dd>
+                <dt>Required</dt><dd>No, only relevant for <code>transferMode=update</code></dd>
+                <dt>Meaning</dt><dd>Specifies the period over which changes and deletions are included in the update.</dd>
+                <dt>Processing Rule</dt><dd>The field is only functionally relevant in the update context. It is not required for full exports.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>dealersDeleted</code></h3>
+              <p>Container for dealers deleted in the relevant period.</p>
+              <dl>
+                <dt>Type</dt><dd>Container element</dd>
+                <dt>Required</dt><dd>Yes, but can be empty</dd>
+                <dt>Meaning</dt><dd>In update exports, the element contains dealers deleted during the lookback period.</dd>
+                <dt>Processing Rule</dt><dd>In update mode, these dealers must be removed or deactivated in the target system. In full mode, the element is usually empty.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>adsDeleted</code></h3>
+              <p>Container for advertisements deleted in the relevant period.</p>
+              <dl>
+                <dt>Type</dt><dd>Container element</dd>
+                <dt>Required</dt><dd>Yes, but can be empty</dd>
+                <dt>Meaning</dt><dd>In update exports, the element contains deleted advertisements.</dd>
+                <dt>Processing Rule</dt><dd>In update mode, these advertisements are to be specifically deleted or deactivated in the target system.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>dealers</code></h3>
+              <p>Container for the transferred dealer objects.</p>
+              <dl>
+                <dt>Type</dt><dd>Container element</dd>
+                <dt>Required</dt><dd>Yes</dd>
+                <dt>Meaning</dt><dd>Contains the actual payload of the export in the form of <code>dealer</code> objects with their advertisements and contact persons.</dd>
+                <dt>Link</dt><dd><code>/interfaces/xml/dealer</code>, <code>/interfaces/xml/ad</code>, <code>/interfaces/xml/contact</code></dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>validation</code></h3>
+              <p>Optional section for validation information.</p>
+              <dl>
+                <dt>Type</dt><dd>Container element</dd>
+                <dt>Required</dt><dd>Optional</dd>
+                <dt>Meaning</dt><dd>The element is provided for in the schema and should therefore be documented, even if it is often less prominent operationally.</dd>
+                <dt>Editorial Recommendation</dt><dd>The HTML documentation should clearly state whether the element is actively used, can be ignored, or is intended for extensions.</dd>
+              </dl>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div class="warning">
+            <h3>Important: <code>senderName</code> is identification-relevant</h3>
+            <p>
+              <code>senderName</code> is not just descriptive information, but a technical key 
+              in the exchange context. A subsequent change can lead to known datasets no longer 
+              being correctly assigned.
+            </p>
+          </div>
+        </section>
+
+        <section id="processing-logic" class="anchor">
+          <h2>Processing Logic at the Root Level</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Rule 1: Evaluate Root First</h3>
+              <p>
+                Before processing <code>dealer</code> or <code>ad</code> objects, at least 
+                <code>senderName</code>, <code>transferMode</code>, and <code>exportDate</code> must be evaluated.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 2: Mode Determines Import Strategy</h3>
+              <p>
+                With <code>full</code>, the file is to be treated as a complete target state. With <code>update</code>, 
+                the file is to be processed as a delta-oriented change set.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 3: Interpret Deletion Containers Only in Functional Context</h3>
+              <p>
+                Empty deletion containers do not automatically mean that no inventory cleanup is required. 
+                In <code>full</code> mode, cleanup primarily results from the completeness of the delivered inventory.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 4: Do Not Confuse Root Metadata with Object Metadata</h3>
+              <p>
+                <code>exportDate</code> refers to the file. <code>modified</code> refers to individual 
+                objects. For object updates, the respective object values are authoritative.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="examples" class="anchor">
+          <h2>Examples</h2>
+          <div class="examples-grid">
+            <div class="code-card">
+              <h3>Full Minimal Example</h3>
+              <pre>&lt;exchange&gt;
+  &lt;senderName&gt;provider-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;full&lt;/transferMode&gt;
+  &lt;dealersDeleted/&gt;
+  &lt;adsDeleted/&gt;
+  &lt;dealers&gt;
+    ...
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+            </div>
+
+            <div class="code-card">
+              <h3>Update Minimal Example</h3>
+              <pre>&lt;exchange&gt;
+  &lt;senderName&gt;provider-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;update&lt;/transferMode&gt;
+  &lt;backLogDays&gt;3&lt;/backLogDays&gt;
+  &lt;dealersDeleted/&gt;
+  &lt;adsDeleted/&gt;
+  &lt;dealers&gt;
+    ...
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="notes" class="anchor">
+          <h2>Notes and Pitfalls</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Known Issue / Testing Note</h3>
+              <p>
+                The example XMLs are not fully schema-compliant in all respects. Such discrepancies 
+                should not be treated in detail on this page, but should be transparently 
+                documented on the <code>/interfaces/xml/known-issues</code> page.
+              </p>
+            </article>
+
+            <article class="note">
+              <h3>Typical Implementation Error</h3>
+              <p>
+                <code>transferMode</code> is ignored and every file is treated as a full inventory. This leads to 
+                incorrect deletions and faulty synchronization states for update files.
+              </p>
+            </article>
+
+            <article class="note">
+              <h3>Typical Interpretation Error</h3>
+              <p>
+                <code>exportDate</code> is used as a criterion for object updates. However, the respective 
+                object fields such as <code>modified</code> are authoritative for updates to individual datasets.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="editorial" class="anchor">
+          <h2>Editorial Metadata</h2>
+          <div class="table-container">
+          <table aria-label="Editorial Metadata">
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Content</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Source Basis</td>
+                <td>XSD as technical structure reference, Full and Update examples for real-world expression, existing interface document for functional explanations.</td>
+              </tr>
+              <tr>
+                <td>Open Test Points</td>
+                <td>Concrete data type representation of <code>exportDate</code>, exact operational role of <code>validation</code>, final cardinalities in the HTML field table.</td>
+              </tr>
+              <tr>
+                <td>Recommended Next Page</td>
+                <td><code>/interfaces/xml/deletion-logic</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
+            CMS, a documentation platform, or a static documentation structure.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Legal Notice</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Privacy Policy</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+
+

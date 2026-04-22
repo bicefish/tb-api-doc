@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Interfaces – XML Deletion Logic</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Interfaces</small>
+        <h1>XML Interface: Deletion Logic</h1>
+        
+        <div class="lang-switch">
+          <a href="../de/schnittstellen_loeschlogik.html">DE</a>
+          <span class="separator">|</span>
+          <a href="#" class="active">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>On this page</h2>
+          <ul>
+            <li><a class="active" href="#overview">Overview</a></li>
+            <li><a href="#basic-rules">Basic Rules</a></li>
+            <li><a href="#elements">Elements</a></li>
+            <li><a href="#processing">Processing in Target System</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#errors">Typical Errors</a></li>
+            <li><a href="#editorial">Editorial Metadata</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Content</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
+            <li><a class="active" href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
+            <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="overview" class="anchor">
+          <span class="eyebrow">Processing Rule</span>
+          <h1>Deletion Logic for XML Exports</h1>
+          <p>
+            This page describes how deleted dealers and advertisements are signaled in the 
+            technikboerse XML export and what impact this has on the target system. The distinction 
+            between <code>full</code> and <code>update</code> is functionally decisive.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Page Classification">
+          <div class="meta-card">
+            <strong>Page Goal</strong>
+            Clearly describe deletion processing for dealers and advertisements.
+          </div>
+          <div class="meta-card">
+            <strong>Particularly Relevant for</strong>
+            Integrators of target systems that must keep inventories synchronized and correctly apply deletions.
+          </div>
+          <div class="meta-card">
+            <strong>Core Elements</strong>
+            <code>dealersDeleted</code>, <code>adsDeleted</code>, <code>deleteInfo</code>, <code>transferMode</code>
+          </div>
+        </div>
+
+        <section id="basic-rules" class="anchor">
+          <h2>Basic Rules</h2>
+          <div class="mode-grid">
+            <article class="mode-card full">
+              <h3>Behavior for <code>transferMode=full</code></h3>
+              <p>
+                The export is to be understood as a complete target inventory. All active advertisements 
+                of the agreed transfer selection are included. Advertisements not included are considered 
+                inactive or deleted and must be removed or deactivated in the target system.
+              </p>
+            </article>
+            <article class="mode-card update">
+              <h3>Behavior for <code>transferMode=update</code></h3>
+              <p>
+                The export is to be understood as a change set. Only new, changed, or 
+                deleted objects within the lookback period are transferred. Deletions are explicitly 
+                signaled via <code>dealersDeleted</code> and <code>adsDeleted</code>.
+              </p>
+            </article>
+          </div>
+
+          <div class="warning" style="margin-top: 1rem;">
+            <h3>Important</h3>
+            <p>
+              Empty deletion containers do not automatically mean that no inventory cleanup is required in every case. 
+              In <code>full</code> mode, cleanup results from the completeness of the delivered inventory, 
+              not from an explicit deletion list.
+            </p>
+          </div>
+        </section>
+
+        <section id="elements" class="anchor">
+          <h2>Relevant Elements</h2>
+          <div class="table-container">
+          <table aria-label="Deletion Logic Elements">
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Meaning</th>
+                <th>Usage</th>
+                <th>Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>dealersDeleted</code></td>
+                <td>Container for dealers deleted in the relevant period.</td>
+                <td>Primarily relevant for <code>update</code>.</td>
+                <td>Can be empty. In full mode, it is usually not decisive for cleanup.</td>
+              </tr>
+              <tr>
+                <td><code>adsDeleted</code></td>
+                <td>Container for advertisements deleted in the relevant period.</td>
+                <td>Primarily relevant for <code>update</code>.</td>
+                <td>Can be empty. In update mode, contained entries must be explicitly processed.</td>
+              </tr>
+              <tr>
+                <td><code>deleteInfo</code></td>
+                <td>Structural element for individual deletion information within deletion containers.</td>
+                <td>Schema-relevant.</td>
+                <td>Should be documented even if not prominently visible in the examples.</td>
+              </tr>
+              <tr>
+                <td><code>transferMode</code></td>
+                <td>Controls the interpretation of the file.</td>
+                <td>Always relevant.</td>
+                <td>Without correct evaluation of this field, the deletion logic cannot be implemented correctly from a functional perspective.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="processing" class="anchor">
+          <h2>Processing in the Target System</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Rule 1: Determine Mode First</h3>
+              <p>
+                Before any deletion processing, the target system must evaluate <code>transferMode</code>. 
+                Only then is it clear whether the file represents a full inventory or just a change set.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 2: For Full, Do Not Just Evaluate Deletion Containers</h3>
+              <p>
+                For <code>full</code>, all previously known objects that are no longer included in the current 
+                export must be treated as removed or inactive. The completeness of the export is the 
+                normative basis here.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 3: For Update, Apply Only Explicit Changes</h3>
+              <p>
+                For <code>update</code>, only the transferred new, changed, or deleted objects may be processed. 
+                Objects not included remain unchanged in the target system.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 4: Treat Dealer and Advertisement Deletions Separately</h3>
+              <p>
+                Deletions of dealers and advertisements should not be mixed in the target system. 
+                A deleted dealer can have different functional effects than a single deleted advertisement.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 5: Process Deletions Idempotently</h3>
+              <p>
+                The target system should process deletions such that re-processing the same deletion 
+                instruction does not produce any undesired side effect.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 6: Observe Lookback Period for Update</h3>
+              <p>
+                For <code>update</code>, <code>backLogDays</code> must also be considered. The export can 
+                contain deletions that fall within this defined lookback period.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div class="danger">
+            <h3>Business-Critical Point</h3>
+            <p>
+              The most common functional misimplementation is to treat an update file like a full inventory. 
+              This results in datasets being deleted in the target system that are actually only not 
+              included because they have not changed in the period under consideration.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Effect Types</h2>
+          <div class="cases-grid">
+            <article class="case-card">
+              <h3>Deleted Advertisement</h3>
+              <p>
+                An entry in <code>adsDeleted</code> signals that an existing advertisement must be removed, 
+                deactivated, or otherwise marked as no longer active in the target system.
+              </p>
+            </article>
+            <article class="case-card">
+              <h3>Deleted Dealer</h3>
+              <p>
+                An entry in <code>dealersDeleted</code> signals that a dealer object is no longer active. 
+                Depending on target system logic, this may also affect assigned advertisements.
+              </p>
+            </article>
+            <article class="case-card">
+              <h3>No Longer Included in Full</h3>
+              <p>
+                If a previously known object is no longer included in a full export, this is considered a 
+                functional deletion or inactivation case, even if no explicit entry exists in a deletion container.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="examples" class="anchor">
+          <h2>Examples</h2>
+          <div class="examples-grid">
+            <div class="code-card">
+              <h3>Mini-Example: Update with Deleted Advertisement</h3>
+              <pre>&lt;exchange&gt;
+  &lt;senderName&gt;provider-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;update&lt;/transferMode&gt;
+  &lt;backLogDays&gt;3&lt;/backLogDays&gt;
+  &lt;dealersDeleted/&gt;
+  &lt;adsDeleted&gt;
+    &lt;deleteInfo guid="ad-4711" id="4711" /&gt;
+  &lt;/adsDeleted&gt;
+  &lt;dealers&gt;
+    ...
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+              <p>
+                The target system must treat the advertisement with the referenced identity as deleted or inactive.
+              </p>
+            </div>
+
+            <div class="code-card">
+              <h3>Mini-Example: Update with Deleted Dealer</h3>
+              <pre>&lt;exchange&gt;
+  &lt;senderName&gt;provider-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;update&lt;/transferMode&gt;
+  &lt;backLogDays&gt;3&lt;/backLogDays&gt;
+  &lt;dealersDeleted&gt;
+    &lt;deleteInfo guid="dealer-99" id="99" /&gt;
+  &lt;/dealersDeleted&gt;
+  &lt;adsDeleted/&gt;
+  &lt;dealers&gt;
+    ...
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+              <p>
+                The target system must treat the referenced dealer as deleted or inactive and consider its 
+                own follow-up logic for associated advertisements.
+              </p>
+            </div>
+          </div>
+
+          <div class="code-card" style="margin-top: 1rem;">
+            <h3>Mini-Example: Full Export with Implicit Cleanup</h3>
+            <pre>&lt;exchange&gt;
+  &lt;senderName&gt;provider-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;full&lt;/transferMode&gt;
+  &lt;dealersDeleted/&gt;
+  &lt;adsDeleted/&gt;
+  &lt;dealers&gt;
+    &lt;dealer guid="dealer-1" id="1"&gt;
+      ...
+    &lt;/dealer&gt;
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+            <p>
+              A previously known advertisement that is no longer included in this full export must be treated 
+              as removed or inactive in the target system, even if <code>adsDeleted</code> is empty.
+            </p>
+          </div>
+        </section>
+
+        <section id="errors" class="anchor">
+          <h2>Typical Errors and Misinterpretations</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Error 1: Treating Update Like Full</h3>
+              <p>
+                Objects not included are deleted, even though they just haven't changed. This leads to data loss 
+                and inconsistent inventories in the target system.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Error 2: Overestimating Deletion Containers in Full</h3>
+              <p>
+                The target system relies exclusively on <code>dealersDeleted</code> or <code>adsDeleted</code>. 
+                In <code>full</code> mode, however, the total amount of included datasets is decisive.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Error 3: Not Distinguishing Dealer and Advertisement Deletions</h3>
+              <p>
+                A deleted dealer is treated like a single deleted advertisement or vice versa. This creates 
+                incorrect functional follow-up effects.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Error 4: Ignoring <code>backLogDays</code></h3>
+              <p>
+                In update processes, it is not taken into account that deletions within a defined lookback period 
+                can be redelivered.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="editorial" class="anchor">
+          <h2>Editorial Metadata</h2>
+          <div class="table-container">
+          <table aria-label="Editorial Metadata">
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Content</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Source Basis</td>
+                <td>XSD for structural existence of <code>dealersDeleted</code>, <code>adsDeleted</code>, and <code>deleteInfo</code>; existing interface document for functional description of Full and Update behavior.</td>
+              </tr>
+              <tr>
+                <td>Didactic Supplement</td>
+                <td>The mini-examples shown on this page serve for clarity. The existing example XMLs do not show the deletion logic in all functionally relevant variants.</td>
+              </tr>
+              <tr>
+                <td>Recommended Next Page</td>
+                <td><code>/interfaces/xml/dealer</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
+            CMS, documentation platform, or static documentation structure.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Legal Notice</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Privacy Policy</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+
+

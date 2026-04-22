@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://interface.technikboerse.com/XMLSchema" xmlns="http://interface.technikboerse.com/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="exchange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="senderName" maxOccurs="1" minOccurs="1" type="xs:string"/>
+        <xs:element name="exportDate" maxOccurs="1" minOccurs="1" type="xs:dateTime"/>
+        <xs:element name="transferMode" maxOccurs="1" minOccurs="1" type="transferModeType"/>
+        <xs:element name="backLogDays" maxOccurs="1" minOccurs="0" type="xs:int"/>
+        <xs:element maxOccurs="1" ref="dealersDeleted" minOccurs="0"/>
+        <xs:element maxOccurs="1" ref="adsDeleted" minOccurs="0"/>
+        <xs:element maxOccurs="unbounded" ref="dealers" minOccurs="0"/>
+        <xs:element name="validation" maxOccurs="1" minOccurs="0" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dealersDeleted">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="deleteInfo" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteInfo">
+      <xs:complexType mixed="true">
+          <xs:attribute name="guid" type="msGUID"/>
+          <xs:attribute name="id" type="xs:long"/>
+      </xs:complexType>
+  </xs:element>
+  <xs:element name="adsDeleted">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="deleteInfo" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dealers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="dealer"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dealer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="info" minOccurs="0"/>
+        <xs:element maxOccurs="unbounded" ref="phone" minOccurs="0"/>
+        <xs:element maxOccurs="unbounded" ref="mobile" minOccurs="0"/>
+        <xs:element maxOccurs="unbounded" ref="fax" minOccurs="0"/>
+        <xs:element name="created" type="xs:dateTime" maxOccurs="1" minOccurs="0"/>
+        <xs:element name="modified" type="xs:dateTime" maxOccurs="1" minOccurs="0"/>
+        <xs:element maxOccurs="unbounded" ref="ads" minOccurs="0"/>
+        <xs:element maxOccurs="unbounded" ref="contacts" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="guid" use="required" type="msGUID"/>
+      <xs:attribute name="id" use="optional" type="xs:long"/>
+      <xs:attribute name="pguid" use="optional" type="msGUID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="phone">
+	<xs:complexType mixed="true">
+	  <xs:attribute name="international_dialing_code" use="optional" type="xs:string"/>
+	  <xs:attribute name="area_code" use="optional" type="xs:string"/>
+	  <xs:attribute name="number" use="optional" type="xs:string"/>
+          <xs:attribute name="whatsapp" use="optional" type="xs:string"/>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="mobile">
+	<xs:complexType mixed="true">
+	  <xs:attribute name="international_dialing_code" use="optional" type="xs:string"/>
+	  <xs:attribute name="area_code" use="optional" type="xs:string"/>
+	  <xs:attribute name="number" use="optional" type="xs:string"/>
+          <xs:attribute name="whatsapp" use="optional" type="xs:string"/>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="fax">
+	<xs:complexType mixed="true">
+	  <xs:attribute name="international_dialing_code" use="optional" type="xs:string"/>
+	  <xs:attribute name="area_code" use="optional" type="xs:string"/>
+	  <xs:attribute name="number" use="optional" type="xs:string"/>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="ads">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ad" minOccurs="0"/>
+	  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="contacts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="contact" minOccurs="0"/>
+	  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="contact">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="gender" type="xs:string" maxOccurs="1" minOccurs="0"/>
+        <xs:element name="first_name" type="xs:string" maxOccurs="1" minOccurs="1"/>
+        <xs:element name="last_name" type="xs:string" maxOccurs="1" minOccurs="1"/>
+        <xs:element maxOccurs="unbounded" ref="phone" minOccurs="0"/>
+        <xs:element maxOccurs="unbounded" ref="mobile" minOccurs="0"/>
+        <xs:element maxOccurs="unbounded" ref="fax" minOccurs="0"/>
+        <xs:element name="email" type="xs:string" maxOccurs="1" minOccurs="1"/>
+        <xs:element name="image" type="xs:string" maxOccurs="1" minOccurs="1"/>
+        <xs:element maxOccurs="unbounded" ref="responsibilities" minOccurs="0"/>
+        <xs:element maxOccurs="unbounded" ref="languages_iso_639_1" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:long"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ad">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="info" minOccurs="0"/>        
+        <xs:element maxOccurs="unbounded" ref="contact_ids" minOccurs="0"/>
+        <xs:element maxOccurs="1" ref="price" minOccurs="0"/>        
+        <xs:element name="canonical_url" type="xs:string" maxOccurs="1" minOccurs="0"/>
+        <xs:element ref="canonical_urls" maxOccurs="unbounded" minOccurs="0"/>
+        <xs:element name="created" type="xs:dateTime" maxOccurs="1" minOccurs="1"/>
+        <xs:element name="modified" type="xs:dateTime" maxOccurs="1" minOccurs="1"/>
+        <xs:element ref="images"/>
+        <xs:element maxOccurs="1" ref="video" minOccurs="0"/>
+        <xs:element maxOccurs="1" ref="auction" minOccurs="0"/>
+        <xs:element maxOccurs="1" ref="purchase" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="guid" use="required" type="msGUID"/>
+      <xs:attribute name="id" use="required" type="xs:long"/>
+      <xs:attribute name="category_id" use="required" type="xs:int"/>
+      <xs:attribute name="category_name" use="optional" type="xs:string"/>
+      <xs:attribute name="parent_category_name" use="optional" type="xs:string"/>
+      <xs:attribute name="ad_type" use="optional" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="canonical_urls">
+    <xs:complexType>
+      <xs:sequence>
+         <xs:element ref="canonical_url" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="images">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="30" ref="image"/>
+      </xs:sequence>
+      <xs:attribute name="md5" use="optional" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="responsibilities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="responsibility" maxOccurs="unbounded" minOccurs="0" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="languages_iso_639_1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="language" maxOccurs="unbounded" minOccurs="0" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="contact_ids">
+    <xs:complexType>
+      <xs:sequence>
+       <xs:element name="contact_id" type="xs:long" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="image">
+      <xs:complexType mixed="true">
+          <xs:attribute name="type" type="xs:string"/>
+          <xs:attribute name="image_name" use="required" type="xs:string"/>
+      </xs:complexType>
+  </xs:element>
+  <xs:element name="canonical_url">
+      <xs:complexType mixed="true">
+          <xs:attribute name="languages_iso_639_1" use="required" type="xs:string"/>
+      </xs:complexType>
+  </xs:element>
+  <xs:element name="info">
+    <xs:complexType mixed="true">
+      <xs:attribute name="id" use="required" type="xs:int"/>
+      <xs:attribute name="name" use="optional" type="xs:string"/>
+      <xs:attribute name="unit" use="optional" type="xs:string"/>
+      <xs:attribute name="data_type" use="optional" type="xs:string"/>
+      <xs:attribute name="plain" use="optional" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="price">
+    <xs:complexType mixed="true">
+      <xs:attribute name="currency" use="required" type="xs:string"/>
+      <xs:attribute name="taxtype" use="required" type="taxtype"/>
+      <xs:attribute name="tax_percentage" use="required" type="percentage"/>
+      <xs:attribute name="euro_gross_price_value" use="optional" type="xs:string"/>
+      <xs:attribute name="special_price" use="optional" type="xs:string"/>
+      <xs:attribute name="price_unit" use="optional" type="xs:int"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="video">
+    <xs:complexType mixed="true">
+      <xs:attribute name="video_id" use="required" type="xs:string"/>
+      <xs:attribute name="video_url" use="required" type="xs:string"/>
+      <xs:attribute name="video_type" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="auction">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element maxOccurs="1" ref="price" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:int"/>
+      <xs:attribute name="startdate" use="required" type="xs:dateTime"/>
+      <xs:attribute name="enddate" use="required" type="xs:dateTime"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="purchase">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element maxOccurs="1" ref="price" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:int"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="percentage">
+	<xs:restriction base="xs:float">
+		<xs:minInclusive value="0.00"/>
+		<xs:maxInclusive value="1.00"/>
+	</xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="transferModeType">
+	<xs:restriction base="xs:string">
+	  <xs:enumeration value="full"/>
+	  <xs:enumeration value="update"/>
+	</xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="taxtype">
+	<xs:restriction base="xs:string">
+	  <xs:enumeration value="exclusive"/>
+	  <xs:enumeration value="inclusive"/>
+	  <xs:enumeration value="tax_cannot_be_stated_separately"/>
+	</xs:restriction>
+  </xs:simpleType>  
+  <xs:simpleType name="msGUID">
+      <xs:restriction base="xs:string">
+          <xs:pattern value="(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}"/>
+      </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

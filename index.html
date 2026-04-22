@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen Dokumentation</title>
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="schnittstellen_shared.css" />
+  <style>
+    body {
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--text);
+    }
+
+    .landing-container {
+      max-width: 900px;
+      width: 92%;
+      text-align: center;
+      padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .landing-header h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .landing-header p {
+      color: var(--muted);
+      font-size: clamp(1rem, 4vw, 1.15rem);
+      margin: 0 auto 1.5rem;
+    }
+
+    .landing-logo {
+      max-width: clamp(180px, 50vw, 280px);
+      height: auto;
+      margin-bottom: 2rem;
+    }
+
+    .language-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .lang-card {
+      background: #fcfcfd;
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.5rem 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lang-card:hover {
+      background: var(--surface);
+      border-color: var(--accent);
+    }
+
+    .lang-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    .lang-card span {
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    .lang-card p {
+      margin: 0.5rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .lang-card::after {
+      content: '→';
+      position: absolute;
+      bottom: 1rem;
+      right: 1.25rem;
+      font-size: 1.25rem;
+      opacity: 0;
+      transform: translateX(-0.5rem);
+      transition: all 0.3s ease;
+      color: var(--accent);
+    }
+
+    .lang-card:hover::after {
+      opacity: 1;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+      opacity: 0.7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .section-label:first-of-type {
+      margin-top: 1.5rem;
+    }
+
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      height: 1px;
+      flex-grow: 1;
+      background: var(--border);
+      opacity: 0.5;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="landing-container">
+    <header class="landing-header">
+      <img src="tb_logo.svg" alt="technikboerse" class="landing-logo" />
+      <p>Schnittstellen Dokumentation / Interface Documentation</p>
+    </header>
+
+    <div class="section-label">XML</div>
+    <div class="language-grid">
+      <a href="de/schnittstellen_quickstart.html" class="lang-card">
+        <span>Deutsch</span>
+        <h2>Schnellstart</h2>
+        <p>Ihre erste Maschine in wenigen Schritten exportieren.</p>
+      </a>
+
+      <a href="en/schnittstellen_quickstart.html" class="lang-card">
+        <span>English</span>
+        <h2>Quick-Start</h2>
+        <p>Export your first machine in just a few steps.</p>
+      </a>
+    </div>
+
+    <div class="section-label">REST-API</div>
+    <div class="language-grid">
+      <a href="https://api.technikboerse.com/doc/html" class="lang-card" target="_blank">
+        <span>Deutsch</span>
+        <h2>REST-API</h2>
+        <p>Unsere moderne API für tiefe Integrationen.</p>
+      </a>
+
+      <a href="https://api.technikboerse.com/en/doc/html" class="lang-card" target="_blank">
+        <span>English</span>
+        <h2>REST-API</h2>
+        <p>Our modern API for deep integrations.</p>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <div class="copyright">
+        &copy; 2026 technikboerse. All rights reserved.
+      </div>
+      <div class="footer-links">
+        <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+        <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – XML Ad</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>XML-Referenz: <code>ad</code></h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_ad.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#struktur">Struktur und Einordnung</a></li>
+            <li><a href="#attribute">Attribute</a></li>
+            <li><a href="#unterelemente">Unterelemente</a></li>
+            <li><a href="#regeln">Verarbeitungsregeln</a></li>
+            <li><a href="#verweise">Verwandte Objektbereiche</a></li>
+            <li><a href="#beispiele">Beispiel</a></li>
+            <li><a href="#hinweise">Hinweise</a></li>
+            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a class="active" href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="ueberblick" class="anchor">
+          <span class="eyebrow">Normative XML-Referenz</span>
+          <h1>Element <code>ad</code></h1>
+          <p>
+            Das Element <code>ad</code> repräsentiert ein einzelnes Inserat innerhalb des XML-Exports. Es enthält die
+            technische Identität des Inserats, dessen Kategorisierung sowie die für Darstellung, Suche, Preisbildung,
+            Medien und Kontaktierung relevanten Informationen. Für Integratoren ist <code>ad</code> der zentrale
+            fachliche Datensatz der Schnittstelle.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Seiteneinordnung">
+          <div class="meta-card">
+            <strong>Seitenziel</strong>
+            Inserate fachlich und technisch eindeutig beschreiben.
+          </div>
+          <div class="meta-card">
+            <strong>Besonders relevant für</strong>
+            Systeme, die Inserate importieren, aktualisieren, löschen oder mit Preisen, Bildern und Ansprechpartnern anreichern.
+          </div>
+          <div class="meta-card">
+            <strong>Kerninhalte</strong>
+            <code>guid</code>, <code>id</code>, <code>category_id</code>, <code>contact_ids</code>, <code>created</code>, <code>modified</code>, <code>images</code>, <code>price</code>
+          </div>
+        </div>
+
+        <section id="struktur" class="anchor">
+          <h2>Struktur und Einordnung</h2>
+          <div class="code-card">
+            <h3>Strukturskizze</h3>
+            <pre>&lt;ads&gt;
+  &lt;ad guid="..." id="..." category_id="..." category_name="..." parent_category_name="..." ad_type="..."&gt;
+    &lt;info&gt;...&lt;/info&gt;
+    &lt;contact_ids&gt;...&lt;/contact_ids&gt;
+    &lt;price ...&gt;...&lt;/price&gt;
+    &lt;canonical_url&gt;...&lt;/canonical_url&gt;
+    &lt;canonical_urls&gt;...&lt;/canonical_urls&gt;
+    &lt;created&gt;...&lt;/created&gt;
+    &lt;modified&gt;...&lt;/modified&gt;
+    &lt;images&gt;...&lt;/images&gt;
+    &lt;video ... /&gt;
+    &lt;auction&gt;...&lt;/auction&gt;
+    &lt;purchase&gt;...&lt;/purchase&gt;
+  &lt;/ad&gt;
+&lt;/ads&gt;</pre>
+          </div>
+
+          <div class="summary-grid" style="margin-top: 1rem;">
+            <article class="summary-card">
+              <h3>Fachliche Rolle</h3>
+              <p>
+                <code>ad</code> beschreibt ein vermarktetes Objekt wie eine Maschine, ein Ersatzteil oder einen weiteren
+                handelbaren Bestandseintrag innerhalb der technikboerse.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Technische Rolle</h3>
+              <p>
+                Das Zielsystem nutzt <code>guid</code>, <code>id</code> und <code>category_id</code>, um das Inserat eindeutig
+                zu verorten, zu aktualisieren und korrekt zu klassifizieren.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Kontext</h3>
+              <p>
+                Ein Inserat steht fachlich immer im Kontext eines <code>dealer</code>-Objekts und kann auf Kontakte,
+                Preise, Medien und Zusatzobjekte verweisen.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="attribute" class="anchor">
+          <h2>Attribute von <code>ad</code></h2>
+          <div class="table-container">
+          <table aria-label="Attribute des ad-Elements">
+            <thead>
+              <tr>
+                <th>Attribut</th>
+                <th>Bedeutung</th>
+                <th>Pflicht</th>
+                <th>Hinweis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>guid</code></td>
+                <td>Eindeutige technische Kennung des Inserats.</td>
+                <td>Ja</td>
+                <td>Maßgeblich für die stabile Zuordnung im Zielsystem.</td>
+              </tr>
+              <tr>
+                <td><code>id</code></td>
+                <td>Interne ID des Inserats im sendenden System.</td>
+                <td>Ja</td>
+                <td>Dient als zusätzliche Referenz neben der GUID.</td>
+              </tr>
+              <tr>
+                <td><code>category_id</code></td>
+                <td>Eindeutige Zuordnung des Inserats zu einer Kategorie.</td>
+                <td>Ja</td>
+                <td>Normativ relevant für die Klassifikation im Zielsystem.</td>
+              </tr>
+              <tr>
+                <td><code>category_name</code></td>
+                <td>Lesbare Bezeichnung der Kategorie.</td>
+                <td>Optional</td>
+                <td>Hilfreich für Plausibilisierung und manuelle Prüfung, aber nicht maßgeblich für die technische Zuordnung.</td>
+              </tr>
+              <tr>
+                <td><code>parent_category_name</code></td>
+                <td>Lesbare Bezeichnung der übergeordneten Kategorie.</td>
+                <td>Optional</td>
+                <td>Dient vor allem der Orientierung und Nachvollziehbarkeit.</td>
+              </tr>
+              <tr>
+                <td><code>ad_type</code></td>
+                <td>Typ des Inserats, z. B. Maschinen- oder Ersatzteilkontext.</td>
+                <td>Optional bzw. kontextabhängig</td>
+                <td>Sollte dokumentiert und ausgewertet werden, wenn unterschiedliche fachliche Flüsse davon abhängen.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="unterelemente" class="anchor">
+          <h2>Unterelemente</h2>
+          <div class="field-grid">
+            <article class="field-card">
+              <h3><code>info</code></h3>
+              <p>Container für die fachlichen Detaildaten des Inserats.</p>
+              <dl>
+                <dt>Typ</dt><dd>Container-Element</dd>
+                <dt>Pflicht</dt><dd>Ja</dd>
+                <dt>Bedeutung</dt><dd>Enthält die inhaltlichen Angaben des Inserats, beispielsweise technische Merkmale, Zustandsinformationen und weitere Attribute.</dd>
+                <dt>Hinweis</dt><dd>Die genaue Unterstruktur sollte separat dokumentiert oder modular aufbereitet werden, sofern sie sehr umfangreich ist.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>contact_ids</code></h3>
+              <p>Verknüpfung zu den dem Inserat zugeordneten Ansprechpartnern.</p>
+              <dl>
+                <dt>Typ</dt><dd>Container-Element</dd>
+                <dt>Pflicht</dt><dd>Optional bis fachlich empfohlen</dd>
+                <dt>Bedeutung</dt><dd>Enthält Referenzen auf Kontakte, die auf Händler-Ebene in <code>contacts</code> definiert sind.</dd>
+                <dt>Verweis</dt><dd><code>/schnittstellen/xml/contact</code></dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>price</code></h3>
+              <p>Preisangabe des Inserats einschließlich Attributen zur Währung und Steuerlogik.</p>
+              <dl>
+                <dt>Typ</dt><dd>Element mit Attributen</dd>
+                <dt>Pflicht</dt><dd>Schema- und fachkontextabhängig</dd>
+                <dt>Bedeutung</dt><dd>Beschreibt den Angebotspreis des Inserats.</dd>
+                <dt>Verweis</dt><dd><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>canonical_url</code> / <code>canonical_urls</code></h3>
+              <p>Referenzen auf kanonische Ziel-URLs des Inserats.</p>
+              <dl>
+                <dt>Typ</dt><dd>String bzw. Container-Element</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Ermöglicht die Zuordnung des Inserats zu externen oder sprachspezifischen Zielseiten.</dd>
+                <dt>Hinweis</dt><dd>Mehrsprachige Varianten sollten sauber von einer einfachen Einzel-URL unterschieden werden.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>created</code></h3>
+              <p>Zeitpunkt der Erstellung des Inserats.</p>
+              <dl>
+                <dt>Typ</dt><dd>Datum/Zeit</dd>
+                <dt>Pflicht</dt><dd>Ja</dd>
+                <dt>Bedeutung</dt><dd>Erstellungszeitpunkt des Objekts im sendenden System.</dd>
+                <dt>Verarbeitungsregel</dt><dd>Hilft bei historischer Einordnung, ist für Update-Entscheidungen aber nachrangig gegenüber <code>modified</code>.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>modified</code></h3>
+              <p>Zeitpunkt der letzten Änderung des Inserats.</p>
+              <dl>
+                <dt>Typ</dt><dd>Datum/Zeit</dd>
+                <dt>Pflicht</dt><dd>Ja</dd>
+                <dt>Bedeutung</dt><dd>Steuert, ob ein Inserat bei Update-Verarbeitung neu übernommen werden muss.</dd>
+                <dt>Verarbeitungsregel</dt><dd>Änderungen sollten nur übernommen werden, wenn der neue Datensatz fachlich aktueller ist.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>images</code></h3>
+              <p>Container für die dem Inserat zugeordneten Bildreferenzen.</p>
+              <dl>
+                <dt>Typ</dt><dd>Container-Element</dd>
+                <dt>Pflicht</dt><dd>Ja bzw. schema-relevant</dd>
+                <dt>Bedeutung</dt><dd>Enthält 0 bis n Bilder des Inserats sowie gegebenenfalls ergänzende Metadaten.</dd>
+                <dt>Verweis</dt><dd><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>video</code></h3>
+              <p>Optionaler Verweis auf ein Inseratsvideo.</p>
+              <dl>
+                <dt>Typ</dt><dd>Leeres Element mit Attributen oder strukturierter Medienknoten</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Erlaubt die Verknüpfung eines Videos mit dem Inserat.</dd>
+                <dt>Verweis</dt><dd><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>auction</code></h3>
+              <p>Optionales Zusatzobjekt für Auktionskontexte.</p>
+              <dl>
+                <dt>Typ</dt><dd>Container-Element</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Beschreibt auktionsbezogene Zusatzinformationen, sofern dieser Modus genutzt wird.</dd>
+                <dt>Hinweis</dt><dd>Auch selten genutzte Schemaelemente sollten dokumentiert werden, damit ihr Status eindeutig bleibt.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>purchase</code></h3>
+              <p>Optionales Zusatzobjekt für ankaufsbezogene Kontexte.</p>
+              <dl>
+                <dt>Typ</dt><dd>Container-Element</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Ermöglicht zusätzliche Angaben in Ankaufsszenarien.</dd>
+                <dt>Hinweis</dt><dd>Der fachliche Einsatz sollte transparent dokumentiert werden, selbst wenn das Element im Alltag selten vorkommt.</dd>
+              </dl>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div class="warning">
+            <h3>Wichtig: <code>category_id</code> ist normativ</h3>
+            <p>
+              Für die technische Zuordnung eines Inserats ist die <code>category_id</code> maßgeblich. Lesbare Felder wie
+              <code>category_name</code> oder <code>parent_category_name</code> sind hilfreich für Kontrolle und Diagnose,
+              ersetzen aber nicht die eindeutige Kategorie-ID.
+            </p>
+          </div>
+        </section>
+
+        <section id="regeln" class="anchor">
+          <h2>Verarbeitungsregeln</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Regel 1: Inserate primär über GUID lokalisieren</h3>
+              <p>
+                Das Zielsystem sollte ein Inserat primär über <code>guid</code> identifizieren. Die <code>id</code> dient
+                als zusätzliche Referenz auf das sendende System.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 2: Kategoriezuordnung technisch über <code>category_id</code> steuern</h3>
+              <p>
+                Die Klassifikation des Inserats darf sich nicht nur auf lesbare Namen stützen. Maßgeblich ist die
+                technische Kategorie-ID.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 3: Änderungen über <code>modified</code> bewerten</h3>
+              <p>
+                Bei Update-Verarbeitung ist <code>modified</code> das zentrale Feld für die Entscheidung, ob ein Inserat
+                übernommen oder übersprungen werden kann.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 4: Kontakte nur referenziert interpretieren</h3>
+              <p>
+                In <code>contact_ids</code> werden nur Verweise geführt. Die eigentlichen Ansprechpartnerdaten liegen auf
+                Händler-Ebene in <code>contacts</code> und müssen dort aufgelöst werden.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 5: Medien- und Preisobjekte als eigene Teilbereiche behandeln</h3>
+              <p>
+                Preis-, Bild- und Videoobjekte sollten im Zielsystem strukturiert verarbeitet werden. Eine flache oder
+                verlustbehaftete Übernahme erschwert spätere Erweiterungen und Validierungen.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 6: Löschlogik separat beachten</h3>
+              <p>
+                Das Fehlen eines Inserats in einem Update-Export ist nicht automatisch eine Löschung. Löschfälle werden
+                auf Root-Ebene gesondert signalisiert oder ergeben sich bei Full-Exporten aus der Vollständigkeit des Bestands.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="verweise" class="anchor">
+          <h2>Verwandte Objektbereiche</h2>
+          <div class="link-grid">
+            <article class="link-card">
+              <h3>Preise</h3>
+              <p>
+                Die Struktur von <code>price</code> mit Währung, Steuerlogik und optionalen Einheiten sollte auf einer
+                eigenen Seite beschrieben werden.
+              </p>
+              <p><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></p>
+            </article>
+            <article class="link-card">
+              <h3>Medien</h3>
+              <p>
+                Bilder, Videos und kanonische URLs sind eigenständige Dokumentationsbausteine und sollten nicht nur als
+                Randnotiz im Inseratsobjekt erscheinen.
+              </p>
+              <p><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></p>
+            </article>
+            <article class="link-card">
+              <h3>Ansprechpartner</h3>
+              <p>
+                Die in <code>contact_ids</code> referenzierten Kontakte werden auf Händler-Ebene definiert und auf der
+                Contact-Seite im Detail beschrieben.
+              </p>
+              <p><code>/schnittstellen/xml/contact</code></p>
+            </article>
+          </div>
+        </section>
+
+        <section id="beispiele" class="anchor">
+          <h2>Beispiel</h2>
+          <div class="examples-grid">
+            <div class="code-card">
+              <h3>Minimalbeispiel</h3>
+              <pre>&lt;ad guid="ad-5001" id="5001" category_id="210" category_name="Mähdrescher" parent_category_name="Landtechnik" ad_type="machine"&gt;
+  &lt;info&gt;
+    ...
+  &lt;/info&gt;
+  &lt;contact_ids&gt;
+    &lt;contact_id&gt;12&lt;/contact_id&gt;
+  &lt;/contact_ids&gt;
+  &lt;price currency="EUR" taxtype="inclusive" tax_percentage="0.190"&gt;234567&lt;/price&gt;
+  &lt;canonical_urls&gt;
+    &lt;canonical_url languages_iso_639_1="de"&gt;https://example.invalid/inserat/5001&lt;/canonical_url&gt;
+  &lt;/canonical_urls&gt;
+  &lt;created&gt;2024-01-10T10:00:00&lt;/created&gt;
+  &lt;modified&gt;2024-05-12T06:00:00&lt;/modified&gt;
+  &lt;images&gt;
+    ...
+  &lt;/images&gt;
+&lt;/ad&gt;</pre>
+            </div>
+            <div class="summary-card">
+              <h3>Interpretation</h3>
+              <p>
+                Das Beispiel zeigt ein Inserat mit technischer Identität, Kategorisierung, Preis, Kontaktreferenz und
+                Medienbezug. Im Zielsystem sollte zuerst die eindeutige Zuordnung des Inserats erfolgen, danach die
+                Übernahme der fachlichen Inhalte und verknüpften Teilobjekte.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="hinweise" class="anchor">
+          <h2>Hinweise und Stolperfallen</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Typischer Fehler: Kategorie über Namen mappen</h3>
+              <p>
+                Wird die Zuordnung ausschließlich über lesbare Kategorienamen vorgenommen, entstehen schnell falsche
+                Klassifikationen. Maßgeblich ist die <code>category_id</code>.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typischer Fehler: Kontaktreferenzen nicht auflösen</h3>
+              <p>
+                <code>contact_ids</code> enthalten keine vollständigen Ansprechpartnerdaten. Ohne Auflösung gegen
+                <code>contacts</code> bleiben Kontaktbezüge unvollständig.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typischer Fehler: <code>modified</code> ignorieren</h3>
+              <p>
+                Wenn Inserate bei jedem Import blind überschrieben werden, entstehen unnötige Aktualisierungen und mögliche
+                Seiteneffekte in nachgelagerten Systemen.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Dokumentationshinweis</h3>
+              <p>
+                Selten genutzte Elemente wie <code>auction</code> und <code>purchase</code> sollten nicht aus der Doku
+                entfernt werden, solange sie im XSD weiterhin vorgesehen sind.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="redaktion" class="anchor">
+          <h2>Redaktionelle Metadaten</h2>
+          <div class="table-container">
+          <table aria-label="Redaktionelle Metadaten">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Inhalt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quellenbasis</td>
+                <td>XSD für Struktur, Attribute und Pflichtlogik des Inseratsobjekts; bestehendes Schnittstellendokument für die fachliche Bedeutung von <code>category_id</code>, <code>contact_ids</code>, Preis- und Medienfeldern sowie <code>created</code> und <code>modified</code>.</td>
+              </tr>
+              <tr>
+                <td>Offene Prüfpunkte</td>
+                <td>Feingranulare Unterstruktur von <code>info</code>, endgültige fachliche Einordnung von <code>ad_type</code>, operative Nutzung von <code>auction</code> und <code>purchase</code>.</td>
+              </tr>
+              <tr>
+                <td>Empfohlene Folge-Seite</td>
+                <td><code>/schnittstellen/xml/contact</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
+            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+

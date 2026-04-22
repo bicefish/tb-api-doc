@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – Quick-Start Guide</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+    .step-number {
+      background: var(--accent);
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: bold;
+      margin-right: 12px;
+      font-size: 0.9rem;
+    }
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .step-card:hover {
+      border-color: var(--accent);
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .step-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>Quick-Start Guide</h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_quickstart.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#overview">Übersicht</a></li>
+            <li><a href="#step-1">1. Vorbereitung</a></li>
+            <li><a href="#step-2">2. XML-Wurzel</a></li>
+            <li><a href="#step-3">3. Händler-Identität</a></li>
+            <li><a href="#step-4">4. Ansprechpartner</a></li>
+            <li><a href="#step-5">5. Maschinendaten</a></li>
+            <li><a href="#step-6">6. Minimalbeispiel</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a class="active" href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Wurzelelement <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Anzeige (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Voll-Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update-Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Bekannte Fehler</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="overview" class="anchor">
+          <span class="eyebrow">Erste Schritte</span>
+          <h1>Ihre erste Maschine exportieren</h1>
+          <p>
+            Dieser Guide führt Sie durch die Erstellung einer validen XML-Datei, um Ihre erste Maschinenanzeige an technikboerse zu senden. 
+            Der technikboerse XML-Standard ist ein robustes, hierarchisches Format für den zuverlässigen Datenaustausch.
+          </p>
+        </header>
+
+        <section id="step-1" class="anchor">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <h2>Vorbereitung & Zugangsdaten</h2>
+            </div>
+            <p>Bevor Sie mit der Implementierung beginnen, stellen Sie sicher, dass Sie folgende Informationen von technikboerse vorliegen haben:</p>
+            <ul>
+              <li><strong>Sender Name</strong>: Ihre eindeutige Systemkennung (z.B. <code>provider-xy</code>).</li>
+              <li><strong>Dealer GUID</strong>: Der technische Schlüssel für den Händler, dessen Maschinen Sie exportieren.</li>
+              <li><strong>Kategorie-IDs</strong>: Eine Liste der validen IDs zur korrekten Klassifizierung Ihrer Maschinen.</li>
+            </ul>
+            <p class="note"><strong>Tipp:</strong> Laden Sie das <a href="../examples/export.xsd" download>XML Schema (XSD)</a> herunter, um Ihre IDE-Validierung einzurichten.</p>
+          </div>
+        </section>
+
+        <section id="step-2" class="anchor">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <h2>Die XML-Wurzel (<code>exchange</code>)</h2>
+            </div>
+            <p>Jede Datei beginnt mit dem <code>&lt;exchange&gt;</code>-Element. Es enthält globale Metadaten über den Export.</p>
+            <div class="code-card">
+              <pre>&lt;exchange&gt;
+  &lt;senderName&gt;ihre-provider-id&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;full&lt;/transferMode&gt;
+  &lt;dealers&gt; ... &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+            </div>
+            <p class="note">Details zum <code>transferMode</code> finden Sie in der <a href="schnittstellen_root_exchange.html">Referenz zum Wurzelelement</a>.</p>
+          </div>
+        </section>
+
+        <section id="step-3" class="anchor">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-number">3</span>
+              <h2>Der Händler-Block</h2>
+            </div>
+            <p>Innerhalb von <code>&lt;dealers&gt;</code> fügen Sie Ihren Händler hinzu. Die <code>guid</code> ist hierbei der Primärschlüssel.</p>
+            <div class="code-card">
+              <pre>&lt;dealer guid="dealer-unique-key-123"&gt;
+  &lt;info&gt;
+    &lt;name&gt;Muster Landtechnik GmbH&lt;/name&gt;
+  &lt;/info&gt;
+  &lt;ads&gt; ... &lt;/ads&gt;
+  &lt;contacts&gt; ... &lt;/contacts&gt;
+&lt;/dealer&gt;</pre>
+            </div>
+            <p class="note">Erfahren Sie mehr über <a href="schnittstellen_dealer.html">Händler-Attribute</a>.</p>
+          </div>
+        </section>
+
+        <section id="step-4" class="anchor">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-number">4</span>
+              <h2>Ansprechpartner definieren</h2>
+            </div>
+            <p>Kontakte werden auf Händlerebene definiert und von den Maschinen referenziert. Legen Sie diese im <code>&lt;contacts&gt;</code>-Container an.</p>
+            <div class="code-card">
+              <pre>&lt;contact id="1"&gt;
+  &lt;first_name&gt;Max&lt;/first_name&gt;
+  &lt;last_name&gt;Mustermann&lt;/last_name&gt;
+  &lt;email&gt;m.mustermann@example.de&lt;/email&gt;
+&lt;/contact&gt;</pre>
+            </div>
+            <p class="note">Besuchen Sie die <a href="schnittstellen_contact.html">Kontakt-Referenz</a> für Felder wie <code>gender</code> oder <code>phone</code>.</p>
+          </div>
+        </section>
+
+        <section id="step-5" class="anchor">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-number">5</span>
+              <h2>Die Maschine (<code>ad</code>)</h2>
+            </div>
+            <p>Das <code>&lt;ad&gt;</code>-Element repräsentiert die Maschine. Es wird im <code>&lt;ads&gt;</code>-Container des Händlers platziert.</p>
+            <div class="code-card">
+              <pre>&lt;ad guid="machine-789" category_id="210"&gt;
+  &lt;info&gt;
+    &lt;brand&gt;Fendt&lt;/brand&gt;
+    &lt;model&gt;724 Vario&lt;/model&gt;
+    &lt;year&gt;2022&lt;/year&gt;
+  &lt;/info&gt;
+  &lt;price currency="EUR" taxtype="inclusive"&gt;185000&lt;/price&gt;
+  &lt;contact_ids&gt;
+    &lt;contact_id&gt;1&lt;/contact_id&gt;
+  &lt;/contact_ids&gt;
+&lt;/ad&gt;</pre>
+            </div>
+            <p class="note">Detaillierte Feldlisten finden Sie in der <a href="schnittstellen_ad.html">Anzeigen-Referenz</a> sowie unter <a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a>.</p>
+          </div>
+        </section>
+
+        <section id="step-6" class="anchor">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+            <h2 style="margin: 0;">Vollständiges Minimalbeispiel</h2>
+            <a href="../examples/example_full_export.xml" download class="btn" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600;">XML herunterladen</a>
+          </div>
+          <div class="code-card">
+            <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;exchange&gt;
+  &lt;senderName&gt;provider-demo&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;full&lt;/transferMode&gt;
+  &lt;dealers&gt;
+    &lt;dealer guid="dealer-1001"&gt;
+      &lt;info&gt;&lt;name&gt;Agri Hub&lt;/name&gt;&lt;/info&gt;
+      &lt;ads&gt;
+        &lt;ad guid="ad-5001" category_id="210"&gt;
+          &lt;info&gt;
+            &lt;brand&gt;John Deere&lt;/brand&gt;
+            &lt;model&gt;S780&lt;/model&gt;
+            &lt;year&gt;2023&lt;/year&gt;
+          &lt;/info&gt;
+          &lt;price currency="EUR" taxtype="exclusive"&gt;320000&lt;/price&gt;
+          &lt;contact_ids&gt;
+            &lt;contact_id&gt;12&lt;/contact_id&gt;
+          &lt;/contact_ids&gt;
+        &lt;/ad&gt;
+      &lt;/ads&gt;
+      &lt;contacts&gt;
+        &lt;contact id="12"&gt;
+          &lt;first_name&gt;Max&lt;/first_name&gt;
+          &lt;last_name&gt;Mustermann&lt;/last_name&gt;
+          &lt;email&gt;max@agrihub.example&lt;/email&gt;
+        &lt;/contact&gt;
+      &lt;/contacts&gt;
+    &lt;/dealer&gt;
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+          </div>
+        </section>
+
+        <section id="next-steps" class="anchor">
+          <div class="summary-grid">
+            <article class="summary-card card-with-icon">
+              <svg class="card-icon" fill="none" stroke="var(--info)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <div>
+                <h3>Nächste Schritte</h3>
+                <p>Wenn Ihre XML-Struktur steht:</p>
+                <ul>
+                  <li><a href="schnittstellen_loeschlogik.html">Verstehen Sie die Löschlogik</a>, um Ihren Bestand zu pflegen.</li>
+                  <li>Prüfen Sie <a href="schnittstellen_beispiel_update_export.html">Update-Beispiele</a> für effiziente Delta-Exporte.</li>
+                  <li>Besuchen Sie die <a href="schnittstellen_known_issues.html">bekannten Fehler</a>, um Stolperfallen zu vermeiden.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+
+

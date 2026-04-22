@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exchange xmlns="http://interface.technikboerse.com/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://interface.technikboerse.com/xsd/export.xsd">
+  <senderName>technikboerse</senderName>
+  <exportDate>2012-05-04T13:31:42+02:00</exportDate>
+  <transferMode>update</transferMode>
+  <backLogDays>3</backLogDays>
+  <dealersDeleted/>
+  <adsDeleted/>
+  <dealers>
+    <!--49307908-->
+    <dealer guid="81d32e91-9db3-5899-be2a-b4795fb56491" id="49307908">
+      <info id="50500" name="company_name">dieMayrei GmbH</info>
+      <info id="50501" name="street">Joseph-Gänsler-Str. 4</info>
+      <info id="50502" name="zipcode">86609</info>
+      <info id="50503" name="city">Donauwörth</info>
+      <info id="50504" name="country_iso3166_1">DE</info>
+      <info id="50505" name="phone">0049 (0) 1805826773</info>
+      <info id="50506" name="mobile_phone">0049 12345</info>
+      <info id="50507" name="email">tobias.beck@diemayrei.de</info>
+      <info id="50509" name="contact_person">Herr Tobias Beck</info>
+      <info id="50512" name="fax">0049 (0) 0906 7057777</info>
+      <info id="50513" name="url">http://www.diemayrei.de</info>
+      <info id="50516" name="logo"/>
+      <info id="50517" name="type">commercial</info>
+      <created>2008-07-11T00:00:00+02:00</created>
+      <modified>2012-05-04T11:32:00+02:00</modified>
+      <ads>
+        <!--488091-->
+        <ad guid="a8f1ad52-c2eb-5981-a627-4fb5226f1d71" id="488091" category_id="210" category_name="Mähdrescher" parent_category_name="Mähdrescher">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[1489]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Claas</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[Lexion 480]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">375</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">2001</info>
+          <info id="50005" name="operating_hours" data_type="int">1100</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="2011" name="Klimaanlage" data_type="boolean">1</info>
+          <info id="2030" name="Breite" unit="m" data_type="float">7,50</info>
+          <info id="2031" name="Pendelausgleich" data_type="boolean">1</info>
+          <info id="2033" name="Schneidwerkswagen" data_type="boolean">1</info>
+          <info id="2035" name="Spreuverteiler" data_type="boolean">1</info>
+          <info id="2036" name="Strohhäcksler" data_type="boolean">1</info>
+          <info id="2037" name="Verlustmessung" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--6.800.000 € (5.714.286 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">6800000</price>
+          <created>2005-09-19T15:57:32+02:00</created>
+          <modified>2012-05-04T13:31:40+02:00</modified>
+          <images>
+            <image image_name="phpVf8xNQ.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488091/phpVf8xNQ_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--488092-->
+        <ad guid="2b688730-2da4-5767-a8f0-75aa24875111" id="488092" category_id="210" category_name="Mähdrescher" parent_category_name="Mähdrescher">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[0583]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Claas</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[Lexion 460 Evo]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">300</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">2002</info>
+          <info id="50005" name="operating_hours" data_type="int">1235</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[Donauwörth]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="2011" name="Klimaanlage" data_type="boolean">1</info>
+          <info id="2030" name="Breite" unit="m" data_type="float">7,50</info>
+          <info id="2031" name="Pendelausgleich" data_type="boolean">1</info>
+          <info id="2033" name="Schneidwerkswagen" data_type="boolean">1</info>
+          <info id="2034" name="Siebkastenhangausgleich" data_type="boolean">1</info>
+          <info id="2035" name="Spreuverteiler" data_type="boolean">1</info>
+          <info id="2036" name="Strohhäcksler" data_type="boolean">1</info>
+          <info id="2037" name="Verlustmessung" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--Keine Angabe-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">0</price>
+          <created>2005-09-19T15:59:42+02:00</created>
+          <modified>2012-05-04T13:31:40+02:00</modified>
+          <images>
+            <image image_name="phpIZES3N.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488092/phpIZES3N_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--488093-->
+        <ad guid="81a6b497-ee9f-5295-93a3-1ff919aa0f2f" id="488093" category_id="210" category_name="Mähdrescher" parent_category_name="Mähdrescher">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[0582]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Claas</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[Lexion 460 Evo]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">300</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">2002</info>
+          <info id="50005" name="operating_hours" data_type="int">1234</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[Donauwörth]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="2002" name="Allrad" data_type="boolean">1</info>
+          <info id="2003" name="Autocontour" data_type="boolean">1</info>
+          <info id="2004" name="Bordcomputer" data_type="boolean">1</info>
+          <info id="2011" name="Klimaanlage" data_type="boolean">1</info>
+          <info id="2017" name="Rapsschneidwerk" data_type="boolean">1</info>
+          <info id="2019" name="Rapstrenner links" data_type="enum"><![CDATA[136]]></info>
+          <info id="2020" name="Rapstrenner rechts" data_type="enum"><![CDATA[136]]></info>
+          <info id="2030" name="Breite" unit="m" data_type="float">7,50</info>
+          <info id="2031" name="Pendelausgleich" data_type="boolean">1</info>
+          <info id="2033" name="Schneidwerkswagen" data_type="boolean">1</info>
+          <info id="2034" name="Siebkastenhangausgleich" data_type="boolean">1</info>
+          <info id="2035" name="Spreuverteiler" data_type="boolean">1</info>
+          <info id="2036" name="Strohhäcksler" data_type="boolean">1</info>
+          <info id="2037" name="Verlustmessung" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--79.000 € (66.387 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">79000</price>
+          <created>2010-05-26T16:01:05+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="53b7dd352ff4a245d215a808f3c48a3a.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488093/53b7dd352ff4a245d215a808f3c48a3a_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--488096-->
+        <ad guid="389e0960-ee40-5763-b3cc-1ef5ff926040" id="488096" category_id="210" category_name="Mähdrescher" parent_category_name="Mähdrescher">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[0291]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Claas</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[DO 208 Mega II]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">239</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">1996</info>
+          <info id="50005" name="operating_hours" data_type="int">2217</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[DE-86609 Donauwörth]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="2011" name="Klimaanlage" data_type="boolean">1</info>
+          <info id="2017" name="Rapsschneidwerk" data_type="boolean">1</info>
+          <info id="2019" name="Rapstrenner links" data_type="enum"><![CDATA[136]]></info>
+          <info id="2020" name="Rapstrenner rechts" data_type="enum"><![CDATA[136]]></info>
+          <info id="2030" name="Breite" unit="m" data_type="float">5,10</info>
+          <info id="2031" name="Pendelausgleich" data_type="boolean">1</info>
+          <info id="2033" name="Schneidwerkswagen" data_type="boolean">1</info>
+          <info id="2036" name="Strohhäcksler" data_type="boolean">1</info>
+          <info id="2037" name="Verlustmessung" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--150.000 € (126.050 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">150000</price>
+          <created>2005-09-19T16:09:05+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="phpVV1O3v.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488096/phpVV1O3v_400x300.jpg]]></image>
+            <image image_name="045ba96ba339ad61322e7f7e0a604153.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488096/045ba96ba339ad61322e7f7e0a604153_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--488097-->
+        <ad guid="895bca3e-e5b2-59c5-98b9-d5eb856b966d" id="488097" category_id="210" category_name="Mähdrescher" parent_category_name="Mähdrescher">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[1888]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Claas</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[DO 208 Mega]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">239</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">1995</info>
+          <info id="50005" name="operating_hours" data_type="int">2814</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="2011" name="Klimaanlage" data_type="boolean">1</info>
+          <info id="2017" name="Rapsschneidwerk" data_type="boolean">1</info>
+          <info id="2030" name="Breite" unit="m" data_type="float">5,10</info>
+          <info id="2031" name="Pendelausgleich" data_type="boolean">1</info>
+          <info id="2033" name="Schneidwerkswagen" data_type="boolean">1</info>
+          <info id="2036" name="Strohhäcksler" data_type="boolean">1</info>
+          <info id="2037" name="Verlustmessung" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--110.000 € (92.437 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">110000</price>
+          <created>2010-07-13T16:10:43+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="phpv5I3ys.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488097/phpv5I3ys_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--488098-->
+        <ad guid="bce8d749-b48e-5321-93ae-2d053f9931fd" id="488098" category_id="210" category_name="Mähdrescher" parent_category_name="Mähdrescher">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[4468]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Claas</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[DO 118 SL]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">260</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">1992</info>
+          <info id="50005" name="operating_hours" data_type="int">2039</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[Donauwörth]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="2011" name="Klimaanlage" data_type="boolean">1</info>
+          <info id="2017" name="Rapsschneidwerk" data_type="boolean">1</info>
+          <info id="2030" name="Breite" unit="m" data_type="float">5,10</info>
+          <info id="2031" name="Pendelausgleich" data_type="boolean">1</info>
+          <info id="2033" name="Schneidwerkswagen" data_type="boolean">1</info>
+          <info id="2034" name="Siebkastenhangausgleich" data_type="boolean">1</info>
+          <info id="2035" name="Spreuverteiler" data_type="boolean">1</info>
+          <info id="2036" name="Strohhäcksler" data_type="boolean">1</info>
+          <info id="2037" name="Verlustmessung" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--130.000 € (109.244 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">130000</price>
+          <created>2010-07-19T16:14:00+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="phpyI6yfd.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488098/phpyI6yfd_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--488099-->
+        <ad guid="ad48d123-9ac4-5339-a970-0a6c86a88f22" id="488099" category_id="210" category_name="Mähdrescher" parent_category_name="Mähdrescher">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[0728]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Case-IH</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[Axial 2388]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">280</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">2002</info>
+          <info id="50005" name="operating_hours" data_type="int">983</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[Strohaube mir elektr. Verstellung]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="2002" name="Allrad" data_type="boolean">1</info>
+          <info id="2004" name="Bordcomputer" data_type="boolean">1</info>
+          <info id="2011" name="Klimaanlage" data_type="boolean">1</info>
+          <info id="2017" name="Rapsschneidwerk" data_type="boolean">1</info>
+          <info id="2019" name="Rapstrenner links" data_type="enum"><![CDATA[389]]></info>
+          <info id="2020" name="Rapstrenner rechts" data_type="enum"><![CDATA[389]]></info>
+          <info id="2021" name="Reifen-h" data_type="string"><![CDATA[480/70 R24]]></info>
+          <info id="2023" name="Reifen-v" data_type="string"><![CDATA[650/75 R32]]></info>
+          <info id="2030" name="Breite" unit="m" data_type="float">6,10</info>
+          <info id="2033" name="Schneidwerkswagen" data_type="boolean">1</info>
+          <info id="2035" name="Spreuverteiler" data_type="boolean">1</info>
+          <info id="2036" name="Strohhäcksler" data_type="boolean">1</info>
+          <info id="2037" name="Verlustmessung" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--100.000 € (84.034 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">100000</price>
+          <created>2010-07-19T16:16:57+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="phpHOmsOg.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488099/phpHOmsOg_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--488100-->
+        <ad guid="d647e7a1-9b8f-5ead-a503-18301942a06a" id="488100" category_id="210" category_name="Mähdrescher" parent_category_name="Mähdrescher">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[6135]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">John Deere</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[9680 HM]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">336</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">2004</info>
+          <info id="50005" name="operating_hours" data_type="int">520</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[ACHTUNG: DIES IST EIN TEST-INSERAT der Entwickler von technikboerse.com. Dieses Inserat ist nur zeitweise zu Test-Zwecken online und existiert in der Realität NICHT. Danke für Ihr Verständnis!
+
+**************]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="2002" name="Allrad" data_type="boolean">1</info>
+          <info id="2011" name="Klimaanlage" data_type="boolean">1</info>
+          <info id="2017" name="Rapsschneidwerk" data_type="boolean">1</info>
+          <info id="2030" name="Breite" unit="m" data_type="float">6,70</info>
+          <info id="2031" name="Pendelausgleich" data_type="boolean">1</info>
+          <info id="2033" name="Schneidwerkswagen" data_type="boolean">1</info>
+          <info id="2035" name="Spreuverteiler" data_type="boolean">1</info>
+          <info id="2036" name="Strohhäcksler" data_type="boolean">1</info>
+          <info id="2037" name="Verlustmessung" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--120.000 € (100.840 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">120000</price>
+          <created>2010-10-04T16:25:22+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="phpzClUju.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488100/phpzClUju_400x300.jpg]]></image>
+            <image image_name="5b470bc0ba607f3dbf47aba586c2e1d8.JPG"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488100/5b470bc0ba607f3dbf47aba586c2e1d8_400x300.JPG]]></image>
+            <image image_name="53143fad85dbd7ef16346e194a9aed8e.png"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488100/53143fad85dbd7ef16346e194a9aed8e_400x300.png]]></image>
+            <image image_name="161112c8f37687f50dbc67d3e7e5e613.JPG"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/488100/161112c8f37687f50dbc67d3e7e5e613_400x300.JPG]]></image>
+          </images>
+        </ad>
+        <!--803095-->
+        <ad guid="7721fe41-9bb6-5326-91c5-f8c5e8afacc4" id="803095" category_id="357" category_name="Traktor" parent_category_name="Traktor">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Fendt</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[Fendt 820 TMS]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">190</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">2010</info>
+          <info id="50005" name="operating_hours" data_type="int">410</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[ACHTUNG: DIES IST EIN TEST-INSERAT der Entwickler von technikboerse.com. Dieses Inserat ist nur zeitweise zu Test-Zwecken online und existiert in der Realität NICHT. Danke für Ihr Verständnis!
+
+**************]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[86609]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[Donauwörth]]></info>
+          <info id="50019" name="location_country_iso3166_1" data_type="string"><![CDATA[DE]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="1004" name="Arbeitsscheinwerfer" data_type="boolean">1</info>
+          <info id="1006" name="Druckluftbremse" data_type="boolean">1</info>
+          <info id="1008" name="Frontlader-Anbaukonsole" data_type="boolean">1</info>
+          <info id="1010" name="Fabrikat" data_type="string"><![CDATA[Fendt]]></info>
+          <info id="1012" name="Fronthydraulik" data_type="boolean">1</info>
+          <info id="1013" name="Frontzapfwelle" data_type="boolean">1</info>
+          <info id="1021" name="Luft. Sitz" data_type="boolean">1</info>
+          <info id="1024" name="Reifen-h" data_type="string"><![CDATA[pirelli 650/65r42]]></info>
+          <info id="1025" name="Reifen-h %" data_type="integer">90</info>
+          <info id="1026" name="Reifen-v" data_type="string"><![CDATA[pirelli 540/65r30]]></info>
+          <info id="1027" name="Reifen-v %" data_type="integer">90</info>
+          <info id="1032" name="Zapfwellendurchtrieb" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--50 € (42 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">50</price>
+          <created>2010-10-04T10:24:10+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="c1fa272af6a329373a19867f83725d79.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/803095/c1fa272af6a329373a19867f83725d79_400x300.jpg]]></image>
+            <image image_name="e5273ebf3501407d358030edcb489567.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/803095/e5273ebf3501407d358030edcb489567_400x300.jpg]]></image>
+            <image image_name="a6a5bedea3be547f49253ef3ccb44ba3.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/803095/a6a5bedea3be547f49253ef3ccb44ba3_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--941232-->
+        <ad guid="85e28250-4fd3-5295-9603-e61af870e8ff" id="941232" category_id="357" category_name="Traktor" parent_category_name="Traktor">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Fendt</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[817 Vario  TMS]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">179</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">2004</info>
+          <info id="50005" name="operating_hours" data_type="int">4980</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[schwenkbare Kotflügel ]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="1001" name="Antrieb" data_type="enum"><![CDATA[1]]></info>
+          <info id="1003" name="Anhängevorrichtung" data_type="enum"><![CDATA[10]]></info>
+          <info id="1004" name="Arbeitsscheinwerfer" data_type="boolean">1</info>
+          <info id="1006" name="Druckluftbremse" data_type="boolean">1</info>
+          <info id="1007" name="EHR" data_type="boolean">1</info>
+          <info id="1012" name="Fronthydraulik" data_type="boolean">1</info>
+          <info id="1013" name="Frontzapfwelle" data_type="boolean">1</info>
+          <info id="1016" name="gefederte Vorderachse" data_type="boolean">1</info>
+          <info id="1017" name="Geschwindigkeit" unit="km/h" data_type="integer">50</info>
+          <info id="1018" name="Klimaanlage" data_type="boolean">1</info>
+          <info id="1022" name="Plattform" data_type="enum"><![CDATA[59]]></info>
+          <info id="1024" name="Reifen-h" data_type="string"><![CDATA[650/65 R 42]]></info>
+          <info id="1025" name="Reifen-h %" data_type="integer">50</info>
+          <info id="1026" name="Reifen-v" data_type="string"><![CDATA[540/65 R 30]]></info>
+          <info id="1027" name="Reifen-v %" data_type="integer">90</info>
+          <info id="1029" name="Steuergerät dw" data_type="integer">4</info>
+          <info id="1031" name="Zapfwelle" data_type="enum"><![CDATA[540/750/1000]]></info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--79.900 € (67.143 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">79900</price>
+          <created>2011-08-10T10:02:15+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="a70be57f53fe694985c6274b307c17a4.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/941232/a70be57f53fe694985c6274b307c17a4_400x300.jpg]]></image>
+            <image image_name="837928371dc628c1ee2f96068ff20cad.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/941232/837928371dc628c1ee2f96068ff20cad_400x300.jpg]]></image>
+            <image image_name="9e83c40634b6af4e952816dde861324b.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/941232/9e83c40634b6af4e952816dde861324b_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--956004-->
+        <ad guid="cde3e9d7-c7f8-5a97-ac67-0308949e4b1e" id="956004" category_id="639" category_name="Räder" parent_category_name="Räder/Reifen/Felgen">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Sonstige</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[9.5 42 10PR CONTI]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int"/>
+          <info id="50004" name="year_of_manufacturer" data_type="int"/>
+          <info id="50005" name="operating_hours" data_type="int"/>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[passend zu Steyr, Spur 1500 Aw Kullpung 42 auf 36]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--Keine Angabe-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">0</price>
+          <created>2011-09-08T17:40:10+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="f6d2caa163634b63b0b4a49380dc089f.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/956004/f6d2caa163634b63b0b4a49380dc089f_400x300.jpg]]></image>
+            <image image_name="4d55bac4a35d7b66aefeeae0d438e38b.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/956004/4d55bac4a35d7b66aefeeae0d438e38b_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--965746-->
+        <ad guid="e6127921-0d02-5271-b380-5025d5a799de" id="965746" category_id="546" category_name="Kreiselheuer" parent_category_name="Grünland- u. Futtererntetechnik">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Pöttinger</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[HIT 58NZ]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int"/>
+          <info id="50004" name="year_of_manufacturer" data_type="int"/>
+          <info id="50005" name="operating_hours" data_type="int"/>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[Arbeitsbreite: 5.8 m, Klappung hydraulisch, GW]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">1</info>
+          <info id="13001" name="Arbeitsbreite" unit="m" data_type="float">580</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--4.629 € (3.890 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="exclusive" tax_percentage="0.190">3890</price>
+          <created>2011-09-28T09:10:56+02:00</created>
+          <modified>2012-05-04T13:31:41+02:00</modified>
+          <images>
+            <image image_name="ae6cf3a6fab42f12ac2150e1b674d81d.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/965746/ae6cf3a6fab42f12ac2150e1b674d81d_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--965748-->
+        <ad guid="a6da44ca-58f3-532e-8171-aa2233c7823c" id="965748" category_id="213" category_name="Mahl- u. Mischanlage" parent_category_name="Fütterungstechnik">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Kirchner</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[HMH 100]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int"/>
+          <info id="50004" name="year_of_manufacturer" data_type="int">1995</info>
+          <info id="50005" name="operating_hours" data_type="int"/>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[mit Mahlkasten. Der ust auch noch ganz gut in Schuss.!!!]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--780 € (650 € zzgl. 20 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.200">780</price>
+          <created>2011-09-28T09:11:56+02:00</created>
+          <modified>2012-05-04T13:31:42+02:00</modified>
+          <images>
+            <image image_name="f0593befea3245fbaa5353436c749f08.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/965748/f0593befea3245fbaa5353436c749f08_400x300.jpg]]></image>
+            <image image_name="d8676d04e29d59322f20c0fb73c83775.png"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/965748/d8676d04e29d59322f20c0fb73c83775_400x300.png]]></image>
+            <image image_name="fc49971b51ec5a6e563b9ba8b793f7ca.JPG"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/965748/fc49971b51ec5a6e563b9ba8b793f7ca_400x300.JPG]]></image>
+          </images>
+        </ad>
+        <!--973912-->
+        <ad guid="7b06ead3-eac4-5a62-9b90-206801e55b7d" id="973912" category_id="357" category_name="Traktor" parent_category_name="Traktor">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Lindner</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[GEOTRAC 73 ALPIN]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">75</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">2011</info>
+          <info id="50005" name="operating_hours" data_type="int"/>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[Geschwindigkeit: 40 km/h, Getriebegänge vorwärts: 16, Lastschaltgänge: 2, Vorführtraktor]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="1001" name="Antrieb" data_type="enum"><![CDATA[1]]></info>
+          <info id="1004" name="Arbeitsscheinwerfer" data_type="boolean">1</info>
+          <info id="1007" name="EHR" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--34.500 € (28.992 € zzgl. 19 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">34500</price>
+          <created>2011-10-25T15:31:27+02:00</created>
+          <modified>2012-05-04T13:31:42+02:00</modified>
+          <images>
+            <image image_name="873c527fcfb93633884608d36f4fcce5.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/973912/873c527fcfb93633884608d36f4fcce5_400x300.jpg]]></image>
+            <image image_name="6e0342f263ba03a91d52b5b002e9c78f.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/973912/6e0342f263ba03a91d52b5b002e9c78f_400x300.jpg]]></image>
+            <image image_name="3e253e62cde7be6ffc3211e197595c2d.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/973912/3e253e62cde7be6ffc3211e197595c2d_400x300.jpg]]></image>
+            <image image_name="00eb63fbca38b555cd4420b5f015ecc1.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/973912/00eb63fbca38b555cd4420b5f015ecc1_400x300.jpg]]></image>
+            <image image_name="ffdc85d6d70accbef6736fa44e3d07fd.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/973912/ffdc85d6d70accbef6736fa44e3d07fd_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--1075822-->
+        <ad guid="a875ccaa-94f9-5d0f-9d53-6bb8d28225d3" id="1075822" category_id="357" category_name="Traktor" parent_category_name="Traktor">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Fendt</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[Vario 716i]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int">234</info>
+          <info id="50004" name="year_of_manufacturer" data_type="int">1990</info>
+          <info id="50005" name="operating_hours" data_type="int">2600</info>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <info id="1001" name="Antrieb" data_type="enum"><![CDATA[1]]></info>
+          <info id="1002" name="Ackerschiene" data_type="boolean">1</info>
+          <info id="1003" name="Anhängevorrichtung" data_type="enum"><![CDATA[77]]></info>
+          <info id="1004" name="Arbeitsscheinwerfer" data_type="boolean">1</info>
+          <info id="1005" name="Bordcomputer" data_type="boolean">1</info>
+          <info id="1006" name="Druckluftbremse" data_type="boolean">1</info>
+          <info id="1007" name="EHR" data_type="boolean">1</info>
+          <info id="1008" name="Frontlader-Anbaukonsole" data_type="boolean">1</info>
+          <info id="1018" name="Klimaanlage" data_type="boolean">1</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+          </contact_ids>
+          <!--450.000 € (406.504 € zzgl. 10.7 % MwSt)-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.107">450000</price>
+          <created>2012-02-22T10:59:54+01:00</created>
+          <modified>2012-05-04T13:31:42+02:00</modified>
+          <images>
+            <image image_name="f6128bb666d640b2fef3488087264a39.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/1075822/f6128bb666d640b2fef3488087264a39_400x300.jpg]]></image>
+            <image image_name="f056d8a62f35a41785b30339c424ccf4.jpg"><![CDATA[http://interface.technikboerse.com/thumbnails/49307908/1075822/f056d8a62f35a41785b30339c424ccf4_400x300.jpg]]></image>
+          </images>
+        </ad>
+        <!--1116448-->
+        <ad guid="28354c8f-ce10-546c-8ff9-2da12d2d824b" id="1116448" category_id="357" category_name="Traktor" parent_category_name="Traktor">
+          <info id="50000" name="internal_ad_id" data_type="string"><![CDATA[]]></info>
+          <info id="50001" name="manufacturer_name" data_type="enum">Aebi</info>
+          <info id="50002" name="model" data_type="string"><![CDATA[]]></info>
+          <info id="50003" name="power" unit="PS" data_type="int"/>
+          <info id="50004" name="year_of_manufacturer" data_type="int"/>
+          <info id="50005" name="operating_hours" data_type="int"/>
+          <info id="50011" name="location_info" data_type="string"><![CDATA[]]></info>
+          <info id="50012" name="condition" data_type="enum">used</info>
+          <info id="50016" name="description" data_type="string"><![CDATA[]]></info>
+          <info id="50017" name="location_zipcode" data_type="string"><![CDATA[]]></info>
+          <info id="50018" name="location_city" data_type="string"><![CDATA[]]></info>
+          <info id="50020" name="is_customer_mission" data_type="boolean">0</info>
+          <contact_ids>
+            <contact_id>6268</contact_id>
+            <contact_id>6538</contact_id>
+          </contact_ids>
+          <!--Keine Angabe-->
+          <price currency="EUR" taxtype="inclusive" tax_percentage="0.190">0</price>
+          <created>2012-04-25T11:32:12+02:00</created>
+          <modified>2012-05-04T13:31:42+02:00</modified>
+          <images/>
+        </ad>
+      </ads>
+      <contacts>
+        <contact id="6268">
+          <first_name>Tobias</first_name>
+          <last_name>Beck</last_name>
+          <phone>0049 (0)1805826773</phone>
+          <mobil/>
+          <fax>0906 / 705 77 77</fax>
+          <email>tobias.beck@diemayrei.de</email>
+          <image>http://interface.technikboerse.com/thumbnails/dealercontacts/6268/6268_90x120.jpg</image>
+          <responsibilities>
+            <responsibility>used_machines</responsibility>
+          </responsibilities>
+          <languages_iso_639_1>
+            <language>de</language>
+            <language>en</language>
+            <language>fr</language>
+            <language>it</language>
+          </languages_iso_639_1>
+        </contact>
+        <contact id="6538">
+          <first_name>Dirk </first_name>
+          <last_name>Busse</last_name>
+          <phone>0049 (0)1805826773</phone>
+          <mobil/>
+          <fax>0906 / 705 77 77</fax>
+          <email>dirk.busse@diemayrei.de</email>
+          <image>http://interface.technikboerse.com/thumbnails/dealercontacts/6538/6538_90x120.jpg</image>
+          <responsibilities>
+            <responsibility>management</responsibility>
+            <responsibility>sale</responsibility>
+            <responsibility>repair</responsibility>
+            <responsibility>spare_parts</responsibility>
+            <responsibility>used_machines</responsibility>
+            <responsibility>office</responsibility>
+            <responsibility>branch_manager</responsibility>
+          </responsibilities>
+          <languages_iso_639_1>
+            <language>de</language>
+            <language>en</language>
+          </languages_iso_639_1>
+        </contact>
+      </contacts>
+    </dealer>
+  </dealers>
+  <validation>validation successful</validation>
+</exchange>

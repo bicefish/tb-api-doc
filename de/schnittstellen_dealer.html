@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – XML Dealer</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>XML-Referenz: <code>dealer</code></h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_dealer.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#struktur">Struktur und Einordnung</a></li>
+            <li><a href="#attribute">Attribute</a></li>
+            <li><a href="#unterelemente">Unterelemente</a></li>
+            <li><a href="#regeln">Verarbeitungsregeln</a></li>
+            <li><a href="#beispiele">Beispiel</a></li>
+            <li><a href="#hinweise">Hinweise</a></li>
+            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a class="active" href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="ueberblick" class="anchor">
+          <span class="eyebrow">Normative XML-Referenz</span>
+          <h1>Element <code>dealer</code></h1>
+          <p>
+            Das Element <code>dealer</code> repräsentiert einen Händler bzw. Anbieter innerhalb der XML-Schnittstelle.
+            Es bündelt die technische Identität des Händlers, dessen Stammdaten sowie die zugehörigen Inserate und Kontakte.
+            Für das Zielsystem ist <code>dealer</code> die zentrale Klammer zwischen Anbieter, Bestand und Ansprechpartnern.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Seiteneinordnung">
+          <div class="meta-card">
+            <strong>Seitenziel</strong>
+            Händlerobjekte technisch und fachlich eindeutig beschreiben.
+          </div>
+          <div class="meta-card">
+            <strong>Besonders relevant für</strong>
+            Integratoren, die Händlerdatensätze, Inserate und Ansprechpartner gemeinsam verarbeiten.
+          </div>
+          <div class="meta-card">
+            <strong>Kerninhalte</strong>
+            <code>guid</code>, <code>id</code>, <code>pguid</code>, <code>info</code>, <code>created</code>, <code>modified</code>, <code>ads</code>, <code>contacts</code>
+          </div>
+        </div>
+
+        <section id="struktur" class="anchor">
+          <h2>Struktur und Einordnung</h2>
+          <div class="code-card">
+            <h3>Strukturskizze</h3>
+            <pre>&lt;dealers&gt;
+  &lt;dealer guid="..." id="..." pguid="..."&gt;
+    &lt;info&gt;...&lt;/info&gt;
+    &lt;phone&gt;...&lt;/phone&gt;
+    &lt;mobile&gt;...&lt;/mobile&gt;
+    &lt;fax&gt;...&lt;/fax&gt;
+    &lt;created&gt;...&lt;/created&gt;
+    &lt;modified&gt;...&lt;/modified&gt;
+    &lt;ads&gt;...&lt;/ads&gt;
+    &lt;contacts&gt;...&lt;/contacts&gt;
+  &lt;/dealer&gt;
+&lt;/dealers&gt;</pre>
+          </div>
+
+          <div class="summary-grid" style="margin-top: 1rem;">
+            <article class="summary-card">
+              <h3>Fachliche Rolle</h3>
+              <p>
+                <code>dealer</code> repräsentiert einen Anbieter mit eigenständiger technischer Identität. Ihm sind
+                0 bis n Inserate sowie 0 bis n Ansprechpartner zugeordnet.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Technische Rolle</h3>
+              <p>
+                Das Zielsystem nutzt <code>guid</code> und gegebenenfalls <code>id</code>, um Händlerobjekte eindeutig
+                zuzuordnen und bei Updates wiederzufinden.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Beziehung zu anderen Objekten</h3>
+              <p>
+                Unterhalb des Händlerobjekts werden Inserate in <code>ads</code> und Ansprechpartner in
+                <code>contacts</code> geführt.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="attribute" class="anchor">
+          <h2>Attribute von <code>dealer</code></h2>
+          <div class="table-container">
+          <table aria-label="Attribute des dealer-Elements">
+            <thead>
+              <tr>
+                <th>Attribut</th>
+                <th>Bedeutung</th>
+                <th>Pflicht</th>
+                <th>Hinweis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>guid</code></td>
+                <td>Eindeutige technische Kennung des Händlers.</td>
+                <td>Ja</td>
+                <td>Maßgeblich für die stabile Zuordnung im Zielsystem.</td>
+              </tr>
+              <tr>
+                <td><code>id</code></td>
+                <td>Interne ID des Händlerobjekts im sendenden System.</td>
+                <td>Schemaabhängig optional, fachlich empfohlen</td>
+                <td>Sollte als zusätzliche Referenz übertragen werden, auch wenn die GUID primär ist.</td>
+              </tr>
+              <tr>
+                <td><code>pguid</code></td>
+                <td>Zusätzliche referenzierende GUID, sofern im Datenmodell genutzt.</td>
+                <td>Optional</td>
+                <td>Nur dokumentieren und auswerten, wenn diese Beziehung fachlich aktiv verwendet wird.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="unterelemente" class="anchor">
+          <h2>Unterelemente</h2>
+          <div class="field-grid">
+            <article class="field-card">
+              <h3><code>info</code></h3>
+              <p>Container für die inhaltlichen Stammdaten des Händlers.</p>
+              <dl>
+                <dt>Typ</dt><dd>Container-Element</dd>
+                <dt>Pflicht</dt><dd>Ja</dd>
+                <dt>Bedeutung</dt><dd>Enthält die fachlichen Informationen zum Händler, etwa Name, Adresse und weitere Stammdaten.</dd>
+                <dt>Hinweis</dt><dd>Die genaue Unterstruktur sollte auf einer eigenen Detailseite oder in einer ausklappbaren Unterreferenz erläutert werden, falls sie umfangreich ist.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>phone</code></h3>
+              <p>Telefonnummer des Händlers.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Allgemeine telefonische Erreichbarkeit des Händlers.</dd>
+                <dt>Hinweis</dt><dd>Von Ansprechpartner-spezifischen Nummern in <code>contact</code> zu unterscheiden.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>mobile</code></h3>
+              <p>Mobile Rufnummer des Händlers.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Zusätzliche mobile Erreichbarkeit auf Händler-Ebene.</dd>
+                <dt>Hinweis</dt><dd>Auf Contact-Ebene existiert eine bekannte Beispielabweichung zwischen <code>mobile</code> und <code>mobil</code>. Diese Abweichung gehört in den Known-Issues-Bereich.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>fax</code></h3>
+              <p>Faxnummer des Händlers.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Zusätzlicher Kommunikationskanal auf Händler-Ebene.</dd>
+                <dt>Hinweis</dt><dd>Nur relevant, wenn das sendende System diese Information pflegt.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>created</code></h3>
+              <p>Zeitpunkt der Erstellung des Händlerobjekts.</p>
+              <dl>
+                <dt>Typ</dt><dd>Datum/Zeit</dd>
+                <dt>Pflicht</dt><dd>Ja</dd>
+                <dt>Bedeutung</dt><dd>Erstellungszeitpunkt des Objekts im sendenden System.</dd>
+                <dt>Verarbeitungsregel</dt><dd>Hilft, Objekte historisch einzuordnen, ist aber für die Übernahme von Änderungen weniger maßgeblich als <code>modified</code>.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>modified</code></h3>
+              <p>Zeitpunkt der letzten Änderung des Händlerobjekts.</p>
+              <dl>
+                <dt>Typ</dt><dd>Datum/Zeit</dd>
+                <dt>Pflicht</dt><dd>Ja</dd>
+                <dt>Bedeutung</dt><dd>Steuert, ob Änderungen bei Updates im Zielsystem übernommen werden sollen.</dd>
+                <dt>Verarbeitungsregel</dt><dd>Bei Update-Verarbeitung sollte ein Händlerobjekt nur dann überschrieben werden, wenn der neue Wert fachlich als aktueller zu bewerten ist.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>ads</code></h3>
+              <p>Container für die dem Händler zugeordneten Inserate.</p>
+              <dl>
+                <dt>Typ</dt><dd>Container-Element</dd>
+                <dt>Pflicht</dt><dd>Ja</dd>
+                <dt>Bedeutung</dt><dd>Enthält 0 bis n <code>ad</code>-Objekte, die dem Händler fachlich zugeordnet sind.</dd>
+                <dt>Verweis</dt><dd><code>/schnittstellen/xml/ad</code></dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>contacts</code></h3>
+              <p>Container für die dem Händler zugeordneten Ansprechpartner.</p>
+              <dl>
+                <dt>Typ</dt><dd>Container-Element</dd>
+                <dt>Pflicht</dt><dd>Ja</dd>
+                <dt>Bedeutung</dt><dd>Enthält 0 bis n <code>contact</code>-Objekte, die für die Kommunikation zu den Inseraten oder zum Händler genutzt werden.</dd>
+                <dt>Verweis</dt><dd><code>/schnittstellen/xml/contact</code></dd>
+              </dl>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div class="warning">
+            <h3>Wichtig: GUID und ID nicht verwechseln</h3>
+            <p>
+              Für die fachlich stabile Identifikation des Händlers ist die <code>guid</code> maßgeblich. Die
+              <code>id</code> ist eine zusätzliche Referenz auf das sendende System und kann sich in ihrer Bedeutung
+              von Implementierung zu Implementierung unterscheiden.
+            </p>
+          </div>
+        </section>
+
+        <section id="regeln" class="anchor">
+          <h2>Verarbeitungsregeln</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Regel 1: Händler über GUID lokalisieren</h3>
+              <p>
+                Das Zielsystem sollte Händlerobjekte primär über <code>guid</code> identifizieren. Dadurch bleibt die
+                Zuordnung auch bei internen Umstellungen im sendenden System stabil.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 2: Änderungen über <code>modified</code> bewerten</h3>
+              <p>
+                Bei Update-Verarbeitung ist <code>modified</code> das maßgebliche Feld für die Entscheidung, ob ein
+                Händlerobjekt aktualisiert werden muss.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 3: Unterobjekte im Händlerkontext verarbeiten</h3>
+              <p>
+                Inserate und Kontakte stehen fachlich im Kontext des Händlers. Eine isolierte Verarbeitung ohne Bezug
+                zum übergeordneten <code>dealer</code> kann zu Inkonsistenzen führen.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 4: Löschlogik separat beachten</h3>
+              <p>
+                Die Verarbeitung eines Händlerobjekts darf nicht mit der Löschlogik verwechselt werden. Gelöschte Händler
+                werden über die auf der Seite zur Löschlogik beschriebenen Mechanismen signalisiert.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="beispiele" class="anchor">
+          <h2>Beispiel</h2>
+          <div class="examples-grid">
+            <div class="code-card">
+              <h3>Minimalbeispiel</h3>
+              <pre>&lt;dealer guid="dealer-1001" id="1001"&gt;
+  &lt;info&gt;
+    ...
+  &lt;/info&gt;
+  &lt;phone&gt;+49 123 456789&lt;/phone&gt;
+  &lt;mobile&gt;+49 171 1234567&lt;/mobile&gt;
+  &lt;fax&gt;+49 123 456780&lt;/fax&gt;
+  &lt;created&gt;2024-01-01T09:00:00&lt;/created&gt;
+  &lt;modified&gt;2024-05-12T06:00:00&lt;/modified&gt;
+  &lt;ads&gt;
+    ...
+  &lt;/ads&gt;
+  &lt;contacts&gt;
+    ...
+  &lt;/contacts&gt;
+&lt;/dealer&gt;</pre>
+            </div>
+            <div class="summary-card">
+              <h3>Interpretation</h3>
+              <p>
+                Das Beispiel zeigt einen Händler mit technischer Identität, Kommunikationsdaten und untergeordneten
+                Objekten. Im Zielsystem sollte zunächst der Händler selbst zugeordnet oder angelegt werden, bevor die
+                zugehörigen Inserate und Kontakte verarbeitet werden.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="hinweise" class="anchor">
+          <h2>Hinweise und Stolperfallen</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Typischer Fehler: Händler nur über <code>id</code> verknüpfen</h3>
+              <p>
+                Wird ausschließlich die interne ID des Senders verwendet, kann es bei Änderungen im Ursprungssystem zu
+                fehlerhaften Zuordnungen kommen. Primär sollte die GUID verwendet werden.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typischer Fehler: <code>modified</code> ignorieren</h3>
+              <p>
+                Wenn Händlerobjekte bei jedem Import blind überschrieben werden, kann dies unnötige Last erzeugen oder
+                lokale Korrekturen unbeabsichtigt überschreiben.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Abgrenzung</h3>
+              <p>
+                Kommunikationsdaten auf Händler-Ebene sind nicht identisch mit Ansprechpartnerdaten auf Contact-Ebene.
+                Beide Ebenen sollten im Zielsystem sauber unterschieden werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="redaktion" class="anchor">
+          <h2>Redaktionelle Metadaten</h2>
+          <div class="table-container">
+          <table aria-label="Redaktionelle Metadaten">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Inhalt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quellenbasis</td>
+                <td>XSD für Struktur, Attribute und Pflichtlogik des Händlerobjekts; bestehendes Schnittstellendokument für die fachliche Einordnung von GUID, ID, <code>created</code> und <code>modified</code>.</td>
+              </tr>
+              <tr>
+                <td>Offene Prüfpunkte</td>
+                <td>Feingranulare Unterstruktur von <code>info</code>, operative Verwendung von <code>pguid</code>, finale Kardinalitäten einzelner Dealer-Unterelemente.</td>
+              </tr>
+              <tr>
+                <td>Empfohlene Folge-Seite</td>
+                <td><code>/schnittstellen/xml/ad</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
+            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+

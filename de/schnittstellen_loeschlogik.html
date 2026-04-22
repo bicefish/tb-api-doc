@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – XML Löschlogik</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>XML-Schnittstelle: Löschlogik</h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_loeschlogik.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#grundregeln">Grundregeln</a></li>
+            <li><a href="#elemente">Elemente</a></li>
+            <li><a href="#verarbeitung">Verarbeitung im Zielsystem</a></li>
+            <li><a href="#beispiele">Beispiele</a></li>
+            <li><a href="#fehler">Typische Fehler</a></li>
+            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a class="active" href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="ueberblick" class="anchor">
+          <span class="eyebrow">Verarbeitungsregel</span>
+          <h1>Löschlogik bei XML-Exporten</h1>
+          <p>
+            Diese Seite beschreibt, wie gelöschte Händler und Inserate im XML-Export der technikboerse
+            signalisiert werden und welche Auswirkungen dies auf das Zielsystem hat. Die Unterscheidung
+            zwischen <code>full</code> und <code>update</code> ist dabei fachlich entscheidend.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Seiteneinordnung">
+          <div class="meta-card">
+            <strong>Seitenziel</strong>
+            Die Löschverarbeitung für Händler und Inserate eindeutig beschreiben.
+          </div>
+          <div class="meta-card">
+            <strong>Besonders relevant für</strong>
+            Integratoren von Zielsystemen, die Bestände synchron halten und Löschungen korrekt anwenden müssen.
+          </div>
+          <div class="meta-card">
+            <strong>Kern-Elemente</strong>
+            <code>dealersDeleted</code>, <code>adsDeleted</code>, <code>deleteInfo</code>, <code>transferMode</code>
+          </div>
+        </div>
+
+        <section id="grundregeln" class="anchor">
+          <h2>Grundregeln</h2>
+          <div class="mode-grid">
+            <article class="mode-card full">
+              <h3>Verhalten bei <code>transferMode=full</code></h3>
+              <p>
+                Der Export ist als vollständiger Soll-Bestand zu verstehen. Alle aktiven Inserate der vereinbarten
+                Übertragungsauswahl sind enthalten. Nicht enthaltene Inserate gelten als inaktiv oder gelöscht und
+                müssen im Zielsystem entfernt oder deaktiviert werden.
+              </p>
+            </article>
+            <article class="mode-card update">
+              <h3>Verhalten bei <code>transferMode=update</code></h3>
+              <p>
+                Der Export ist als Änderungsmenge zu verstehen. Es werden nur neue, geänderte oder im Rückblickzeitraum
+                gelöschte Objekte übertragen. Löschungen werden explizit über <code>dealersDeleted</code> und
+                <code>adsDeleted</code> signalisiert.
+              </p>
+            </article>
+          </div>
+
+          <div class="warning card-with-icon" style="margin-top: 1rem;">
+            <svg class="card-icon" fill="none" stroke="var(--warning)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <div>
+              <h3>Wichtig</h3>
+              <p>
+                Leere Löschcontainer bedeuten nicht in jedem Fall, dass keine Bestandsbereinigung erforderlich ist.
+                Bei <code>full</code> ergibt sich die Bereinigung aus der Vollständigkeit des gelieferten Bestands,
+                nicht aus einer expliziten Löschliste.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+        <section id="elemente" class="anchor">
+          <h2>Relevante Elemente</h2>
+          <div class="table-container">
+          <table aria-label="Elemente der Löschlogik">
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Bedeutung</th>
+                <th>Verwendung</th>
+                <th>Hinweis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>dealersDeleted</code></td>
+                <td>Container für Händler, die im relevanten Zeitraum gelöscht wurden.</td>
+                <td>Vor allem bei <code>update</code> relevant.</td>
+                <td>Kann leer sein. Im Full-Modus ist es im Regelfall nicht maßgeblich für die Bereinigung.</td>
+              </tr>
+              <tr>
+                <td><code>adsDeleted</code></td>
+                <td>Container für Inserate, die im relevanten Zeitraum gelöscht wurden.</td>
+                <td>Vor allem bei <code>update</code> relevant.</td>
+                <td>Kann leer sein. Im Update-Modus sind enthaltene Einträge explizit zu verarbeiten.</td>
+              </tr>
+              <tr>
+                <td><code>deleteInfo</code></td>
+                <td>Strukturelement für einzelne Löschinformationen innerhalb der Löschcontainer.</td>
+                <td>Schema-relevant.</td>
+                <td>Sollte dokumentiert werden, auch wenn es in den Beispielen nicht prominent sichtbar ist.</td>
+              </tr>
+              <tr>
+                <td><code>transferMode</code></td>
+                <td>Steuert die Interpretation der Datei.</td>
+                <td>Immer relevant.</td>
+                <td>Ohne korrekte Auswertung dieses Feldes ist die Löschlogik fachlich nicht korrekt umsetzbar.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="verarbeitung" class="anchor">
+          <h2>Verarbeitung im Zielsystem</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Regel 1: Modus zuerst bestimmen</h3>
+              <p>
+                Vor jeder Löschverarbeitung muss das Zielsystem den <code>transferMode</code> auswerten. Erst danach
+                ist klar, ob die Datei einen Vollbestand oder nur eine Änderungsmenge darstellt.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 2: Bei Full nicht nur Löschcontainer auswerten</h3>
+              <p>
+                Bei <code>full</code> müssen alle bisher bekannten Objekte, die im aktuellen Export nicht mehr enthalten
+                sind, als entfernt oder inaktiv behandelt werden. Die Vollständigkeit des Exports ist hier die normative
+                Grundlage.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 3: Bei Update nur explizite Änderungen anwenden</h3>
+              <p>
+                Bei <code>update</code> dürfen nur die übermittelten neuen, geänderten oder gelöschten Objekte verarbeitet
+                werden. Nicht enthaltene Objekte bleiben unverändert im Zielsystem bestehen.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 4: Händler- und Inseratslöschungen getrennt behandeln</h3>
+              <p>
+                Löschungen von Händlern und Inseraten sollten im Zielsystem nicht vermischt werden. Ein gelöschter Händler
+                kann andere fachliche Auswirkungen haben als ein einzelnes gelöschtes Inserat.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 5: Löschungen idempotent verarbeiten</h3>
+              <p>
+                Das Zielsystem sollte Löschungen so verarbeiten, dass eine erneute Verarbeitung desselben Löschhinweises
+                keinen unerwünschten Nebeneffekt erzeugt.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 6: Rückblickzeitraum bei Update beachten</h3>
+              <p>
+                Bei <code>update</code> ist zusätzlich <code>backLogDays</code> zu berücksichtigen. Der Export kann
+                Löschungen enthalten, die innerhalb dieses definierten Rückblickzeitraums liegen.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div class="danger card-with-icon">
+            <svg class="card-icon" fill="none" stroke="var(--danger)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div>
+              <h3>Geschäftskritischer Punkt</h3>
+              <p>
+                Die häufigste fachliche Fehlimplementierung besteht darin, eine Update-Datei wie einen Vollbestand zu behandeln.
+                Dadurch werden im Zielsystem Datensätze gelöscht, die in Wahrheit nur deshalb nicht enthalten sind, weil sie
+                sich im betrachteten Zeitraum nicht geändert haben.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+        <section>
+          <h2>Auswirkungstypen</h2>
+          <div class="cases-grid">
+            <article class="case-card">
+              <h3>Gelöschtes Inserat</h3>
+              <p>
+                Ein Eintrag in <code>adsDeleted</code> signalisiert, dass ein bestehendes Inserat im Zielsystem entfernt,
+                deaktiviert oder anderweitig als nicht mehr aktiv gekennzeichnet werden muss.
+              </p>
+            </article>
+            <article class="case-card">
+              <h3>Gelöschter Händler</h3>
+              <p>
+                Ein Eintrag in <code>dealersDeleted</code> signalisiert, dass ein Händlerobjekt nicht mehr aktiv ist.
+                Abhängig von der Zielsystemlogik kann dies auch die zugeordneten Inserate betreffen.
+              </p>
+            </article>
+            <article class="case-card">
+              <h3>Nicht mehr enthalten bei Full</h3>
+              <p>
+                Wenn ein bisher bekanntes Objekt in einem Full-Export nicht mehr enthalten ist, gilt dies als fachlicher
+                Lösch- oder Inaktivierungsfall, auch wenn kein expliziter Eintrag in einem Löschcontainer vorhanden ist.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="beispiele" class="anchor">
+          <h2>Beispiele</h2>
+          <div class="examples-grid">
+            <div class="code-card">
+              <h3>Mini-Beispiel: Update mit gelöschtem Inserat</h3>
+              <pre>&lt;exchange&gt;
+  &lt;senderName&gt;anbieter-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;update&lt;/transferMode&gt;
+  &lt;backLogDays&gt;3&lt;/backLogDays&gt;
+  &lt;dealersDeleted/&gt;
+  &lt;adsDeleted&gt;
+    &lt;deleteInfo guid="ad-4711" id="4711" /&gt;
+  &lt;/adsDeleted&gt;
+  &lt;dealers&gt;
+    ...
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+              <p>
+                Das Zielsystem muss das Inserat mit der referenzierten Identität als gelöscht oder inaktiv behandeln.
+              </p>
+            </div>
+
+            <div class="code-card">
+              <h3>Mini-Beispiel: Update mit gelöschtem Händler</h3>
+              <pre>&lt;exchange&gt;
+  &lt;senderName&gt;anbieter-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;update&lt;/transferMode&gt;
+  &lt;backLogDays&gt;3&lt;/backLogDays&gt;
+  &lt;dealersDeleted&gt;
+    &lt;deleteInfo guid="dealer-99" id="99" /&gt;
+  &lt;/dealersDeleted&gt;
+  &lt;adsDeleted/&gt;
+  &lt;dealers&gt;
+    ...
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+              <p>
+                Das Zielsystem muss den referenzierten Händler als gelöscht oder inaktiv behandeln und dabei die eigene
+                Folgelogik für zugehörige Inserate berücksichtigen.
+              </p>
+            </div>
+          </div>
+
+          <div class="code-card" style="margin-top: 1rem;">
+            <h3>Mini-Beispiel: Full-Export mit impliziter Bereinigung</h3>
+            <pre>&lt;exchange&gt;
+  &lt;senderName&gt;anbieter-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;full&lt;/transferMode&gt;
+  &lt;dealersDeleted/&gt;
+  &lt;adsDeleted/&gt;
+  &lt;dealers&gt;
+    &lt;dealer guid="dealer-1" id="1"&gt;
+      ...
+    &lt;/dealer&gt;
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+            <p>
+              Ein zuvor bekanntes Inserat, das nicht mehr in diesem Full-Export enthalten ist, muss im Zielsystem als
+              entfernt oder inaktiv behandelt werden, auch wenn <code>adsDeleted</code> leer ist.
+            </p>
+          </div>
+        </section>
+
+        <section id="fehler" class="anchor">
+          <h2>Typische Fehler und Fehlinterpretationen</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Fehler 1: Update wie Full behandeln</h3>
+              <p>
+                Nicht enthaltene Objekte werden gelöscht, obwohl sie sich nur nicht geändert haben. Dies führt zu Datenverlust
+                und zu inkonsistenten Beständen im Zielsystem.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Fehler 2: Löschcontainer bei Full überbewerten</h3>
+              <p>
+                Das Zielsystem verlässt sich ausschließlich auf <code>dealersDeleted</code> oder <code>adsDeleted</code>.
+                Bei <code>full</code> ist jedoch die Gesamtmenge der enthaltenen Datensätze maßgeblich.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Fehler 3: Händler- und Inseratslöschungen nicht unterscheiden</h3>
+              <p>
+                Ein gelöschter Händler wird wie ein einzelnes gelöschtes Inserat behandelt oder umgekehrt. Dadurch entstehen
+                fehlerhafte fachliche Folgewirkungen.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Fehler 4: <code>backLogDays</code> ignorieren</h3>
+              <p>
+                Bei Update-Verfahren wird nicht berücksichtigt, dass Löschungen innerhalb eines definierten Rückblickzeitraums
+                erneut ausgeliefert werden können.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="redaktion" class="anchor">
+          <h2>Redaktionelle Metadaten</h2>
+          <div class="table-container">
+          <table aria-label="Redaktionelle Metadaten">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Inhalt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quellenbasis</td>
+                <td>XSD für die strukturelle Existenz von <code>dealersDeleted</code>, <code>adsDeleted</code> und <code>deleteInfo</code>; bestehendes Schnittstellendokument für die fachliche Beschreibung von Full- und Update-Verhalten.</td>
+              </tr>
+              <tr>
+                <td>Didaktische Ergänzung</td>
+                <td>Die auf dieser Seite gezeigten Mini-Beispiele dienen der Verständlichkeit. Die vorhandenen Beispiel-XMLs zeigen die Löschlogik nicht in allen fachlich relevanten Varianten.</td>
+              </tr>
+              <tr>
+                <td>Empfohlene Folge-Seite</td>
+                <td><code>/schnittstellen/xml/dealer</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
+            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – REST-API Übersicht</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>REST-API: Übersicht</h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_rest_api.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#einordnung">Einordnung</a></li>
+            <li><a href="#einsatz">Typische Einsatzfälle</a></li>
+            <li><a href="#abgrenzung">Abgrenzung zur XML-Schnittstelle</a></li>
+            <li><a href="#referenz">Technische Referenz</a></li>
+            <li><a href="#hinweise">Hinweise</a></li>
+            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a class="active" href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="ueberblick" class="anchor">
+          <span class="eyebrow">Schnittstellenüberblick</span>
+          <h1>REST-API</h1>
+          <p>
+            Diese Seite ordnet die REST-API der technikboerse fachlich ein und grenzt sie von der XML-Schnittstelle ab.
+            Sie dient als Übersichtsseite für Integratoren und Projektverantwortliche. Die detaillierte technische
+            API-Referenz sollte separat gepflegt und von hier aus verlinkt werden.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Seiteneinordnung">
+          <div class="meta-card">
+            <strong>Seitenziel</strong>
+            Zweck, Einsatzbereich und Abgrenzung der REST-API verständlich darstellen.
+          </div>
+          <div class="meta-card">
+            <strong>Besonders relevant für</strong>
+            Integratoren, Projektverantwortliche, Produktmanagement und Support.
+          </div>
+          <div class="meta-card">
+            <strong>Kernpunkt</strong>
+            Die REST-API ist ein eigenständiger Zugriffspfad und sollte nicht mit der XML-Dateischnittstelle vermischt werden.
+          </div>
+        </div>
+
+        <section id="einordnung" class="anchor">
+          <h2>Einordnung</h2>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Rolle der REST-API</h3>
+              <p>
+                Die REST-API ergänzt die dateibasierte XML-Schnittstelle um einen API-basierten Zugriff. Sie eignet sich
+                insbesondere für strukturierte Abfragen, Integrationshilfen und technische Ergänzungsfunktionen.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Dokumentationsprinzip</h3>
+              <p>
+                Diese Seite beschreibt nicht jeden einzelnen Endpunkt. Sie dient als Einstieg und verweist auf die
+                eigentliche technische API-Referenz.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Status im bisherigen Dokumentationsstand</h3>
+              <p>
+                Im historischen Schnittstellendokument wird die REST-API nur knapp referenziert. In der HTML-Dokumentation
+                sollte sie deshalb als eigener Dokumentationsast sichtbar und verständlich gemacht werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="einsatz" class="anchor">
+          <h2>Typische Einsatzfälle</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Kategorie- und Attributinformationen abrufen</h3>
+              <p>
+                Die API eignet sich, um strukturierende Referenzdaten wie Kategorien, Hersteller, Attribute oder ähnliche
+                Hilfsinformationen dynamisch zu beziehen.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Integrationsunterstützende Lookup-Funktionen</h3>
+              <p>
+                Wenn externe Systeme keine vollständigen Referenzdaten lokal halten sollen, kann die API als Quelle für
+                gezielte Nachschlageoperationen dienen.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Ergänzende Systemintegration</h3>
+              <p>
+                Die REST-API ist sinnvoll, wenn punktuelle technische Informationen benötigt werden, ohne dafür den gesamten
+                XML-Datenaustausch zu verwenden.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Validierungs- und Mapping-Unterstützung</h3>
+              <p>
+                API-Endpunkte können helfen, Kategorien, Verantwortlichkeiten oder andere normierte Werte vor oder während
+                eines Imports korrekt zuzuordnen.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="abgrenzung" class="anchor">
+          <h2>Abgrenzung zur XML-Schnittstelle</h2>
+          <div class="table-container">
+          <table aria-label="REST-API vs XML-Schnittstelle">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>REST-API</th>
+                <th>XML-Schnittstelle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Grundprinzip</td>
+                <td>API-basierter Zugriff auf strukturierte Informationen</td>
+                <td>Dateibasierter Austausch kompletter oder delta-basierter Bestände</td>
+              </tr>
+              <tr>
+                <td>Typischer Einsatz</td>
+                <td>Lookup, Referenzdaten, ergänzende Integrationsfunktionen</td>
+                <td>Regelmäßiger Bestandsimport oder -export</td>
+              </tr>
+              <tr>
+                <td>Datenumfang</td>
+                <td>Punktuell oder endpoint-spezifisch</td>
+                <td>Vollbestand oder definierte Änderungsmenge</td>
+              </tr>
+              <tr>
+                <td>Verarbeitungsmodell</td>
+                <td>Request/Response</td>
+                <td>Dateiübertragung und nachgelagerte Verarbeitung</td>
+              </tr>
+              <tr>
+                <td>Löschlogik</td>
+                <td>Endpoint-spezifisch zu klären</td>
+                <td>Explizit oder implizit über Full/Update geregelt</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section>
+          <div class="warning">
+            <h3>Wichtig</h3>
+            <p>
+              Die REST-API sollte in der Dokumentation nicht als alternative Schreibweise derselben XML-Schnittstelle
+              erscheinen. Beide Zugriffswege haben unterschiedliche Integrationsmodelle, Erwartungen und Fehlerbilder.
+            </p>
+          </div>
+        </section>
+
+        <section id="referenz" class="anchor">
+          <h2>Technische Referenz</h2>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Verweis auf API-Dokumentation</h3>
+              <p>
+                Die eigentliche technische Referenz mit Endpunkten, Parametern, Antwortformaten, Authentisierung und
+                Beispielen sollte in einer eigenständigen API-Dokumentation gepflegt werden.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Empfohlene Inhalte der API-Referenz</h3>
+              <p>
+                Endpunktgruppen, Request-Parameter, Response-Schemata, Fehlercodes, Paging, Authentisierung und
+                Nutzungshinweise sollten dort strukturiert dokumentiert werden.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Verlinkung</h3>
+              <p>
+                Diese HTML-Seite sollte zentral auf die technische API-Dokumentation verweisen, statt technische Details
+                redundant oder veraltet zu duplizieren.
+              </p>
+            </article>
+          </div>
+
+          <div class="code-card" style="margin-top: 1rem;">
+            <h3>Referenzhinweis</h3>
+            <pre>Technische API-Dokumentation:
+https://api.technikboerse.com/doc/html</pre>
+          </div>
+        </section>
+
+        <section id="hinweise" class="anchor">
+          <h2>Hinweise und Stolperfallen</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Typischer Fehler: REST-API und XML vermischen</h3>
+              <p>
+                Integrationsprojekte verlieren an Klarheit, wenn XML-Bestandslogik und API-Lookups ohne klare Trennung
+                dokumentiert oder implementiert werden.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typischer Fehler: API-Übersicht mit technischer Referenz verwechseln</h3>
+              <p>
+                Diese Seite ist bewusst eine Übersichtsseite. Technische Details wie Parameter, Rückgabeobjekte oder
+                Fehlercodes gehören in die API-Referenz.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Offener Punkt</h3>
+              <p>
+                Der konkrete fachliche Einsatz einzelner API-Endpunkte sollte gegen den aktuellen Produkt- und
+                Betriebsstand geprüft und in der technischen API-Dokumentation gepflegt werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="redaktion" class="anchor">
+          <h2>Redaktionelle Metadaten</h2>
+          <div class="table-container">
+          <table aria-label="Redaktionelle Metadaten">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Inhalt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quellenbasis</td>
+                <td>Bestehendes Schnittstellendokument mit Verweis auf die REST-API sowie die Zielstruktur der neuen HTML-Dokumentation.</td>
+              </tr>
+              <tr>
+                <td>Didaktischer Status</td>
+                <td>Übersichtsseite; keine vollständige Endpunktreferenz.</td>
+              </tr>
+              <tr>
+                <td>Offene Prüfpunkte</td>
+                <td>Aktuelle Endpunktgruppen, Authentisierungsmodell, Betriebs- und Freigabestatus einzelner API-Funktionen.</td>
+              </tr>
+              <tr>
+                <td>Empfohlene Folge-Seite</td>
+                <td><code>/schnittstellen/changelog</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
+            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+

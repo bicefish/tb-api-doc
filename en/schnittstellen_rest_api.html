@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Interfaces – REST API Overview</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Interfaces</small>
+        <h1>REST API: Overview</h1>
+        
+        <div class="lang-switch">
+          <a href="../de/schnittstellen_rest_api.html">DE</a>
+          <span class="separator">|</span>
+          <a href="#" class="active">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>On this page</h2>
+          <ul>
+            <li><a class="active" href="#overview">Overview</a></li>
+            <li><a href="#classification">Classification</a></li>
+            <li><a href="#use-cases">Typical Use Cases</a></li>
+            <li><a href="#distinction">Distinction from XML Interface</a></li>
+            <li><a href="#reference">Technical Reference</a></li>
+            <li><a href="#notes">Notes</a></li>
+            <li><a href="#editorial">Editorial Metadata</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Content</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
+            <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a class="active" href="schnittstellen_rest_api.html">REST API Overview</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="overview" class="anchor">
+          <span class="eyebrow">Interface Overview</span>
+          <h1>REST API</h1>
+          <p>
+            This page functionally classifies the technikboerse REST API and distinguishes it from the XML interface. 
+            It serves as an overview page for integrators and project managers. The detailed technical 
+            API reference should be maintained separately and linked from here.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Page Classification">
+          <div class="meta-card">
+            <strong>Page Goal</strong>
+            Understandably present the purpose, area of application, and distinction of the REST API.
+          </div>
+          <div class="meta-card">
+            <strong>Particularly Relevant for</strong>
+            Integrators, project managers, product management, and support.
+          </div>
+          <div class="meta-card">
+            <strong>Core Point</strong>
+            The REST API is an independent access path and should not be mixed with the XML file interface.
+          </div>
+        </div>
+
+        <section id="classification" class="anchor">
+          <h2>Classification</h2>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Role of the REST API</h3>
+              <p>
+                The REST API supplements the file-based XML interface with API-based access. It is 
+                particularly suitable for structured queries, integration aids, and technical supplementary functions.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Documentation Principle</h3>
+              <p>
+                This page does not describe every single endpoint. It serves as an entry point and refers to the 
+                actual technical API reference.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Status in Previous Documentation</h3>
+              <p>
+                In the historical interface document, the REST API is only briefly referenced. In the HTML documentation, 
+                it should therefore be made visible and understandable as its own documentation branch.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="use-cases" class="anchor">
+          <h2>Typical Use Cases</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Retrieve Category and Attribute Information</h3>
+              <p>
+                The API is suitable for dynamically obtaining structuring reference data such as categories, manufacturers, attributes, or similar 
+                auxiliary information.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Integration-supporting Lookup Functions</h3>
+              <p>
+                If external systems should not hold complete reference data locally, the API can serve as a source for 
+                targeted lookup operations.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Supplementary System Integration</h3>
+              <p>
+                The REST API is useful when specific technical information is required without using the entire 
+                XML data exchange.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Validation and Mapping Support</h3>
+              <p>
+                API endpoints can help correctly assign categories, responsibilities, or other normative values 
+                before or during an import.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="distinction" class="anchor">
+          <h2>Distinction from XML Interface</h2>
+          <div class="table-container">
+          <table aria-label="REST API vs XML Interface">
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>REST API</th>
+                <th>XML Interface</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Basic Principle</td>
+                <td>API-based access to structured information</td>
+                <td>File-based exchange of complete or delta-based inventories</td>
+              </tr>
+              <tr>
+                <td>Typical Use</td>
+                <td>Lookup, reference data, supplementary integration functions</td>
+                <td>Regular inventory import or export</td>
+              </tr>
+              <tr>
+                <td>Data Scope</td>
+                <td>Specific or endpoint-specific</td>
+                <td>Full inventory or defined change set</td>
+              </tr>
+              <tr>
+                <td>Processing Model</td>
+                <td>Request/Response</td>
+                <td>File transfer and downstream processing</td>
+              </tr>
+              <tr>
+                <td>Deletion Logic</td>
+                <td>To be clarified endpoint-specifically</td>
+                <td>Explicitly or implicitly regulated via Full/Update</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section>
+          <div class="warning">
+            <h3>Important</h3>
+            <p>
+              The REST API should not appear in the documentation as an alternative way of writing the same XML interface. 
+              Both access paths have different integration models, expectations, and error patterns.
+            </p>
+          </div>
+        </section>
+
+        <section id="reference" class="anchor">
+          <h2>Technical Reference</h2>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Reference to API Documentation</h3>
+              <p>
+                The actual technical reference with endpoints, parameters, response formats, authentication, and 
+                examples should be maintained in an independent API documentation.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Recommended Content of the API Reference</h3>
+              <p>
+                Endpoint groups, request parameters, response schemas, error codes, paging, authentication, and 
+                usage instructions should be documented there in a structured way.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Linking</h3>
+              <p>
+                This HTML page should refer centrally to the technical API documentation instead of redundantly 
+                duplicating technical details or letting them become outdated.
+              </p>
+            </article>
+          </div>
+
+          <div class="code-card" style="margin-top: 1rem;">
+            <h3>Reference Note</h3>
+            <pre>Technical API Documentation:
+https://api.technikboerse.com/doc/html</pre>
+          </div>
+        </section>
+
+        <section id="notes" class="anchor">
+          <h2>Notes and Pitfalls</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Typical Error: Mixing REST API and XML</h3>
+              <p>
+                Integration projects lose clarity if XML inventory logic and API lookups are documented or implemented 
+                without clear separation.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typical Error: Confusing API Overview with Technical Reference</h3>
+              <p>
+                This page is deliberately an overview page. Technical details such as parameters, return objects, or 
+                error codes belong in the API reference.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Open Point</h3>
+              <p>
+                The concrete functional use of individual API endpoints should be checked against the current product and 
+                operational status and maintained in the technical API documentation.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="editorial" class="anchor">
+          <h2>Editorial Metadata</h2>
+          <div class="table-container">
+          <table aria-label="Editorial Metadata">
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Content</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Source Basis</td>
+                <td>Existing interface document with reference to the REST API as well as the target structure of the new HTML documentation.</td>
+              </tr>
+              <tr>
+                <td>Didactic Status</td>
+                <td>Overview page; no complete endpoint reference.</td>
+              </tr>
+              <tr>
+                <td>Open Test Points</td>
+                <td>Current endpoint groups, authentication model, operational and release status of individual API functions.</td>
+              </tr>
+              <tr>
+                <td>Recommended Next Page</td>
+                <td><code>/interfaces/changelog</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
+            CMS, documentation platform, or static documentation structure.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Legal Notice</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Privacy Policy</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+
+

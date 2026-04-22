@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Interfaces – XML Example Full Export</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Interfaces</small>
+        <h1>XML Example: Full Export</h1>
+        
+        <div class="lang-switch">
+          <a href="../de/schnittstellen_beispiel_full_export.html">DE</a>
+          <span class="separator">|</span>
+          <a href="#" class="active">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>On this page</h2>
+          <ul>
+            <li><a class="active" href="#overview">Overview</a></li>
+            <li><a href="#classification">Classification</a></li>
+            <li><a href="#example">Annotated Example</a></li>
+            <li><a href="#processing">Processing in Target System</a></li>
+            <li><a href="#distinction">Distinction from Update</a></li>
+            <li><a href="#notes">Notes</a></li>
+            <li><a href="#editorial">Editorial Metadata</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Content</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
+            <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Advertisement (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
+            <li><a class="active" href="schnittstellen_beispiel_full_export.html">Example: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Sample: Full Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Sample: Update Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="overview" class="anchor">
+          <span class="eyebrow">XML Example Page</span>
+          <h1>Full Export</h1>
+          <p>
+            This page explains the Full Export based on a didactically reduced XML example. The goal is not to 
+            repeat the full XSD reference, but to present the functional processing model of a full inventory in an 
+            understandable and implementable way.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Page Classification">
+          <div class="meta-card">
+            <strong>Page Goal</strong>
+            Illustrate how a Full Export is structured and how it is to be interpreted functionally.
+          </div>
+          <div class="meta-card">
+            <strong>Particularly Relevant for</strong>
+            Integrators, testers, and support when checking a full synchronization.
+          </div>
+          <div class="meta-card">
+            <strong>Core Point</strong>
+            A Full Export represents the complete target inventory of the agreed transfer selection.
+          </div>
+        </div>
+
+        <section id="classification" class="anchor">
+          <h2>Classification</h2>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>What a Full Export Means</h3>
+              <p>
+                The export contains all active advertisements of the agreed transfer selection. Objects that were previously known 
+                but no longer appear in the current file are functionally considered removed or inactive.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>What a Full Export is Not</h3>
+              <p>
+                A Full Export is not a pure change set. The target system must not ignore missing objects, 
+                but must treat the delivered inventory as a complete reference state.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Relationship to Reference Documentation</h3>
+              <p>
+                The normative description of individual elements occurs on the pages for <code>exchange</code>, 
+                <code>dealer</code>, <code>ad</code>, and <code>contact</code>. This example page shows their interplay.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="example" class="anchor">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+            <h2 style="margin: 0;">Annotated Example</h2>
+            <a href="../examples/example_full_export.xml" download class="btn" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Download raw XML</a>
+          </div>
+          <div class="code-card">
+            <h3>Didactically Reduced Full Export Example</h3>
+            <pre>&lt;exchange&gt;
+  &lt;senderName&gt;provider-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;full&lt;/transferMode&gt;
+  &lt;dealersDeleted /&gt;
+  &lt;adsDeleted /&gt;
+
+  &lt;dealers&gt;
+    &lt;dealer guid="dealer-1001" id="1001"&gt;
+      &lt;info&gt;
+        ...
+      &lt;/info&gt;
+      &lt;created&gt;2024-01-01T09:00:00&lt;/created&gt;
+      &lt;modified&gt;2024-05-12T06:00:00&lt;/modified&gt;
+
+      &lt;contacts&gt;
+        &lt;contact id="12"&gt;
+          &lt;first_name&gt;Max&lt;/first_name&gt;
+          &lt;last_name&gt;Mustermann&lt;/last_name&gt;
+          &lt;phone&gt;+49 123 456789&lt;/phone&gt;
+          &lt;email&gt;max.mustermann@example.invalid&lt;/email&gt;
+          &lt;languages_iso_639_1&gt;en&lt;/languages_iso_639_1&gt;
+        &lt;/contact&gt;
+      &lt;/contacts&gt;
+
+      &lt;ads&gt;
+        &lt;ad guid="ad-5001" id="5001" category_id="210" category_name="Combine Harvester"&gt;
+          &lt;info&gt;
+            ...
+          &lt;/info&gt;
+          &lt;contact_ids&gt;
+            &lt;contact_id&gt;12&lt;/contact_id&gt;
+          &lt;/contact_ids&gt;
+          &lt;price currency="EUR" taxtype="inclusive" tax_percentage="0.190"&gt;234567&lt;/price&gt;
+          &lt;created&gt;2024-01-10T10:00:00&lt;/created&gt;
+          &lt;modified&gt;2024-05-12T06:00:00&lt;/modified&gt;
+          &lt;images&gt;
+            ...
+          &lt;/images&gt;
+        &lt;/ad&gt;
+      &lt;/ads&gt;
+    &lt;/dealer&gt;
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+          </div>
+
+          <div class="table-container">
+          <table aria-label="Annotation of the example" style="margin-top: 1rem;">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Interpretation</th>
+                <th>Meaning for Target System</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>transferMode=full</code></td>
+                <td>The file is to be understood as a complete inventory.</td>
+                <td>Missing, previously known objects are to be treated functionally as removed or inactive.</td>
+              </tr>
+              <tr>
+                <td><code>dealersDeleted</code> / <code>adsDeleted</code> empty</td>
+                <td>No explicit deletion lists are provided.</td>
+                <td>Cleanup occurs implicitly via the completeness of the delivered inventory.</td>
+              </tr>
+              <tr>
+                <td><code>dealer</code></td>
+                <td>The dealer forms the framework for contacts and advertisements.</td>
+                <td>Resolve dealer first, then process subordinate objects.</td>
+              </tr>
+              <tr>
+                <td><code>contact</code> + <code>contact_ids</code></td>
+                <td>The advertisement refers to a contact person defined in the dealer context.</td>
+                <td>Resolve contact ID within the dealer, do not interpret globally.</td>
+              </tr>
+              <tr>
+                <td><code>modified</code></td>
+                <td>Shows the last modification time of the respective object.</td>
+                <td>Can be used to optimize processing, but does not change the "full" character of the file.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="processing" class="anchor">
+          <h2>Processing in Target System</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Rule 1: Interpret File as Full Inventory</h3>
+              <p>
+                After evaluating <code>transferMode=full</code>, the target system must treat the file as the complete 
+                target state and not just update individual contained objects.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 2: Root First, then Dealer, then Sub-objects</h3>
+              <p>
+                Processing should start with root metadata, then assign dealer objects, and only then process contacts 
+                and advertisements.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 3: Clean Up Missing Objects</h3>
+              <p>
+                Objects that were present in previous Full Exports or local inventories but are missing in the current file 
+                must be treated as removed or inactive.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 4: Resolve References Consistently</h3>
+              <p>
+                Contact references from <code>contact_ids</code> are to be resolved against the contacts defined in the dealer. 
+                Media, pricing, and category data should be adopted structurally.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="distinction" class="anchor">
+          <h2>Distinction from Update</h2>
+          <div class="table-container">
+          <table aria-label="Full vs. Update">
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Full Export</th>
+                <th>Update Export</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Basic Principle</td>
+                <td>Complete target inventory</td>
+                <td>Change set within a retrospective period</td>
+              </tr>
+              <tr>
+                <td>Missing Objects</td>
+                <td>Considered removed or inactive</td>
+                <td>Remain unchanged</td>
+              </tr>
+              <tr>
+                <td><code>backLogDays</code></td>
+                <td>Not required</td>
+                <td>Functionally relevant</td>
+              </tr>
+              <tr>
+                <td>Deletion Handling</td>
+                <td>Primarily implicit via completeness</td>
+                <td>Primarily explicit via deletion containers</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="notes" class="anchor">
+          <h2>Notes and Pitfalls</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Typical Error: Treating Full like Update</h3>
+              <p>
+                If a Full Export is interpreted only as a collection of contained changes, outdated or 
+                actually removed objects erroneously remain in the target system.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typical Error: Misunderstanding Empty Deletion Containers</h3>
+              <p>
+                Empty elements <code>dealersDeleted</code> or <code>adsDeleted</code> do not mean in a Full context that 
+                no cleanup is required.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Note on Didactics</h3>
+              <p>
+                The example shown here is deliberately reduced. For the complete technical structure, the 
+                reference pages and the XSD are authoritative.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="editorial" class="anchor">
+          <h2>Editorial Metadata</h2>
+          <div class="table-container">
+          <table aria-label="Editorial Metadata">
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Content</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Source Basis</td>
+                <td>Full example XML, XSD, and the reference pages for <code>exchange</code>, <code>dealer</code>, <code>ad</code>, and <code>contact</code>.</td>
+              </tr>
+              <tr>
+                <td>Didactic Status</td>
+                <td>Reduced example to explain the full logic; not to be understood as a complete field reference.</td>
+              </tr>
+              <tr>
+                <td>Recommended Next Page</td>
+                <td><code>/interfaces/xml/examples/update-export</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            This page is intended as an HTML template for future online documentation and can be adopted directly into a 
+            CMS, documentation platform, or static documentation structure.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Legal Notice</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Privacy Policy</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+
+

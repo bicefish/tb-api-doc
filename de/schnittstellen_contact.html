@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – XML Contact</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>XML-Referenz: <code>contact</code></h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_contact.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#struktur">Struktur und Einordnung</a></li>
+            <li><a href="#attribute">Attribute</a></li>
+            <li><a href="#felder">Felder</a></li>
+            <li><a href="#zuordnung">Zuordnung zu Inseraten</a></li>
+            <li><a href="#regeln">Verarbeitungsregeln</a></li>
+            <li><a href="#beispiele">Beispiel</a></li>
+            <li><a href="#hinweise">Hinweise</a></li>
+            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
+            <li><a class="active" href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="ueberblick" class="anchor">
+          <span class="eyebrow">Normative XML-Referenz</span>
+          <h1>Element <code>contact</code></h1>
+          <p>
+            Das Element <code>contact</code> repräsentiert einen Ansprechpartner auf Händler-Ebene. Kontakte werden
+            innerhalb eines <code>dealer</code>-Objekts definiert und können über <code>contact_ids</code> einzelnen
+            Inseraten zugeordnet werden. Damit bildet <code>contact</code> die Brücke zwischen organisatorischer
+            Zuständigkeit und konkreter Kontaktierbarkeit innerhalb der Schnittstelle.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Seiteneinordnung">
+          <div class="meta-card">
+            <strong>Seitenziel</strong>
+            Ansprechpartner fachlich und technisch eindeutig beschreiben.
+          </div>
+          <div class="meta-card">
+            <strong>Besonders relevant für</strong>
+            Integratoren, die Ansprechpartner, Zuständigkeiten, Sprachen und Kontaktbezüge zu Inseraten verarbeiten.
+          </div>
+          <div class="meta-card">
+            <strong>Kerninhalte</strong>
+            <code>id</code>, <code>gender</code>, <code>first_name</code>, <code>last_name</code>, <code>phone</code>, <code>mobile</code>, <code>email</code>, <code>responsibilities</code>, <code>languages_iso_639_1</code>
+          </div>
+        </div>
+
+        <section id="struktur" class="anchor">
+          <h2>Struktur und Einordnung</h2>
+          <div class="code-card">
+            <h3>Strukturskizze</h3>
+            <pre>&lt;contacts&gt;
+  &lt;contact id="..."&gt;
+    &lt;gender&gt;...&lt;/gender&gt;
+    &lt;first_name&gt;...&lt;/first_name&gt;
+    &lt;last_name&gt;...&lt;/last_name&gt;
+    &lt;phone&gt;...&lt;/phone&gt;
+    &lt;mobile&gt;...&lt;/mobile&gt;
+    &lt;fax&gt;...&lt;/fax&gt;
+    &lt;email&gt;...&lt;/email&gt;
+    &lt;image&gt;...&lt;/image&gt;
+    &lt;responsibilities&gt;...&lt;/responsibilities&gt;
+    &lt;languages_iso_639_1&gt;...&lt;/languages_iso_639_1&gt;
+  &lt;/contact&gt;
+&lt;/contacts&gt;</pre>
+          </div>
+
+          <div class="summary-grid" style="margin-top: 1rem;">
+            <article class="summary-card">
+              <h3>Fachliche Rolle</h3>
+              <p>
+                <code>contact</code> beschreibt eine konkrete Ansprechperson für Händler oder Inserate, etwa für
+                Gebrauchtmaschinen, Neumaschinen oder Ersatzteile.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Technische Rolle</h3>
+              <p>
+                Kontakte werden innerhalb eines Händlers definiert und über ihre <code>id</code> aus dem Inserat heraus
+                referenziert.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Mehrsprachigkeit und Zuständigkeit</h3>
+              <p>
+                Sprache und Verantwortungsbereiche sind eigene Informationsdimensionen und sollten im Zielsystem nicht
+                in freie Textfelder zusammengezogen werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="attribute" class="anchor">
+          <h2>Attribute von <code>contact</code></h2>
+          <div class="table-container">
+          <table aria-label="Attribute des contact-Elements">
+            <thead>
+              <tr>
+                <th>Attribut</th>
+                <th>Bedeutung</th>
+                <th>Pflicht</th>
+                <th>Hinweis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>id</code></td>
+                <td>Eindeutige ID des Ansprechpartners innerhalb des Händlerkontexts.</td>
+                <td>Ja</td>
+                <td>Wird aus <code>contact_ids</code> referenziert und muss deshalb stabil und eindeutig sein.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="felder" class="anchor">
+          <h2>Felder</h2>
+          <div class="field-grid">
+            <article class="field-card">
+              <h3><code>gender</code></h3>
+              <p>Anrede bzw. Geschlechtskennzeichnung der Ansprechperson.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional bzw. schemaabhängig</dd>
+                <dt>Bedeutung</dt><dd>Dient der korrekten Darstellung und Ansprache im Zielsystem.</dd>
+                <dt>Hinweis</dt><dd>Werte sollten nur dann normiert ausgewertet werden, wenn ein definierter Wertebereich vorliegt.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>first_name</code></h3>
+              <p>Vorname der Ansprechperson.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional bis fachlich empfohlen</dd>
+                <dt>Bedeutung</dt><dd>Teil des persönlichen Anzeigenamens.</dd>
+                <dt>Hinweis</dt><dd>Sollte getrennt von <code>last_name</code> verarbeitet werden, um flexible Ausgaberegeln zu ermöglichen.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>last_name</code></h3>
+              <p>Nachname der Ansprechperson.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional bis fachlich empfohlen</dd>
+                <dt>Bedeutung</dt><dd>Teil des persönlichen Anzeigenamens.</dd>
+                <dt>Hinweis</dt><dd>Für Kontaktanzeigen meist zentraler als der Vorname, aber technisch gleichrangig zu behandeln.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>phone</code></h3>
+              <p>Telefonnummer der Ansprechperson.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Direkte telefonische Erreichbarkeit.</dd>
+                <dt>Hinweis</dt><dd>Von Händler-Telefonnummern auf Dealer-Ebene zu unterscheiden.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>mobile</code></h3>
+              <p>Mobile Rufnummer der Ansprechperson.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Mobile Erreichbarkeit der Ansprechperson.</dd>
+                <dt>Hinweis</dt><dd>Im XSD ist <code>mobile</code> definiert. In den vorliegenden Beispiel-XMLs wird jedoch <code>mobil</code> verwendet. Diese Abweichung muss transparent dokumentiert werden.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>fax</code></h3>
+              <p>Faxnummer der Ansprechperson.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Zusätzlicher Kommunikationskanal.</dd>
+                <dt>Hinweis</dt><dd>Nur relevant, wenn dieser Kanal im sendenden System gepflegt wird.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>email</code></h3>
+              <p>E-Mail-Adresse der Ansprechperson.</p>
+              <dl>
+                <dt>Typ</dt><dd>String</dd>
+                <dt>Pflicht</dt><dd>Optional bis fachlich empfohlen</dd>
+                <dt>Bedeutung</dt><dd>Direkte elektronische Kontaktmöglichkeit.</dd>
+                <dt>Hinweis</dt><dd>Sollte nicht mit zentralen Händleradressen vermischt werden, wenn personenbezogene Zuständigkeiten relevant sind.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>image</code></h3>
+              <p>Bildreferenz der Ansprechperson.</p>
+              <dl>
+                <dt>Typ</dt><dd>String bzw. Medienreferenz</dd>
+                <dt>Pflicht</dt><dd>Optional</dd>
+                <dt>Bedeutung</dt><dd>Ermöglicht die Anzeige eines Kontaktbildes.</dd>
+                <dt>Hinweis</dt><dd>Die Detailregeln zur Medienverarbeitung können auf der Medien-Seite ergänzt werden.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>responsibilities</code></h3>
+              <p>Verantwortungsbereiche der Ansprechperson.</p>
+              <dl>
+                <dt>Typ</dt><dd>Container oder Liste</dd>
+                <dt>Pflicht</dt><dd>Optional, fachlich aber sehr relevant</dd>
+                <dt>Bedeutung</dt><dd>Definiert, für welche Bereiche oder Inseratstypen die Ansprechperson zuständig ist.</dd>
+                <dt>Hinweis</dt><dd>Die zulässigen Werte sollten über den passenden Webservice bzw. die API dokumentiert oder verlinkt werden.</dd>
+              </dl>
+            </article>
+
+            <article class="field-card">
+              <h3><code>languages_iso_639_1</code></h3>
+              <p>Sprachinformation der Ansprechperson nach ISO 639-1.</p>
+              <dl>
+                <dt>Typ</dt><dd>String oder Liste normierter Sprachcodes</dd>
+                <dt>Pflicht</dt><dd>Optional, fachlich wichtig bei Mehrsprachigkeit</dd>
+                <dt>Bedeutung</dt><dd>Steuert, in welchem Sprachkontext die Ansprechperson angezeigt oder verwendet werden kann.</dd>
+                <dt>Hinweis</dt><dd>Sprachcodes sollten nicht in Freitext übernommen, sondern normiert gespeichert werden.</dd>
+              </dl>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div class="danger">
+            <h3>Bekannte Abweichung: <code>mobile</code> vs. <code>mobil</code></h3>
+            <p>
+              Im XSD ist das Feld <code>mobile</code> vorgesehen. In den vorliegenden Full- und Update-Beispielen wird
+              stattdessen <code>mobil</code> verwendet. Diese Abweichung ist schema-relevant und sollte in der Online-Doku
+              zusätzlich auf der Seite <code>/schnittstellen/xml/known-issues</code> gesondert ausgewiesen werden.
+            </p>
+          </div>
+        </section>
+
+        <section id="zuordnung" class="anchor">
+          <h2>Zuordnung zu Inseraten</h2>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Definition</h3>
+              <p>
+                Kontakte werden im Händlerobjekt unter <code>contacts</code> definiert und erhalten dort ihre eindeutige
+                <code>id</code>.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Referenzierung</h3>
+              <p>
+                Inserate verweisen über <code>contact_ids</code> auf diese IDs. Dadurch kann ein Ansprechpartner mehreren
+                Inseraten zugeordnet werden.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Verarbeitung</h3>
+              <p>
+                Das Zielsystem muss die Kontakt-IDs gegen die Kontaktdefinitionen des jeweiligen Händlers auflösen und darf
+                diese Referenzen nicht als eigenständige Kontaktobjekte missverstehen.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="regeln" class="anchor">
+          <h2>Verarbeitungsregeln</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Regel 1: Kontakte innerhalb des Händlerkontexts auflösen</h3>
+              <p>
+                Die <code>id</code> eines Kontakts ist im Kontext des Händlers zu interpretieren. Eine globale Auflösung
+                ohne Händlerbezug kann zu fehlerhaften Zuordnungen führen.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 2: <code>contact_ids</code> nur als Referenzen behandeln</h3>
+              <p>
+                Die im Inserat übermittelten Kontakt-IDs enthalten keine vollständigen Ansprechpartnerdaten. Die eigentlichen
+                Kontaktdetails müssen aus <code>contacts</code> übernommen werden.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 3: Sprachen normiert verarbeiten</h3>
+              <p>
+                Sprachinformationen sollten im Zielsystem als ISO-639-1-Codes gespeichert und nicht in freie Bezeichnungen
+                umgewandelt werden.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 4: Zuständigkeiten nicht in Freitext auflösen</h3>
+              <p>
+                <code>responsibilities</code> sollten strukturiert übernommen werden, damit später gezielte Zuordnungen,
+                Filter oder Routingregeln möglich bleiben.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 5: Schemaabweichungen sichtbar behandeln</h3>
+              <p>
+                Abweichungen wie <code>mobil</code> statt <code>mobile</code> dürfen nicht stillschweigend übergangen werden,
+                sondern sollten operativ dokumentiert und bei der Implementierung bewusst berücksichtigt werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="beispiele" class="anchor">
+          <h2>Beispiel</h2>
+          <div class="examples-grid">
+            <div class="code-card">
+              <h3>Minimalbeispiel</h3>
+              <pre>&lt;contact id="12"&gt;
+  &lt;gender&gt;male&lt;/gender&gt;
+  &lt;first_name&gt;Max&lt;/first_name&gt;
+  &lt;last_name&gt;Mustermann&lt;/last_name&gt;
+  &lt;phone&gt;+49 123 456789&lt;/phone&gt;
+  &lt;mobile&gt;+49 171 1234567&lt;/mobile&gt;
+  &lt;email&gt;max.mustermann@example.invalid&lt;/email&gt;
+  &lt;responsibilities&gt;
+    ...
+  &lt;/responsibilities&gt;
+  &lt;languages_iso_639_1&gt;de&lt;/languages_iso_639_1&gt;
+&lt;/contact&gt;</pre>
+            </div>
+            <div class="summary-card">
+              <h3>Interpretation</h3>
+              <p>
+                Das Beispiel zeigt einen Ansprechpartner mit persönlicher Kontaktinformation, Sprachzuordnung und
+                Verantwortungsbereich. Im Zielsystem sollte dieser Datensatz innerhalb des Händlerkontexts gespeichert und
+                über <code>contact_ids</code> aus den Inseraten referenzierbar gemacht werden.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="hinweise" class="anchor">
+          <h2>Hinweise und Stolperfallen</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Typischer Fehler: Kontakt-ID global interpretieren</h3>
+              <p>
+                Wird die <code>id</code> eines Kontakts systemweit statt händlerbezogen interpretiert, können Kontakte
+                versehentlich falschen Inseraten oder Händlern zugeordnet werden.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typischer Fehler: Ansprechpartnerdaten direkt im Inserat erwarten</h3>
+              <p>
+                Das Inserat enthält in <code>contact_ids</code> nur Verweise. Ohne Auflösung gegen <code>contacts</code>
+                bleibt die Ansprechpartnerinformation unvollständig.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typischer Fehler: Sprachcodes in Freitext umformen</h3>
+              <p>
+                Werden Sprachcodes nicht normiert übernommen, erschwert dies spätere Filter- und Routinglogiken.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Hinweis auf Known Issues</h3>
+              <p>
+                Beispiel-/Schemaabweichungen wie <code>mobil</code> statt <code>mobile</code> sollten zusätzlich zentral
+                auf der Seite <code>/schnittstellen/xml/known-issues</code> gesammelt werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="redaktion" class="anchor">
+          <h2>Redaktionelle Metadaten</h2>
+          <div class="table-container">
+          <table aria-label="Redaktionelle Metadaten">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Inhalt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quellenbasis</td>
+                <td>XSD für Struktur, Feldnamen und Attributlogik der Kontakte; Beispiel-XMLs für die beobachtbare Schreibweise; bestehendes Schnittstellendokument für die fachliche Bedeutung von Zuständigkeiten, Sprachen und Kontaktzuordnungen.</td>
+              </tr>
+              <tr>
+                <td>Offene Prüfpunkte</td>
+                <td>Endgültige Struktur von <code>responsibilities</code>, genaue Datentypdefinition von <code>languages_iso_639_1</code>, operative Behandlung von Kontaktbildern.</td>
+              </tr>
+              <tr>
+                <td>Empfohlene Folge-Seite</td>
+                <td><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
+            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – XML Preise, Medien und Zusatzobjekte</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>XML-Referenz: Preise, Medien und Zusatzobjekte</h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_preise_medien_zusatzobjekte.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#preis">Preis</a></li>
+            <li><a href="#bilder">Bilder</a></li>
+            <li><a href="#video">Video</a></li>
+            <li><a href="#canonical">Kanonische URLs</a></li>
+            <li><a href="#zusatzobjekte">Zusatzobjekte</a></li>
+            <li><a href="#regeln">Verarbeitungsregeln</a></li>
+            <li><a href="#beispiele">Beispiele</a></li>
+            <li><a href="#hinweise">Hinweise</a></li>
+            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a class="active" href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="ueberblick" class="anchor">
+          <span class="eyebrow">Normative XML-Referenz</span>
+          <h1>Preise, Medien und Zusatzobjekte</h1>
+          <p>
+            Diese Seite bündelt die querschnittlichen XML-Bausteine, die in Inseraten für Preisangaben, Medienreferenzen,
+            kanonische URLs sowie optionale Zusatzkontexte verwendet werden. Ziel ist, diese Elemente getrennt von der
+            allgemeinen Inseratsstruktur dokumentierbar und wiederverwendbar zu machen.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Seiteneinordnung">
+          <div class="meta-card">
+            <strong>Seitenziel</strong>
+            Preis-, Medien- und Zusatzobjekte fachlich und technisch eindeutig beschreiben.
+          </div>
+          <div class="meta-card">
+            <strong>Besonders relevant für</strong>
+            Integratoren, die Preislogik, Bilder, Videos, externe URLs und optionale Erweiterungsobjekte verarbeiten.
+          </div>
+          <div class="meta-card">
+            <strong>Kernobjekte</strong>
+            <code>price</code>, <code>images</code>, <code>image</code>, <code>video</code>, <code>canonical_url</code>, <code>canonical_urls</code>, <code>auction</code>, <code>purchase</code>
+          </div>
+        </div>
+
+        <section>
+          <div class="summary-grid">
+            <article class="summary-card card-with-icon">
+              <svg class="card-icon" fill="none" stroke="var(--info)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <div>
+                <h3>Querschnittlicher Charakter</h3>
+                <p>
+                  Diese Objekte treten im Kontext von <code>ad</code> auf, sind aber fachlich eigenständig genug, um
+                  separat beschrieben zu werden.
+                </p>
+              </div>
+            </article>
+
+            <article class="summary-card card-with-icon">
+              <svg class="card-icon" fill="none" stroke="var(--info)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <div>
+                <h3>Normative und operative Sicht</h3>
+                <p>
+                  Auch selten genutzte Schemaelemente sollten dokumentiert bleiben, solange sie technisch vorgesehen sind.
+                </p>
+              </div>
+            </article>
+
+            <article class="summary-card card-with-icon">
+              <svg class="card-icon" fill="none" stroke="var(--info)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <div>
+                <h3>Implementierungsziel</h3>
+                <p>
+                  Zielsysteme sollten Preis- und Medienstrukturen möglichst verlustfrei übernehmen, damit spätere Erweiterungen
+                  oder Darstellungsregeln unterstützt werden können.
+                </p>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <section id="preis" class="anchor">
+          <h2><code>price</code></h2>
+          <div class="section-grid">
+            <div class="section-card">
+              <h3>Bedeutung</h3>
+              <p>
+                Das Element <code>price</code> beschreibt den Preis des Inserats. Neben dem eigentlichen numerischen Wert
+                werden Attribute für Währung, Steuerlogik und gegebenenfalls Preiseinheiten verwendet.
+              </p>
+            </div>
+          </div>
+          <div class="table-container">
+          <table aria-label="Attribute des price-Elements" style="margin-top: 1rem;">
+            <thead>
+              <tr>
+                <th>Attribut</th>
+                <th>Bedeutung</th>
+                <th>Hinweis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>currency</code></td>
+                <td>Währung des Preises, z. B. <code>EUR</code>.</td>
+                <td>Normiert speichern, nicht in Freitext überführen.</td>
+              </tr>
+              <tr>
+                <td><code>taxtype</code></td>
+                <td>Steuerlogik des Preises, z. B. inkl. oder exkl. Mehrwertsteuer.</td>
+                <td>Fachlich relevant für Anzeige und Weiterverarbeitung.</td>
+              </tr>
+              <tr>
+                <td><code>tax_percentage</code></td>
+                <td>Steuersatz als Dezimalwert, z. B. <code>0.190</code>.</td>
+                <td>Nur interpretieren, wenn <code>taxtype</code> dies sinnvoll unterstützt.</td>
+              </tr>
+              <tr>
+                <td><code>price_unit</code></td>
+                <td>Optionale Preiseinheit, relevant z. B. bei Mietmaschinen.</td>
+                <td>Nur in fachlich passenden Szenarien verwenden.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <div class="warning card-with-icon" style="margin-top: 1rem;">
+            <svg class="card-icon" fill="none" stroke="var(--warning)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <div>
+              <h3>Wichtig</h3>
+              <p>
+                Ein Preiswert von <code>0</code> kann fachlich bedeuten, dass kein Preis angegeben wurde. Diese Semantik
+                sollte im Zielsystem bewusst behandelt und nicht automatisch als kostenloses Angebot interpretiert werden.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+        <section id="bilder" class="anchor">
+          <h2><code>images</code> und <code>image</code></h2>
+          <div class="section-grid">
+            <div class="section-card">
+              <h3>Bedeutung</h3>
+              <p>
+                Das Element <code>images</code> bündelt die dem Inserat zugeordneten Bildreferenzen. Darunter werden
+                einzelne <code>image</code>-Elemente geführt, die typischerweise auf abrufbare Bildressourcen verweisen.
+              </p>
+            </div>
+            <div class="section-card">
+              <h3>Besonderheiten</h3>
+              <p>
+                Im XSD ist <code>images</code> als strukturierter Mediencontainer vorgesehen. Zusätzlich kann das Element
+                ein Attribut wie <code>md5</code> enthalten, das für Integritäts- oder Änderungsprüfungen genutzt werden kann.
+              </p>
+            </div>
+          </div>
+          <div class="table-container">
+          <table aria-label="Aspekte der Bildverarbeitung" style="margin-top: 1rem;">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Beschreibung</th>
+                <th>Hinweis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Anzahl</td>
+                <td>Bis zu 30 Bilder pro Inserat sind im fachlichen Kontext relevant.</td>
+                <td>Die operative Begrenzung sollte bei Validierung und Import berücksichtigt werden.</td>
+              </tr>
+              <tr>
+                <td>Quelle</td>
+                <td>Bilder werden in der Regel als Web-Referenzen geliefert.</td>
+                <td>Die URL darf nicht durch Ableiten eigener Varianten manipuliert werden.</td>
+              </tr>
+              <tr>
+                <td>Änderungslogik</td>
+                <td>Bildänderungen können über neue URLs oder ergänzende Metadaten signalisiert werden.</td>
+                <td>Bei Imports sollte auf Caching- und Ersetzungslogik geachtet werden.</td>
+              </tr>
+              <tr>
+                <td>Integritätsmerkmal</td>
+                <td>Optionales <code>md5</code> auf Container-Ebene.</td>
+                <td>Kann genutzt werden, um Bildbestände effizient auf Änderungen zu prüfen.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="video" class="anchor">
+          <h2><code>video</code></h2>
+          <div class="section-card">
+            <h3>Bedeutung</h3>
+            <p>
+              Das Element <code>video</code> erlaubt die Verknüpfung eines Videos mit dem Inserat. In der Dokumentation
+              sollte klar zwischen Video-ID, Video-URL und Videotyp unterschieden werden.
+            </p>
+          </div>
+          <div class="table-container">
+          <table aria-label="Attribute des video-Elements" style="margin-top: 1rem;">
+            <thead>
+              <tr>
+                <th>Attribut</th>
+                <th>Bedeutung</th>
+                <th>Hinweis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>video_id</code></td>
+                <td>Eindeutige Kennung des Videos innerhalb des referenzierten Video-Systems.</td>
+                <td>Bei Plattformen wie YouTube typischerweise der zentrale Identifier.</td>
+              </tr>
+              <tr>
+                <td><code>video_url</code></td>
+                <td>Direkte oder eingebettete URL des Videos.</td>
+                <td>Die Nutzung dieses Attributs sollte gegen die operative Implementierung abgeglichen werden.</td>
+              </tr>
+              <tr>
+                <td><code>video_type</code></td>
+                <td>Typ des Videos, z. B. <code>youtube</code>.</td>
+                <td>Sollte nur mit dokumentierten Werten verarbeitet werden.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="canonical" class="anchor">
+          <h2><code>canonical_url</code> und <code>canonical_urls</code></h2>
+          <div class="section-grid">
+            <div class="section-card">
+              <h3>Bedeutung</h3>
+              <p>
+                Diese Elemente dienen dazu, dem Inserat kanonische Ziel-URLs zuzuordnen. Dabei ist zwischen einer einfachen
+                URL und einem Container mit sprachspezifischen Varianten zu unterscheiden.
+              </p>
+            </div>
+            <div class="section-card">
+              <h3>Mehrsprachigkeit</h3>
+              <p>
+                Innerhalb von <code>canonical_urls</code> können mehrere <code>canonical_url</code>-Elemente mit einem
+                Sprachattribut wie <code>languages_iso_639_1</code> übergeben werden.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="zusatzobjekte" class="anchor">
+          <h2>Zusatzobjekte: <code>auction</code> und <code>purchase</code></h2>
+          <div class="section-grid">
+            <div class="section-card">
+              <h3><code>auction</code></h3>
+              <p>
+                Optionales Zusatzobjekt für Auktionsszenarien. Auch wenn dieses Element im Tagesgeschäft selten genutzt
+                wird, sollte es dokumentiert werden, solange es im XSD vorgesehen ist.
+              </p>
+            </div>
+            <div class="section-card">
+              <h3><code>purchase</code></h3>
+              <p>
+                Optionales Zusatzobjekt für Ankaufsszenarien. Die fachliche Nutzung sollte explizit benannt werden, auch
+                wenn die operative Relevanz aktuell gering ist.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="regeln" class="anchor">
+          <h2>Verarbeitungsregeln</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Regel 1: Preise strukturiert übernehmen</h3>
+              <p>
+                Preiswert, Währung, Steuerlogik und optionale Preiseinheit sollten getrennt gespeichert werden, damit die
+                fachliche Bedeutung nicht verloren geht.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 2: Bildreferenzen nicht manipulieren</h3>
+              <p>
+                Die gelieferten Bild-URLs sollten unverändert verwendet werden. Eigene Ableitungen aus URL-Bestandteilen
+                sind zu vermeiden.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 3: Medienänderungen bewusst behandeln</h3>
+              <p>
+                Zielsysteme sollten Bilder und Videos nicht nur als Textfelder betrachten, sondern auf Änderungslogik,
+                Austausch und Medienaktualisierung vorbereitet sein.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 4: Mehrsprachige kanonische URLs normiert speichern</h3>
+              <p>
+                Sprachbezogene URL-Varianten sollten nicht in einem einzigen Freitextfeld zusammengeführt werden.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 5: Seltene Zusatzobjekte nicht ignorieren</h3>
+              <p>
+                Auch selten genutzte Elemente wie <code>auction</code> oder <code>purchase</code> sollten zumindest stabil
+                erkannt und dokumentiert werden, um spätere Erweiterungen zu ermöglichen.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="beispiele" class="anchor">
+          <h2>Beispiele</h2>
+          <div class="examples-grid">
+            <div class="code-card">
+              <h3>Preisbeispiel</h3>
+              <pre>&lt;price currency="EUR" taxtype="inclusive" tax_percentage="0.190"&gt;234567&lt;/price&gt;</pre>
+            </div>
+            <div class="code-card">
+              <h3>Beispiel für kanonische URLs</h3>
+              <pre>&lt;canonical_urls&gt;
+  &lt;canonical_url languages_iso_639_1="de"&gt;https://example.invalid/de/inserat/5001&lt;/canonical_url&gt;
+  &lt;canonical_url languages_iso_639_1="en"&gt;https://example.invalid/en/ad/5001&lt;/canonical_url&gt;
+&lt;/canonical_urls&gt;</pre>
+            </div>
+            <div class="code-card">
+              <h3>Videobeispiel</h3>
+              <pre>&lt;video video_id="1F3nPCSG4Y0" video_url="https://www.youtube.com/embed/1F3nPCSG4Y0" video_type="youtube" /&gt;</pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="hinweise" class="anchor">
+          <h2>Hinweise und Stolperfallen</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Typischer Fehler: Preis als reiner String</h3>
+              <p>
+                Wird der Preis ohne Währungs- und Steuerlogik übernommen, gehen fachlich wichtige Informationen verloren.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typischer Fehler: Bild-URLs ableiten oder umschreiben</h3>
+              <p>
+                Änderungen an gelieferten Bildreferenzen führen häufig zu Importfehlern oder nicht auffindbaren Medien.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typischer Fehler: Mehrsprachige URLs zusammenziehen</h3>
+              <p>
+                Werden kanonische URLs verschiedener Sprachen in einem unstrukturierten Feld gespeichert, ist eine saubere
+                spätere Ausgabe kaum noch möglich.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Dokumentationshinweis</h3>
+              <p>
+                Elemente wie <code>auction</code> und <code>purchase</code> sollten trotz geringer Nutzung explizit im
+                Dokumentationsbestand verbleiben, solange sie technisch unterstützt werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="redaktion" class="anchor">
+          <h2>Redaktionelle Metadaten</h2>
+          <div class="table-container">
+          <table aria-label="Redaktionelle Metadaten">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Inhalt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quellenbasis</td>
+                <td>XSD für die strukturelle Existenz und Attribute der Preis-, Medien- und Zusatzobjekte; bestehendes Schnittstellendokument für fachliche Preislogik, Bildverarbeitung, Videohinweise und kanonische URLs.</td>
+              </tr>
+              <tr>
+                <td>Offene Prüfpunkte</td>
+                <td>Finale Beschreibung von <code>image</code>-Unterstruktur, operative Nutzung von <code>auction</code> und <code>purchase</code>, konkrete Ausprägung von Bild-Hashes und Medien-Metadaten.</td>
+              </tr>
+              <tr>
+                <td>Empfohlene Folge-Seite</td>
+                <td><code>/schnittstellen/xml/known-issues</code> oder die Beispielseiten zu Full und Update.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
+            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+
+

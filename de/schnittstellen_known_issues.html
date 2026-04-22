@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – XML Known Issues</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    /* Known Issues uses a warning-coloured eyebrow instead of the teal default */
+    .eyebrow { background: var(--warning-soft); color: var(--warning); }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>XML: Known Issues</h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_known_issues.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#zweck">Zweck und Nutzung</a></li>
+            <li><a href="#liste">Issue-Liste</a></li>
+            <li><a href="#beispiele">Beispiele</a></li>
+            <li><a href="#empfehlungen">Empfehlungen</a></li>
+            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a class="active" href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="ueberblick" class="anchor">
+          <span class="eyebrow">Operative Abweichungen und Besonderheiten</span>
+          <h1>Known Issues</h1>
+          <p>
+            Diese Seite sammelt bekannte Abweichungen zwischen XSD, Beispiel-XMLs und bestehender Dokumentation.
+            Sie ist kein Ersatz für die normative Referenz, sondern ein operativer Ergänzungsbereich für Integratoren,
+            Support und Qualitätssicherung.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Seiteneinordnung">
+          <div class="meta-card">
+            <strong>Seitenziel</strong>
+            Bekannte Inkonsistenzen und dokumentationsrelevante Sonderfälle zentral sichtbar machen.
+          </div>
+          <div class="meta-card">
+            <strong>Besonders relevant für</strong>
+            Integratoren, Support, Tests, Validierung und redaktionelle Pflege der Doku.
+          </div>
+          <div class="meta-card">
+            <strong>Grundprinzip</strong>
+            Abweichungen werden transparent dokumentiert und nicht stillschweigend geglättet.
+          </div>
+        </div>
+
+        <section id="zweck" class="anchor">
+          <h2>Zweck und Nutzung</h2>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Normativ vs. operativ</h3>
+              <p>
+                Maßgeblich für die XML-Struktur bleibt die normative Referenz aus XSD und den fachlich freigegebenen
+                Regeln. Known Issues dokumentiert Abweichungen davon.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Ziel</h3>
+              <p>
+                Integratoren sollen früh erkennen, wo Beispiele, Alt-Dokumentation oder Bestandsverhalten nicht vollständig
+                mit der Zielstruktur übereinstimmen.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Pflege</h3>
+              <p>
+                Jeder Eintrag sollte Status, Auswirkung und Empfehlung enthalten. Bereinigte Punkte können in den Changelog
+                überführt und hier archiviert oder entfernt werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <div class="warning">
+            <h3>Wichtig</h3>
+            <p>
+              Known Issues sind keine alternative Spezifikation. Ein Eintrag auf dieser Seite bedeutet nicht automatisch,
+              dass eine Abweichung fachlich gewollt oder technisch dauerhaft zulässig ist.
+            </p>
+          </div>
+        </section>
+
+        <section id="liste" class="anchor">
+          <h2>Issue-Liste</h2>
+          <div class="table-container">
+          <table aria-label="Bekannte Abweichungen und Sonderfälle">
+            <thead>
+              <tr>
+                <th>Thema</th>
+                <th>Status</th>
+                <th>Betroffene Quelle</th>
+                <th>Beschreibung</th>
+                <th>Auswirkung</th>
+                <th>Empfehlung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>mobile</code> vs. <code>mobil</code></td>
+                <td><span class="status known">Known issue</span></td>
+                <td>XSD und Beispiel-XMLs</td>
+                <td>
+                  Im XSD ist auf Contact-Ebene das Feld <code>mobile</code> definiert. In den vorliegenden Full- und
+                  Update-Beispielen wird stattdessen <code>mobil</code> verwendet.
+                </td>
+                <td>
+                  Die Beispiel-XMLs sind in diesem Punkt nicht vollständig schema-konform. Validierungen und Parser können
+                  daher unterschiedlich reagieren.
+                </td>
+                <td>
+                  Normativ <code>mobile</code> dokumentieren, die beobachtete Schreibweise <code>mobil</code> zusätzlich
+                  als bekannte Abweichung ausweisen und bei Implementierungen bewusst prüfen.
+                </td>
+              </tr>
+              <tr>
+                <td>Update-Beispiele ohne aussagekräftige Löschfälle</td>
+                <td><span class="status doc">Dokulücke</span></td>
+                <td>Beispiel-XMLs</td>
+                <td>
+                  Die vorliegenden Beispiel-XMLs zeigen die Update-Struktur, illustrieren aber zentrale Löschfälle nicht
+                  in einer didaktisch ausreichenden Form.
+                </td>
+                <td>
+                  Entwickler sehen die Struktur, aber nicht alle relevanten fachlichen Varianten der Löschlogik.
+                </td>
+                <td>
+                  Ergänzende Minimalbeispiele für gelöschte Händler und Inserate in der HTML-Doku bereitstellen.
+                </td>
+              </tr>
+              <tr>
+                <td><code>validation</code> im XSD, aber operativ wenig sichtbar</td>
+                <td><span class="status open">Offen</span></td>
+                <td>XSD und Alt-Dokumentation</td>
+                <td>
+                  Das Element <code>validation</code> ist im XSD vorgesehen, spielt in der bisherigen Dokumentation und
+                  operativen Beschreibung aber nur eine geringe Rolle.
+                </td>
+                <td>
+                  Integratoren können nicht sicher einschätzen, ob das Element aktiv genutzt wird, ignoriert werden darf
+                  oder nur für Erweiterungen reserviert ist.
+                </td>
+                <td>
+                  Den fachlichen Status explizit klären und in der Referenzseite dokumentieren.
+                </td>
+              </tr>
+              <tr>
+                <td><code>auction</code> und <code>purchase</code> vorhanden, aber kaum erläutert</td>
+                <td><span class="status doc">Dokulücke</span></td>
+                <td>XSD und Alt-Dokumentation</td>
+                <td>
+                  Die Elemente sind technisch vorhanden, werden aber in der gewachsenen Dokumentation nur eingeschränkt
+                  oder gar nicht erläutert.
+                </td>
+                <td>
+                  Unklare Behandlung in Zielsystemen, obwohl spätere Nutzung oder Erweiterung möglich ist.
+                </td>
+                <td>
+                  In der HTML-Doku als optionale Zusatzobjekte dokumentieren und ihren aktuellen fachlichen Status benennen.
+                </td>
+              </tr>
+              <tr>
+                <td>Fließtext statt Referenzstruktur im Alt-Dokument</td>
+                <td><span class="status doc">Dokulücke</span></td>
+                <td>Alt-Dokumentation</td>
+                <td>
+                  Viele Inhalte sind fachlich vorhanden, aber nicht feldgenau, nicht ankerfähig und nicht modular gepflegt.
+                </td>
+                <td>
+                  Erhöhter Interpretationsaufwand und erschwerte Online-Nutzung.
+                </td>
+                <td>
+                  Inhalte in HTML-native Referenzseiten mit einheitlicher Feld- und Regelstruktur überführen.
+                </td>
+              </tr>
+              <tr>
+                <td>Beispielverhalten kann normativ missverstanden werden</td>
+                <td><span class="status open">Offen</span></td>
+                <td>Beispiel-XMLs und Doku-Nutzung</td>
+                <td>
+                  Beispiel-XMLs werden von Integratoren oft als technisch verbindliche Referenz gelesen, obwohl sie
+                  operativ oder historisch bedingte Besonderheiten enthalten können.
+                </td>
+                <td>
+                  Falsche Implementierungsentscheidungen, wenn Beispiele unkritisch als Norm interpretiert werden.
+                </td>
+                <td>
+                  In allen Beispielseiten klar zwischen normativer Referenz und illustrativem Beispiel unterscheiden.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section>
+          <div class="danger">
+            <h3>Geschäftskritischer Punkt</h3>
+            <p>
+              Die Abweichung <code>mobile</code> vs. <code>mobil</code> ist kein rein redaktioneller Schönheitsfehler,
+              sondern kann direkte Auswirkungen auf Validierung, Parsing und Datenübernahme haben. Dieser Punkt sollte in
+              Integrationsprojekten früh sichtbar sein.
+            </p>
+          </div>
+        </section>
+
+        <section id="beispiele" class="anchor">
+          <h2>Beispiele</h2>
+          <div class="examples-grid">
+            <div class="code-card">
+              <h3>Normative Zielschreibweise laut XSD</h3>
+              <pre>&lt;contact id="12"&gt;
+  &lt;mobile&gt;+49 171 1234567&lt;/mobile&gt;
+&lt;/contact&gt;</pre>
+            </div>
+            <div class="code-card">
+              <h3>Beobachtete Schreibweise in Beispiel-XMLs</h3>
+              <pre>&lt;contact id="12"&gt;
+  &lt;mobil&gt;+49 171 1234567&lt;/mobil&gt;
+&lt;/contact&gt;</pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="empfehlungen" class="anchor">
+          <h2>Empfehlungen für Implementierung und Pflege</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Empfehlung 1: XSD als technische Referenz priorisieren</h3>
+              <p>
+                Bei Abweichungen zwischen XSD und Beispielen sollte die technische Zielstruktur zunächst aus dem XSD
+                abgeleitet werden, sofern keine fachlich freigegebene Gegenregel existiert.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Empfehlung 2: Beispiele kommentiert bereitstellen</h3>
+              <p>
+                Beispielseiten sollten nicht nur Roh-XML zeigen, sondern Abweichungen, Vereinfachungen und didaktische
+                Reduktionen sichtbar kennzeichnen.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Empfehlung 3: Known Issues versionieren</h3>
+              <p>
+                Jeder Eintrag sollte mit Datum, Status und Verantwortlichkeit gepflegt werden, damit klar bleibt, ob der
+                Punkt noch aktiv, geklärt oder bereits bereinigt ist.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Empfehlung 4: Validierung und Dokumentation trennen</h3>
+              <p>
+                Eine Abweichung kann operativ bekannt sein, ohne dass sie dauerhaft zulässig sein sollte. Dokumentation und
+                Validierungsstrategie sollten deshalb bewusst aufeinander abgestimmt werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="redaktion" class="anchor">
+          <h2>Redaktionelle Metadaten</h2>
+          <div class="table-container">
+          <table aria-label="Redaktionelle Metadaten">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Inhalt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quellenbasis</td>
+                <td>XSD, Full- und Update-Beispiel-XMLs sowie das bestehende Schnittstellendokument als fachlich-historische Quelle.</td>
+              </tr>
+              <tr>
+                <td>Pflegeprinzip</td>
+                <td>Nur reale und nachvollziehbare Abweichungen aufnehmen; keine spekulativen Punkte ohne belastbare Quelle.</td>
+              </tr>
+              <tr>
+                <td>Empfohlene Folge-Seite</td>
+                <td><code>/schnittstellen/xml/beispiele/full-export</code> oder <code>/schnittstellen/xml/beispiele/update-export</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
+            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+
+

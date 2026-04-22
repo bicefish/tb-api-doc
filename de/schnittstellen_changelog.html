@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – Changelog</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>Changelog</h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_changelog.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#zweck">Zweck und Nutzung</a></li>
+            <li><a href="#versionen">Versionsübersicht</a></li>
+            <li><a href="#pflege">Pflegeprinzipien</a></li>
+            <li><a href="#offene-punkte">Offene Punkte</a></li>
+            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a class="active" href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="ueberblick" class="anchor">
+          <span class="eyebrow">Dokumentpflege</span>
+          <h1>Changelog</h1>
+          <p>
+            Diese Seite dokumentiert Änderungen an der HTML-Dokumentation der technikboerse-Schnittstellen.
+            Sie dient der redaktionellen Nachvollziehbarkeit und macht sichtbar, wann strukturelle, fachliche
+            oder technische Anpassungen vorgenommen wurden.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Seiteneinordnung">
+          <div class="meta-card">
+            <strong>Seitenziel</strong>
+            Änderungen an Dokumentstruktur, Inhalten und bekannten Abweichungen nachvollziehbar machen.
+          </div>
+          <div class="meta-card">
+            <strong>Besonders relevant für</strong>
+            Redaktion, Produktmanagement, Support, Integratoren und Qualitätssicherung.
+          </div>
+          <div class="meta-card">
+            <strong>Kernprinzip</strong>
+            Nicht nur technische Änderungen, sondern auch dokumentarische Klarstellungen werden versioniert.
+          </div>
+        </div>
+
+        <section id="zweck" class="anchor">
+          <h2>Zweck und Nutzung</h2>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Nachvollziehbarkeit</h3>
+              <p>
+                Änderungen an der Schnittstellendokumentation sollen transparent sein. Das betrifft sowohl neue Inhalte
+                als auch Korrekturen, Präzisierungen und dokumentierte Known Issues.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Abgrenzung zu Known Issues</h3>
+              <p>
+                Die Seite <code>known-issues</code> beschreibt operative oder fachliche Abweichungen. Der Changelog
+                dokumentiert, wann und warum diese Themen in der Doku aufgenommen, angepasst oder bereinigt wurden.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Pflege im laufenden Betrieb</h3>
+              <p>
+                Jede inhaltlich relevante Änderung an Struktur, Referenzseiten, Beispielseiten oder Verweisen sollte
+                mit Datum, Umfang und kurzer Begründung erfasst werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="versionen" class="anchor">
+          <h2>Versionsübersicht</h2>
+          <div class="table-container">
+          <table aria-label="Versionsübersicht der HTML-Dokumentation">
+            <thead>
+              <tr>
+                <th>Datum</th>
+                <th>Version</th>
+                <th>Bereich</th>
+                <th>Änderung</th>
+                <th>Art</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2026-04-22</td>
+                <td>0.1.0</td>
+                <td>Grundgerüst HTML-Dokumentation</td>
+                <td>Initiale Überführung des Schnittstellendokuments in eine HTML-native Struktur mit eigenständigen Referenzseiten für Root, Löschlogik, Dealer, Ad, Contact, Preise/Medien/Zusatzobjekte, Known Issues, Beispielseiten und REST-API-Übersicht.</td>
+                <td>Initialaufbau</td>
+              </tr>
+              <tr>
+                <td>2026-04-22</td>
+                <td>0.1.1</td>
+                <td>Designsystem / CSS</td>
+                <td>Gemeinsame Styles in <code>schnittstellen_shared.css</code> zusammengeführt und Seitentemplates auf refactorten CSS-Stand umgestellt.</td>
+                <td>Struktur / Frontend</td>
+              </tr>
+              <tr>
+                <td>2026-04-22</td>
+                <td>0.1.2</td>
+                <td>Known Issues</td>
+                <td>Die bestätigte Abweichung <code>mobile</code> vs. <code>mobil</code> zentral dokumentiert und auf den betroffenen Seiten referenziert.</td>
+                <td>Fachliche Klarstellung</td>
+              </tr>
+              <tr>
+                <td>2026-04-22</td>
+                <td>0.1.3</td>
+                <td>Beispielseiten</td>
+                <td>Didaktisch reduzierte Full- und Update-Beispiele ergänzt, inklusive expliziter Darstellung von Löschfällen im Update-Kontext.</td>
+                <td>Beispiel / Erläuterung</td>
+              </tr>
+              <tr>
+                <td>2026-04-22</td>
+                <td>0.1.4</td>
+                <td>REST-API</td>
+                <td>REST-API als eigenständige Übersichtsseite ergänzt und strukturell von der XML-Schnittstelle getrennt.</td>
+                <td>Struktur / Inhalt</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section>
+          <div class="warning">
+            <h3>Wichtig</h3>
+            <p>
+              Der Changelog sollte nicht nur große Releases enthalten. Auch kleinere Präzisierungen können für Integratoren
+              relevant sein, wenn sie Fachlogik, Validierung oder Beispielinterpretation betreffen.
+            </p>
+          </div>
+        </section>
+
+        <section id="pflege" class="anchor">
+          <h2>Pflegeprinzipien</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Prinzip 1: Fachliche Änderungen versionieren</h3>
+              <p>
+                Änderungen an Verarbeitungslogik, Feldbedeutungen, Pflichtangaben oder Löschsemantik sind immer im
+                Changelog zu erfassen.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Prinzip 2: Dokumentarische Klarstellungen ebenfalls erfassen</h3>
+              <p>
+                Auch Änderungen, die keine Schnittstellenfunktion ändern, aber Interpretationsspielraum verringern,
+                sollten dokumentiert werden.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Prinzip 3: Known Issues querverweisen</h3>
+              <p>
+                Wenn ein Known Issue neu aufgenommen, geändert oder bereinigt wird, sollte dies im Changelog sichtbar
+                werden und auf die betroffene Seite verweisen.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Prinzip 4: Struktur- und Designänderungen kenntlich machen</h3>
+              <p>
+                Größere Umstellungen an Navigation, CSS, Seitenbenennung oder Verlinkung sollten als eigene Einträge
+                erfasst werden, auch wenn sie fachlich neutral sind.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="offene-punkte" class="anchor">
+          <h2>Offene Punkte</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>API-Referenz verlinken und konkretisieren</h3>
+              <p>
+                Die REST-API-Übersichtsseite verweist bereits auf eine technische Referenz. Deren aktueller Umfang,
+                Endpunktabdeckung und Freigabestatus sollten noch redaktionell abgesichert werden.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Status von <code>validation</code> klären</h3>
+              <p>
+                Das Element <code>validation</code> ist im XSD vorhanden, aber operativ noch nicht vollständig geklärt.
+                Sobald eine Entscheidung vorliegt, sollte sie im Changelog dokumentiert werden.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Optionale Zusatzobjekte präzisieren</h3>
+              <p>
+                Für <code>auction</code> und <code>purchase</code> sollte der aktuelle fachliche Einsatzgrad geprüft und bei
+                Klärung als Änderungsereignis festgehalten werden.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Versionierungsmodell festlegen</h3>
+              <p>
+                Die hier verwendeten Versionsnummern sind ein praktikabler Startpunkt. Für den laufenden Betrieb sollte
+                ein verbindliches Versionierungsmodell definiert werden.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="redaktion" class="anchor">
+          <h2>Redaktionelle Metadaten</h2>
+          <div class="table-container">
+          <table aria-label="Redaktionelle Metadaten">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Inhalt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quellenbasis</td>
+                <td>Neu aufgebaute HTML-Dokumentationsstruktur, refactorter CSS-Stand sowie die identifizierten fachlichen und redaktionellen Änderungen aus der Überarbeitung.</td>
+              </tr>
+              <tr>
+                <td>Didaktischer Status</td>
+                <td>Pflege- und Versionsseite; keine fachliche Referenzseite im engeren Sinn.</td>
+              </tr>
+              <tr>
+                <td>Empfohlene Pflegefrequenz</td>
+                <td>Bei jeder fachlich relevanten oder strukturell sichtbaren Änderung an der HTML-Dokumentation aktualisieren.</td>
+              </tr>
+              <tr>
+                <td>Nächste sinnvolle Ergänzung</td>
+                <td>Landingpage bzw. Übersicht <code>/schnittstellen</code> oder <code>/schnittstellen/xml</code> als Einstieg in die komplette Doku.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
+            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Schnittstellen – XML Beispiel Update Export</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+  <style>
+    .page { max-width: 980px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Schnittstellen</small>
+        <h1>XML-Beispiel: Update Export</h1>
+        
+        <div class="lang-switch">
+          <a href="#" class="active">DE</a>
+          <span class="separator">|</span>
+          <a href="../en/schnittstellen_beispiel_update_export.html">EN</a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>Auf dieser Seite</h2>
+          <ul>
+            <li><a class="active" href="#ueberblick">Überblick</a></li>
+            <li><a href="#einordnung">Einordnung</a></li>
+            <li><a href="#beispiel">Kommentiertes Beispiel</a></li>
+            <li><a href="#verarbeitung">Verarbeitung im Zielsystem</a></li>
+            <li><a href="#loeschung">Explizite Löschfälle</a></li>
+            <li><a href="#abgrenzung">Abgrenzung zu Full</a></li>
+            <li><a href="#hinweise">Hinweise</a></li>
+            <li><a href="#redaktion">Redaktionelle Metadaten</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>Inhalt</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Full Export</a></li>
+            <li><a class="active" href="schnittstellen_beispiel_update_export.html">Beispiel: Update Export</a></li>
+            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
+            <li><a href="../examples/example_full_export.xml" download>Beispiel: Voll-Export</a></li>
+            <li><a href="../examples/example_update_export.xml" download>Beispiel: Update-Export</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="ueberblick" class="anchor">
+          <span class="eyebrow">XML-Beispielseite</span>
+          <h1>Update Export</h1>
+          <p>
+            Diese Seite erläutert den Update Export anhand eines didaktisch reduzierten XML-Beispiels. Im Mittelpunkt
+            stehen die Delta-Verarbeitung, die Bedeutung von <code>backLogDays</code> sowie die explizite Behandlung
+            gelöschter Händler und Inserate.
+          </p>
+        </header>
+
+        <div class="meta-grid" aria-label="Seiteneinordnung">
+          <div class="meta-card">
+            <strong>Seitenziel</strong>
+            Veranschaulichen, wie ein Update Export aufgebaut ist und wie er fachlich zu interpretieren ist.
+          </div>
+          <div class="meta-card">
+            <strong>Besonders relevant für</strong>
+            Integratoren, Testende und Support bei der Prüfung von Delta-Importen und Löschfällen.
+          </div>
+          <div class="meta-card">
+            <strong>Kernpunkt</strong>
+            Ein Update Export enthält nur neue, geänderte oder explizit gelöschte Objekte innerhalb eines Rückblickzeitraums.
+          </div>
+        </div>
+
+        <section id="einordnung" class="anchor">
+          <h2>Einordnung</h2>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Was ein Update Export bedeutet</h3>
+              <p>
+                Der Export ist als Änderungsmenge zu verstehen. Nicht enthaltene Objekte bleiben im Zielsystem unverändert,
+                sofern sie nicht ausdrücklich über Löschcontainer als entfernt markiert werden.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Rolle von <code>backLogDays</code></h3>
+              <p>
+                Das Feld definiert den Rückblickzeitraum, für den Änderungen und Löschungen erneut in der Datei erscheinen
+                können. Dadurch entsteht ein Puffer für verzögerte oder gestörte Importprozesse.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Bezug zur Referenzdoku</h3>
+              <p>
+                Die normative Beschreibung der Root-Logik und Löschverarbeitung erfolgt auf den Seiten zu
+                <code>exchange</code> und <code>loeschlogik</code>. Diese Beispielseite zeigt deren Anwendung.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="beispiel" class="anchor">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+            <h2 style="margin: 0;">Kommentiertes Beispiel</h2>
+            <a href="../examples/example_update_export.xml" download class="btn" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Roh-XML herunterladen</a>
+          </div>
+          <div class="code-card">
+            <h3>Didaktisch reduziertes Update-Export-Beispiel</h3>
+            <pre>&lt;exchange&gt;
+  &lt;senderName&gt;anbieter-a&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-15T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;update&lt;/transferMode&gt;
+  &lt;backLogDays&gt;3&lt;/backLogDays&gt;
+
+  &lt;dealersDeleted&gt;
+    &lt;deleteInfo guid="dealer-99" id="99" /&gt;
+  &lt;/dealersDeleted&gt;
+
+  &lt;adsDeleted&gt;
+    &lt;deleteInfo guid="ad-4711" id="4711" /&gt;
+  &lt;/adsDeleted&gt;
+
+  &lt;dealers&gt;
+    &lt;dealer guid="dealer-1001" id="1001"&gt;
+      &lt;info&gt;
+        ...
+      &lt;/info&gt;
+      &lt;created&gt;2024-01-01T09:00:00&lt;/created&gt;
+      &lt;modified&gt;2024-05-15T05:30:00&lt;/modified&gt;
+
+      &lt;contacts&gt;
+        &lt;contact id="12"&gt;
+          &lt;first_name&gt;Max&lt;/first_name&gt;
+          &lt;last_name&gt;Mustermann&lt;/last_name&gt;
+          &lt;email&gt;max.mustermann@example.invalid&lt;/email&gt;
+          &lt;languages_iso_639_1&gt;de&lt;/languages_iso_639_1&gt;
+        &lt;/contact&gt;
+      &lt;/contacts&gt;
+
+      &lt;ads&gt;
+        &lt;ad guid="ad-5001" id="5001" category_id="210" category_name="Mähdrescher"&gt;
+          &lt;info&gt;
+            ...
+          &lt;/info&gt;
+          &lt;contact_ids&gt;
+            &lt;contact_id&gt;12&lt;/contact_id&gt;
+          &lt;/contact_ids&gt;
+          &lt;price currency="EUR" taxtype="inclusive" tax_percentage="0.190"&gt;229000&lt;/price&gt;
+          &lt;created&gt;2024-01-10T10:00:00&lt;/created&gt;
+          &lt;modified&gt;2024-05-15T05:45:00&lt;/modified&gt;
+          &lt;images&gt;
+            ...
+          &lt;/images&gt;
+        &lt;/ad&gt;
+      &lt;/ads&gt;
+    &lt;/dealer&gt;
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+          </div>
+
+          <div class="table-container">
+          <table aria-label="Kommentierung des Update-Beispiels" style="margin-top: 1rem;">
+            <thead>
+              <tr>
+                <th>Bereich</th>
+                <th>Interpretation</th>
+                <th>Bedeutung für das Zielsystem</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>transferMode=update</code></td>
+                <td>Die Datei ist als Delta-Lieferung zu verstehen.</td>
+                <td>Nicht enthaltene Objekte dürfen nicht automatisch gelöscht werden.</td>
+              </tr>
+              <tr>
+                <td><code>backLogDays=3</code></td>
+                <td>Änderungen und Löschungen aus dem Rückblickzeitraum werden erneut geliefert.</td>
+                <td>Importprozesse können kurzfristige Ausfälle oder Verzögerungen robuster überbrücken.</td>
+              </tr>
+              <tr>
+                <td><code>dealersDeleted</code></td>
+                <td>Ein Händler wurde im Rückblickzeitraum gelöscht.</td>
+                <td>Der referenzierte Händler ist als entfernt oder inaktiv zu behandeln.</td>
+              </tr>
+              <tr>
+                <td><code>adsDeleted</code></td>
+                <td>Ein Inserat wurde im Rückblickzeitraum gelöscht.</td>
+                <td>Das referenzierte Inserat ist gezielt zu entfernen oder zu deaktivieren.</td>
+              </tr>
+              <tr>
+                <td><code>modified</code></td>
+                <td>Zeigt, dass das gelieferte Händler- bzw. Inseratsobjekt geändert wurde.</td>
+                <td>Kann zur Entscheidung genutzt werden, ob ein vorhandener Datensatz überschrieben werden muss.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="verarbeitung" class="anchor">
+          <h2>Verarbeitung im Zielsystem</h2>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Regel 1: Datei als Änderungsmenge interpretieren</h3>
+              <p>
+                Nach Auswertung von <code>transferMode=update</code> darf das Zielsystem nur die tatsächlich enthaltenen
+                neuen, geänderten oder gelöschten Objekte verarbeiten.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 2: Löschcontainer explizit anwenden</h3>
+              <p>
+                Händler und Inserate, die in <code>dealersDeleted</code> oder <code>adsDeleted</code> erscheinen, müssen
+                gezielt entfernt oder deaktiviert werden.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 3: Fehlende Objekte unverändert belassen</h3>
+              <p>
+                Objekte, die im Update nicht vorkommen und nicht explizit gelöscht wurden, bleiben im Zielsystem bestehen.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 4: <code>modified</code> für Update-Entscheidungen nutzen</h3>
+              <p>
+                Bei vorhandenen Händler- oder Inseratsobjekten sollte das Zielsystem prüfen, ob die gelieferten Datensätze
+                tatsächlich aktueller sind.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="loeschung" class="anchor">
+          <h2>Explizite Löschfälle</h2>
+          <div class="examples-grid">
+            <div class="code-card">
+              <h3>Gelöschtes Inserat</h3>
+              <pre>&lt;adsDeleted&gt;
+  &lt;deleteInfo guid="ad-4711" id="4711" /&gt;
+&lt;/adsDeleted&gt;</pre>
+              <p>
+                Dieser Eintrag signalisiert eine explizite Löschung. Das Zielsystem darf nicht darauf warten, dass das
+                Inserat in einer späteren Full-Datei fehlt, sondern muss den Löschhinweis direkt anwenden.
+              </p>
+            </div>
+
+            <div class="code-card">
+              <h3>Gelöschter Händler</h3>
+              <pre>&lt;dealersDeleted&gt;
+  &lt;deleteInfo guid="dealer-99" id="99" /&gt;
+&lt;/dealersDeleted&gt;</pre>
+              <p>
+                Dieser Eintrag signalisiert, dass der Händler im Rückblickzeitraum entfernt wurde. Je nach Zielsystem kann
+                dies auch Folgewirkungen für die zugehörigen Inserate haben.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="abgrenzung" class="anchor">
+          <h2>Abgrenzung zu Full</h2>
+          <div class="table-container">
+          <table aria-label="Update vs. Full">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Update Export</th>
+                <th>Full Export</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Grundprinzip</td>
+                <td>Änderungsmenge</td>
+                <td>Vollständiger Soll-Bestand</td>
+              </tr>
+              <tr>
+                <td>Fehlende Objekte</td>
+                <td>Bleiben bestehen</td>
+                <td>Gelten als entfernt oder inaktiv</td>
+              </tr>
+              <tr>
+                <td><code>backLogDays</code></td>
+                <td>Fachlich relevant</td>
+                <td>Nicht erforderlich</td>
+              </tr>
+              <tr>
+                <td>Löschbehandlung</td>
+                <td>Explizit über Löschcontainer</td>
+                <td>Primär implizit über Vollständigkeit</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </section>
+
+        <section id="hinweise" class="anchor">
+          <h2>Hinweise und Stolperfallen</h2>
+          <div class="notes-grid">
+            <article class="note">
+              <h3>Typischer Fehler: Update wie Full behandeln</h3>
+              <p>
+                Werden nicht enthaltene Objekte gelöscht, obwohl nur eine Änderungsmenge geliefert wurde, entstehen
+                Datenverlust und fehlerhafte Synchronisationsstände.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Typischer Fehler: <code>backLogDays</code> ignorieren</h3>
+              <p>
+                Ohne Berücksichtigung des Rückblickzeitraums wird die Robustheit der Schnittstelle unterschätzt und
+                Fehlerbilder bei verzögerten Importen werden schwer nachvollziehbar.
+              </p>
+            </article>
+            <article class="note">
+              <h3>Hinweis zur Didaktik</h3>
+              <p>
+                Das hier gezeigte Beispiel ist bewusst reduziert und ergänzt die bestehenden Beispiel-XMLs um explizite
+                Löschfälle, die in der Originalbeispieldatei nicht in gleicher didaktischer Klarheit sichtbar sind.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="redaktion" class="anchor">
+          <h2>Redaktionelle Metadaten</h2>
+          <div class="table-container">
+          <table aria-label="Redaktionelle Metadaten">
+            <thead>
+              <tr>
+                <th>Aspekt</th>
+                <th>Inhalt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quellenbasis</td>
+                <td>Update-Beispiel-XML, XSD sowie die Referenzseiten zu <code>exchange</code>, <code>loeschlogik</code>, <code>dealer</code>, <code>ad</code> und <code>contact</code>.</td>
+              </tr>
+              <tr>
+                <td>Didaktischer Status</td>
+                <td>Reduziertes Beispiel zur Erläuterung der Update-Logik; ergänzt die Originalbeispiele um explizite Löschfälle.</td>
+              </tr>
+              <tr>
+                <td>Empfohlene Folge-Seite</td>
+                <td><code>/schnittstellen/changelog</code> oder die REST-API-Übersicht</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <p class="footer-note">
+            Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
+            CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
+          </p>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">
+            &copy; 2026 technikboerse. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>
+
