@@ -182,17 +182,18 @@
           <div class="mode-grid">
             <div class="mode-card update">
               <h3>Update Mode</h3>
-              <p>Transfers only changes and explicit deletions.</p>
+              <p>Transfers only changes (added or modified ads) and explicit deletions.</p>
               <ul>
-                <li>Deletions via <code>&lt;deletedAds&gt;</code> or <code>&lt;deletedDealers&gt;</code>.</li>
+                <li>Deletions are explicit via <code>&lt;deletedAds&gt;</code> or <code>&lt;deletedDealers&gt;</code>.</li>
                 <li>Deleting a dealer automatically removes their ads.</li>
+                <li>Uses a "Lookback Window" for changes (see Operational Rules).</li>
               </ul>
             </div>
             <div class="mode-card full">
               <h3>Full Mode</h3>
-              <p>The delivery is considered the complete inventory for this interface.</p>
+              <p>Transfers the entire active inventory. The delivery is considered the complete inventory for this interface.</p>
               <ul>
-                <li>Ads not included in the XML for this interface are deleted.</li>
+                <li>Deletions occur implicitly by absence: Ads not included in the XML for this interface are deleted.</li>
                 <li>The dealer itself is not automatically removed.</li>
               </ul>
             </div>
@@ -200,6 +201,33 @@
           <div class="warning">
             <h3>Warning: Mode Selection</h3>
             <p>Switching between Full and Update without coordination can lead to unintended mass deletions. See <a href="schnittstellen_loeschlogik.html">Deletion Logic</a> for details.</p>
+          </div>
+        </section>
+
+        <section id="operational-rules" class="anchor">
+          <h2>Operational Rules</h2>
+          <p>For a stable and synchronous data exchange, the following operational guidelines apply:</p>
+          
+          <div class="cases-grid">
+            <div class="case-card">
+              <h3>Lookback / Backlog Window (Update Mode)</h3>
+              <p>When generating update files, a <strong>safety time window (overlap)</strong> into the past should be included (e.g., changes from the last 48 hours for daily exports). This ensures no changes are lost due to short-term outages or timing overlaps.</p>
+            </div>
+            
+            <div class="case-card">
+              <h3>Resynchronization</h3>
+              <p>To prevent "drift" (creeping inconsistencies) in update mode, it is strongly recommended to perform a <strong>periodic full transfer</strong> (e.g., once a week). This synchronizes the entire inventory and cleans up orphaned records.</p>
+            </div>
+            
+            <div class="case-card">
+              <h3>Processing Order &amp; File Handling</h3>
+              <p>Files are processed strictly <strong>chronologically</strong>. File names must include a timestamp (e.g., <code>export_20260422_1530.xml</code>) to ensure correct ordering. After successful processing, files on the target system are archived or removed.</p>
+            </div>
+            
+            <div class="case-card">
+              <h3>Processing Cadence</h3>
+              <p>The frequency of data exchange (e.g., daily at 02:00 AM or twice daily) must be <strong>agreed upon on a project basis</strong> to manage the load on both systems effectively.</p>
+            </div>
           </div>
         </section>
 

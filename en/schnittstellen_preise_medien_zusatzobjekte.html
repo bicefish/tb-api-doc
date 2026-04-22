@@ -221,14 +221,24 @@
                 <td>The operational limitation should be considered during validation and import.</td>
               </tr>
               <tr>
-                <td>Source</td>
-                <td>Images are usually delivered as web references.</td>
-                <td>The URL must not be manipulated by deriving custom variants.</td>
+                <td>URL Rules (Opaque URL)</td>
+                <td>Image URLs must be treated as opaque.</td>
+                <td>The URL must not be manipulated or rewritten by deriving custom variants.</td>
               </tr>
               <tr>
-                <td>Change Logic</td>
-                <td>Image changes can be signaled via new URLs or supplementary metadata.</td>
-                <td>During imports, attention should be paid to caching and replacement logic.</td>
+                <td>Caching & Updates</td>
+                <td>Image changes strictly require new URLs/filenames for the changed image.</td>
+                <td>Avoids faulty caching effects and guarantees image replacement.</td>
+              </tr>
+              <tr>
+                <td>Scopes & Variants</td>
+                <td>Clear separation between ad images (under <code>ad</code>) and contact images (under <code>contact</code>).</td>
+                <td>Logos or portraits do not belong in the ad image gallery.</td>
+              </tr>
+              <tr>
+                <td>Transport Methods</td>
+                <td>The standard is transport as a retrievable HTTP URL.</td>
+                <td>File-based transport (e.g., locally referenced images via ZIP) is optional and must be clarified in advance.</td>
               </tr>
               <tr>
                 <td>Integrity Feature</td>

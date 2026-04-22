@@ -44,6 +44,8 @@
             <li><a href="#attribute">Attribute</a></li>
             <li><a href="#unterelemente">Unterelemente</a></li>
             <li><a href="#regeln">Verarbeitungsregeln</a></li>
+            <li><a href="#weitergabe">Weitergabe &amp; Börsen</a></li>
+            <li><a href="#mapping">Mapping &amp; Fallbacks</a></li>
             <li><a href="#verweise">Verwandte Objektbereiche</a></li>
             <li><a href="#beispiele">Beispiel</a></li>
             <li><a href="#hinweise">Hinweise</a></li>
@@ -377,6 +379,86 @@
               <p>
                 Das Fehlen eines Inserats in einem Update-Export ist nicht automatisch eine Löschung. Löschfälle werden
                 auf Root-Ebene gesondert signalisiert oder ergeben sich bei Full-Exporten aus der Vollständigkeit des Bestands.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="weitergabe" class="anchor">
+          <h2>Weitergabe &amp; Externe Börsen (Forward Interfaces)</h2>
+          <p>
+            Über einen optionalen Weitergabe-Block kann die Publikation des Inserats auf angebundenen, nachgelagerten 
+            Plattformen (Downstream Publication) gesteuert werden. 
+          </p>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Optionalität &amp; Standardverhalten</h3>
+              <p>
+                Die Steuerung der Weitergabe ist optional. Fehlt der entsprechende Block, greift das im System 
+                hinterlegte Standardverhalten (Default Behavior), was in der Regel "keine Änderung" am bestehenden Status bedeutet.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Konfigurationsabhängigkeit</h3>
+              <p>
+                Die tatsächliche Ausführung der Weitergabe ist abhängig vom gebuchten Produkt und der Händlerkonfiguration.
+                Ziele müssen einem dokumentierten, vereinbarten Katalog (Source of Truth) entsprechen.
+              </p>
+            </article>
+          </div>
+          <div class="code-card" style="margin-top: 1rem;">
+            <h3>Beispiel: Weitergabe-Block</h3>
+            <pre>&lt;exports&gt;
+  &lt;export target="portal_a" publish="true" /&gt;
+  &lt;export target="portal_b" publish="false" /&gt;
+&lt;/exports&gt;</pre>
+          </div>
+        </section>
+
+        <section id="mapping" class="anchor">
+          <h2>Mapping, Fallbacks &amp; Standardisierung</h2>
+          <p>
+            Um die Datenqualität beim Import von Inseraten sicherzustellen, durchlaufen verschiedene Datenpunkte 
+            einen Normalisierungs- und Mapping-Prozess. 
+          </p>
+          
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Kategorien &amp; Fallbacks</h3>
+              <p>
+                Kategorien werden primär anhand der <code>category_id</code> zugewiesen. Schlägt die Zuweisung fehl 
+                oder ist die Kategorie ungültig, greifen definierte Fallback-Regeln (z.B. Zuweisung in eine 
+                Oberkategorie oder "Sonstiges"), um das Inserat nicht abzuweisen.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Hersteller-Normalisierung</h3>
+              <p>
+                Herstellernamen werden normalisiert (z. B. Schreibfehler korrigiert, Aliasse zusammengeführt). 
+                Konnte ein Hersteller nicht aufgelöst werden, greifen Fallback-Regeln (z. B. "Sonstige" oder Anlage als Freitext), 
+                abhängig von den Systemvorgaben.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Modellverarbeitung</h3>
+              <p>
+                Die Verarbeitung von Modellbezeichnungen erfolgt flexibel. Oft wird versucht, Modelle aus Katalogen 
+                abzugleichen, jedoch wird eine Freitext-Übernahme unterstützt, falls kein striktes Mapping möglich ist.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Umgang mit Attributen</h3>
+              <p>
+                Bekannte und unterstützte Attribute werden verarbeitet, unbekannte oder nicht im Schema 
+                vorgesehene Attribute werden ignoriert (Silent Ignore), ohne dass der Import fehlschlägt.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Standard vs. Spezialmapping</h3>
+              <p>
+                Standardmäßig ist eine Adhärenz an das allgemeine Datenmodell vorgesehen. Spezielle Custom-Mapping-Agreements 
+                können vereinbart werden, weichen dann aber vom Standardverhalten ab. Die Verantwortung für die korrekte 
+                Ausrichtung des Mappings liegt beim Integrationspartner.
               </p>
             </article>
           </div>

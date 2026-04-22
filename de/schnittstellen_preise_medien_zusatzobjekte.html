@@ -236,14 +236,24 @@
                 <td>Die operative Begrenzung sollte bei Validierung und Import berücksichtigt werden.</td>
               </tr>
               <tr>
-                <td>Quelle</td>
-                <td>Bilder werden in der Regel als Web-Referenzen geliefert.</td>
-                <td>Die URL darf nicht durch Ableiten eigener Varianten manipuliert werden.</td>
+                <td>URL-Regeln (Opaque URL)</td>
+                <td>Bild-URLs müssen als "opaque" (undurchsichtig) betrachtet werden.</td>
+                <td>Die URL darf nicht durch Ableiten eigener Varianten manipuliert oder umgeschrieben werden.</td>
               </tr>
               <tr>
-                <td>Änderungslogik</td>
-                <td>Bildänderungen können über neue URLs oder ergänzende Metadaten signalisiert werden.</td>
-                <td>Bei Imports sollte auf Caching- und Ersetzungslogik geachtet werden.</td>
+                <td>Caching & Updates</td>
+                <td>Bildänderungen erfordern zwingend neue URLs/Dateinamen für das geänderte Bild.</td>
+                <td>Vermeidet fehlerhafte Caching-Effekte und garantiert den Austausch des Bildes.</td>
+              </tr>
+              <tr>
+                <td>Bereiche & Varianten</td>
+                <td>Klare Trennung zwischen Inseratsbildern (unter <code>ad</code>) und Kontaktbildern (unter <code>contact</code>).</td>
+                <td>Logos oder Porträts gehören nicht in die Inseratsbildergalerie.</td>
+              </tr>
+              <tr>
+                <td>Transport-Methoden</td>
+                <td>Standard ist der Transport als abrufbare HTTP-URL.</td>
+                <td>Ein dateibasierter Transport (z.B. lokal referenzierte Bilder via ZIP) ist optional und muss vorab geklärt werden.</td>
               </tr>
               <tr>
                 <td>Integritätsmerkmal</td>

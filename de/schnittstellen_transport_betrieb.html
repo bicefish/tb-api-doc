@@ -182,17 +182,18 @@
           <div class="mode-grid">
             <div class="mode-card update">
               <h3>Update Mode</h3>
-              <p>Überträgt nur Änderungen und explizite Löschungen.</p>
+              <p>Überträgt nur Änderungen (hinzugefügte oder geänderte Inserate) und explizite Löschungen.</p>
               <ul>
-                <li>Löschungen via <code>&lt;deletedAds&gt;</code> oder <code>&lt;deletedDealers&gt;</code>.</li>
+                <li>Löschungen erfolgen explizit via <code>&lt;deletedAds&gt;</code> oder <code>&lt;deletedDealers&gt;</code>.</li>
                 <li>Inaktive Händler löschen automatisch deren Inserate.</li>
+                <li>Nutzt ein "Lookback-Window" für Änderungen (siehe Betriebsregeln).</li>
               </ul>
             </div>
             <div class="mode-card full">
               <h3>Full Mode</h3>
-              <p>Die Lieferung gilt als vollständiger Bestand für diese Schnittstelle.</p>
+              <p>Überträgt das gesamte aktive Inventar. Die Lieferung gilt als vollständiger Bestand für diese Schnittstelle.</p>
               <ul>
-                <li>Nicht enthaltene Inserate der Schnittstelle werden gelöscht.</li>
+                <li>Löschungen erfolgen implizit durch Fehlen (Absence): Nicht enthaltene Inserate der Schnittstelle werden gelöscht.</li>
                 <li>Der Händler selbst wird nicht automatisch entfernt.</li>
               </ul>
             </div>
@@ -200,6 +201,33 @@
           <div class="warning">
             <h3>Achtung: Wahl des Modus</h3>
             <p>Ein Wechsel zwischen Full und Update ohne Abstimmung kann zu ungewollten Massenlöschungen führen. Details siehe <a href="schnittstellen_loeschlogik.html">Löschlogik</a>.</p>
+          </div>
+        </section>
+
+        <section id="operational-rules" class="anchor">
+          <h2>Betriebs- und Verarbeitungsregeln</h2>
+          <p>Für einen stabilen und synchronen Datenaustausch gelten folgende operationelle Vorgaben:</p>
+          
+          <div class="cases-grid">
+            <div class="case-card">
+              <h3>Lookback / Backlog Window (Update Mode)</h3>
+              <p>Bei der Generierung von Update-Dateien sollte ein <strong>Sicherheits-Zeitfenster (Overlap)</strong> in die Vergangenheit berücksichtigt werden (z. B. Änderungen der letzten 48 Stunden bei täglichem Export). Dies stellt sicher, dass keine Änderungen durch kurzfristige Ausfälle oder zeitliche Überschneidungen verloren gehen.</p>
+            </div>
+            
+            <div class="case-card">
+              <h3>Resynchronisation</h3>
+              <p>Um "Drift" (schleichende Inkonsistenzen) im Update-Modus zu beheben, wird dringend empfohlen, <strong>periodisch einen Full-Transfer</strong> durchzuführen (z. B. 1x wöchentlich). Dies synchronisiert den gesamten Bestand und räumt Karteileichen auf.</p>
+            </div>
+            
+            <div class="case-card">
+              <h3>Verarbeitungsreihenfolge &amp; Dateihandling</h3>
+              <p>Dateien werden streng <strong>chronologisch</strong> verarbeitet. Dateinamen müssen zwingend einen Zeitstempel (z. B. <code>export_20260422_1530.xml</code>) enthalten. Nach erfolgreicher Verarbeitung werden die Dateien auf dem Zielsystem archiviert oder gelöscht.</p>
+            </div>
+            
+            <div class="case-card">
+              <h3>Verarbeitungsrhythmus (Cadence)</h3>
+              <p>Der Rhythmus des Datenaustauschs (z. B. täglich um 02:00 Uhr oder halbtägig) muss <strong>projektbezogen abgestimmt</strong> werden, um die Last auf beiden Systemen zu steuern.</p>
+            </div>
           </div>
         </section>
 

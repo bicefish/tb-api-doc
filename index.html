@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="schnittstellen_shared.css" />
   <style>
     body {
-      background: var(--bg);
+      background: radial-gradient(circle at top left, #f1f5f9, #f8fafc), var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -27,7 +27,9 @@
       width: 92%;
       text-align: center;
       padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem);
-      background: var(--surface);
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: 2rem;
       box-shadow: var(--shadow);
@@ -43,68 +45,78 @@
       color: var(--muted);
       font-size: clamp(1rem, 4vw, 1.15rem);
       margin: 0 auto 1.5rem;
+      opacity: 0.8;
     }
 
     .landing-logo {
       max-width: clamp(180px, 50vw, 280px);
       height: auto;
       margin-bottom: 2rem;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
     }
 
     .language-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .language-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .lang-card {
-      background: #fcfcfd;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 1.25rem;
-      padding: 1.5rem 1.25rem;
+      border-radius: 1rem;
+      padding: 1.5rem;
       text-decoration: none;
       color: inherit;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
       position: relative;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      box-shadow: var(--shadow);
     }
 
     .lang-card:hover {
-      background: var(--surface);
       border-color: var(--accent);
+      box-shadow: 0 12px 25px -10px rgba(15, 118, 110, 0.15);
     }
 
     .lang-card h2 {
-      font-size: 1.4rem;
-      margin-bottom: 0.25rem;
+      font-size: 1.25rem;
+      margin: 0.5rem 0 0.25rem;
       color: var(--text);
     }
 
     .lang-card span {
       color: var(--accent);
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
     }
 
     .lang-card p {
       margin: 0.5rem 0 0;
       color: var(--muted);
       font-size: 0.9rem;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .lang-card::after {
       content: '→';
       position: absolute;
-      bottom: 1rem;
-      right: 1.25rem;
+      bottom: 1.5rem;
+      right: 1.5rem;
       font-size: 1.25rem;
-      opacity: 0;
-      transform: translateX(-0.5rem);
-      transition: all 0.3s ease;
       color: var(--accent);
+      opacity: 0.3;
     }
 
     .lang-card:hover::after {
@@ -113,17 +125,17 @@
 
     .section-label {
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
       color: var(--muted);
-      margin-top: 2.5rem;
-      margin-bottom: 1.25rem;
-      font-weight: 700;
-      opacity: 0.7;
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      opacity: 0.6;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .section-label:first-of-type {
@@ -135,12 +147,12 @@
       content: '';
       height: 1px;
       flex-grow: 1;
-      background: var(--border);
+      background: linear-gradient(to right, transparent, var(--border), transparent);
       opacity: 0.5;
     }
 
     .footer {
-      margin-top: 3rem;
+      margin-top: 4rem;
       font-size: 0.875rem;
       color: var(--muted);
       opacity: 0.6;
@@ -155,33 +167,57 @@
       <p>Schnittstellen Dokumentation / Interface Documentation</p>
     </header>
 
-    <div class="section-label">XML</div>
+    <div class="section-label">Import nach technikboerse / Import into technikboerse</div>
     <div class="language-grid">
       <a href="de/schnittstellen_quickstart.html" class="lang-card">
-        <span>Deutsch</span>
+        <span>DE | XML Import</span>
         <h2>Schnellstart</h2>
-        <p>Ihre erste Maschine in wenigen Schritten exportieren.</p>
+        <p>Maschinen und Daten an technikboerse übertragen.</p>
       </a>
 
       <a href="en/schnittstellen_quickstart.html" class="lang-card">
-        <span>English</span>
+        <span>EN | XML Import</span>
         <h2>Quick-Start</h2>
-        <p>Export your first machine in just a few steps.</p>
+        <p>Transfer machines and data to technikboerse.</p>
       </a>
-    </div>
 
-    <div class="section-label">REST-API</div>
-    <div class="language-grid">
       <a href="de/schnittstellen_rest_api.html" class="lang-card">
-        <span>Deutsch</span>
-        <h2>REST-API Übersicht</h2>
-        <p>Funktionaler Überblick und Einstieg in die technische API-Referenz.</p>
+        <span>DE | REST Import</span>
+        <h2>REST-API</h2>
+        <p>Moderner, API-basierter Import von Inseratsdaten.</p>
       </a>
 
       <a href="en/schnittstellen_rest_api.html" class="lang-card">
-        <span>English</span>
-        <h2>REST API Overview</h2>
-        <p>Functional overview and entry point to the technical API reference.</p>
+        <span>EN | REST Import</span>
+        <h2>REST API</h2>
+        <p>Modern, API-based import of listing data.</p>
+      </a>
+    </div>
+
+    <div class="section-label">Export from technikboerse / Export von technikboerse</div>
+    <div class="language-grid">
+      <a href="de/schnittstellen_quickstart.html" class="lang-card">
+        <span>DE | XML Export</span>
+        <h2>Datenempfang</h2>
+        <p>Vollständige Bestandsdaten von technikboerse beziehen.</p>
+      </a>
+
+      <a href="en/schnittstellen_quickstart.html" class="lang-card">
+        <span>EN | XML Export</span>
+        <h2>Data Retrieval</h2>
+        <p>Retrieve full inventory data from technikboerse.</p>
+      </a>
+
+      <a href="de/schnittstellen_rest_api.html" class="lang-card">
+        <span>DE | REST Export</span>
+        <h2>REST-API</h2>
+        <p>Abfrage von Bestandsdaten über die REST-Schnittstelle.</p>
+      </a>
+
+      <a href="en/schnittstellen_rest_api.html" class="lang-card">
+        <span>EN | REST Export (REST API)</span>
+        <h2>REST API</h2>
+        <p>Query inventory data via the REST interface.</p>
       </a>
     </div>
 

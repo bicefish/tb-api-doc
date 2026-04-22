@@ -144,10 +144,10 @@
               </p>
             </article>
             <article class="summary-card">
-              <h3>Multilingualism and Responsibility</h3>
+              <h3>Multilingualism and Responsibilities (Entity Roles)</h3>
               <p>
-                Language and areas of responsibility are separate information dimensions and should not be 
-                merged into free text fields in the target system.
+                A contact bundles functional roles (responsibilities) and language profiles. These attributes serve for 
+                classification and should not be merged into free text fields in the target system.
               </p>
             </article>
           </div>
@@ -337,32 +337,39 @@
               <h3>Rule 1: Resolve Contacts within the Dealer Context</h3>
               <p>
                 The <code>id</code> of a contact is to be interpreted in the context of the dealer. A global resolution 
-                without dealer reference can lead to incorrect assignments.
+                without dealer reference can lead to incorrect assignments. It must serve as a stable, unique identifier per dealer.
               </p>
             </article>
             <article class="rule-card">
-              <h3>Rule 2: Treat <code>contact_ids</code> Only as References</h3>
+              <h3>Rule 2: Ensure Reference Consistency (No Dangling References)</h3>
               <p>
-                The contact IDs transmitted in the advertisement do not contain complete contact person data. The actual 
-                contact details must be adopted from <code>contacts</code>.
+                Advertisements may only reference IDs in <code>contact_ids</code> that are actually defined in the 
+                <code>dealer</code> object under <code>contacts</code>. The target system must safely handle missing references.
               </p>
             </article>
             <article class="rule-card">
-              <h3>Rule 3: Process Languages Normatively</h3>
+              <h3>Rule 3: Inheritance Logic & Fallbacks</h3>
               <p>
-                Language information should be stored in the target system as ISO 639-1 codes and not 
-                converted into free names.
+                An explicit assignment of contacts at the advertisement level (<code>contact_ids</code>) overrides any 
+                default contacts at the dealer level. If an ad assignment is missing, the defined default dealer contact applies (fallback).
               </p>
             </article>
             <article class="rule-card">
-              <h3>Rule 4: Do Not Resolve Responsibilities into Free Text</h3>
+              <h3>Rule 4: Process Languages Normatively</h3>
               <p>
-                <code>responsibilities</code> should be adopted in a structured way so that targeted assignments, 
-                filters, or routing rules remain possible later.
+                Language information (<code>languages_iso_639_1</code>) MUST be processed as standardized ISO-639-1 codes 
+                to enable automated routing and correct front-end output.
               </p>
             </article>
             <article class="rule-card">
-              <h3>Rule 5: Handle Schema Discrepancies Visibly</h3>
+              <h3>Rule 5: Use Responsibilities as Classification</h3>
+              <p>
+                The <code>responsibilities</code> field defines functional roles (e.g., "Used Machines", "New Machines"). 
+                It must be evaluated for correct routing classification and not as unstructured free text.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Rule 6: Handle Schema Discrepancies Visibly</h3>
               <p>
                 Discrepancies such as <code>mobil</code> instead of <code>mobile</code> must not be silently ignored, 
                 but should be operationally documented and deliberately considered during implementation.

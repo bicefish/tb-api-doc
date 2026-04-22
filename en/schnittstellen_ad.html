@@ -44,6 +44,8 @@
             <li><a href="#attributes">Attributes</a></li>
             <li><a href="#sub-elements">Sub-elements</a></li>
             <li><a href="#rules">Processing Rules</a></li>
+            <li><a href="#forwarding">Forward Interfaces</a></li>
+            <li><a href="#mapping">Mapping &amp; Fallbacks</a></li>
             <li><a href="#references">Related Object Areas</a></li>
             <li><a href="#example">Example</a></li>
             <li><a href="#notes">Notes</a></li>
@@ -378,6 +380,84 @@
                 The absence of an advertisement in an update export is not automatically a deletion. 
                 Deletion cases are signaled separately at the root level or result from the completeness 
                 of the inventory in full exports.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="forwarding" class="anchor">
+          <h2>Forward Interfaces &amp; Downstream Publication</h2>
+          <p>
+            An optional forwarding block can be used to control the publication of the advertisement on connected, downstream platforms.
+          </p>
+          <div class="rules-grid">
+            <article class="rule-card">
+              <h3>Optional Nature &amp; Default Behavior</h3>
+              <p>
+                Controlling forwarding is optional. If the corresponding block is missing, the default behavior configured 
+                in the system applies, which usually means "no change" to the existing status.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Configuration Dependency</h3>
+              <p>
+                The actual execution of the forwarding is subject to the booked product and dealer configuration. 
+                Targets must correspond to a documented, agreed catalog (source of truth).
+              </p>
+            </article>
+          </div>
+          <div class="code-card" style="margin-top: 1rem;">
+            <h3>Example: Forwarding Block</h3>
+            <pre>&lt;exports&gt;
+  &lt;export target="portal_a" publish="true" /&gt;
+  &lt;export target="portal_b" publish="false" /&gt;
+&lt;/exports&gt;</pre>
+          </div>
+        </section>
+
+        <section id="mapping" class="anchor">
+          <h2>Mapping, Fallbacks &amp; Standardization</h2>
+          <p>
+            To ensure data quality when importing advertisements, various data points go through a normalization and mapping process.
+          </p>
+          
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>Category Assignment &amp; Fallbacks</h3>
+              <p>
+                Categories are primarily assigned based on the <code>category_id</code>. If the assignment fails or the 
+                category is invalid, defined fallback rules apply (e.g. assignment to a parent category or "Other") 
+                to ensure the advertisement is not rejected.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Manufacturer Normalization</h3>
+              <p>
+                Manufacturer names are normalized (e.g. spelling mistakes corrected, aliases merged). 
+                If a manufacturer could not be resolved, fallback rules apply (e.g. "Other" or creation as free text), 
+                depending on system specifications.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Flexible Model Processing</h3>
+              <p>
+                Model names are processed flexibly. Often an attempt is made to match models from catalogs, 
+                but free-text adoption is supported if strict mapping is not possible.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Attribute Handling</h3>
+              <p>
+                Known and supported attributes are processed, unknown attributes or those not provided for in the schema 
+                are ignored (silent ignore) without causing the import to fail.
+              </p>
+            </article>
+            <article class="summary-card">
+              <h3>Standard vs. Custom Mapping</h3>
+              <p>
+                By default, adherence to the general data model is expected. Custom mapping agreements 
+                can be arranged, but they deviate from standard behavior. The integration partner 
+                is responsible for ensuring proper mapping alignment and delivering data in the agreed format.
               </p>
             </article>
           </div>

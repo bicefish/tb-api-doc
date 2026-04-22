@@ -144,10 +144,10 @@
               </p>
             </article>
             <article class="summary-card">
-              <h3>Mehrsprachigkeit und Zuständigkeit</h3>
+              <h3>Mehrsprachigkeit und Zuständigkeiten (Entity Roles)</h3>
               <p>
-                Sprache und Verantwortungsbereiche sind eigene Informationsdimensionen und sollten im Zielsystem nicht
-                in freie Textfelder zusammengezogen werden.
+                Ein Kontakt bündelt funktionale Rollen (Zuständigkeiten) und Sprachprofile. Diese Attribute dienen der
+                Klassifizierung und sollten im Zielsystem nicht in freie Textfelder zusammengezogen werden.
               </p>
             </article>
           </div>
@@ -337,32 +337,40 @@
               <h3>Regel 1: Kontakte innerhalb des Händlerkontexts auflösen</h3>
               <p>
                 Die <code>id</code> eines Kontakts ist im Kontext des Händlers zu interpretieren. Eine globale Auflösung
-                ohne Händlerbezug kann zu fehlerhaften Zuordnungen führen.
+                ohne Händlerbezug kann zu fehlerhaften Zuordnungen führen. Sie muss als stabiler Identifikator pro Händler dienen.
               </p>
             </article>
             <article class="rule-card">
-              <h3>Regel 2: <code>contact_ids</code> nur als Referenzen behandeln</h3>
+              <h3>Regel 2: Referenzkonsistenz sicherstellen (Dangling References vermeiden)</h3>
               <p>
-                Die im Inserat übermittelten Kontakt-IDs enthalten keine vollständigen Ansprechpartnerdaten. Die eigentlichen
-                Kontaktdetails müssen aus <code>contacts</code> übernommen werden.
+                Inserate dürfen in <code>contact_ids</code> nur auf IDs verweisen, die im <code>dealer</code>-Objekt
+                unter <code>contacts</code> auch tatsächlich definiert sind. Das Zielsystem muss fehlende Referenzen
+                sicher abfangen können.
               </p>
             </article>
             <article class="rule-card">
-              <h3>Regel 3: Sprachen normiert verarbeiten</h3>
+              <h3>Regel 3: Vererbungslogik & Fallbacks</h3>
               <p>
-                Sprachinformationen sollten im Zielsystem als ISO-639-1-Codes gespeichert und nicht in freie Bezeichnungen
-                umgewandelt werden.
+                Eine explizite Zuweisung von Kontakten auf Inseratsebene (<code>contact_ids</code>) überschreibt eventuelle
+                Standard-Kontakte auf Händlerebene. Fehlt eine Inseratszuweisung, greift der definierte Standard-Händlerkontakt (Fallback).
               </p>
             </article>
             <article class="rule-card">
-              <h3>Regel 4: Zuständigkeiten nicht in Freitext auflösen</h3>
+              <h3>Regel 4: Sprachen normiert verarbeiten</h3>
               <p>
-                <code>responsibilities</code> sollten strukturiert übernommen werden, damit später gezielte Zuordnungen,
-                Filter oder Routingregeln möglich bleiben.
+                Sprachinformationen (<code>languages_iso_639_1</code>) MÜSSEN als standardisierte ISO-639-1-Codes verarbeitet
+                werden, um automatisiertes Routing und korrekte Front-End-Ausgaben zu ermöglichen.
               </p>
             </article>
             <article class="rule-card">
-              <h3>Regel 5: Schemaabweichungen sichtbar behandeln</h3>
+              <h3>Regel 5: Zuständigkeiten als Klassifizierung nutzen</h3>
+              <p>
+                Das Feld <code>responsibilities</code> definiert fachliche Rollen (z. B. "Gebrauchtmaschinen", "Neumaschinen").
+                Es muss zur korrekten Routing-Klassifizierung und nicht als unstrukturierter Freitext ausgewertet werden.
+              </p>
+            </article>
+            <article class="rule-card">
+              <h3>Regel 6: Schemaabweichungen sichtbar behandeln</h3>
               <p>
                 Abweichungen wie <code>mobil</code> statt <code>mobile</code> dürfen nicht stillschweigend übergangen werden,
                 sondern sollten operativ dokumentiert und bei der Implementierung bewusst berücksichtigt werden.

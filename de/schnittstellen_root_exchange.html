@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,12 +10,21 @@
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
   <style>
-    .page { max-width: 980px; }
+    .page {
+      max-width: 980px;
+    }
+
     /* root-exchange uses wider field cards and a margined meta grid */
-    .meta-grid  { margin: 1.75rem 0 2rem; }
-    .field-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+    .meta-grid {
+      margin: 1.75rem 0 2rem;
+    }
+
+    .field-grid {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
   </style>
 </head>
+
 <body>
   <div class="layout">
     <div class="mobile-header">
@@ -33,7 +43,7 @@
         <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
         <small>technikboerse Schnittstellen</small>
         <h1>XML-Referenz: Root-Element <code>exchange</code></h1>
-        
+
         <div class="lang-switch">
           <a href="#" class="active">DE</a>
           <span class="separator">|</span>
@@ -92,9 +102,25 @@
           <p>
             Diese Seite beschreibt das Wurzelelement der XML-Exportdatei und alle globalen Metadaten,
             die für die Verarbeitung des Exports relevant sind. Das empfangende System muss die Angaben
-            auf Root-Ebene auswerten, bevor einzelne <code>dealer</code>- oder <code>ad</code>-Objekte verarbeitet werden.
+            auf Root-Ebene auswerten, bevor einzelne <code>dealer</code>- oder <code>ad</code>-Objekte verarbeitet
+            werden.
           </p>
         </header>
+
+        <div class="note" style="margin-bottom: 2rem;">
+          <h3>Import- und Export-Perspektive</h3>
+          <p>
+            Die XML-Schnittstelle unterstützt zwei Hauptrichtungen: <strong>Import</strong> (zu technikboerse) und
+            <strong>Export</strong> (von technikboerse).
+            Bitte beachten Sie, dass die Semantik der XML-Elemente immer aus der Perspektive des jeweiligen
+            empfangenden oder sendenden Systems gelesen werden muss.
+          </p>
+          <p>
+            Für den Import-Prozess sind <strong>Import XML-Schema</strong>, <strong>Beispieldatei für
+              Voll-Import</strong> und <strong>Beispieldatei für Update-Import</strong> als begleitende
+            Schema-/Beispiel-Artefakte verfügbar.
+          </p>
+        </div>
 
         <div class="meta-grid" aria-label="Seiteneinordnung">
           <div class="meta-card">
@@ -107,7 +133,8 @@
           </div>
           <div class="meta-card">
             <strong>Relevante Felder</strong>
-            <code>senderName</code>, <code>exportDate</code>, <code>transferMode</code>, <code>backLogDays</code>, <code>dealersDeleted</code>, <code>adsDeleted</code>, <code>dealers</code>, <code>validation</code>
+            <code>senderName</code>, <code>exportDate</code>, <code>transferMode</code>, <code>backLogDays</code>,
+            <code>dealersDeleted</code>, <code>adsDeleted</code>, <code>dealers</code>, <code>validation</code>
           </div>
         </div>
 
@@ -143,10 +170,17 @@
               <h3><code>exchange</code></h3>
               <p>Wurzelelement der XML-Exportdatei.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Ja</dd>
-                <dt>Enthält</dt><dd><code>senderName</code>, <code>exportDate</code>, <code>transferMode</code>, optional <code>backLogDays</code>, <code>dealersDeleted</code>, <code>adsDeleted</code>, <code>dealers</code>, optional <code>validation</code></dd>
-                <dt>Verarbeitungsregel</dt><dd>Die Datei ist als vollständige fachliche Einheit zu behandeln. Eine Verarbeitung einzelner Knoten ohne Berücksichtigung der Root-Metadaten ist nicht ausreichend.</dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja</dd>
+                <dt>Enthält</dt>
+                <dd><code>senderName</code>, <code>exportDate</code>, <code>transferMode</code>, optional
+                  <code>backLogDays</code>, <code>dealersDeleted</code>, <code>adsDeleted</code>, <code>dealers</code>,
+                  optional <code>validation</code></dd>
+                <dt>Verarbeitungsregel</dt>
+                <dd>Die Datei ist als vollständige fachliche Einheit zu behandeln. Eine Verarbeitung einzelner Knoten
+                  ohne Berücksichtigung der Root-Metadaten ist nicht ausreichend.</dd>
               </dl>
             </article>
 
@@ -154,10 +188,15 @@
               <h3><code>senderName</code></h3>
               <p>Eindeutiger Name des Senders der Datei.</p>
               <dl>
-                <dt>Typ</dt><dd>String</dd>
-                <dt>Pflicht</dt><dd>Ja</dd>
-                <dt>Bedeutung</dt><dd>Identifiziert das sendende System bzw. die sendende Schnittstelle.</dd>
-                <dt>Verarbeitungsregel</dt><dd>Der Wert sollte dauerhaft stabil bleiben. Änderungen können dazu führen, dass bekannte Datensätze im Zielsystem nicht mehr korrekt zugeordnet oder aktualisiert werden.</dd>
+                <dt>Typ</dt>
+                <dd>String</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja</dd>
+                <dt>Bedeutung</dt>
+                <dd>Identifiziert das sendende System bzw. die sendende Schnittstelle.</dd>
+                <dt>Verarbeitungsregel</dt>
+                <dd>Der Wert sollte dauerhaft stabil bleiben. Änderungen können dazu führen, dass bekannte Datensätze im
+                  Zielsystem nicht mehr korrekt zugeordnet oder aktualisiert werden.</dd>
               </dl>
             </article>
 
@@ -165,10 +204,15 @@
               <h3><code>exportDate</code></h3>
               <p>Zeitpunkt der Generierung der Exportdatei.</p>
               <dl>
-                <dt>Typ</dt><dd>Datum/Zeit</dd>
-                <dt>Pflicht</dt><dd>Ja</dd>
-                <dt>Bedeutung</dt><dd>Kennzeichnet den Erstellungszeitpunkt des Exports.</dd>
-                <dt>Verarbeitungsregel</dt><dd><code>exportDate</code> beschreibt die Datei, nicht den Änderungszeitpunkt einzelner Objekte. Für Objektupdates sind die jeweiligen <code>modified</code>-Werte maßgeblich.</dd>
+                <dt>Typ</dt>
+                <dd>Datum/Zeit</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja</dd>
+                <dt>Bedeutung</dt>
+                <dd>Kennzeichnet den Erstellungszeitpunkt des Exports.</dd>
+                <dt>Verarbeitungsregel</dt>
+                <dd><code>exportDate</code> beschreibt die Datei, nicht den Änderungszeitpunkt einzelner Objekte. Für
+                  Objektupdates sind die jeweiligen <code>modified</code>-Werte maßgeblich.</dd>
               </dl>
             </article>
 
@@ -176,11 +220,17 @@
               <h3><code>transferMode</code></h3>
               <p>Kennzeichnet die Art der Übertragung.</p>
               <dl>
-                <dt>Typ</dt><dd>String</dd>
-                <dt>Pflicht</dt><dd>Ja</dd>
-                <dt>Gültige Werte</dt><dd><code>full</code>, <code>update</code></dd>
-                <dt>Bedeutung</dt><dd><code>full</code> steht für vollständigen Abgleich, <code>update</code> für eine Änderungsmenge.</dd>
-                <dt>Verarbeitungsregel</dt><dd>Das empfangende System muss die gesamte Importlogik anhand dieses Feldes steuern.</dd>
+                <dt>Typ</dt>
+                <dd>String</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja</dd>
+                <dt>Gültige Werte</dt>
+                <dd><code>full</code>, <code>update</code></dd>
+                <dt>Bedeutung</dt>
+                <dd><code>full</code> steht für vollständigen Abgleich, <code>update</code> für eine Änderungsmenge.
+                </dd>
+                <dt>Verarbeitungsregel</dt>
+                <dd>Das empfangende System muss die gesamte Importlogik anhand dieses Feldes steuern.</dd>
               </dl>
             </article>
 
@@ -188,10 +238,15 @@
               <h3><code>backLogDays</code></h3>
               <p>Definiert den Rückblickzeitraum für einen Update-Export.</p>
               <dl>
-                <dt>Typ</dt><dd>Integer</dd>
-                <dt>Pflicht</dt><dd>Nein, nur relevant bei <code>transferMode=update</code></dd>
-                <dt>Bedeutung</dt><dd>Gibt an, über welchen Zeitraum Änderungen und Löschungen im Update berücksichtigt werden.</dd>
-                <dt>Verarbeitungsregel</dt><dd>Das Feld ist nur im Update-Kontext fachlich relevant. Bei Full-Exporten ist es nicht erforderlich.</dd>
+                <dt>Typ</dt>
+                <dd>Integer</dd>
+                <dt>Pflicht</dt>
+                <dd>Nein, nur relevant bei <code>transferMode=update</code></dd>
+                <dt>Bedeutung</dt>
+                <dd>Gibt an, über welchen Zeitraum Änderungen und Löschungen im Update berücksichtigt werden.</dd>
+                <dt>Verarbeitungsregel</dt>
+                <dd>Das Feld ist nur im Update-Kontext fachlich relevant. Bei Full-Exporten ist es nicht erforderlich.
+                </dd>
               </dl>
             </article>
 
@@ -199,10 +254,15 @@
               <h3><code>dealersDeleted</code></h3>
               <p>Container für Händler, die im relevanten Zeitraum gelöscht wurden.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Ja, kann aber leer sein</dd>
-                <dt>Bedeutung</dt><dd>Bei Update-Exporten enthält das Element Händler, die im Rückblickzeitraum gelöscht wurden.</dd>
-                <dt>Verarbeitungsregel</dt><dd>Im Update-Modus müssen diese Händler im Zielsystem entfernt oder deaktiviert werden. Im Full-Modus ist das Element im Regelfall leer.</dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja, kann aber leer sein</dd>
+                <dt>Bedeutung</dt>
+                <dd>Bei Update-Exporten enthält das Element Händler, die im Rückblickzeitraum gelöscht wurden.</dd>
+                <dt>Verarbeitungsregel</dt>
+                <dd>Im Update-Modus müssen diese Händler im Zielsystem entfernt oder deaktiviert werden. Im Full-Modus
+                  ist das Element im Regelfall leer.</dd>
               </dl>
             </article>
 
@@ -210,10 +270,14 @@
               <h3><code>adsDeleted</code></h3>
               <p>Container für Inserate, die im relevanten Zeitraum gelöscht wurden.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Ja, kann aber leer sein</dd>
-                <dt>Bedeutung</dt><dd>Bei Update-Exporten enthält das Element gelöschte Inserate.</dd>
-                <dt>Verarbeitungsregel</dt><dd>Im Update-Modus sind diese Inserate im Zielsystem gezielt zu löschen oder zu deaktivieren.</dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja, kann aber leer sein</dd>
+                <dt>Bedeutung</dt>
+                <dd>Bei Update-Exporten enthält das Element gelöschte Inserate.</dd>
+                <dt>Verarbeitungsregel</dt>
+                <dd>Im Update-Modus sind diese Inserate im Zielsystem gezielt zu löschen oder zu deaktivieren.</dd>
               </dl>
             </article>
 
@@ -221,10 +285,16 @@
               <h3><code>dealers</code></h3>
               <p>Container für die übertragenen Händlerobjekte.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Ja</dd>
-                <dt>Bedeutung</dt><dd>Enthält die eigentlichen Nutzdaten des Exports in Form von <code>dealer</code>-Objekten mit ihren Inseraten und Ansprechpartnern.</dd>
-                <dt>Verweis</dt><dd><code>/schnittstellen/xml/dealer</code>, <code>/schnittstellen/xml/ad</code>, <code>/schnittstellen/xml/contact</code></dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja</dd>
+                <dt>Bedeutung</dt>
+                <dd>Enthält die eigentlichen Nutzdaten des Exports in Form von <code>dealer</code>-Objekten mit ihren
+                  Inseraten und Ansprechpartnern.</dd>
+                <dt>Verweis</dt>
+                <dd><code>/schnittstellen/xml/dealer</code>, <code>/schnittstellen/xml/ad</code>,
+                  <code>/schnittstellen/xml/contact</code></dd>
               </dl>
             </article>
 
@@ -232,10 +302,16 @@
               <h3><code>validation</code></h3>
               <p>Optionaler Bereich für Validierungsinformationen.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Optional</dd>
-                <dt>Bedeutung</dt><dd>Das Element ist im Schema vorgesehen und sollte deshalb dokumentiert werden, auch wenn es operativ häufig weniger prominent ist.</dd>
-                <dt>Redaktionelle Empfehlung</dt><dd>Die HTML-Doku sollte klar benennen, ob das Element aktiv genutzt wird, ignoriert werden kann oder für Erweiterungen vorgesehen ist.</dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Optional</dd>
+                <dt>Bedeutung</dt>
+                <dd>Das Element ist im Schema vorgesehen und sollte deshalb dokumentiert werden, auch wenn es operativ
+                  häufig weniger prominent ist.</dd>
+                <dt>Redaktionelle Empfehlung</dt>
+                <dd>Die HTML-Doku sollte klar benennen, ob das Element aktiv genutzt wird, ignoriert werden kann oder
+                  für Erweiterungen vorgesehen ist.</dd>
               </dl>
             </article>
           </div>
@@ -273,7 +349,8 @@
               <h3>Regel 3: Löschcontainer nur im fachlichen Kontext interpretieren</h3>
               <p>
                 Leere Löschcontainer bedeuten nicht automatisch, dass keine Bestandsbereinigung erforderlich ist.
-                Bei <code>full</code> ergibt sich die Bereinigung primär aus der Vollständigkeit des gelieferten Bestands.
+                Bei <code>full</code> ergibt sich die Bereinigung primär aus der Vollständigkeit des gelieferten
+                Bestands.
               </p>
             </article>
             <article class="rule-card">
@@ -353,29 +430,31 @@
         <section id="redaktion" class="anchor">
           <h2>Redaktionelle Metadaten</h2>
           <div class="table-container">
-          <table aria-label="Redaktionelle Metadaten">
-            <thead>
-              <tr>
-                <th>Aspekt</th>
-                <th>Inhalt</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Quellenbasis</td>
-                <td>XSD als technische Strukturreferenz, Full- und Update-Beispiel für die reale Ausprägung, bestehendes Schnittstellendokument für fachliche Erläuterungen.</td>
-              </tr>
-              <tr>
-                <td>Offene Prüfpunkte</td>
-                <td>Konkrete Datentypdarstellung von <code>exportDate</code>, genaue operative Rolle von <code>validation</code>, finale Kardinalitäten in der HTML-Feldtabelle.</td>
-              </tr>
-              <tr>
-                <td>Empfohlene Folge-Seite</td>
-                <td><code>/schnittstellen/xml/loeschlogik</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <table aria-label="Redaktionelle Metadaten">
+              <thead>
+                <tr>
+                  <th>Aspekt</th>
+                  <th>Inhalt</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Quellenbasis</td>
+                  <td>XSD als technische Strukturreferenz, Full- und Update-Beispiel für die reale Ausprägung,
+                    bestehendes Schnittstellendokument für fachliche Erläuterungen.</td>
+                </tr>
+                <tr>
+                  <td>Offene Prüfpunkte</td>
+                  <td>Konkrete Datentypdarstellung von <code>exportDate</code>, genaue operative Rolle von
+                    <code>validation</code>, finale Kardinalitäten in der HTML-Feldtabelle.</td>
+                </tr>
+                <tr>
+                  <td>Empfohlene Folge-Seite</td>
+                  <td><code>/schnittstellen/xml/loeschlogik</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p class="footer-note">
             Diese Seite ist als HTML-Vorlage für die künftige Online-Dokumentation gedacht und kann direkt in ein
             CMS, eine Doku-Plattform oder eine statische Dokumentationsstruktur übernommen werden.
@@ -396,6 +475,5 @@
   </div>
   <script src="../mobile_nav.js"></script>
 </body>
+
 </html>
-
-
