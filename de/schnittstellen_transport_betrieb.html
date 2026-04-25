@@ -46,6 +46,7 @@
             <li><a href="#matching">Matching</a></li>
             <li><a href="#modes">Full vs. Update</a></li>
             <li><a href="#onboarding">Onboarding</a></li>
+            <li><a href="#operational-rules">Betriebs- und Verarbeitungsregeln</a></li>
             <li><a href="#operational-notes">Betriebliche Hinweise</a></li>
             <li><a href="#errors">Fehlerfälle</a></li>
           </ul>
@@ -229,7 +230,7 @@
             <span class="eyebrow">Governance</span>
             <h2>Betriebs- und Verarbeitungsregeln</h2>
           </div>
-          <p>Für einen stabilen und synchronen Datenaustausch gelten folgende operationelle Vorgaben:</p>
+          <p>Für einen stabilen und synchronen Datenaustausch gelten folgende betrieblichen Vorgaben:</p>
           
           <div class="cases-grid">
             <div class="case-card">
@@ -249,55 +250,72 @@
             
             <div class="case-card">
               <h3>Verarbeitungsrhythmus (Cadence)</h3>
-              <p>Der Rhythmus des Datenaustauschs (z. B. täglich um 02:00 Uhr oder halbtägig) muss <strong>projektbezogen abgestimmt</strong> werden, um die Last auf beiden Systemen zu steuern.</p>
+              <p>Der Rhythmus des Datenaustauschs (z. B. täglich um 02:00 Uhr oder zweimal täglich) muss <strong>projektbezogen abgestimmt</strong> werden, um die Last auf beiden Systemen kontrolliert zu steuern.</p>
             </div>
           </div>
         </section>
 
-        <section id="onboarding" class="anchor">
-          <div class="section-header">
-            <span class="eyebrow">Setup</span>
-            <h2>Onboarding einer neuen Anbindung</h2>
-          </div>
-          <p>Der technische Inbetriebnahme-Prozess folgt diesen Schritten:</p>
-          <div class="summary-grid">
-            <div class="step-card">
-              <span class="step-number">1</span>
-              <h3>Staging-Zugang</h3>
-              <p>Herstellung des Zugangs zum Sandbox-System.</p>
-            </div>
-            <div class="step-card">
-              <span class="step-number">2</span>
-              <h3>Test-Account</h3>
-              <p>Anlage von Test-Händlern und Zugangsdaten.</p>
-            </div>
-            <div class="step-card">
-              <span class="step-number">3</span>
-              <h3>Parameter-Bereitstellung</h3>
-              <p>Übermittlung von API-Keys, FTPs-Daten, Dealer-IDs und Preview-URLs.</p>
-            </div>
-            <div class="step-card">
-              <span class="step-number">4</span>
-              <h3>Validierung</h3>
-              <p>Test der Integration im Staging-System.</p>
-            </div>
-            <div class="step-card">
-              <span class="step-number">5</span>
-              <h3>Abnahme</h3>
-              <p>Freigabe für den Live-Betrieb.</p>
-            </div>
-            <div class="step-card">
-              <span class="step-number">6</span>
-              <h3>Live-Schaltung</h3>
-              <p>Bereitstellung der produktiven Zugänge.</p>
-            </div>
-          </div>
-        </section>
+		<section id="onboarding" class="anchor">
+		  <div class="section-header">
+			<span class="eyebrow">Setup</span>
+			<h2>Onboarding einer neuen Anbindung</h2>
+		  </div>
+		  <p>Der technische Inbetriebnahme-Prozess folgt diesen Schritten:</p>
+		  <div class="summary-grid">
+			<div class="step-card">
+			  <div class="step-header">
+				<span class="step-number">1</span>
+				<h3>Staging-Zugang</h3>
+			  </div>
+			  <p>Herstellung des Zugangs zum Sandbox-System.</p>
+			</div>
+
+			<div class="step-card">
+			  <div class="step-header">
+				<span class="step-number">2</span>
+				<h3>Test-Account</h3>
+			  </div>
+			  <p>Anlage von Test-Händlern und Zugangsdaten.</p>
+			</div>
+
+			<div class="step-card">
+			  <div class="step-header">
+				<span class="step-number">3</span>
+				<h3>Parameter-Bereitstellung</h3>
+			  </div>
+			  <p>Übermittlung von API-Keys, FTPS-Zugangsdaten, Dealer-IDs und Preview-URLs.</p>
+			</div>
+
+			<div class="step-card">
+			  <div class="step-header">
+				<span class="step-number">4</span>
+				<h3>Validierung</h3>
+			  </div>
+			  <p>Test der Integration im Staging-System.</p>
+			</div>
+
+			<div class="step-card">
+			  <div class="step-header">
+				<span class="step-number">5</span>
+				<h3>Abnahme</h3>
+			  </div>
+			  <p>Freigabe für den Live-Betrieb.</p>
+			</div>
+
+			<div class="step-card">
+			  <div class="step-header">
+				<span class="step-number">6</span>
+				<h3>Live-Schaltung</h3>
+			  </div>
+			  <p>Bereitstellung der produktiven Zugänge.</p>
+			</div>
+		  </div>
+		</section>
 
         <section id="operational-notes" class="anchor">
           <div class="section-header">
             <span class="eyebrow">Service</span>
-            <h2>Betriebliche Hinweise und Grenzen</h2>
+            <h2>Betriebliche Hinweise und Betriebsgrenzen</h2>
           </div>
           <p>Bitte beachten Sie folgende Rahmenbedingungen für den Betrieb:</p>
           <div class="note">

@@ -47,6 +47,7 @@
             <li><a href="#matching">Matching</a></li>
             <li><a href="#modes">Full vs. Update</a></li>
             <li><a href="#onboarding">Onboarding</a></li>
+            <li><a href="#operational-rules">Operational Rules</a></li>
             <li><a href="#operational-notes">Operational Notes</a></li>
             <li><a href="#errors">Errors & Exceptions</a></li>
           </ul>
@@ -86,7 +87,7 @@
 
         <section id="transfer-methods" class="anchor">
           <div class="section-header">
-            <span class="eyebrow">Connectivity</span>
+            <span class="eyebrow">Options</span>
             <h2>Supported Transfer Methods</h2>
           </div>
           <p>There are two primary ways to transfer listings to the technikboerse system:</p>
@@ -114,7 +115,7 @@
               <p>The REST API allows direct communication and real-time synchronization between systems.</p>
               <ul>
                 <li>Changes are applied immediately.</li>
-                <li>Ideal for partners requiring high data currency.</li>
+                <li>Ideal for partners requiring a high level of data freshness.</li>
                 <li><a href="schnittstellen_rest_api.html">View REST API Overview</a></li>
               </ul>
             </article>
@@ -134,7 +135,7 @@
             </div>
             <div class="summary-card">
               <h3>REST-API</h3>
-              <p>An <strong>API key with write permissions</strong> is required. Application is also handled via Development or Product Management.</p>
+              <p>An <strong>API key with write permissions</strong> is required. Requests are likewise handled via Development or Product Management.</p>
             </div>
           </div>
         </section>
@@ -174,14 +175,14 @@
 
         <section id="matching" class="anchor">
           <div class="section-header">
-            <span class="eyebrow">Data Integrity</span>
+            <span class="eyebrow">Identification</span>
             <h2>Matching and Identification</h2>
           </div>
           <p>Record assignment follows fixed rules:</p>
           <div class="rules-grid">
             <div class="rule-card">
               <h3>Standard: GUID</h3>
-              <p>Ads feature a unique <strong>GUID</strong>. This is searched for during import. If it doesn't exist, a new record is created.</p>
+              <p>Ads have a unique <strong>GUID</strong>. This GUID is looked up during import. If it is not found, a new record is created.</p>
             </div>
             <div class="rule-card">
               <h3>Change Detection: md5</h3>
@@ -227,8 +228,8 @@
 
         <section id="operational-rules" class="anchor">
           <div class="section-header">
-            <span class="eyebrow">Guidelines</span>
-            <h2>Operational Rules</h2>
+            <span class="eyebrow">Governance</span>
+            <h2>Operational and Processing Rules</h2>
           </div>
           <p>For a stable and synchronous data exchange, the following operational guidelines apply:</p>
           
@@ -240,7 +241,7 @@
             
             <div class="case-card">
               <h3>Resynchronization</h3>
-              <p>To prevent "drift" (creeping inconsistencies) in update mode, it is strongly recommended to perform a <strong>periodic full transfer</strong> (e.g., once a week). This synchronizes the entire inventory and cleans up orphaned records.</p>
+              <p>To prevent "drift" (creeping inconsistencies) in update mode, it is strongly recommended to perform a <strong>periodic full synchronization</strong> (e.g., once a week). This synchronizes the entire inventory and cleans up obsolete records.</p>
             </div>
             
             <div class="case-card">
@@ -250,26 +251,65 @@
             
             <div class="case-card">
               <h3>Processing Cadence</h3>
-              <p>The frequency of data exchange (e.g., daily at 02:00 AM or twice daily) must be <strong>agreed upon on a project basis</strong> to manage the load on both systems effectively.</p>
+              <p>The cadence of data exchange (e.g., daily at 02:00 AM or twice daily) must be <strong>agreed on for each project</strong> in order to control the load on both systems.</p>
             </div>
           </div>
         </section>
 
         <section id="onboarding" class="anchor">
           <div class="section-header">
-            <span class="eyebrow">Process</span>
+            <span class="eyebrow">Setup</span>
             <h2>Onboarding a New Connection</h2>
           </div>
-          <p>The technical commissioning process follows these steps:</p>
-          <div class="card">
-            <ol>
-              <li><strong>Staging Access:</strong> Establish access to the sandbox system.</li>
-              <li><strong>Test Account:</strong> Create test dealers and access credentials.</li>
-              <li><strong>Parameter Provisioning:</strong> Transfer of API keys, FTPS data, Dealer IDs, and preview URLs.</li>
-              <li><strong>Validation:</strong> Test the integration in the staging system.</li>
-              <li><strong>Approval:</strong> Release for live operations.</li>
-              <li><strong>Go-Live:</strong> Provision of production access.</li>
-            </ol>
+          <p>The technical onboarding process follows these steps:</p>
+          <div class="summary-grid">
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">1</span>
+                <h3>Staging Access</h3>
+              </div>
+              <p>Establish access to the sandbox system.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">2</span>
+                <h3>Test Account</h3>
+              </div>
+              <p>Create test dealers and access credentials.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">3</span>
+                <h3>Parameter Provisioning</h3>
+              </div>
+              <p>Transfer API keys, FTPS access data, dealer IDs, and preview URLs.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">4</span>
+                <h3>Validation</h3>
+              </div>
+              <p>Test the integration in the staging system.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">5</span>
+                <h3>Approval</h3>
+              </div>
+              <p>Approve the integration for live operation.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-number">6</span>
+                <h3>Go-Live</h3>
+              </div>
+              <p>Provide the production access details.</p>
+            </div>
           </div>
         </section>
 
@@ -293,13 +333,13 @@
         <section id="errors" class="anchor">
           <div class="section-header">
             <span class="eyebrow">Stability</span>
-            <h2>Errors and Exceptions</h2>
+            <h2>Error and Exception Cases</h2>
           </div>
           <p>Common operational states during import:</p>
           <div class="cases-grid">
             <div class="case-card">
               <h3>conflict / foreign / derivation</h3>
-              <p>The dealer is already assigned to a different derivation. The import may be rejected and requires manual verification of ownership.</p>
+              <p>The dealer is already assigned to a different derivation. The import may be rejected and requires manual verification of responsibility.</p>
             </div>
             <div class="case-card">
               <h3>locked / deleted</h3>
