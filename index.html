@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="schnittstellen_shared.css" />
   <style>
     body {
-      background: radial-gradient(circle at top left, #f1f5f9, #f8fafc), var(--bg);
+      background: radial-gradient(circle at top left, #F1F4F9, #F8FAFE), var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -147,7 +147,6 @@
       font-weight: 700;
       font-size: 0.9rem;
       color: var(--accent);
-
     }
 
 
@@ -192,7 +191,7 @@
   <main class="landing-container">
     <header class="landing-header">
       <img src="tb_logo.svg" alt="technikboerse" class="landing-logo" />
-      
+
       <div class="global-lang-switch">
         <button onclick="setLanguage('de')" id="btn-de" class="active">DE</button>
         <button onclick="setLanguage('en')" id="btn-en">EN</button>
@@ -202,7 +201,10 @@
     <!-- GERMAN CONTENT -->
     <div id="content-de" lang-content class="active">
       <div class="landing-intro">
-        Es gibt zwei primäre Integrationswege: XML und REST API. Beide Wege können je nach Anwendungsfall relevant sein und unterstützen – abhängig vom Setup – sowohl das Senden von Daten an technikboerse als auch den Empfang von Daten aus der technikboerse. Wählen Sie den Pfad, der Ihrer Implementierungsstrategie entspricht.
+        Sie möchten Daten mit dem technikboerse-System austauschen? Wir bieten zwei primäre Integrationswege: XML und
+        REST API. Beide Wege können je nach Anwendungsfall relevant sein und unterstützen (abhängig vom Setup) sowohl
+        das
+        Senden von Daten an technikboerse als auch den Empfang von Daten aus der technikboerse.
       </div>
 
       <section class="path-section">
@@ -213,14 +215,16 @@
           <a href="de/schnittstellen_quickstart.html" class="destination-card">
             <div>
               <h3>XML – Quickstart</h3>
-              <p>Daten an technikboerse senden oder von technikboerse empfangen. Ideal für den Ersteinstieg und gängige Implementierungsszenarien.</p>
+              <p>Daten an technikboerse senden oder von technikboerse empfangen. Ideal für den Ersteinstieg und gängige
+                Implementierungsszenarien.</p>
             </div>
             <span class="cta">Schnellstart öffnen →</span>
           </a>
           <a href="de/schnittstellen_root_exchange.html" class="destination-card">
             <div>
               <h3>XML – Struktur & Referenz</h3>
-              <p>Aufbau des XML-Dokuments, Wurzelelement, Objekte und technische Detailreferenz für die tiefe Integration.</p>
+              <p>Aufbau des XML-Dokuments, Wurzelelement, Objekte und technische Detailreferenz für die tiefe
+                Integration.</p>
             </div>
             <span class="cta">Struktur ansehen →</span>
           </a>
@@ -235,7 +239,8 @@
           <a href="de/schnittstellen_rest_api.html" class="destination-card">
             <div>
               <h3>REST API – Einstieg & Überblick</h3>
-              <p>Einsatz der REST-Schnittstelle für Senden und Empfangen, Onboarding-Prozess und technische Einordnung.</p>
+              <p>Einsatz der REST-Schnittstelle für Senden und Empfangen, Onboarding-Prozess und technische Einordnung.
+              </p>
             </div>
             <span class="cta">Überblick öffnen →</span>
           </a>
@@ -253,7 +258,9 @@
     <!-- ENGLISH CONTENT -->
     <div id="content-en" lang-content>
       <div class="landing-intro">
-        There are two main integration paths: XML and REST API. Both can be relevant depending on your use case and support – depending on the integration setup – both sending data to technikboerse and receiving data from technikboerse. Choose the path that matches your implementation approach.
+        Would you like to exchange data with the technikboerse system? We offer two primary integration paths: XML and
+        REST API. Both paths can be relevant depending on your use case and support (depending on the setup) both
+        sending data to technikboerse and receiving data from technikboerse.
       </div>
 
       <section class="path-section">
@@ -264,7 +271,8 @@
           <a href="en/schnittstellen_quickstart.html" class="destination-card">
             <div>
               <h3>XML – Quickstart</h3>
-              <p>Send data to technikboerse or receive data from technikboerse. The best starting point for first implementations and common scenarios.</p>
+              <p>Send data to technikboerse or receive data from technikboerse. The best starting point for first
+                implementations and common scenarios.</p>
             </div>
             <span class="cta">Open Quickstart →</span>
           </a>
@@ -333,7 +341,7 @@
     // Initialize based on hash or browser language
     window.addEventListener('DOMContentLoaded', () => {
       const hash = window.location.hash.substring(1);
-      if (hash === 'en' || ( !hash && navigator.language.startsWith('en') )) {
+      if (hash === 'en' || (!hash && navigator.language.startsWith('en'))) {
         setLanguage('en');
       } else {
         setLanguage('de');
