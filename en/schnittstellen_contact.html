@@ -11,6 +11,10 @@
 </head>
 <body>
   <div class="layout">
+    <div class="global-lang-switch">
+      <a href="../de/schnittstellen_contact.html">DE</a>
+      <a href="#" class="active">EN</a>
+    </div>
     <div class="mobile-header">
       <button id="mobile-toggle" aria-label="Menu">
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
@@ -28,52 +32,41 @@
         <small>technikboerse Interfaces</small>
         <h1>XML Reference: <code>contact</code></h1>
         
-        <div class="lang-switch">
-          <a href="../de/schnittstellen_contact.html">DE</a>
-          <span class="separator">|</span>
-          <a href="#" class="active">EN</a>
-        </div>
       </div>
 
-      <nav>
-        <div class="nav-section">
-          <h2>On this page</h2>
-          <ul>
-            <li><a class="active" href="#overview">Overview</a></li>
-            <li><a href="#structure">Structure and Classification</a></li>
-            <li><a href="#attributes">Attributes</a></li>
-            <li><a href="#fields">Fields</a></li>
-            <li><a href="#assignment">Assignment to Ads</a></li>
-            <li><a href="#rules">Processing Rules</a></li>
-            <li><a href="#example">Example</a></li>
-            <li><a href="#notes">Notes</a></li>
-            </ul>
-        </div>
+            <nav>
+        
 
         <div class="nav-section">
-          <h2>Content</h2>
+          <h2>General</h2>
           <ul>
             <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
-            <li><a href="schnittstellen_transport_operating.html">Transport & Operating Model</a></li>
-            <li><a href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
-            <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
-            <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
-            <li><a class="active" href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
-            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Sync</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Mode</a></li>
-            <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
+            <li><a href="schnittstellen_transport_operating.html">Transport & Operating</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
           </ul>
         </div>
+
         <div class="nav-section">
-          <h2>Downloads</h2>
+          <h2>XML Interface</h2>
           <ul>
-            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Sample: Full Sync</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Sample: Update Mode</a></li>
+            <li><a href="schnittstellen_root_exchange.html">XML Structure & Root</a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
+            <li><a href="schnittstellen_dealer.html">Dealer (dealer)</a></li>
+            <li><a href="schnittstellen_ad.html">Ad (ad)</a></li>
+            <li><a class="active" href="schnittstellen_contact.html">Contact (contact)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
+            <li class="nav-sub-header">Examples</li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Full Sync</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Update Mode</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>REST API</h2>
+          <ul>
+            <li><a href="schnittstellen_rest_api.html">Overview & Concepts</a></li>
+            <li><a href="https://api.technikboerse.com/doc/html" target="_blank">API Reference (External)</a></li>
           </ul>
         </div>
       </nav>
@@ -471,4 +464,5 @@
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
+
 

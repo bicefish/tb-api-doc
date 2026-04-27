@@ -11,6 +11,10 @@
 </head>
 <body>
   <div class="layout">
+    <div class="global-lang-switch">
+      <a href="#" class="active">DE</a>
+      <a href="../en/schnittstellen_transport_operating.html">EN</a>
+    </div>
     <div class="mobile-header">
       <button id="mobile-toggle" aria-label="Menü">
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
@@ -28,46 +32,41 @@
         <small>technikboerse Schnittstellen</small>
         <h1>Betriebsmodell</h1>
         
-        <div class="lang-switch">
-          <a href="#" class="active">DE</a>
-          <span class="separator">|</span>
-          <a href="../en/schnittstellen_transport_operating.html">EN</a>
-        </div>
       </div>
 
-      <nav>
+            <nav>
+        
+
         <div class="nav-section">
-          <h2>Auf dieser Seite</h2>
+          <h2>Allgemein</h2>
           <ul>
-            <li><a class="active" href="#overview">Übersicht</a></li>
-            <li><a href="#transfer-methods">Übertragungswege</a></li>
-            <li><a href="#auth">Authentifizierung</a></li>
-            <li><a href="#processing">Verarbeitung</a></li>
-            <li><a href="#matching">Matching</a></li>
-            <li><a href="#modes">Full vs. Update</a></li>
-            <li><a href="#onboarding">Onboarding</a></li>
-            <li><a href="#operational-rules">Betriebs- und Verarbeitungsregeln</a></li>
-            <li><a href="#operational-notes">Betriebliche Hinweise</a></li>
-            <li><a href="#errors">Fehlerfälle</a></li>
+            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a class="active" href="schnittstellen_transport_betrieb.html">Transport & Betriebsmodell</a></li>
+            <li><a href="schnittstellen_known_issues.html">Bekannte Einschränkungen</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
           </ul>
         </div>
 
         <div class="nav-section">
-          <h2>Inhalt</h2>
+          <h2>XML-Schnittstelle</h2>
           <ul>
-            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
-            <li><a class="active" href="schnittstellen_transport_betrieb.html">Transport & Betriebsmodell</a></li>
-            <li><a href="schnittstellen_root_exchange.html">Root-Element <code>exchange</code></a></li>
+            <li><a href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzel</a></li>
             <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
-            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
-            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (dealer)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (ad)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (contact)</a></li>
             <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
-            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
-            <li><a href="schnittstellen_known_issues.html">Bekannte Einschränkungen</a></li>
-            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+            <li class="nav-sub-header">Beispiele</li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Einzel-Update</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>REST-API</h2>
+          <ul>
+            <li><a href="schnittstellen_rest_api.html">Übersicht & Konzepte</a></li>
+            <li><a href="https://api.technikboerse.com/doc/html" target="_blank">API-Referenz (Extern)</a></li>
           </ul>
         </div>
       </nav>
@@ -130,11 +129,11 @@
           <div class="summary-grid">
             <div class="summary-card">
               <h3>XML via Upload / Pull</h3>
-              <p>Je nach Richtung und Variante (siehe oben) ist ein <strong>FTPs-Zugang</strong> erforderlich. Dieser muss bei der Entwicklungs- oder Produktmanagement-Abteilung angefragt oder abgestimmt werden.</p>
+              <p>Je nach Richtung und Variante (siehe oben) ist ein <strong>FTPs-Zugang</strong> erforderlich. Spezifische Details zu Host, Ports und Verschlüsselungsmethoden erhalten Partner im Rahmen des technischen Onboardings.</p>
             </div>
             <div class="summary-card">
               <h3>REST-API</h3>
-              <p>Es ist ein <strong>API-Schlüssel mit Schreibrechten</strong> erforderlich. Die Beantragung erfolgt ebenfalls über Entwicklung oder Produktmanagement.</p>
+              <p>Es ist ein <strong>API-Schlüssel mit Schreibrechten</strong> erforderlich. Details zum Token-Management und Refresh-Flows werden ebenfalls während der Onboarding-Phase bereitgestellt.</p>
             </div>
           </div>
         </section>
@@ -191,6 +190,16 @@
               <h3>Spezialfälle</h3>
               <p>Je nach Integrationsart kann die Zuordnung auch über die <strong>Dealer-ID</strong> oder eine <strong>externe Kunden-/System-ID</strong> erfolgen.</p>
             </div>
+          </div>
+
+          <div class="note" style="margin-top: 1.5rem;">
+            <h3>Datenhoheit &amp; Konfliktbehandlung</h3>
+            <p>
+              In der Regel ist ein System (entweder technikboerse oder das Partnersystem) als <strong>führend</strong> definiert. Manuelle Änderungen auf der technikboerse sollten vermieden werden, wenn ein Partnersystem Daten anliefert, da diese beim nächsten Import überschrieben werden können.
+            </p>
+            <p>
+              Gleichzeitige Bearbeitungen via XML/API und manuellem Interface sind selten, können jedoch zu unvorhergesehenen Zuständen führen. Es wird empfohlen, Änderungen primär im führenden System vorzunehmen.
+            </p>
           </div>
         </section>
 
@@ -265,9 +274,9 @@
 			<div class="step-card">
 			  <div class="step-header">
 				<span class="step-number">1</span>
-				<h3>Staging-Zugang</h3>
+				<h3>Staging &amp; Sandbox</h3>
 			  </div>
-			  <p>Herstellung des Zugangs zum Sandbox-System.</p>
+			  <p>Herstellung des Zugangs zum Sandbox-System. Da kein expliziter "Dry-Run"-Modus für XML existiert, dient diese Umgebung für ausführliche Integrationstests vor der Live-Schaltung.</p>
 			</div>
 
 			<div class="step-card">
@@ -344,6 +353,11 @@
               <h3>locked / deleted</h3>
               <p>Der Händler ist im Zielsystem deaktiviert oder gesperrt. Inserate werden in diesem Fall nicht importiert.</p>
             </div>
+            <div class="case-card">
+              <h3>Monitoring &amp; Fehlerprotokollierung</h3>
+              <p><strong>XML:</strong> Verarbeitungsfehler werden erst während des Imports festgestellt. Eine lokale Validierung gegen das XSD-Schema vor dem Upload wird dringend empfohlen.</p>
+              <p><strong>REST API:</strong> Der Erfolg eines Aufrufs wird sofort via HTTP-Response signalisiert. Applikationen sollten diese Rückmeldungen protokollieren und auswerten.</p>
+            </div>
           </div>
         </section>
 
@@ -362,3 +376,4 @@
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
+

@@ -13,6 +13,10 @@
 
 <body>
   <div class="layout">
+    <div class="global-lang-switch">
+      <a href="#" class="active">DE</a>
+      <a href="../en/schnittstellen_quickstart.html">EN</a>
+    </div>
     <div class="mobile-header">
       <button id="mobile-toggle" aria-label="Menu">
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
@@ -30,50 +34,41 @@
         <small>technikboerse Schnittstellen</small>
         <h1>Quick-Start Guide</h1>
 
-        <div class="lang-switch">
-          <a href="#" class="active">DE</a>
-          <span class="separator">|</span>
-          <a href="../en/schnittstellen_quickstart.html">EN</a>
-        </div>
       </div>
 
       <nav>
-        <div class="nav-section">
-          <h2>Auf dieser Seite</h2>
-          <ul>
-            <li><a class="active" href="#overview">Übersicht</a></li>
-            <li><a href="#scenarios">Szenarien</a></li>
-            <li><a href="#onboarding">Onboarding-Prozess</a></li>
-            <li><a href="#preparation">Vorbereitung</a></li>
-            <li><a href="#xml-quickstart">XML Schnellstart</a></li>
-            <li><a href="#support">Support</a></li>
-          </ul>
-        </div>
+
 
         <div class="nav-section">
-          <h2>Inhalt</h2>
+          <h2>Allgemein</h2>
           <ul>
             <li><a class="active" href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
             <li><a href="schnittstellen_transport_betrieb.html">Transport & Betriebsmodell</a></li>
-            <li><a href="schnittstellen_root_exchange.html">Wurzelelement <code>exchange</code></a></li>
-            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
-            <li><a href="schnittstellen_dealer.html">Händler (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Inserat (<code>ad</code>)</a></li>
-            <li><a href="schnittstellen_contact.html">Kontakt (<code>contact</code>)</a></li>
-            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Beispiel: Vollabgleich</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Beispiel: Einzel-Update</a></li>
-            <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
             <li><a href="schnittstellen_known_issues.html">Bekannte Einschränkungen</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
           </ul>
         </div>
+
         <div class="nav-section">
-          <h2>Downloads</h2>
+          <h2>XML-Schnittstelle</h2>
           <ul>
-            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Beispiel: Vollabgleich</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Beispiel: Einzel-Update</a></li>
+            <li><a href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzel</a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
+            <li><a href="schnittstellen_dealer.html">Händler (dealer)</a></li>
+            <li><a href="schnittstellen_ad.html">Inserat (ad)</a></li>
+            <li><a href="schnittstellen_contact.html">Kontakt (contact)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></li>
+            <li class="nav-sub-header">Beispiele</li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Vollabgleich</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Einzel-Update</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>REST-API</h2>
+          <ul>
+            <li><a href="schnittstellen_rest_api.html">Übersicht & Konzepte</a></li>
+            <li><a href="https://api.technikboerse.com/doc/html" target="_blank">API-Referenz (Extern)</a></li>
           </ul>
         </div>
       </nav>
@@ -83,11 +78,11 @@
       <div class="page">
         <header id="overview" class="anchor">
           <span class="eyebrow">Erste Schritte</span>
-          <h1>Erster XML-Datenaustausch</h1>
+          <h1>Einstieg in die technikboerse Schnittstellen</h1>
           <p>
-            Dieser Guide führt Sie in die Arbeit mit dem XML-Format ein. Die XML-Definition ist ein 
-            <strong>gemeinsames Austauschformat</strong> für beide Integrationsrichtungen: Sie wird genutzt, 
-            um Daten an technikboerse zu senden oder um Daten von technikboerse zu empfangen.
+            Dieser Guide führt Sie durch die ersten Schritte Ihrer Integration. Egal ob Sie den klassischen Weg via
+            <strong>XML-Datenaustausch</strong> wählen oder die moderne <strong>REST-API</strong> nutzen möchten:
+            Hier finden Sie die passende Orientierung für Ihr Szenario.
           </p>
         </header>
 
@@ -96,7 +91,9 @@
             <span class="eyebrow">Orientierung</span>
             <h2>Wählen Sie Ihr Integrationsszenario</h2>
             <p>
-              Die XML-Schnittstelle kann in verschiedenen Richtungen betrieben werden. Wählen Sie zum Einstieg das Szenario, das Ihrem Ziel entspricht. Diese Übersicht dient als Orientierungshilfe; detaillierte Verhaltensweisen finden Sie auf den verlinkten Referenzseiten.
+              Unsere Schnittstellen können in verschiedenen Richtungen und Technologien betrieben werden. Wählen Sie zum
+              Einstieg das Szenario, das Ihrem Ziel entspricht. Diese Übersicht dient als Orientierungshilfe;
+              detaillierte Verhaltensweisen finden Sie auf den verlinkten Referenzseiten.
             </p>
           </div>
 
@@ -107,7 +104,7 @@
               </div>
               <p><strong>Partner &rarr; technikboerse</strong></p>
               <p>Wählen Sie diesen Weg, wenn Ihr System Inserate oder Stammdaten an technikboerse bereitstellt.</p>
-              
+
               <ul class="check-list">
                 <li>Wahl zwischen XML- oder REST-Integration treffen</li>
                 <li>Onboarding- und Setup-Anforderungen prüfen</li>
@@ -133,9 +130,11 @@
                 <h3>Ich möchte Daten von technikboerse empfangen</h3>
               </div>
               <p><strong>technikboerse &rarr; Partner</strong></p>
-              <p>Wählen Sie diesen Weg, wenn technikboerse XML-Daten bereitstellt, die Ihr System zur Weiterverarbeitung abruft.</p>
+              <p>Wählen Sie diesen Weg, wenn technikboerse Daten bereitstellt, die Ihr System zur Weiterverarbeitung
+                abruft.</p>
 
               <ul class="check-list">
+                <li>Wahl zwischen XML- oder REST-Integration treffen</li>
                 <li>Liefermodell und Zeitplan (Scheduling) abstimmen</li>
                 <li>XML-Struktur und Pflichtelemente verstehen</li>
                 <li>Verarbeitung für Vollabgleich und Updates implementieren</li>
@@ -147,12 +146,13 @@
                 <h4>Relevante Seiten:</h4>
                 <ul>
                   <li><a href="schnittstellen_transport_betrieb.html">Transport &amp; Betrieb</a></li>
-                  <li><a href="schnittstellen_root_exchange.html">Wurzelelement (exchange)</a></li>
+                  <li><a href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzelelement</a></li>
                   <li><a href="schnittstellen_dealer.html">Händler</a></li>
                   <li><a href="schnittstellen_ad.html">Inserat</a></li>
                   <li><a href="schnittstellen_contact.html">Kontakt</a></li>
                   <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
                   <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Medien</a></li>
+                  <li><a href="schnittstellen_rest_api.html">REST-API Übersicht</a></li>
                   <li><a href="schnittstellen_beispiel_full_export.html">Beispiele</a></li>
                 </ul>
               </div>
@@ -160,21 +160,27 @@
           </div>
 
           <div class="info-banner">
-            Die folgenden Abschnitte bieten die detaillierte Referenz und Prozessinformationen für die XML-Schnittstelle. Nutzen Sie die Szenario-Links oben für den schnellsten Einstieg in den für Sie relevanten Pfad.
+            Die folgenden Abschnitte bieten die detaillierte Referenz und Prozessinformationen mit Fokus auf die
+            XML-Schnittstelle. Nutzen Sie die Szenario-Links oben für den schnellsten Einstieg in den für Sie relevanten
+            Pfad.
           </div>
         </section>
 
         <div class="note">
           <h3>Perspektive und Terminologie ("Import" / "Export")</h3>
           <p>
-            Die Begriffe "Import" und "Export" sind perspektivenabhängig. 
+            Die Begriffe "Import" und "Export" sind perspektivenabhängig.
           </p>
           <ul>
-            <li><strong>Partner → technikboerse</strong>: Senden von Daten an technikboerse (aus Partnersicht ein "Export", aus unserer Sicht ein "Import").</li>
-            <li><strong>technikboerse → Partner</strong>: Empfangen von Daten von technikboerse (aus Partnersicht ein "Import", aus unserer Sicht ein "Export").</li>
+            <li><strong>Partner → technikboerse</strong>: Senden von Daten an technikboerse (aus Partnersicht ein
+              "Export", aus unserer Sicht ein "Import").</li>
+            <li><strong>technikboerse → Partner</strong>: Empfangen von Daten von technikboerse (aus Partnersicht ein
+              "Import", aus unserer Sicht ein "Export").</li>
           </ul>
           <p>
-            Um Missverständnisse zu vermeiden, nutzt diese Dokumentation in der Regel explizite Richtungsangaben. Die <strong>Struktur der XML-Austauschdatei</strong> bleibt dabei identisch, lediglich Transport und Scheduling unterscheiden sich.
+            Um Missverständnisse zu vermeiden, nutzt diese Dokumentation in der Regel explizite Richtungsangaben. Die
+            <strong>Struktur der XML-Austauschdatei</strong> bleibt dabei identisch, lediglich Transport und Scheduling
+            unterscheiden sich.
           </p>
         </div>
 
@@ -262,6 +268,11 @@
                 <li>Datenrichtung (Import/Export)</li>
                 <li>Erwartete Aktualisierungsfrequenz</li>
               </ul>
+              <p class="note" style="margin-top: 1rem; font-size: 0.9rem;">
+                <strong>Mapping:</strong> Masterlisten für Kategorien und Marken werden beim Onboarding bereitgestellt.
+                Es wird empfohlen, diese regelmäßig über die API-Endpunkte <code>/adcategories</code> und
+                <code>/manufacturers</code> zu aktualisieren.
+              </p>
             </article>
 
             <article class="summary-card">
@@ -307,11 +318,13 @@
           <div class="grid-2">
             <div class="mode-card">
               <h4>A. Daten an technikboerse senden (Partner → technikboerse)</h4>
-              <p>Der Partner erstellt die XML-Datei mit Inseraten und stellt sie bereit (oder lädt sie hoch). technikboerse verarbeitet die Datei regelmäßig nach dem vereinbarten Zeitplan.</p>
+              <p>Der Partner erstellt die XML-Datei mit Inseraten und stellt sie bereit (oder lädt sie hoch).
+                technikboerse verarbeitet die Datei regelmäßig nach dem vereinbarten Zeitplan.</p>
             </div>
             <div class="mode-card">
               <h4>B. Daten von technikboerse empfangen (technikboerse → Partner)</h4>
-              <p>technikboerse generiert die XML-Datei mit den Bestandsdaten. Der Partner lädt die Datei herunter (oder empfängt sie) und verarbeitet sie in seinem System.</p>
+              <p>technikboerse generiert die XML-Datei mit den Bestandsdaten. Der Partner lädt die Datei herunter (oder
+                empfängt sie) und verarbeitet sie in seinem System.</p>
             </div>
           </div>
 
@@ -320,7 +333,8 @@
               <span class="step-number">1</span>
               <h3>Die XML-Wurzel (<code>exchange</code>)</h3>
             </div>
-            <p>Jede Austauschdatei beginnt mit dem <code>&lt;exchange&gt;</code>-Element. Es enthält globale Metadaten über den Datenaustausch.</p>
+            <p>Jede Austauschdatei beginnt mit dem <code>&lt;exchange&gt;</code>-Element. Es enthält globale Metadaten
+              über den Datenaustausch.</p>
             <div class="code-card">
               <pre>&lt;exchange&gt;
   &lt;senderName&gt;ihre-provider-id&lt;/senderName&gt;
@@ -329,8 +343,8 @@
   &lt;dealers&gt; ... &lt;/dealers&gt;
 &lt;/exchange&gt;</pre>
             </div>
-            <p class="note">Details zum <code>transferMode</code> finden Sie in der <a
-                href="schnittstellen_root_exchange.html">Referenz zum Wurzelelement</a></p>
+            <p class="note">Details zum <code>transferMode</code> finden Sie unter <a
+                href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzelelement</a></p>
           </div>
 
           <div class="step-card">

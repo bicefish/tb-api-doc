@@ -23,16 +23,18 @@
     }
 
     .landing-container {
-      max-width: 900px;
+      position: relative;
+      max-width: 960px;
       width: 92%;
       text-align: center;
-      padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem);
+      padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 3rem);
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border);
-      border-radius: 2rem;
+      border-radius: 2.5rem;
       box-shadow: var(--shadow);
+      margin: 2rem 0;
     }
 
     .landing-header h1 {
@@ -41,121 +43,147 @@
       color: var(--text);
     }
 
-    .landing-header p {
-      color: var(--muted);
-      font-size: clamp(1rem, 4vw, 1.15rem);
-      margin: 0 auto 1.5rem;
-      opacity: 0.8;
-    }
-
     .landing-logo {
       max-width: clamp(180px, 50vw, 280px);
       height: auto;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
     }
 
-    .language-grid {
+
+    /* Intro Section */
+    .landing-intro {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      font-size: clamp(1rem, 3vw, 1.1rem);
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* Path Sections */
+    .path-section {
+      text-align: left;
+      margin-bottom: 3.5rem;
+    }
+
+    .path-section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .path-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .path-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .path-header::after {
+      content: '';
+      height: 1px;
+      flex-grow: 1;
+      background: linear-gradient(to right, var(--border), transparent);
+      opacity: 0.6;
+    }
+
+    /* Grid */
+    .path-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
     }
 
-    @media (max-width: 600px) {
-      .language-grid {
+    @media (max-width: 768px) {
+      .path-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    .lang-card {
+    /* Cards */
+    .destination-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.5rem;
+      border-radius: 1.25rem;
+      padding: 1.75rem;
       text-decoration: none;
       color: inherit;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      position: relative;
+      transition: border-color 0.2s ease;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      justify-content: space-between;
+      height: 100%;
       text-align: left;
-      box-shadow: var(--shadow);
     }
 
-    .lang-card:hover {
+    .destination-card:hover {
       border-color: var(--accent);
-      box-shadow: 0 12px 25px -10px rgba(15, 118, 110, 0.15);
     }
 
-    .lang-card h2 {
+    .destination-card h3 {
       font-size: 1.25rem;
-      margin: 0.5rem 0 0.25rem;
+      margin: 0 0 0.75rem;
       color: var(--text);
     }
 
-    .lang-card span {
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-size: 0.7rem;
-    }
-
-    .lang-card p {
-      margin: 0.5rem 0 0;
+    .destination-card p {
+      margin: 0 0 1.5rem;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       line-height: 1.5;
+      flex-grow: 1;
     }
 
-    .lang-card::after {
-      content: '→';
-      position: absolute;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      font-size: 1.25rem;
+    .destination-card .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
       color: var(--accent);
-      opacity: 0.3;
+
     }
 
-    .lang-card:hover::after {
-      opacity: 1;
+
+
+    /* Visibility Toggle */
+    [lang-content] {
+      display: none;
     }
 
-    .section-label {
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
+    [lang-content].active {
+      display: block;
+    }
+
+    .site-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
       font-size: 0.85rem;
       color: var(--muted);
-      margin-top: 3.5rem;
-      margin-bottom: 1.5rem;
-      font-weight: 800;
-      opacity: 0.6;
+      opacity: 0.8;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
+    }
+
+    .footer-links {
+      display: flex;
       gap: 1.5rem;
     }
 
-    .section-label:first-of-type {
-      margin-top: 1.5rem;
-    }
-
-    .section-label::before,
-    .section-label::after {
-      content: '';
-      height: 1px;
-      flex-grow: 1;
-      background: linear-gradient(to right, transparent, var(--border), transparent);
-      opacity: 0.5;
-    }
-
-    .footer {
-      margin-top: 4rem;
-      font-size: 0.875rem;
-      color: var(--muted);
-      opacity: 0.6;
+    @media (max-width: 600px) {
+      .site-footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -164,61 +192,113 @@
   <main class="landing-container">
     <header class="landing-header">
       <img src="tb_logo.svg" alt="technikboerse" class="landing-logo" />
-      <p>Schnittstellen Dokumentation / Interface Documentation</p>
+      
+      <div class="global-lang-switch">
+        <button onclick="setLanguage('de')" id="btn-de" class="active">DE</button>
+        <button onclick="setLanguage('en')" id="btn-en">EN</button>
+      </div>
     </header>
 
-    <div class="section-label">Daten senden (Partner → technikboerse) / Send data</div>
-    <div class="language-grid">
-      <a href="de/schnittstellen_quickstart.html" class="lang-card">
-        <span>DE | XML (Partner → technikboerse)</span>
-        <h2>Schnellstart</h2>
-        <p>Maschinen und Daten an technikboerse übertragen.</p>
-      </a>
+    <!-- GERMAN CONTENT -->
+    <div id="content-de" lang-content class="active">
+      <div class="landing-intro">
+        Es gibt zwei primäre Integrationswege: XML und REST API. Beide Wege können je nach Anwendungsfall relevant sein und unterstützen – abhängig vom Setup – sowohl das Senden von Daten an technikboerse als auch den Empfang von Daten aus der technikboerse. Wählen Sie den Pfad, der Ihrer Implementierungsstrategie entspricht.
+      </div>
 
-      <a href="en/schnittstellen_quickstart.html" class="lang-card">
-        <span>EN | XML (Partner → technikboerse)</span>
-        <h2>Quick-Start</h2>
-        <p>Transfer machines and data to technikboerse.</p>
-      </a>
+      <section class="path-section">
+        <div class="path-header">
+          <h2>XML</h2>
+        </div>
+        <div class="path-grid">
+          <a href="de/schnittstellen_quickstart.html" class="destination-card">
+            <div>
+              <h3>XML – Quickstart</h3>
+              <p>Daten an technikboerse senden oder von technikboerse empfangen. Ideal für den Ersteinstieg und gängige Implementierungsszenarien.</p>
+            </div>
+            <span class="cta">Schnellstart öffnen →</span>
+          </a>
+          <a href="de/schnittstellen_root_exchange.html" class="destination-card">
+            <div>
+              <h3>XML – Struktur & Referenz</h3>
+              <p>Aufbau des XML-Dokuments, Wurzelelement, Objekte und technische Detailreferenz für die tiefe Integration.</p>
+            </div>
+            <span class="cta">Struktur ansehen →</span>
+          </a>
+        </div>
+      </section>
 
-      <a href="de/schnittstellen_rest_api.html" class="lang-card">
-        <span>DE | REST (Partner → technikboerse)</span>
-        <h2>REST-API</h2>
-        <p>Moderner, API-basierter Import von Inseraten.</p>
-      </a>
-
-      <a href="en/schnittstellen_rest_api.html" class="lang-card">
-        <span>EN | REST (Partner → technikboerse)</span>
-        <h2>REST API</h2>
-        <p>Modern, API-based import of Ads.</p>
-      </a>
+      <section class="path-section">
+        <div class="path-header">
+          <h2>REST API</h2>
+        </div>
+        <div class="path-grid">
+          <a href="de/schnittstellen_rest_api.html" class="destination-card">
+            <div>
+              <h3>REST API – Einstieg & Überblick</h3>
+              <p>Einsatz der REST-Schnittstelle für Senden und Empfangen, Onboarding-Prozess und technische Einordnung.</p>
+            </div>
+            <span class="cta">Überblick öffnen →</span>
+          </a>
+          <a href="https://api.technikboerse.com/doc/html" target="_blank" class="destination-card">
+            <div>
+              <h3>REST API – technische Dokumentation</h3>
+              <p>Vollständige technische Referenz: Endpunkte, Parameter, Authentisierung und interaktive Beispiele.</p>
+            </div>
+            <span class="cta">API-Referenz öffnen →</span>
+          </a>
+        </div>
+      </section>
     </div>
 
-    <div class="section-label">Daten empfangen (technikboerse → Partner) / Receive data</div>
-    <div class="language-grid">
-      <a href="de/schnittstellen_quickstart.html" class="lang-card">
-        <span>DE | XML (technikboerse → Partner)</span>
-        <h2>Datenempfang</h2>
-        <p>Vollständige Bestandsdaten von technikboerse beziehen.</p>
-      </a>
+    <!-- ENGLISH CONTENT -->
+    <div id="content-en" lang-content>
+      <div class="landing-intro">
+        There are two main integration paths: XML and REST API. Both can be relevant depending on your use case and support – depending on the integration setup – both sending data to technikboerse and receiving data from technikboerse. Choose the path that matches your implementation approach.
+      </div>
 
-      <a href="en/schnittstellen_quickstart.html" class="lang-card">
-        <span>EN | XML (technikboerse → Partner)</span>
-        <h2>Data Retrieval</h2>
-        <p>Retrieve full inventory data from technikboerse.</p>
-      </a>
+      <section class="path-section">
+        <div class="path-header">
+          <h2>XML</h2>
+        </div>
+        <div class="path-grid">
+          <a href="en/schnittstellen_quickstart.html" class="destination-card">
+            <div>
+              <h3>XML – Quickstart</h3>
+              <p>Send data to technikboerse or receive data from technikboerse. The best starting point for first implementations and common scenarios.</p>
+            </div>
+            <span class="cta">Open Quickstart →</span>
+          </a>
+          <a href="en/schnittstellen_root_exchange.html" class="destination-card">
+            <div>
+              <h3>XML – Structure & Reference</h3>
+              <p>XML document structure, root element, objects, and detailed reference pages for deep integration.</p>
+            </div>
+            <span class="cta">View Structure →</span>
+          </a>
+        </div>
+      </section>
 
-      <a href="de/schnittstellen_rest_api.html" class="lang-card">
-        <span>DE | REST (technikboerse → Partner)</span>
-        <h2>REST-API</h2>
-        <p>Abfrage von Bestandsdaten über die REST-Schnittstelle.</p>
-      </a>
-
-      <a href="en/schnittstellen_rest_api.html" class="lang-card">
-        <span>EN | REST (technikboerse → Partner)</span>
-        <h2>REST API</h2>
-        <p>Query inventory data via the REST interface.</p>
-      </a>
+      <section class="path-section">
+        <div class="path-header">
+          <h2>REST API</h2>
+        </div>
+        <div class="path-grid">
+          <a href="en/schnittstellen_rest_api.html" class="destination-card">
+            <div>
+              <h3>REST API – Introduction & Overview</h3>
+              <p>Using the REST interface for sending and receiving, onboarding process, and technical orientation.</p>
+            </div>
+            <span class="cta">Open Overview →</span>
+          </a>
+          <a href="https://api.technikboerse.com/doc/html" target="_blank" class="destination-card">
+            <div>
+              <h3>REST API – Technical Documentation</h3>
+              <p>Full technical reference: endpoints, parameters, authentication, and interactive examples.</p>
+            </div>
+            <span class="cta">Open API Reference →</span>
+          </a>
+        </div>
+      </section>
     </div>
 
     <footer class="site-footer">
@@ -231,6 +311,35 @@
       </div>
     </footer>
   </main>
+
+  <script>
+    function setLanguage(lang) {
+      // Toggle visibility
+      document.querySelectorAll('[lang-content]').forEach(el => {
+        el.classList.remove('active');
+      });
+      document.getElementById('content-' + lang).classList.add('active');
+
+      // Toggle button states
+      document.querySelectorAll('.global-lang-switch button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById('btn-' + lang).classList.add('active');
+
+      // Update URL hash without jumping
+      history.replaceState(null, null, '#' + lang);
+    }
+
+    // Initialize based on hash or browser language
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.substring(1);
+      if (hash === 'en' || ( !hash && navigator.language.startsWith('en') )) {
+        setLanguage('en');
+      } else {
+        setLanguage('de');
+      }
+    });
+  </script>
 </body>
 
 </html>

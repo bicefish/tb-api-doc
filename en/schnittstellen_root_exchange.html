@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>technikboerse Interfaces – XML Root Element exchange</title>
+  <title>technikboerse Interfaces – XML Structure & Root Element</title>
   <link rel="icon" href="../favicon.ico" sizes="32x32">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -14,6 +14,10 @@
 
 <body>
   <div class="layout">
+    <div class="global-lang-switch">
+      <a href="../de/schnittstellen_root_exchange.html">DE</a>
+      <a href="#" class="active">EN</a>
+    </div>
     <div class="mobile-header">
       <button id="mobile-toggle" aria-label="Menu">
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
@@ -29,52 +33,44 @@
       <div class="brand">
         <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
         <small>technikboerse Interfaces</small>
-        <h1>XML Reference: Root Element <code>exchange</code></h1>
+        <h1>XML Structure & Root Element</h1>
 
-        <div class="lang-switch">
-          <a href="../de/schnittstellen_root_exchange.html">DE</a>
-          <span class="separator">|</span>
-          <a href="#" class="active">EN</a>
-        </div>
+
       </div>
 
-      <nav>
-        <div class="nav-section">
-          <h2>On this page</h2>
-          <ul>
-            <li><a class="active" href="#overview">Overview</a></li>
-            <li><a href="#structure">Structure Overview</a></li>
-            <li><a href="#field-reference">Field Reference</a></li>
-            <li><a href="#processing-logic">Processing Logic</a></li>
-            <li><a href="#examples">Examples</a></li>
-            <li><a href="#notes">Notes and Pitfalls</a></li>
-            </ul>
-        </div>
+            <nav>
+        
 
         <div class="nav-section">
-          <h2>Content</h2>
+          <h2>General</h2>
           <ul>
             <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
-            <li><a href="schnittstellen_transport_operating.html">Transport & Operating Model</a></li>
-            <li><a class="active" href="schnittstellen_root_exchange.html">Root Element <code>exchange</code></a></li>
-            <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
-            <li><a href="schnittstellen_dealer.html">Dealer (<code>dealer</code>)</a></li>
-            <li><a href="schnittstellen_ad.html">Ad (<code>ad</code>)</a></li>
-            <li><a href="schnittstellen_contact.html">Contact (<code>contact</code>)</a></li>
-            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
-            <li><a href="schnittstellen_beispiel_full_export.html">Example: Full Sync</a></li>
-            <li><a href="schnittstellen_beispiel_update_export.html">Example: Update Mode</a></li>
-            <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
+            <li><a href="schnittstellen_transport_operating.html">Transport & Operating</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
           </ul>
         </div>
+
         <div class="nav-section">
-          <h2>Downloads</h2>
+          <h2>XML Interface</h2>
           <ul>
-            <li><a href="../examples/export.xsd" download>XML Schema (XSD)</a></li>
-            <li><a href="../examples/example_full_export.xml" download>Sample: Full Sync</a></li>
-            <li><a href="../examples/example_update_export.xml" download>Sample: Update Mode</a></li>
+            <li><a class="active" href="schnittstellen_root_exchange.html">XML Structure & Root</a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
+            <li><a href="schnittstellen_dealer.html">Dealer (dealer)</a></li>
+            <li><a href="schnittstellen_ad.html">Ad (ad)</a></li>
+            <li><a href="schnittstellen_contact.html">Contact (contact)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
+            <li class="nav-sub-header">Examples</li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Full Sync</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Update Mode</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>REST API</h2>
+          <ul>
+            <li><a href="schnittstellen_rest_api.html">Overview & Concepts</a></li>
+            <li><a href="https://api.technikboerse.com/doc/html" target="_blank">API Reference (External)</a></li>
           </ul>
         </div>
       </nav>
@@ -83,12 +79,16 @@
     <main>
       <div class="page">
         <header id="overview" class="anchor">
-          <span class="eyebrow">Normative XML Reference</span>
-          <h1>Root Element <code>exchange</code></h1>
+          <span class="eyebrow">Structure & Reference</span>
+          <h1>XML Structure & Root Element</h1>
           <p>
-            This page describes the root element of the XML exchange file and all global metadata
-            relevant for the data exchange. This element forms the common envelope for both integration directions. The receiving system must evaluate the specifications
-            at the root level before processing individual <code>dealer</code> or <code>ad</code> objects.
+            This page explains the general structure of the XML document and describes the root element <code>exchange</code>. 
+            This element serves as the common container for all transferred data and contains the global metadata 
+            required to control the exchange process.
+          </p>
+          <p>
+            The document acts as a central entry point for understanding the logical relationships between metadata, 
+            dealers, contacts, and ads before diving into the detailed references for individual objects.
           </p>
         </header>
 
@@ -119,13 +119,73 @@
           </div>
         </div>
 
+        <section id="general-structure" class="anchor">
+          <div class="section-header">
+            <span class="eyebrow">Orientation</span>
+            <h2>General XML Structure</h2>
+          </div>
+          <p>
+            The XML document follows a clear hierarchical structure, combining a shared header for metadata with various functional sections. At the top level, you'll find metadata, transfer mode information, and optional deletion lists, followed by the actual dealer data with its nested objects. The following overview provides initial orientation; detailed field definitions are provided in the subsequent sections of this page and on the linked detail pages.
+          </p>
+
+          <div class="grid-2">
+            <div class="mode-card">
+              <h4>Abstract Visualization</h4>
+              <ul class="tree-list" style="list-style: none; padding-left: 0;">
+                <li><strong>exchange</strong> (Root Element)
+                  <ul style="list-style: none; padding-left: 1.5rem; border-left: 1px solid var(--border); margin-top: 0.5rem;">
+                    <li>&bull; Metadata (Sender, Date)</li>
+                    <li>&bull; Transfer Mode (Full/Update)</li>
+                    <li>&bull; Deletion Lists (optional)</li>
+                    <li>&bull; <strong>dealers</strong> (Dealer List)
+                      <ul style="list-style: none; padding-left: 1.5rem; border-left: 1px solid var(--border); margin-top: 0.5rem;">
+                        <li>&bull; <strong>dealer</strong> (Dealer)
+                          <ul style="list-style: none; padding-left: 1.5rem; border-left: 1px solid var(--border); margin-top: 0.5rem;">
+                            <li>&bull; Master Data (Name, Address)</li>
+                            <li>&bull; <strong>contacts</strong> (Contact Persons)</li>
+                            <li>&bull; <strong>ads</strong> (Ad List)
+                              <ul style="list-style: none; padding-left: 1.5rem; border-left: 1px solid var(--border); margin-top: 0.5rem;">
+                                <li>&bull; <strong>ad</strong> (Single Ad)</li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="code-card">
+              <h4>Simplified Example:</h4>
+              <pre>&lt;exchange&gt;
+  &lt;metadata /&gt;
+  &lt;transferMode /&gt;
+  &lt;dealersDeleted /&gt;
+  &lt;adsDeleted /&gt;
+  &lt;dealers&gt;
+    &lt;dealer&gt;
+      &lt;contacts /&gt;
+      &lt;ads&gt;
+        &lt;ad /&gt;
+      &lt;/ads&gt;
+    &lt;/dealer&gt;
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+            </div>
+          </div>
+          <div class="note" style="margin-top: 1rem;">
+            <p><strong>Note:</strong> This is an abstracted representation for orientation purposes. For exact field names and validation rules, please refer to the field reference below.</p>
+          </div>
+        </section>
+
         <section id="structure" class="anchor">
           <div class="section-header">
-            <span class="eyebrow">Visuals</span>
-            <h2>Structure Overview</h2>
+            <span class="eyebrow">Structure</span>
+            <h2>Root Field Overview</h2>
           </div>
           <div class="code-card">
-            <h3>Example Structure</h3>
+            <h3>Structure of the <code>exchange</code> Element</h3>
             <pre>&lt;exchange&gt;
   &lt;senderName&gt;...&lt;/senderName&gt;
   &lt;exportDate&gt;...&lt;/exportDate&gt;
@@ -136,14 +196,6 @@
   &lt;dealers&gt;...&lt;/dealers&gt;
   &lt;validation&gt;...&lt;/validation&gt;
 &lt;/exchange&gt;</pre>
-          </div>
-          <div class="note" style="margin-top: 1rem;">
-            <h3>Editorial Note</h3>
-            <p>
-              On the HTML page, this overview should be right at the beginning, supplemented by anchor links
-              to the individual fields. Detailed processing of the contained payload occurs on the
-              pages for <code>dealer</code>, <code>ad</code>, and <code>contact</code>.
-            </p>
           </div>
         </section>
 
