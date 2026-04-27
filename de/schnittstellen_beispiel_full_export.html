@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +11,7 @@
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
 
 </head>
+
 <body>
   <div class="layout">
     <div class="global-lang-switch">
@@ -32,16 +34,16 @@
         <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
         <small>technikboerse Schnittstellen</small>
         <h1>XML-Beispiel: Vollabgleich</h1>
-        
+
       </div>
 
-            <nav>
-        
+      <nav>
+
 
         <div class="nav-section">
           <h2>Allgemein</h2>
           <ul>
-            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_quickstart.html">Quickstart Guide</a></li>
             <li><a href="schnittstellen_transport_betrieb.html">Transport & Betriebsmodell</a></li>
             <li><a href="schnittstellen_known_issues.html">Bekannte Einschränkungen</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -51,6 +53,7 @@
         <div class="nav-section">
           <h2>XML-Schnittstelle</h2>
           <ul>
+            <li><a href="schnittstellen_xml_quickstart.html">Quickstart (XML)</a></li>
             <li><a href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzel</a></li>
             <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
             <li><a href="schnittstellen_dealer.html">Händler (dealer)</a></li>
@@ -105,7 +108,8 @@
             <article class="summary-card">
               <h3>Was ein Full Transfer bedeutet</h3>
               <p>
-                Der Export enthält alle aktiven Inserate der vereinbarten Übertragungsauswahl. Objekte, die früher bekannt
+                Der Export enthält alle aktiven Inserate der vereinbarten Übertragungsauswahl. Objekte, die früher
+                bekannt
                 waren, aber in der aktuellen Datei nicht mehr vorkommen, gelten fachlich als entfernt oder inaktiv.
               </p>
             </article>
@@ -120,7 +124,8 @@
               <h3>Bezug zur Referenzdoku</h3>
               <p>
                 Die normative Beschreibung der einzelnen Elemente erfolgt auf den Seiten zu <code>exchange</code>,
-                <code>dealer</code>, <code>ad</code> und <code>contact</code>. Diese Beispielseite zeigt deren Zusammenspiel.
+                <code>dealer</code>, <code>ad</code> und <code>contact</code>. Diese Beispielseite zeigt deren
+                Zusammenspiel.
               </p>
             </article>
           </div>
@@ -130,7 +135,9 @@
           <div class="section-header">
             <span class="eyebrow">Implementation</span>
             <h2>Kommentiertes Beispiel</h2>
-            <a href="../examples/example_full_export.xml" download class="btn" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600; margin-top: 1rem; display: inline-block;">Roh-XML herunterladen</a>
+            <a href="../examples/example_full_export.xml" download class="btn"
+              style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600; margin-top: 1rem; display: inline-block;">Roh-XML
+              herunterladen</a>
           </div>
           <div class="code-card">
             <h3>Didaktisch reduziertes Vollabgleich-Beispiel</h3>
@@ -181,43 +188,44 @@
           </div>
 
           <div class="table-container">
-          <table aria-label="Kommentierung des Beispiels" style="margin-top: 1rem;">
-            <thead>
-              <tr>
-                <th>Bereich</th>
-                <th>Interpretation</th>
-                <th>Bedeutung für das Zielsystem</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>transferMode=full</code></td>
-                <td>Die Datei ist als vollständiger Bestand zu verstehen.</td>
-                <td>Fehlende, früher bekannte Objekte sind fachlich als entfernt oder inaktiv zu behandeln.</td>
-              </tr>
-              <tr>
-                <td><code>dealersDeleted</code> / <code>adsDeleted</code> leer</td>
-                <td>Es werden keine expliziten Löschlisten mitgegeben.</td>
-                <td>Die Bereinigung erfolgt implizit über die Vollständigkeit des gelieferten Bestands.</td>
-              </tr>
-              <tr>
-                <td><code>dealer</code></td>
-                <td>Der Händler bildet den Rahmen für Kontakte und Inserate.</td>
-                <td>Händler zuerst auflösen, danach untergeordnete Objekte verarbeiten.</td>
-              </tr>
-              <tr>
-                <td><code>contact</code> + <code>contact_ids</code></td>
-                <td>Das Inserat verweist auf einen im Händlerkontext definierten Ansprechpartner.</td>
-                <td>Kontakt-ID innerhalb des Händlers auflösen, nicht global interpretieren.</td>
-              </tr>
-              <tr>
-                <td><code>modified</code></td>
-                <td>Zeigt den letzten Änderungszeitpunkt des jeweiligen Objekts.</td>
-                <td>Kann zur Optimierung der Verarbeitung genutzt werden, ändert aber nichts am Full-Charakter der Datei.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <table aria-label="Kommentierung des Beispiels" style="margin-top: 1rem;">
+              <thead>
+                <tr>
+                  <th>Bereich</th>
+                  <th>Interpretation</th>
+                  <th>Bedeutung für das Zielsystem</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>transferMode=full</code></td>
+                  <td>Die Datei ist als vollständiger Bestand zu verstehen.</td>
+                  <td>Fehlende, früher bekannte Objekte sind fachlich als entfernt oder inaktiv zu behandeln.</td>
+                </tr>
+                <tr>
+                  <td><code>dealersDeleted</code> / <code>adsDeleted</code> leer</td>
+                  <td>Es werden keine expliziten Löschlisten mitgegeben.</td>
+                  <td>Die Bereinigung erfolgt implizit über die Vollständigkeit des gelieferten Bestands.</td>
+                </tr>
+                <tr>
+                  <td><code>dealer</code></td>
+                  <td>Der Händler bildet den Rahmen für Kontakte und Inserate.</td>
+                  <td>Händler zuerst auflösen, danach untergeordnete Objekte verarbeiten.</td>
+                </tr>
+                <tr>
+                  <td><code>contact</code> + <code>contact_ids</code></td>
+                  <td>Das Inserat verweist auf einen im Händlerkontext definierten Ansprechpartner.</td>
+                  <td>Kontakt-ID innerhalb des Händlers auflösen, nicht global interpretieren.</td>
+                </tr>
+                <tr>
+                  <td><code>modified</code></td>
+                  <td>Zeigt den letzten Änderungszeitpunkt des jeweiligen Objekts.</td>
+                  <td>Kann zur Optimierung der Verarbeitung genutzt werden, ändert aber nichts am Full-Charakter der
+                    Datei.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section id="verarbeitung" class="anchor">
@@ -229,28 +237,32 @@
             <article class="rule-card">
               <h3>Regel 1: Datei als Vollbestand interpretieren</h3>
               <p>
-                Nach Auswertung von <code>transferMode=full</code> muss das Zielsystem die Datei als vollständigen Soll-Zustand
+                Nach Auswertung von <code>transferMode=full</code> muss das Zielsystem die Datei als vollständigen
+                Soll-Zustand
                 behandeln und nicht nur einzelne enthaltene Objekte aktualisieren.
               </p>
             </article>
             <article class="rule-card">
               <h3>Regel 2: Zuerst Root, dann Händler, dann Unterobjekte</h3>
               <p>
-                Die Verarbeitung sollte mit Root-Metadaten beginnen, dann Händlerobjekte zuordnen und erst danach Kontakte
+                Die Verarbeitung sollte mit Root-Metadaten beginnen, dann Händlerobjekte zuordnen und erst danach
+                Kontakte
                 sowie Inserate verarbeiten.
               </p>
             </article>
             <article class="rule-card">
               <h3>Regel 3: Fehlende Objekte bereinigen</h3>
               <p>
-                Objekte, die in früheren Vollabgleichen oder lokalen Beständen vorhanden waren, aber in der aktuellen Datei
+                Objekte, die in früheren Vollabgleichen oder lokalen Beständen vorhanden waren, aber in der aktuellen
+                Datei
                 fehlen, müssen als entfernt oder inaktiv behandelt werden.
               </p>
             </article>
             <article class="rule-card">
               <h3>Regel 4: Referenzen konsistent auflösen</h3>
               <p>
-                Kontaktreferenzen aus <code>contact_ids</code> sind gegen die im Händler definierten Kontakte aufzulösen.
+                Kontaktreferenzen aus <code>contact_ids</code> sind gegen die im Händler definierten Kontakte
+                aufzulösen.
                 Medien-, Preis- und Kategoriedaten sollten strukturiert übernommen werden.
               </p>
             </article>
@@ -263,38 +275,38 @@
             <h2>Abgrenzung zu Update</h2>
           </div>
           <div class="table-container">
-          <table aria-label="Full vs. Update">
-            <thead>
-              <tr>
-                <th>Aspekt</th>
-                <th>Full Transfer</th>
-                <th>Update Transfer</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Grundprinzip</td>
-                <td>Vollständiger Soll-Bestand</td>
-                <td>Änderungsmenge innerhalb eines Rückblickzeitraums</td>
-              </tr>
-              <tr>
-                <td>Fehlende Objekte</td>
-                <td>Gelten als entfernt oder inaktiv</td>
-                <td>Bleiben unverändert bestehen</td>
-              </tr>
-              <tr>
-                <td><code>backLogDays</code></td>
-                <td>Nicht erforderlich</td>
-                <td>Fachlich relevant</td>
-              </tr>
-              <tr>
-                <td>Löschbehandlung</td>
-                <td>Primär implizit über Vollständigkeit</td>
-                <td>Primär explizit über Löschcontainer</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <table aria-label="Full vs. Update">
+              <thead>
+                <tr>
+                  <th>Aspekt</th>
+                  <th>Full Transfer</th>
+                  <th>Update Transfer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Grundprinzip</td>
+                  <td>Vollständiger Soll-Bestand</td>
+                  <td>Änderungsmenge innerhalb eines Rückblickzeitraums</td>
+                </tr>
+                <tr>
+                  <td>Fehlende Objekte</td>
+                  <td>Gelten als entfernt oder inaktiv</td>
+                  <td>Bleiben unverändert bestehen</td>
+                </tr>
+                <tr>
+                  <td><code>backLogDays</code></td>
+                  <td>Nicht erforderlich</td>
+                  <td>Fachlich relevant</td>
+                </tr>
+                <tr>
+                  <td>Löschbehandlung</td>
+                  <td>Primär implizit über Vollständigkeit</td>
+                  <td>Primär explizit über Löschcontainer</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section id="hinweise" class="anchor">
@@ -306,7 +318,8 @@
             <article class="note">
               <h3>Typischer Fehler: Full wie Update behandeln</h3>
               <p>
-                Wenn ein Full Transfer nur als Sammlung enthaltener Änderungen interpretiert wird, bleiben veraltete oder
+                Wenn ein Full Transfer nur als Sammlung enthaltener Änderungen interpretiert wird, bleiben veraltete
+                oder
                 eigentlich entfernte Objekte fälschlich im Zielsystem bestehen.
               </p>
             </article>
@@ -341,6 +354,5 @@
   </div>
   <script src="../mobile_nav.js"></script>
 </body>
+
 </html>
-
-

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>technikboerse Interfaces – XML Quickstart</title>
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../schnittstellen_shared.css" />
+</head>
+
+<body>
+  <div class="layout">
+    <div class="global-lang-switch">
+      <a href="../de/schnittstellen_xml_quickstart.html">DE</a>
+      <a href="#" class="active">EN</a>
+    </div>
+    <div class="mobile-header">
+      <button id="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <img src="../tb_logo.svg" alt="technikboerse" class="mobile-logo" />
+    </div>
+
+    <aside>
+      <div class="brand">
+        <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
+        <small>technikboerse Interfaces</small>
+        <h1>XML Quickstart</h1>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <h2>General</h2>
+          <ul>
+            <li><a href="schnittstellen_quickstart.html">Quickstart Guide</a></li>
+            <li><a href="schnittstellen_transport_operating.html">Transport & Operating</a></li>
+            <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
+            <li><a href="schnittstellen_changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>XML Interface</h2>
+          <ul>
+            <li><a class="active" href="schnittstellen_xml_quickstart.html">Quickstart (XML)</a></li>
+            <li><a href="schnittstellen_root_exchange.html">XML Structure & Root</a></li>
+            <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
+            <li><a href="schnittstellen_dealer.html">Dealer (dealer)</a></li>
+            <li><a href="schnittstellen_ad.html">Ad (ad)</a></li>
+            <li><a href="schnittstellen_contact.html">Contact (contact)</a></li>
+            <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></li>
+            <li class="nav-sub-header">Examples</li>
+            <li><a href="schnittstellen_beispiel_full_export.html">Full Sync</a></li>
+            <li><a href="schnittstellen_beispiel_update_export.html">Update Mode</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h2>REST API</h2>
+          <ul>
+            <li><a href="schnittstellen_rest_api.html">Overview & Concepts</a></li>
+            <li><a href="https://api.technikboerse.com/doc/html" target="_blank">API Reference (External)</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="page">
+        <header id="overview" class="anchor">
+          <span class="eyebrow">XML Integration</span>
+          <h1>Technical Quickstart</h1>
+          <p>
+            This guide introduces you to the creation and processing of a valid XML exchange file for the
+            technikboerse system.
+          </p>
+        </header>
+
+        <section id="preparation" class="anchor">
+          <div class="section-header">
+            <span class="eyebrow">Checklist</span>
+            <h2>XML Prerequisites</h2>
+          </div>
+          <div class="grid-2">
+            <article class="summary-card">
+              <h3>Infrastructure</h3>
+              <ul class="check-list">
+                <li>Transport method (FTP/HTTP) clarified</li>
+                <li>Server credentials provided</li>
+                <li>File naming convention agreed upon</li>
+              </ul>
+            </article>
+            <article class="summary-card">
+              <h3>Data Logic</h3>
+              <ul class="check-list">
+                <li>Deletion logic strategy chosen</li>
+                <li>Image provision (URL/path) clarified</li>
+                <li>Unique dealer GUIDs available</li>
+                <li>Unique machine IDs available</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="xml-structure" class="anchor">
+          <div class="section-header">
+            <span class="eyebrow">Tutorial</span>
+            <h2>Exchange File Structure</h2>
+          </div>
+
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <h3>The XML Root (<code>exchange</code>)</h3>
+            </div>
+            <p>Every exchange file begins with the <code>&lt;exchange&gt;</code> element. It contains global metadata.</p>
+            <div class="code-card">
+              <pre>&lt;exchange&gt;
+  &lt;senderName&gt;your-provider-id&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;full&lt;/transferMode&gt;
+  &lt;dealers&gt; ... &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <h3>The Dealer Block</h3>
+            </div>
+            <p>Within <code>&lt;dealers&gt;</code>, you add your dealer. The <code>guid</code> is the primary key.</p>
+            <div class="code-card">
+              <pre>&lt;dealer guid="dealer-unique-key-123"&gt;
+  &lt;info&gt;&lt;name&gt;Muster Landtechnik GmbH&lt;/name&gt;&lt;/info&gt;
+  &lt;ads&gt; ... &lt;/ads&gt;
+  &lt;contacts&gt; ... &lt;/contacts&gt;
+&lt;/dealer&gt;</pre>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-number">3</span>
+              <h3>The Machine (<code>ad</code>)</h3>
+            </div>
+            <p>The <code>&lt;ad&gt;</code> element represents the machine. It is placed in the dealer's <code>&lt;ads&gt;</code> container.</p>
+            <div class="code-card">
+              <pre>&lt;ad guid="machine-789" category_id="210"&gt;
+  &lt;info&gt;
+    &lt;brand&gt;Fendt&lt;/brand&gt;
+    &lt;model&gt;724 Vario&lt;/model&gt;
+  &lt;/info&gt;
+  &lt;price currency="EUR" taxtype="inclusive"&gt;185000&lt;/price&gt;
+&lt;/ad&gt;</pre>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+              <h3 style="margin: 0;">Full Minimal Example</h3>
+              <a href="../examples/example_full_export.xml" download class="btn">Download XML</a>
+            </div>
+            <div class="code-card">
+              <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;exchange&gt;
+  &lt;senderName&gt;provider-demo&lt;/senderName&gt;
+  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
+  &lt;transferMode&gt;full&lt;/transferMode&gt;
+  &lt;dealers&gt;
+    &lt;dealer guid="dealer-1001"&gt;
+      &lt;info&gt;&lt;name&gt;Agri Hub&lt;/name&gt;&lt;/info&gt;
+      &lt;ads&gt;
+        &lt;ad guid="ad-5001" category_id="210"&gt;
+          &lt;info&gt;
+            &lt;brand&gt;John Deere&lt;/brand&gt;
+            &lt;model&gt;S780&lt;/model&gt;
+          &lt;/info&gt;
+          &lt;price currency="EUR" taxtype="exclusive"&gt;320000&lt;/price&gt;
+        &lt;/ad&gt;
+      &lt;/ads&gt;
+    &lt;/dealer&gt;
+  &lt;/dealers&gt;
+&lt;/exchange&gt;</pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="next-steps" class="anchor">
+          <div class="section-header">
+            <span class="eyebrow">Deep Dive</span>
+            <h2>Next Steps</h2>
+          </div>
+          <div class="grid-2">
+            <a href="schnittstellen_root_exchange.html" class="card">
+              <h3>Root & Metadata</h3>
+              <p>Learn more about the fields in the exchange element and the transfer modes.</p>
+            </a>
+            <a href="schnittstellen_ad.html" class="card">
+              <h3>Ad Details</h3>
+              <p>Detailed list of all available fields for machines and equipment.</p>
+            </a>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="copyright">&copy; 2026 technikboerse. All rights reserved.</div>
+          <div class="footer-links">
+            <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Legal Notice</a>
+            <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Privacy Policy</a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script src="../mobile_nav.js"></script>
+</body>
+</html>

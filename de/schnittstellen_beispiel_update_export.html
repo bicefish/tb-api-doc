@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +11,7 @@
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
 
 </head>
+
 <body>
   <div class="layout">
     <div class="global-lang-switch">
@@ -32,16 +34,16 @@
         <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
         <small>technikboerse Schnittstellen</small>
         <h1>XML-Beispiel: Einzel-Update</h1>
-        
+
       </div>
 
-            <nav>
-        
+      <nav>
+
 
         <div class="nav-section">
           <h2>Allgemein</h2>
           <ul>
-            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_quickstart.html">Quickstart Guide</a></li>
             <li><a href="schnittstellen_transport_betrieb.html">Transport & Betriebsmodell</a></li>
             <li><a href="schnittstellen_known_issues.html">Bekannte Einschränkungen</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -51,6 +53,7 @@
         <div class="nav-section">
           <h2>XML-Schnittstelle</h2>
           <ul>
+            <li><a href="schnittstellen_xml_quickstart.html">Quickstart (XML)</a></li>
             <li><a href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzel</a></li>
             <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
             <li><a href="schnittstellen_dealer.html">Händler (dealer)</a></li>
@@ -92,7 +95,8 @@
           </div>
           <div class="meta-card">
             <strong>Kernpunkt</strong>
-            Ein Update Transfer enthält nur neue, geänderte oder explizit gelöschte Objekte innerhalb eines Rückblickzeitraums.
+            Ein Update Transfer enthält nur neue, geänderte oder explizit gelöschte Objekte innerhalb eines
+            Rückblickzeitraums.
           </div>
         </div>
 
@@ -105,14 +109,16 @@
             <article class="summary-card">
               <h3>Was ein Update Transfer bedeutet</h3>
               <p>
-                Der Austausch ist als Änderungsmenge zu verstehen. Nicht enthaltene Objekte bleiben im Zielsystem unverändert,
+                Der Austausch ist als Änderungsmenge zu verstehen. Nicht enthaltene Objekte bleiben im Zielsystem
+                unverändert,
                 sofern sie nicht ausdrücklich über Löschcontainer als entfernt markiert werden.
               </p>
             </article>
             <article class="summary-card">
               <h3>Rolle von <code>backLogDays</code></h3>
               <p>
-                Das Feld definiert den Rückblickzeitraum, für den Änderungen und Löschungen erneut in der Datei erscheinen
+                Das Feld definiert den Rückblickzeitraum, für den Änderungen und Löschungen erneut in der Datei
+                erscheinen
                 können. Dadurch entsteht ein Puffer für verzögerte oder gestörte Importprozesse.
               </p>
             </article>
@@ -130,7 +136,9 @@
           <div class="section-header">
             <span class="eyebrow">Implementation</span>
             <h2>Kommentiertes Beispiel</h2>
-            <a href="../examples/example_update_export.xml" download class="btn" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600; margin-top: 1rem; display: inline-block;">Roh-XML herunterladen</a>
+            <a href="../examples/example_update_export.xml" download class="btn"
+              style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.9rem; font-weight: 600; margin-top: 1rem; display: inline-block;">Roh-XML
+              herunterladen</a>
           </div>
           <div class="code-card">
             <h3>Didaktisch reduziertes Einzel-Update-Beispiel</h3>
@@ -187,43 +195,43 @@
           </div>
 
           <div class="table-container">
-          <table aria-label="Kommentierung des Update-Beispiels" style="margin-top: 1rem;">
-            <thead>
-              <tr>
-                <th>Bereich</th>
-                <th>Interpretation</th>
-                <th>Bedeutung für das Zielsystem</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>transferMode=update</code></td>
-                <td>Die Datei ist als Delta-Lieferung zu verstehen.</td>
-                <td>Nicht enthaltene Objekte dürfen nicht automatisch gelöscht werden.</td>
-              </tr>
-              <tr>
-                <td><code>backLogDays=3</code></td>
-                <td>Änderungen und Löschungen aus dem Rückblickzeitraum werden erneut geliefert.</td>
-                <td>Importprozesse können kurzfristige Ausfälle oder Verzögerungen robuster überbrücken.</td>
-              </tr>
-              <tr>
-                <td><code>dealersDeleted</code></td>
-                <td>Ein Händler wurde im Rückblickzeitraum gelöscht.</td>
-                <td>Der referenzierte Händler ist als entfernt oder inaktiv zu behandeln.</td>
-              </tr>
-              <tr>
-                <td><code>adsDeleted</code></td>
-                <td>Ein Inserat wurde im Rückblickzeitraum gelöscht.</td>
-                <td>Das referenzierte Inserat ist gezielt zu entfernen oder zu deaktivieren.</td>
-              </tr>
-              <tr>
-                <td><code>modified</code></td>
-                <td>Zeigt, dass das gelieferte Händler- bzw. Inseratsobjekt geändert wurde.</td>
-                <td>Kann zur Entscheidung genutzt werden, ob ein vorhandener Datensatz überschrieben werden muss.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <table aria-label="Kommentierung des Update-Beispiels" style="margin-top: 1rem;">
+              <thead>
+                <tr>
+                  <th>Bereich</th>
+                  <th>Interpretation</th>
+                  <th>Bedeutung für das Zielsystem</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>transferMode=update</code></td>
+                  <td>Die Datei ist als Delta-Lieferung zu verstehen.</td>
+                  <td>Nicht enthaltene Objekte dürfen nicht automatisch gelöscht werden.</td>
+                </tr>
+                <tr>
+                  <td><code>backLogDays=3</code></td>
+                  <td>Änderungen und Löschungen aus dem Rückblickzeitraum werden erneut geliefert.</td>
+                  <td>Importprozesse können kurzfristige Ausfälle oder Verzögerungen robuster überbrücken.</td>
+                </tr>
+                <tr>
+                  <td><code>dealersDeleted</code></td>
+                  <td>Ein Händler wurde im Rückblickzeitraum gelöscht.</td>
+                  <td>Der referenzierte Händler ist als entfernt oder inaktiv zu behandeln.</td>
+                </tr>
+                <tr>
+                  <td><code>adsDeleted</code></td>
+                  <td>Ein Inserat wurde im Rückblickzeitraum gelöscht.</td>
+                  <td>Das referenzierte Inserat ist gezielt zu entfernen oder zu deaktivieren.</td>
+                </tr>
+                <tr>
+                  <td><code>modified</code></td>
+                  <td>Zeigt, dass das gelieferte Händler- bzw. Inseratsobjekt geändert wurde.</td>
+                  <td>Kann zur Entscheidung genutzt werden, ob ein vorhandener Datensatz überschrieben werden muss.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section id="verarbeitung" class="anchor">
@@ -249,13 +257,15 @@
             <article class="rule-card">
               <h3>Regel 3: Fehlende Objekte unverändert belassen</h3>
               <p>
-                Objekte, die im Update nicht vorkommen und nicht explizit gelöscht wurden, bleiben im Zielsystem bestehen.
+                Objekte, die im Update nicht vorkommen und nicht explizit gelöscht wurden, bleiben im Zielsystem
+                bestehen.
               </p>
             </article>
             <article class="rule-card">
               <h3>Regel 4: <code>modified</code> für Update-Entscheidungen nutzen</h3>
               <p>
-                Bei vorhandenen Händler- oder Inseratsobjekten sollte das Zielsystem prüfen, ob die gelieferten Datensätze
+                Bei vorhandenen Händler- oder Inseratsobjekten sollte das Zielsystem prüfen, ob die gelieferten
+                Datensätze
                 tatsächlich aktueller sind.
               </p>
             </article>
@@ -285,7 +295,8 @@
   &lt;deleteInfo guid="dealer-99" id="99" /&gt;
 &lt;/dealersDeleted&gt;</pre>
               <p>
-                Dieser Eintrag signalisiert, dass der Händler im Rückblickzeitraum entfernt wurde. Je nach Zielsystem kann
+                Dieser Eintrag signalisiert, dass der Händler im Rückblickzeitraum entfernt wurde. Je nach Zielsystem
+                kann
                 dies auch Folgewirkungen für die zugehörigen Inserate haben.
               </p>
             </div>
@@ -298,38 +309,38 @@
             <h2>Abgrenzung zu Full</h2>
           </div>
           <div class="table-container">
-          <table aria-label="Update vs. Full">
-            <thead>
-              <tr>
-                <th>Aspekt</th>
-                <th>Update Transfer</th>
-                <th>Full Transfer</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Grundprinzip</td>
-                <td>Änderungsmenge</td>
-                <td>Vollständiger Soll-Bestand</td>
-              </tr>
-              <tr>
-                <td>Fehlende Objekte</td>
-                <td>Bleiben bestehen</td>
-                <td>Gelten als entfernt oder inaktiv</td>
-              </tr>
-              <tr>
-                <td><code>backLogDays</code></td>
-                <td>Fachlich relevant</td>
-                <td>Nicht erforderlich</td>
-              </tr>
-              <tr>
-                <td>Löschbehandlung</td>
-                <td>Explizit über Löschcontainer</td>
-                <td>Primär implizit über Vollständigkeit</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <table aria-label="Update vs. Full">
+              <thead>
+                <tr>
+                  <th>Aspekt</th>
+                  <th>Update Transfer</th>
+                  <th>Full Transfer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Grundprinzip</td>
+                  <td>Änderungsmenge</td>
+                  <td>Vollständiger Soll-Bestand</td>
+                </tr>
+                <tr>
+                  <td>Fehlende Objekte</td>
+                  <td>Bleiben bestehen</td>
+                  <td>Gelten als entfernt oder inaktiv</td>
+                </tr>
+                <tr>
+                  <td><code>backLogDays</code></td>
+                  <td>Fachlich relevant</td>
+                  <td>Nicht erforderlich</td>
+                </tr>
+                <tr>
+                  <td>Löschbehandlung</td>
+                  <td>Explizit über Löschcontainer</td>
+                  <td>Primär implizit über Vollständigkeit</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section id="hinweise" class="anchor">
@@ -376,6 +387,5 @@
   </div>
   <script src="../mobile_nav.js"></script>
 </body>
+
 </html>
-
-

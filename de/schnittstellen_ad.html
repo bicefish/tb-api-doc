@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,7 @@
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="stylesheet" href="../schnittstellen_shared.css" />
 </head>
+
 <body>
   <div class="layout">
     <div class="global-lang-switch">
@@ -31,16 +33,16 @@
         <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
         <small>technikboerse Schnittstellen</small>
         <h1>XML-Referenz: <code>ad</code></h1>
-        
+
       </div>
 
-            <nav>
-        
+      <nav>
+
 
         <div class="nav-section">
           <h2>Allgemein</h2>
           <ul>
-            <li><a href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a href="schnittstellen_quickstart.html">Quickstart Guide</a></li>
             <li><a href="schnittstellen_transport_betrieb.html">Transport & Betriebsmodell</a></li>
             <li><a href="schnittstellen_known_issues.html">Bekannte Einschränkungen</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -50,6 +52,7 @@
         <div class="nav-section">
           <h2>XML-Schnittstelle</h2>
           <ul>
+            <li><a href="schnittstellen_xml_quickstart.html">Quickstart (XML)</a></li>
             <li><a href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzel</a></li>
             <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
             <li><a href="schnittstellen_dealer.html">Händler (dealer)</a></li>
@@ -88,11 +91,13 @@
         <div class="meta-grid">
           <div class="meta-card">
             <strong>Besonders relevant für</strong>
-            Systeme, die Inserate importieren, aktualisieren, löschen oder mit Preisen, Bildern und Ansprechpartnern anreichern.
+            Systeme, die Inserate importieren, aktualisieren, löschen oder mit Preisen, Bildern und Ansprechpartnern
+            anreichern.
           </div>
           <div class="meta-card">
             <strong>Kerninhalte</strong>
-            <code>guid</code>, <code>id</code>, <code>category_id</code>, <code>contact_ids</code>, <code>created</code>, <code>modified</code>, <code>images</code>, <code>price</code>
+            <code>guid</code>, <code>id</code>, <code>category_id</code>, <code>contact_ids</code>,
+            <code>created</code>, <code>modified</code>, <code>images</code>, <code>price</code>
           </div>
         </div>
 
@@ -131,7 +136,8 @@
             <article class="summary-card">
               <h3>Technische Rolle</h3>
               <p>
-                Das Zielsystem nutzt <code>guid</code>, <code>id</code> und <code>category_id</code>, um das Inserat eindeutig
+                Das Zielsystem nutzt <code>guid</code>, <code>id</code> und <code>category_id</code>, um das Inserat
+                eindeutig
                 zu verorten, zu aktualisieren und korrekt zu klassifizieren.
               </p>
             </article>
@@ -151,55 +157,57 @@
             <h2>Attribute von <code>ad</code></h2>
           </div>
           <div class="table-container">
-          <table aria-label="Attribute des ad-Elements">
-            <thead>
-              <tr>
-                <th>Attribut</th>
-                <th>Bedeutung</th>
-                <th>Pflicht</th>
-                <th>Hinweis</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>guid</code></td>
-                <td>Eindeutige technische Kennung des Inserats.</td>
-                <td>Ja</td>
-                <td>Maßgeblich für die stabile Zuordnung im Zielsystem.</td>
-              </tr>
-              <tr>
-                <td><code>id</code></td>
-                <td>Interne ID des Inserats im sendenden System.</td>
-                <td>Ja</td>
-                <td>Dient als zusätzliche Referenz neben der GUID.</td>
-              </tr>
-              <tr>
-                <td><code>category_id</code></td>
-                <td>Eindeutige Zuordnung des Inserats zu einer Kategorie.</td>
-                <td>Ja</td>
-                <td>Normativ relevant für die Klassifikation im Zielsystem.</td>
-              </tr>
-              <tr>
-                <td><code>category_name</code></td>
-                <td>Lesbare Bezeichnung der Kategorie.</td>
-                <td>Optional</td>
-                <td>Hilfreich für Plausibilisierung und manuelle Prüfung, aber nicht maßgeblich für die technische Zuordnung.</td>
-              </tr>
-              <tr>
-                <td><code>parent_category_name</code></td>
-                <td>Lesbare Bezeichnung der übergeordneten Kategorie.</td>
-                <td>Optional</td>
-                <td>Dient vor allem der Orientierung und Nachvollziehbarkeit.</td>
-              </tr>
-              <tr>
-                <td><code>ad_type</code></td>
-                <td>Typ des Inserats, z. B. Maschinen- oder Ersatzteilkontext.</td>
-                <td>Optional bzw. kontextabhängig</td>
-                <td>Sollte dokumentiert und ausgewertet werden, wenn unterschiedliche fachliche Flüsse davon abhängen.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <table aria-label="Attribute des ad-Elements">
+              <thead>
+                <tr>
+                  <th>Attribut</th>
+                  <th>Bedeutung</th>
+                  <th>Pflicht</th>
+                  <th>Hinweis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>guid</code></td>
+                  <td>Eindeutige technische Kennung des Inserats.</td>
+                  <td>Ja</td>
+                  <td>Maßgeblich für die stabile Zuordnung im Zielsystem.</td>
+                </tr>
+                <tr>
+                  <td><code>id</code></td>
+                  <td>Interne ID des Inserats im sendenden System.</td>
+                  <td>Ja</td>
+                  <td>Dient als zusätzliche Referenz neben der GUID.</td>
+                </tr>
+                <tr>
+                  <td><code>category_id</code></td>
+                  <td>Eindeutige Zuordnung des Inserats zu einer Kategorie.</td>
+                  <td>Ja</td>
+                  <td>Normativ relevant für die Klassifikation im Zielsystem.</td>
+                </tr>
+                <tr>
+                  <td><code>category_name</code></td>
+                  <td>Lesbare Bezeichnung der Kategorie.</td>
+                  <td>Optional</td>
+                  <td>Hilfreich für Plausibilisierung und manuelle Prüfung, aber nicht maßgeblich für die technische
+                    Zuordnung.</td>
+                </tr>
+                <tr>
+                  <td><code>parent_category_name</code></td>
+                  <td>Lesbare Bezeichnung der übergeordneten Kategorie.</td>
+                  <td>Optional</td>
+                  <td>Dient vor allem der Orientierung und Nachvollziehbarkeit.</td>
+                </tr>
+                <tr>
+                  <td><code>ad_type</code></td>
+                  <td>Typ des Inserats, z. B. Maschinen- oder Ersatzteilkontext.</td>
+                  <td>Optional bzw. kontextabhängig</td>
+                  <td>Sollte dokumentiert und ausgewertet werden, wenn unterschiedliche fachliche Flüsse davon abhängen.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section id="unterelemente" class="anchor">
@@ -212,10 +220,16 @@
               <h3><code>info</code></h3>
               <p>Container für die fachlichen Detaildaten des Inserats.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Ja</dd>
-                <dt>Bedeutung</dt><dd>Enthält die inhaltlichen Angaben des Inserats, beispielsweise technische Merkmale, Zustandsinformationen und weitere Attribute.</dd>
-                <dt>Hinweis</dt><dd>Die genaue Unterstruktur sollte separat dokumentiert oder modular aufbereitet werden, sofern sie sehr umfangreich ist.</dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja</dd>
+                <dt>Bedeutung</dt>
+                <dd>Enthält die inhaltlichen Angaben des Inserats, beispielsweise technische Merkmale,
+                  Zustandsinformationen und weitere Attribute.</dd>
+                <dt>Hinweis</dt>
+                <dd>Die genaue Unterstruktur sollte separat dokumentiert oder modular aufbereitet werden, sofern sie
+                  sehr umfangreich ist.</dd>
               </dl>
             </article>
 
@@ -223,10 +237,14 @@
               <h3><code>contact_ids</code></h3>
               <p>Verknüpfung zu den dem Inserat zugeordneten Ansprechpartnern.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Optional bis fachlich empfohlen</dd>
-                <dt>Bedeutung</dt><dd>Enthält Referenzen auf Kontakte, die auf Händler-Ebene in <code>contacts</code> definiert sind.</dd>
-                <dt>Verweis</dt><dd><code>/schnittstellen/xml/contact</code></dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Optional bis fachlich empfohlen</dd>
+                <dt>Bedeutung</dt>
+                <dd>Enthält Referenzen auf Kontakte, die auf Händler-Ebene in <code>contacts</code> definiert sind.</dd>
+                <dt>Verweis</dt>
+                <dd><code>/schnittstellen/xml/contact</code></dd>
               </dl>
             </article>
 
@@ -234,10 +252,14 @@
               <h3><code>price</code></h3>
               <p>Preisangabe des Inserats einschließlich Attributen zur Währung und Steuerlogik.</p>
               <dl>
-                <dt>Typ</dt><dd>Element mit Attributen</dd>
-                <dt>Pflicht</dt><dd>Schema- und fachkontextabhängig</dd>
-                <dt>Bedeutung</dt><dd>Beschreibt den Angebotspreis des Inserats.</dd>
-                <dt>Verweis</dt><dd><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></dd>
+                <dt>Typ</dt>
+                <dd>Element mit Attributen</dd>
+                <dt>Pflicht</dt>
+                <dd>Schema- und fachkontextabhängig</dd>
+                <dt>Bedeutung</dt>
+                <dd>Beschreibt den Angebotspreis des Inserats.</dd>
+                <dt>Verweis</dt>
+                <dd><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></dd>
               </dl>
             </article>
 
@@ -245,10 +267,14 @@
               <h3><code>canonical_url</code> / <code>canonical_urls</code></h3>
               <p>Referenzen auf kanonische Ziel-URLs des Inserats.</p>
               <dl>
-                <dt>Typ</dt><dd>String bzw. Container-Element</dd>
-                <dt>Pflicht</dt><dd>Optional</dd>
-                <dt>Bedeutung</dt><dd>Ermöglicht die Zuordnung des Inserats zu externen oder sprachspezifischen Zielseiten.</dd>
-                <dt>Hinweis</dt><dd>Mehrsprachige Varianten sollten sauber von einer einfachen Einzel-URL unterschieden werden.</dd>
+                <dt>Typ</dt>
+                <dd>String bzw. Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Optional</dd>
+                <dt>Bedeutung</dt>
+                <dd>Ermöglicht die Zuordnung des Inserats zu externen oder sprachspezifischen Zielseiten.</dd>
+                <dt>Hinweis</dt>
+                <dd>Mehrsprachige Varianten sollten sauber von einer einfachen Einzel-URL unterschieden werden.</dd>
               </dl>
             </article>
 
@@ -256,10 +282,15 @@
               <h3><code>created</code></h3>
               <p>Zeitpunkt der Erstellung des Inserats.</p>
               <dl>
-                <dt>Typ</dt><dd>Datum/Zeit</dd>
-                <dt>Pflicht</dt><dd>Ja</dd>
-                <dt>Bedeutung</dt><dd>Erstellungszeitpunkt des Objekts im sendenden System.</dd>
-                <dt>Verarbeitungsregel</dt><dd>Hilft bei historischer Einordnung, ist für Update-Entscheidungen aber nachrangig gegenüber <code>modified</code>.</dd>
+                <dt>Typ</dt>
+                <dd>Datum/Zeit</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja</dd>
+                <dt>Bedeutung</dt>
+                <dd>Erstellungszeitpunkt des Objekts im sendenden System.</dd>
+                <dt>Verarbeitungsregel</dt>
+                <dd>Hilft bei historischer Einordnung, ist für Update-Entscheidungen aber nachrangig gegenüber
+                  <code>modified</code>.</dd>
               </dl>
             </article>
 
@@ -267,10 +298,14 @@
               <h3><code>modified</code></h3>
               <p>Zeitpunkt der letzten Änderung des Inserats.</p>
               <dl>
-                <dt>Typ</dt><dd>Datum/Zeit</dd>
-                <dt>Pflicht</dt><dd>Ja</dd>
-                <dt>Bedeutung</dt><dd>Steuert, ob ein Inserat bei Update-Verarbeitung neu übernommen werden muss.</dd>
-                <dt>Verarbeitungsregel</dt><dd>Änderungen sollten nur übernommen werden, wenn der neue Datensatz fachlich aktueller ist.</dd>
+                <dt>Typ</dt>
+                <dd>Datum/Zeit</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja</dd>
+                <dt>Bedeutung</dt>
+                <dd>Steuert, ob ein Inserat bei Update-Verarbeitung neu übernommen werden muss.</dd>
+                <dt>Verarbeitungsregel</dt>
+                <dd>Änderungen sollten nur übernommen werden, wenn der neue Datensatz fachlich aktueller ist.</dd>
               </dl>
             </article>
 
@@ -278,10 +313,14 @@
               <h3><code>images</code></h3>
               <p>Container für die dem Inserat zugeordneten Bildreferenzen.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Ja bzw. schema-relevant</dd>
-                <dt>Bedeutung</dt><dd>Enthält 0 bis n Bilder des Inserats sowie gegebenenfalls ergänzende Metadaten.</dd>
-                <dt>Verweis</dt><dd><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Ja bzw. schema-relevant</dd>
+                <dt>Bedeutung</dt>
+                <dd>Enthält 0 bis n Bilder des Inserats sowie gegebenenfalls ergänzende Metadaten.</dd>
+                <dt>Verweis</dt>
+                <dd><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></dd>
               </dl>
             </article>
 
@@ -289,10 +328,14 @@
               <h3><code>video</code></h3>
               <p>Optionaler Verweis auf ein Inseratsvideo.</p>
               <dl>
-                <dt>Typ</dt><dd>Leeres Element mit Attributen oder strukturierter Medienknoten</dd>
-                <dt>Pflicht</dt><dd>Optional</dd>
-                <dt>Bedeutung</dt><dd>Erlaubt die Verknüpfung eines Videos mit dem Inserat.</dd>
-                <dt>Verweis</dt><dd><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></dd>
+                <dt>Typ</dt>
+                <dd>Leeres Element mit Attributen oder strukturierter Medienknoten</dd>
+                <dt>Pflicht</dt>
+                <dd>Optional</dd>
+                <dt>Bedeutung</dt>
+                <dd>Erlaubt die Verknüpfung eines Videos mit dem Inserat.</dd>
+                <dt>Verweis</dt>
+                <dd><code>/schnittstellen/xml/preise-medien-zusatzobjekte</code></dd>
               </dl>
             </article>
 
@@ -300,10 +343,15 @@
               <h3><code>auction</code></h3>
               <p>Optionales Zusatzobjekt für Auktionskontexte.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Optional</dd>
-                <dt>Bedeutung</dt><dd>Beschreibt auktionsbezogene Zusatzinformationen, sofern dieser Modus genutzt wird.</dd>
-                <dt>Hinweis</dt><dd>Auch selten genutzte Schemaelemente sollten dokumentiert werden, damit ihr Status eindeutig bleibt.</dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Optional</dd>
+                <dt>Bedeutung</dt>
+                <dd>Beschreibt auktionsbezogene Zusatzinformationen, sofern dieser Modus genutzt wird.</dd>
+                <dt>Hinweis</dt>
+                <dd>Auch selten genutzte Schemaelemente sollten dokumentiert werden, damit ihr Status eindeutig bleibt.
+                </dd>
               </dl>
             </article>
 
@@ -311,10 +359,15 @@
               <h3><code>purchase</code></h3>
               <p>Optionales Zusatzobjekt für ankaufsbezogene Kontexte.</p>
               <dl>
-                <dt>Typ</dt><dd>Container-Element</dd>
-                <dt>Pflicht</dt><dd>Optional</dd>
-                <dt>Bedeutung</dt><dd>Ermöglicht zusätzliche Angaben in Ankaufsszenarien.</dd>
-                <dt>Hinweis</dt><dd>Der fachliche Einsatz sollte transparent dokumentiert werden, selbst wenn das Element im Alltag selten vorkommt.</dd>
+                <dt>Typ</dt>
+                <dd>Container-Element</dd>
+                <dt>Pflicht</dt>
+                <dd>Optional</dd>
+                <dt>Bedeutung</dt>
+                <dd>Ermöglicht zusätzliche Angaben in Ankaufsszenarien.</dd>
+                <dt>Hinweis</dt>
+                <dd>Der fachliche Einsatz sollte transparent dokumentiert werden, selbst wenn das Element im Alltag
+                  selten vorkommt.</dd>
               </dl>
             </article>
           </div>
@@ -324,8 +377,10 @@
           <div class="warning">
             <h3>Wichtig: <code>category_id</code> ist normativ</h3>
             <p>
-              Für die technische Zuordnung eines Inserats ist die <code>category_id</code> maßgeblich. Lesbare Felder wie
-              <code>category_name</code> oder <code>parent_category_name</code> sind hilfreich für Kontrolle und Diagnose,
+              Für die technische Zuordnung eines Inserats ist die <code>category_id</code> maßgeblich. Lesbare Felder
+              wie
+              <code>category_name</code> oder <code>parent_category_name</code> sind hilfreich für Kontrolle und
+              Diagnose,
               ersetzen aber nicht die eindeutige Kategorie-ID.
             </p>
           </div>
@@ -340,7 +395,8 @@
             <article class="rule-card">
               <h3>Regel 1: Inserate primär über GUID lokalisieren</h3>
               <p>
-                Das Zielsystem sollte ein Inserat primär über <code>guid</code> identifizieren. Die <code>id</code> dient
+                Das Zielsystem sollte ein Inserat primär über <code>guid</code> identifizieren. Die <code>id</code>
+                dient
                 als zusätzliche Referenz auf das sendende System.
               </p>
             </article>
@@ -361,7 +417,8 @@
             <article class="rule-card">
               <h3>Regel 4: Kontakte nur referenziert interpretieren</h3>
               <p>
-                In <code>contact_ids</code> werden nur Verweise geführt. Die eigentlichen Ansprechpartnerdaten liegen auf
+                In <code>contact_ids</code> werden nur Verweise geführt. Die eigentlichen Ansprechpartnerdaten liegen
+                auf
                 Händler-Ebene in <code>contacts</code> und müssen dort aufgelöst werden.
               </p>
             </article>
@@ -376,7 +433,8 @@
               <h3>Regel 6: Löschlogik separat beachten</h3>
               <p>
                 Das Fehlen eines Inserats in einem Einzel-Update ist nicht automatisch eine Löschung. Löschfälle werden
-                auf Root-Ebene gesondert signalisiert oder ergeben sich bei Vollabgleichen aus der Vollständigkeit des Bestands.
+                auf Root-Ebene gesondert signalisiert oder ergeben sich bei Vollabgleichen aus der Vollständigkeit des
+                Bestands.
               </p>
             </article>
           </div>
@@ -388,21 +446,23 @@
             <h2>Weitergabe &amp; Externe Börsen</h2>
           </div>
           <p>
-            Über einen optionalen Weitergabe-Block kann die Publikation des Inserats auf angebundenen, nachgelagerten 
-            Plattformen (Downstream Publication) gesteuert werden. 
+            Über einen optionalen Weitergabe-Block kann die Publikation des Inserats auf angebundenen, nachgelagerten
+            Plattformen (Downstream Publication) gesteuert werden.
           </p>
           <div class="rules-grid">
             <article class="rule-card">
               <h3>Optionalität &amp; Standardverhalten</h3>
               <p>
-                Die Steuerung der Weitergabe ist optional. Fehlt der entsprechende Block, greift das im System 
-                hinterlegte Standardverhalten (Default Behavior), was in der Regel "keine Änderung" am bestehenden Status bedeutet.
+                Die Steuerung der Weitergabe ist optional. Fehlt der entsprechende Block, greift das im System
+                hinterlegte Standardverhalten (Default Behavior), was in der Regel "keine Änderung" am bestehenden
+                Status bedeutet.
               </p>
             </article>
             <article class="rule-card">
               <h3>Konfigurationsabhängigkeit</h3>
               <p>
-                Die tatsächliche Ausführung der Weitergabe ist abhängig vom gebuchten Produkt und der Händlerkonfiguration.
+                Die tatsächliche Ausführung der Weitergabe ist abhängig vom gebuchten Produkt und der
+                Händlerkonfiguration.
                 Ziele müssen einem dokumentierten, vereinbarten Katalog (Source of Truth) entsprechen.
               </p>
             </article>
@@ -422,46 +482,48 @@
             <h2>Mapping, Fallbacks &amp; Standardisierung</h2>
           </div>
           <p>
-            Um die Datenqualität beim Import von Inseraten sicherzustellen, durchlaufen verschiedene Datenpunkte 
-            einen Normalisierungs- und Mapping-Prozess. 
+            Um die Datenqualität beim Import von Inseraten sicherzustellen, durchlaufen verschiedene Datenpunkte
+            einen Normalisierungs- und Mapping-Prozess.
           </p>
-          
+
           <div class="summary-grid">
             <article class="summary-card">
               <h3>Kategorien &amp; Fallbacks</h3>
               <p>
-                Kategorien werden primär anhand der <code>category_id</code> zugewiesen. Schlägt die Zuweisung fehl 
-                oder ist die Kategorie ungültig, greifen definierte Fallback-Regeln (z.B. Zuweisung in eine 
+                Kategorien werden primär anhand der <code>category_id</code> zugewiesen. Schlägt die Zuweisung fehl
+                oder ist die Kategorie ungültig, greifen definierte Fallback-Regeln (z.B. Zuweisung in eine
                 Oberkategorie oder "Sonstiges"), um das Inserat nicht abzuweisen.
               </p>
             </article>
             <article class="summary-card">
               <h3>Hersteller-Normalisierung</h3>
               <p>
-                Herstellernamen werden normalisiert (z. B. Schreibfehler korrigiert, Aliasse zusammengeführt). 
-                Konnte ein Hersteller nicht aufgelöst werden, greifen Fallback-Regeln (z. B. "Sonstige" oder Anlage als Freitext), 
+                Herstellernamen werden normalisiert (z. B. Schreibfehler korrigiert, Aliasse zusammengeführt).
+                Konnte ein Hersteller nicht aufgelöst werden, greifen Fallback-Regeln (z. B. "Sonstige" oder Anlage als
+                Freitext),
                 abhängig von den Systemvorgaben.
               </p>
             </article>
             <article class="summary-card">
               <h3>Modellverarbeitung</h3>
               <p>
-                Die Verarbeitung von Modellbezeichnungen erfolgt flexibel. Oft wird versucht, Modelle aus Katalogen 
+                Die Verarbeitung von Modellbezeichnungen erfolgt flexibel. Oft wird versucht, Modelle aus Katalogen
                 abzugleichen, jedoch wird eine Freitext-Übernahme unterstützt, falls kein striktes Mapping möglich ist.
               </p>
             </article>
             <article class="summary-card">
               <h3>Umgang mit Attributen</h3>
               <p>
-                Bekannte und unterstützte Attribute werden verarbeitet, unbekannte oder nicht im Schema 
+                Bekannte und unterstützte Attribute werden verarbeitet, unbekannte oder nicht im Schema
                 vorgesehene Attribute werden ignoriert (Silent Ignore), ohne dass der Import fehlschlägt.
               </p>
             </article>
             <article class="summary-card">
               <h3>Standard vs. Spezialmapping</h3>
               <p>
-                Standardmäßig ist eine Adhärenz an das allgemeine Datenmodell vorgesehen. Spezielle Custom-Mapping-Agreements 
-                können vereinbart werden, weichen dann aber vom Standardverhalten ab. Die Verantwortung für die korrekte 
+                Standardmäßig ist eine Adhärenz an das allgemeine Datenmodell vorgesehen. Spezielle
+                Custom-Mapping-Agreements
+                können vereinbart werden, weichen dann aber vom Standardverhalten ab. Die Verantwortung für die korrekte
                 Ausrichtung des Mappings liegt beim Integrationspartner.
               </p>
             </article>
@@ -561,7 +623,8 @@
             <article class="note">
               <h3>Typischer Fehler: <code>modified</code> ignorieren</h3>
               <p>
-                Wenn Inserate bei jedem Import blind überschrieben werden, entstehen unnötige Aktualisierungen und mögliche
+                Wenn Inserate bei jedem Import blind überschrieben werden, entstehen unnötige Aktualisierungen und
+                mögliche
                 Seiteneffekte in nachgelagerten Systemen.
               </p>
             </article>
@@ -589,6 +652,5 @@
   </div>
   <script src="../mobile_nav.js"></script>
 </body>
+
 </html>
-
-

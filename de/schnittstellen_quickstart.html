@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>technikboerse Schnittstellen – Quick-Start Guide (XML Datenaustausch)</title>
+  <title>technikboerse Schnittstellen – Quickstart Guide (XML Datenaustausch)</title>
   <link rel="icon" href="../favicon.ico" sizes="32x32">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -32,7 +32,7 @@
       <div class="brand">
         <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
         <small>technikboerse Schnittstellen</small>
-        <h1>Quick-Start Guide</h1>
+        <h1>Quickstart Guide</h1>
 
       </div>
 
@@ -42,7 +42,7 @@
         <div class="nav-section">
           <h2>Allgemein</h2>
           <ul>
-            <li><a class="active" href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a class="active" href="schnittstellen_quickstart.html">Quickstart Guide</a></li>
             <li><a href="schnittstellen_transport_betrieb.html">Transport & Betriebsmodell</a></li>
             <li><a href="schnittstellen_known_issues.html">Bekannte Einschränkungen</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -52,6 +52,7 @@
         <div class="nav-section">
           <h2>XML-Schnittstelle</h2>
           <ul>
+            <li><a href="schnittstellen_xml_quickstart.html">Quickstart (XML)</a></li>
             <li><a href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzel</a></li>
             <li><a href="schnittstellen_loeschlogik.html">Löschlogik</a></li>
             <li><a href="schnittstellen_dealer.html">Händler (dealer)</a></li>
@@ -146,6 +147,7 @@
                 <h4>Relevante Seiten:</h4>
                 <ul>
                   <li><a href="schnittstellen_transport_betrieb.html">Transport &amp; Betrieb</a></li>
+                  <li><a href="schnittstellen_xml_quickstart.html">Quickstart (XML)</a></li>
                   <li><a href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzelelement</a></li>
                   <li><a href="schnittstellen_dealer.html">Händler</a></li>
                   <li><a href="schnittstellen_ad.html">Inserat</a></li>
@@ -308,148 +310,21 @@
           </div>
         </section>
 
-        <section id="xml-quickstart" class="anchor">
+        <section id="next-steps" class="anchor">
           <div class="section-header">
-            <span class="eyebrow">Tutorial</span>
-            <h2>Technischer Schnellstart (XML)</h2>
-            <p>Dieser Guide führt Sie in die Erstellung und Verarbeitung einer validen XML-Austauschdatei ein.</p>
+            <span class="eyebrow">Weiterführend</span>
+            <h2>Nächste Schritte der Integration</h2>
           </div>
-
           <div class="grid-2">
-            <div class="mode-card">
-              <h4>A. Daten an technikboerse senden (Partner → technikboerse)</h4>
-              <p>Der Partner erstellt die XML-Datei mit Inseraten und stellt sie bereit (oder lädt sie hoch).
-                technikboerse verarbeitet die Datei regelmäßig nach dem vereinbarten Zeitplan.</p>
-            </div>
-            <div class="mode-card">
-              <h4>B. Daten von technikboerse empfangen (technikboerse → Partner)</h4>
-              <p>technikboerse generiert die XML-Datei mit den Bestandsdaten. Der Partner lädt die Datei herunter (oder
-                empfängt sie) und verarbeitet sie in seinem System.</p>
-            </div>
-          </div>
-
-          <div class="step-card">
-            <div class="step-header">
-              <span class="step-number">1</span>
-              <h3>Die XML-Wurzel (<code>exchange</code>)</h3>
-            </div>
-            <p>Jede Austauschdatei beginnt mit dem <code>&lt;exchange&gt;</code>-Element. Es enthält globale Metadaten
-              über den Datenaustausch.</p>
-            <div class="code-card">
-              <pre>&lt;exchange&gt;
-  &lt;senderName&gt;ihre-provider-id&lt;/senderName&gt;
-  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
-  &lt;transferMode&gt;full&lt;/transferMode&gt;
-  &lt;dealers&gt; ... &lt;/dealers&gt;
-&lt;/exchange&gt;</pre>
-            </div>
-            <p class="note">Details zum <code>transferMode</code> finden Sie unter <a
-                href="schnittstellen_root_exchange.html">XML-Aufbau & Wurzelelement</a></p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-header">
-              <span class="step-number">2</span>
-              <h3>Der Händler-Block</h3>
-            </div>
-            <p>Innerhalb von <code>&lt;dealers&gt;</code> fügen Sie Ihren Händler hinzu. Die <code>guid</code> ist
-              hierbei der Primärschlüssel.</p>
-            <div class="code-card">
-              <pre>&lt;dealer guid="dealer-unique-key-123"&gt;
-  &lt;info&gt;
-    &lt;name&gt;Muster Landtechnik GmbH&lt;/name&gt;
-  &lt;/info&gt;
-  &lt;ads&gt; ... &lt;/ads&gt;
-  &lt;contacts&gt; ... &lt;/contacts&gt;
-&lt;/dealer&gt;</pre>
-            </div>
-            <p class="note">Erfahren Sie mehr über <a href="schnittstellen_dealer.html">Händler-Attribute</a></p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-header">
-              <span class="step-number">3</span>
-              <h3>Ansprechpartner definieren</h3>
-            </div>
-            <p>Kontakte werden auf Händlerebene definiert und von den Maschinen referenziert. Legen Sie diese im
-              <code>&lt;contacts&gt;</code>-Container an.
-            </p>
-            <div class="code-card">
-              <pre>&lt;contact id="1"&gt;
-  &lt;first_name&gt;Max&lt;/first_name&gt;
-  &lt;last_name&gt;Mustermann&lt;/last_name&gt;
-  &lt;email&gt;m.mustermann@example.de&lt;/email&gt;
-&lt;/contact&gt;</pre>
-            </div>
-            <p class="note">Besuchen Sie die <a href="schnittstellen_contact.html">Kontakt-Referenz</a> für Felder wie
-              <code>gender</code> oder <code>phone</code>
-            </p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-header">
-              <span class="step-number">4</span>
-              <h3>Die Maschine (<code>ad</code>)</h3>
-            </div>
-            <p>Das <code>&lt;ad&gt;</code>-Element repräsentiert die Maschine. Es wird im
-              <code>&lt;ads&gt;</code>-Container des Händlers platziert.
-            </p>
-            <div class="code-card">
-              <pre>&lt;ad guid="machine-789" category_id="210"&gt;
-  &lt;info&gt;
-    &lt;brand&gt;Fendt&lt;/brand&gt;
-    &lt;model&gt;724 Vario&lt;/model&gt;
-    &lt;year&gt;2022&lt;/year&gt;
-  &lt;/info&gt;
-  &lt;price currency="EUR" taxtype="inclusive"&gt;185000&lt;/price&gt;
-  &lt;contact_ids&gt;
-    &lt;contact_id&gt;1&lt;/contact_id&gt;
-  &lt;/contact_ids&gt;
-&lt;/ad&gt;</pre>
-            </div>
-            <p class="note">Detaillierte Feldlisten finden Sie in der <a
-                href="schnittstellen_ad.html">Inserat-Referenz</a> sowie unter <a
-                href="schnittstellen_preise_medien_zusatzobjekte.html">Preise & Medien</a></p>
-          </div>
-
-          <div class="step-card">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-              <h3 style="margin: 0;">Vollständiges Minimalbeispiel</h3>
-              <a href="../examples/example_full_export.xml" download class="btn">XML herunterladen</a>
-            </div>
-            <div class="code-card">
-              <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;exchange&gt;
-  &lt;senderName&gt;provider-demo&lt;/senderName&gt;
-  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
-  &lt;transferMode&gt;full&lt;/transferMode&gt;
-  &lt;dealers&gt;
-    &lt;dealer guid="dealer-1001"&gt;
-      &lt;info&gt;&lt;name&gt;Agri Hub&lt;/name&gt;&lt;/info&gt;
-      &lt;ads&gt;
-        &lt;ad guid="ad-5001" category_id="210"&gt;
-          &lt;info&gt;
-            &lt;brand&gt;John Deere&lt;/brand&gt;
-            &lt;model&gt;S780&lt;/model&gt;
-            &lt;year&gt;2023&lt;/year&gt;
-          &lt;/info&gt;
-          &lt;price currency="EUR" taxtype="exclusive"&gt;320000&lt;/price&gt;
-          &lt;contact_ids&gt;
-            &lt;contact_id&gt;12&lt;/contact_id&gt;
-          &lt;/contact_ids&gt;
-        &lt;/ad&gt;
-      &lt;/ads&gt;
-      &lt;contacts&gt;
-        &lt;contact id="12"&gt;
-          &lt;first_name&gt;Max&lt;/first_name&gt;
-          &lt;last_name&gt;Mustermann&lt;/last_name&gt;
-          &lt;email&gt;max@agrihub.example&lt;/email&gt;
-        &lt;/contact&gt;
-      &lt;/contacts&gt;
-    &lt;/dealer&gt;
-  &lt;/dealers&gt;
-&lt;/exchange&gt;</pre>
-            </div>
+            <a href="schnittstellen_xml_quickstart.html" class="card">
+              <h3>XML-Quickstart</h3>
+              <p>Erfahren Sie, wie Sie eine valide XML-Datei aufbauen, Händlerblöcke definieren und Maschinen
+                inserieren.</p>
+            </a>
+            <a href="schnittstellen_rest_api.html" class="card">
+              <h3>REST-API Übersicht</h3>
+              <p>Einstieg in die request-basierte Integration für Echtzeit-Interaktionen via REST.</p>
+            </a>
           </div>
         </section>
 

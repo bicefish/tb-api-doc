@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>technikboerse Interfaces – Quick-Start Guide (XML Data Exchange)</title>
+  <title>technikboerse Interfaces – Quickstart Guide</title>
   <link rel="icon" href="../favicon.ico" sizes="32x32">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -32,17 +32,14 @@
       <div class="brand">
         <img src="../tb_logo.svg" alt="technikboerse" class="brand-logo" />
         <small>technikboerse Interfaces</small>
-        <h1>Quick-Start Guide</h1>
-
+        <h1>Quickstart Guide</h1>
       </div>
 
-            <nav>
-        
-
+      <nav>
         <div class="nav-section">
           <h2>General</h2>
           <ul>
-            <li><a class="active" href="schnittstellen_quickstart.html">Quick-Start Guide</a></li>
+            <li><a class="active" href="schnittstellen_quickstart.html">Quickstart Guide</a></li>
             <li><a href="schnittstellen_transport_operating.html">Transport & Operating</a></li>
             <li><a href="schnittstellen_known_issues.html">Known Issues</a></li>
             <li><a href="schnittstellen_changelog.html">Changelog</a></li>
@@ -52,6 +49,7 @@
         <div class="nav-section">
           <h2>XML Interface</h2>
           <ul>
+            <li><a href="schnittstellen_xml_quickstart.html">Quickstart (XML)</a></li>
             <li><a href="schnittstellen_root_exchange.html">XML Structure & Root</a></li>
             <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
             <li><a href="schnittstellen_dealer.html">Dealer (dealer)</a></li>
@@ -80,8 +78,8 @@
           <span class="eyebrow">Getting Started</span>
           <h1>Getting Started with technikboerse Interfaces</h1>
           <p>
-            This guide walks you through the first steps of your integration. Whether you choose the classic path via 
-            <strong>XML data exchange</strong> or prefer using the modern <strong>REST API</strong>: 
+            This guide walks you through the first steps of your integration. Whether you choose the classic path via
+            <strong>XML data exchange</strong> or prefer using the modern <strong>REST API</strong>:
             You will find the appropriate orientation for your scenario here.
           </p>
         </header>
@@ -91,7 +89,7 @@
             <span class="eyebrow">Orientation</span>
             <h2>Choose your integration scenario</h2>
             <p>
-              Our interfaces can be operated in different directions and technologies. To get started, choose the scenario that matches your goal. This overview serves as an orientation guide; detailed behaviors can be found on the linked reference pages.
+              Our interfaces can be operated in different directions and technologies. To get started, choose the scenario that matches your goal.
             </p>
           </div>
 
@@ -102,23 +100,18 @@
               </div>
               <p><strong>Partner &rarr; technikboerse</strong></p>
               <p>Choose this path if your system provides listings or related data to technikboerse.</p>
-              
               <ul class="check-list">
                 <li>Decide whether XML or REST is the appropriate integration method</li>
                 <li>Review onboarding and setup requirements</li>
-                <li>Obtain the required credentials and artifacts (schema/examples)</li>
+                <li>Obtain the required credentials and artifacts</li>
                 <li>Validate the data flow in the test phase</li>
-                <li>Coordinate the production rollout and activate live sync</li>
               </ul>
-
               <div class="nav-section-alt">
                 <h4>Relevant Pages:</h4>
                 <ul>
                   <li><a href="#onboarding">Onboarding Process</a></li>
                   <li><a href="schnittstellen_transport_operating.html">Transport &amp; Operating</a></li>
                   <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
-                  <li><a href="#support">Support &amp; Contact</a></li>
-                  <li><a href="schnittstellen_beispiel_full_export.html">Samples</a></li>
                 </ul>
               </div>
             </div>
@@ -128,51 +121,24 @@
                 <h3>I want to receive data from technikboerse</h3>
               </div>
               <p><strong>technikboerse &rarr; Partner</strong></p>
-              <p>Choose this path if technikboerse provides data that your system retrieves or receives for further processing.</p>
-
+              <p>Choose this path if technikboerse provides data that your system retrieves or receives.</p>
               <ul class="check-list">
                 <li>Choose between XML or REST integration</li>
-                <li>Understand the agreed delivery model and timing (scheduling)</li>
+                <li>Understand the agreed delivery model and timing</li>
                 <li>Understand the XML structure and core elements</li>
-                <li>Implement processing for full syncs and incremental updates</li>
-                <li>Account for deletions, timestamps, and media handling</li>
                 <li>Validate the processing flow before productive use</li>
               </ul>
-
               <div class="nav-section-alt">
                 <h4>Relevant Pages:</h4>
                 <ul>
                   <li><a href="schnittstellen_transport_operating.html">Transport &amp; Operating</a></li>
-                  <li><a href="schnittstellen_root_exchange.html">XML Structure & Root Element</a></li>
-                  <li><a href="schnittstellen_dealer.html">Dealer</a></li>
-                  <li><a href="schnittstellen_ad.html">Ad</a></li>
-                  <li><a href="schnittstellen_contact.html">Contact</a></li>
-                  <li><a href="schnittstellen_loeschlogik.html">Deletion Logic</a></li>
-                  <li><a href="schnittstellen_preise_medien_zusatzobjekte.html">Media Handling</a></li>
+                  <li><a href="schnittstellen_xml_quickstart.html">Quickstart (XML)</a></li>
                   <li><a href="schnittstellen_rest_api.html">REST API Overview</a></li>
-                  <li><a href="schnittstellen_beispiel_full_export.html">Samples</a></li>
                 </ul>
-                          </div>
-          </div>
-
-          <div class="info-banner">
-            The following sections provide detailed reference and process information, focusing on the XML interface. Use the scenario links above for the fastest entry point into your relevant path.
+              </div>
+            </div>
           </div>
         </section>
-
-        <div class="note">
-          <h3>Perspective and Terminology ("Import" / "Export")</h3>
-          <p>
-            The terms "Import" and "Export" depend on your perspective. 
-          </p>
-          <ul>
-            <li><strong>Partner → technikboerse</strong>: Sending data to technikboerse (an "Export" from the partner's perspective, an "Import" from our perspective).</li>
-            <li><strong>technikboerse → Partner</strong>: Receiving data from technikboerse (an "Import" from the partner's perspective, an "Export" from our perspective).</li>
-          </ul>
-          <p>
-            To avoid misunderstandings, this documentation generally uses explicit directional labels. The <strong>structure of the XML exchange file</strong> remains identical; only the transport and scheduling differ.
-          </p>
-        </div>
 
         <section id="onboarding" class="anchor">
           <div class="section-header">
@@ -185,8 +151,7 @@
               <span class="step-number">1</span>
               <h3>Initial Contact & Goal Clarification</h3>
             </div>
-            <p>During the initial meeting, we clarify your integration goals and assign technical contacts for both
-              sides.</p>
+            <p>During the initial meeting, we clarify your integration goals and assign technical contacts.</p>
           </div>
 
           <div class="step-card">
@@ -194,11 +159,7 @@
               <span class="step-number">2</span>
               <h3>Interface Decision</h3>
             </div>
-            <p>Choosing the right technology based on your specific requirements:</p>
-            <ul>
-              <li><strong>XML</strong>: Proven, file-based format for batch processing.</li>
-              <li><strong>REST API</strong>: Modern, request-based integration for real-time interactions.</li>
-            </ul>
+            <p>Choosing the right technology based on your specific requirements (XML vs. REST).</p>
           </div>
 
           <div class="step-card">
@@ -206,26 +167,7 @@
               <span class="step-number">3</span>
               <h3>Test & Integration Phase</h3>
             </div>
-            <div class="grid-2">
-              <div class="mode-card">
-                <h4>REST API</h4>
-                <ul>
-                  <li>Sandbox access setup</li>
-                  <li>API Key & Token generation</li>
-                  <li>Test dealer linking</li>
-                  <li>Endpoint validation</li>
-                </ul>
-              </div>
-              <div class="mode-card">
-                <h4>XML Interface</h4>
-                <ul>
-                  <li>Download Schema & Samples</li>
-                  <li>Agree on transport method</li>
-                  <li>Credentials provisioning</li>
-                  <li>Initial test import/retrieval</li>
-                </ul>
-              </div>
-            </div>
+            <p>Setting up the sandbox environment or agreeing on the XML transport path and validating data.</p>
           </div>
 
           <div class="step-card">
@@ -233,205 +175,24 @@
               <span class="step-number">4</span>
               <h3>Production Activation</h3>
             </div>
-            <p>After successful validation, the integration moves to the live environment:</p>
-            <ul>
-              <li>Import schedule alignment</li>
-              <li>Final go-live confirmation</li>
-              <li>Initial monitoring by technikboerse</li>
-            </ul>
+            <p>Moving to the live environment and aligning on the final synchronization schedule.</p>
           </div>
         </section>
 
-        <section id="preparation" class="anchor">
+        <section id="next-steps" class="anchor">
           <div class="section-header">
-            <span class="eyebrow">Checklist</span>
-            <h2>Preparation & Requirements</h2>
+            <span class="eyebrow">Deep Dive</span>
+            <h2>Next Steps of Integration</h2>
           </div>
-
-          <div class="summary-grid">
-            <article class="summary-card">
-              <h3>General Information</h3>
-              <ul class="check-list">
-                <li>Business purpose & Use-case</li>
-                <li>Technical contact person</li>
-                <li>Preferred interface (XML/REST)</li>
-                <li>Data direction (Import/Export)</li>
-                <li>Expected update frequency</li>
-              </ul>
-              <p class="note" style="margin-top: 1rem; font-size: 0.9rem;">
-                <strong>Mapping:</strong> Master lists for categories and brands are provided during onboarding. It is recommended to update these regularly via the API endpoints <code>/adcategories</code> and <code>/manufacturers</code>.
-              </p>
-            </article>
-
-            <article class="summary-card">
-              <h3>REST-Specific</h3>
-              <ul class="check-list">
-                <li>Sandbox access requested</li>
-                <li>Auth scopes defined</li>
-                <li>Test account identifiers</li>
-                <li>Rollout schedule</li>
-              </ul>
-            </article>
-
-            <article class="summary-card">
-              <h3>XML-Specific</h3>
-              <ul class="check-list">
-                <li>Transport method (FTP/HTTP)</li>
-                <li>Server details & credentials</li>
-                <li>File naming convention</li>
-                <li>Deletion logic strategy</li>
-                <li>Image delivery plan</li>
-              </ul>
-            </article>
-
-            <article class="summary-card">
-              <h3>Import Focus</h3>
-              <ul class="check-list">
-                <li>Dealer GUIDs known</li>
-                <li>Machine IDs (unique)</li>
-                <li>Full vs. Update mode</li>
-                <li>Scope (images, contacts)</li>
-              </ul>
-            </article>
-          </div>
-        </section>
-
-        <section id="xml-quickstart" class="anchor">
-          <div class="section-header">
-            <span class="eyebrow">Tutorial</span>
-            <h2>Technical Quick-Start (XML)</h2>
-            <p>This guide walks you through creating and processing a valid XML exchange file.</p>
-          </div>
-
           <div class="grid-2">
-            <div class="mode-card">
-              <h4>A. Send data to technikboerse (Partner → technikboerse)</h4>
-              <p>The partner creates the XML file with ads and provides (or uploads) it. technikboerse processes the file regularly according to the agreed schedule.</p>
-            </div>
-            <div class="mode-card">
-              <h4>B. Receive data from technikboerse (technikboerse → Partner)</h4>
-              <p>technikboerse generates the XML file containing the inventory data. The partner downloads (or receives) the file and processes it in their system.</p>
-            </div>
-          </div>
-
-          <div class="step-card">
-            <div class="step-header">
-              <span class="step-number">1</span>
-              <h3>The XML Root (<code>exchange</code>)</h3>
-            </div>
-            <p>Every exchange file starts with the <code>&lt;exchange&gt;</code> element. This contains global metadata about the exchange.</p>
-            <div class="code-card">
-              <pre>&lt;exchange&gt;
-  &lt;senderName&gt;your-provider-id&lt;/senderName&gt;
-  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
-  &lt;transferMode&gt;full&lt;/transferMode&gt;
-  &lt;dealers&gt; ... &lt;/dealers&gt;
-&lt;/exchange&gt;</pre>
-            </div>
-            <p class="note">See the <a href="schnittstellen_root_exchange.html">XML Structure & Root Element</a> for details on <code>transferMode</code></p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-header">
-              <span class="step-number">2</span>
-              <h3>The Dealer Block</h3>
-            </div>
-            <p>Inside <code>&lt;dealers&gt;</code>, add your dealer. The <code>guid</code> is the primary key.</p>
-            <div class="code-card">
-              <pre>&lt;dealer guid="dealer-unique-key-123"&gt;
-  &lt;info&gt;
-    &lt;name&gt;Sample Machinery Ltd.&lt;/name&gt;
-  &lt;/info&gt;
-  &lt;ads&gt; ... &lt;/ads&gt;
-  &lt;contacts&gt; ... &lt;/contacts&gt;
-&lt;/dealer&gt;</pre>
-            </div>
-            <p class="note">Learn more about <a href="schnittstellen_dealer.html">Dealer Attributes</a></p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-header">
-              <span class="step-number">3</span>
-              <h3>Define a Contact Person</h3>
-            </div>
-            <p>Contacts are defined at the dealer level and referenced by machines. Define them in the
-              <code>&lt;contacts&gt;</code> container.
-            </p>
-            <div class="code-card">
-              <pre>&lt;contact id="1"&gt;
-  &lt;first_name&gt;John&lt;/first_name&gt;
-  &lt;last_name&gt;Doe&lt;/last_name&gt;
-  &lt;email&gt;j.doe@example.com&lt;/email&gt;
-&lt;/contact&gt;</pre>
-            </div>
-            <p class="note">Check the <a href="schnittstellen_contact.html">Contact Reference</a> for fields like
-              <code>gender</code> and <code>phone</code>
-            </p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-header">
-              <span class="step-number">4</span>
-              <h3>The Machine (<code>ad</code>)</h3>
-            </div>
-            <p>The <code>&lt;ad&gt;</code> element represents the machine. Place it inside the dealer's
-              <code>&lt;ads&gt;</code> container.
-            </p>
-            <div class="code-card">
-              <pre>&lt;ad guid="machine-789" category_id="210"&gt;
-  &lt;info&gt;
-    &lt;brand&gt;Fendt&lt;/brand&gt;
-    &lt;model&gt;724 Vario&lt;/model&gt;
-    &lt;year&gt;2022&lt;/year&gt;
-  &lt;/info&gt;
-  &lt;price currency="EUR" taxtype="inclusive"&gt;185000&lt;/price&gt;
-  &lt;contact_ids&gt;
-    &lt;contact_id&gt;1&lt;/contact_id&gt;
-  &lt;/contact_ids&gt;
-&lt;/ad&gt;</pre>
-            </div>
-            <p class="note">Detailed field lists can be found in the <a href="schnittstellen_ad.html">Ad Reference</a>
-              and <a href="schnittstellen_preise_medien_zusatzobjekte.html">Prices & Media</a></p>
-          </div>
-
-          <div class="step-card">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-              <h3 style="margin: 0;">Complete Minimal Example</h3>
-              <a href="../examples/example_full_export.xml" download class="btn">Download XML</a>
-            </div>
-            <div class="code-card">
-              <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;exchange&gt;
-  &lt;senderName&gt;provider-demo&lt;/senderName&gt;
-  &lt;exportDate&gt;2024-05-12T06:00:00&lt;/exportDate&gt;
-  &lt;transferMode&gt;full&lt;/transferMode&gt;
-  &lt;dealers&gt;
-    &lt;dealer guid="dealer-1001"&gt;
-      &lt;info&gt;&lt;name&gt;Agri Hub&lt;/name&gt;&lt;/info&gt;
-      &lt;ads&gt;
-        &lt;ad guid="ad-5001" category_id="210"&gt;
-          &lt;info&gt;
-            &lt;brand&gt;John Deere&lt;/brand&gt;
-            &lt;model&gt;S780&lt;/model&gt;
-            &lt;year&gt;2023&lt;/year&gt;
-          &lt;/info&gt;
-          &lt;price currency="EUR" taxtype="exclusive"&gt;320000&lt;/price&gt;
-          &lt;contact_ids&gt;
-            &lt;contact_id&gt;12&lt;/contact_id&gt;
-          &lt;/contact_ids&gt;
-        &lt;/ad&gt;
-      &lt;/ads&gt;
-      &lt;contacts&gt;
-        &lt;contact id="12"&gt;
-          &lt;first_name&gt;Max&lt;/first_name&gt;
-          &lt;last_name&gt;Mustermann&lt;/last_name&gt;
-          &lt;email&gt;max@agrihub.example&lt;/email&gt;
-        &lt;/contact&gt;
-      &lt;/contacts&gt;
-    &lt;/dealer&gt;
-  &lt;/dealers&gt;
-&lt;/exchange&gt;</pre>
-            </div>
+            <a href="schnittstellen_xml_quickstart.html" class="card">
+              <h3>XML Quickstart</h3>
+              <p>Learn how to build a valid XML file, define dealer blocks, and list machines.</p>
+            </a>
+            <a href="schnittstellen_rest_api.html" class="card">
+              <h3>REST API Overview</h3>
+              <p>Introduction to request-based integration for real-time interactions via REST.</p>
+            </a>
           </div>
         </section>
 
@@ -447,41 +208,18 @@
             <div class="grid-2">
               <div class="mode-card">
                 <h4 style="margin-top: 0;">Onboarding &amp; Setup</h4>
-                <p>For new integration requests, onboarding, and general setup coordination, please contact:</p>
-                <p style="font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem;">
-                  <a href="mailto:support@technikboerse.com"
-                    style="color: var(--accent); text-decoration: none;">support@technikboerse.com</a>
-                </p>
+                <p>Contact: <a href="mailto:support@technikboerse.com">support@technikboerse.com</a></p>
               </div>
               <div class="mode-card">
-                <h4 style="margin-top: 0;">Technical XML Questions</h4>
-                <p>For technical implementation questions regarding the XML interface, please contact:</p>
-                <p style="font-size: 1.1rem; font-weight: bold; margin-top: 0.5rem;">
-                  <a href="mailto:produktmanagement@technikboerse.com"
-                    style="color: var(--accent); text-decoration: none;">produktmanagement@technikboerse.com</a>
-                </p>
+                <h4 style="margin-top: 0;">Technical Questions</h4>
+                <p>Contact: <a href="mailto:produktmanagement@technikboerse.com">produktmanagement@technikboerse.com</a></p>
               </div>
-            </div>
-            <p><strong>Please include the following information in your initial onboarding request:</strong></p>
-            <div class="grid-2">
-              <ul class="check-list">
-                <li>Company Name / System</li>
-                <li>Integration Type (XML/REST)</li>
-                <li>Planned Use-Case</li>
-              </ul>
-              <ul class="check-list">
-                <li>Technical Contact Person</li>
-                <li>Target Environment (Test/Live)</li>
-                <li>Data Direction (Import/Export)</li>
-              </ul>
             </div>
           </div>
         </section>
 
         <footer class="site-footer">
-          <div class="copyright">
-            &copy; 2026 technikboerse. All rights reserved.
-          </div>
+          <div class="copyright">&copy; 2026 technikboerse. All rights reserved.</div>
           <div class="footer-links">
             <a href="https://www.technikboerse.com/content/impressum" target="_blank" rel="noopener">Legal Notice</a>
             <a href="https://www.technikboerse.com/content/datenschutz" target="_blank" rel="noopener">Privacy Policy</a>
@@ -493,5 +231,4 @@
   <script src="../mobile_nav.js"></script>
 </body>
 </html>
-
 
