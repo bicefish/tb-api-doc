@@ -1,40 +1,58 @@
-# technikboerse Schnittstellen Dokumentation
+# technikboerse Interface Documentation
 
-Technical documentation for technikboerse XML and REST-API interfaces. This site provides quick-start guides and detailed field references for integrators.
+This repository contains the static bilingual technical documentation for **technikboerse** interfaces, including XML data exchange and REST API integration.
 
-## Features
+## Project Purpose
+The goal of this project is to provide a comprehensive, easy-to-navigate documentation suite for technical partners and integrators. It covers:
+- Classic XML-based data exchange (Import/Export).
+- Modern REST API integration.
+- Operational processes and transport models.
+- Implementation examples and schemas.
 
-- **Dual Language Support**: Full documentation available in both German (`de/`) and English (`en/`).
-- **XML Integration Path**:
-  - Quickstart guides for sending and receiving data.
-  - Detailed structure and element references.
-- **REST API Integration Path**:
-  - Overview and onboarding process.
-  - Links to the full interactive technical documentation.
-- **Responsive Design**: Optimized for both desktop and mobile viewing.
-
-## Project Structure
+## Directory Structure
+The project is organized as a flat static site with language-specific subdirectories:
 
 ```text
 .
-├── index.html                 # Landing page with language switcher
-├── schnittstellen_shared.css  # Shared styles for all pages
-├── mobile_nav.js              # Mobile navigation logic
-├── de/                        # German documentation files
-├── en/                        # English documentation files
-├── examples/                  # XML examples and XSD schema
-└── assets/                    # (Images, icons, etc.)
+├── de/                         # German documentation pages
+├── en/                         # English documentation pages
+├── examples/                   # Sample XML files and XSD schemas
+├── _project_files/             # Internal project management and design notes
+├── index.html                  # Main entry point / Landing page
+├── schnittstellen_shared.css   # Central design system and styles
+├── mobile_nav.js               # Responsive navigation logic
+├── tb_logo.svg                 # Brand assets
+├── favicon.ico / svg           # Browser icons
+└── README.md                   # Project overview and conventions
 ```
 
-## Getting Started
+## Naming Conventions
+To maintain consistency and ease of maintenance, we follow these naming rules:
 
-To view the documentation locally:
+1. **Parallel Filenames**: German and English documentation pages use identical filenames whenever possible.
+2. **Transport Page**: Both languages use `schnittstellen_transport_betrieb.html`.
+   - German: `de/schnittstellen_transport_betrieb.html`
+   - English: `en/schnittstellen_transport_betrieb.html`
+3. **Prefix**: All documentation-specific HTML files should be prefixed with `schnittstellen_`.
 
-1. Clone or download this repository.
-2. Open `index.html` in any modern web browser.
+## Localization & Parity
+The documentation is strictly bilingual (DE/EN).
 
-## Technologies Used
+- **Mirror Logic**: Every page in the `de/` directory must have a corresponding counterpart in `en/`.
+- **Content Parity**: Content should stay aligned in meaning, depth, and structural coverage. Significant guidance added to one language must be reflected in the other.
+- **Language Switching**: Each page includes a language switcher that links directly to the corresponding page in the alternative language.
 
-- HTML5
-- CSS3 (with custom properties)
-- Vanilla JavaScript
+## Maintenance Guidance
+- **Sync Changes**: When updating content in German, always review and update the English counterpart to ensure parity.
+- **Navigation Alignment**: Sidebar and footer navigation must remain aligned across both languages.
+- **Shared Assets**: Avoid duplicating styles or logic. Use `schnittstellen_shared.css` and `mobile_nav.js` for all pages.
+- **Internal Links**: Use relative paths. Ensure that language-switching links resolve correctly across different directory levels.
+
+## Examples & Schemas
+The `examples/` directory contains:
+- `technikboerse_import.xsd`: The authoritative XML schema for validation.
+- Sample XML files for full synchronizations and delta updates.
+- Reference implementations for specific use cases.
+
+---
+&copy; 2026 technikboerse. All rights reserved.
